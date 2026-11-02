@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.0 - 2026-11-03
+
+### Fixed and improved
+
+- AGENTS.md conformance release: the manifest author carries the standard organisational URL (`https://github.com/Runyth`) next to the name. No runtime behaviour relationship or dependency change.
+
 ## 1.2.9 — 2026-10-21
 
 - First publication as a Runyth module: `runyth-garb-and-grime` / **Runyth Garb & Grime** with the publication standard in place — deterministic `-mod`, `-src`, and `-doc` archives with per-version checksums, byte-identical rebuild verification, standard quality and release pipelines, the full GNU AGPL-3.0-or-later licence with the standard source notice, the standard README licence chapter, and the manifest URL surfaces.
