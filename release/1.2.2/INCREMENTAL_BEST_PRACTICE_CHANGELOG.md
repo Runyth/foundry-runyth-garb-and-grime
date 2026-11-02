@@ -1,4 +1,4 @@
-# Garb & Grime v1.2.2 — Incremental changelog
+# Runyth Garb & Grime v1.2.2 — Incremental changelog
 
 - Fixed newly added player-linked PC Actors being hidden by an older manual dashboard Actor scope.
 - Recognizes Foundry selected-character links and non-GM OWNER assignment for `character` Actors.

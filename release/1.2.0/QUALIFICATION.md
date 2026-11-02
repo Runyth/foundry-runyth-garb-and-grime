@@ -1,4 +1,4 @@
-# Garb & Grime v1.2.0 — Qualification checklist
+# Runyth Garb & Grime v1.2.0 — Qualification checklist
 
 - [x] Feature implementation complete.
 - [x] Player visibility defaults to denied.

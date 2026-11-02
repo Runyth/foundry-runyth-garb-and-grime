@@ -1,12 +1,12 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { DEFAULT_CONFIGURATION, DEFAULT_PERMISSIONS } from "../garb-and-grime/src/defaults.mjs";
-import { resolveCleanlinessActor, resolveTokenCleanlinessActor } from "../garb-and-grime/src/actor-resolution.mjs";
-import { StateService } from "../garb-and-grime/src/state-service.mjs";
-import { TokenLabelService } from "../garb-and-grime/src/integrations/token-labels.mjs";
+import { DEFAULT_CONFIGURATION, DEFAULT_PERMISSIONS } from "../src/defaults.mjs";
+import { resolveCleanlinessActor, resolveTokenCleanlinessActor } from "../src/actor-resolution.mjs";
+import { StateService } from "../src/state-service.mjs";
+import { TokenLabelService } from "../src/integrations/token-labels.mjs";
 
-const MODULE_ID = "garb-and-grime";
+const MODULE_ID = "runyth-garb-and-grime";
 
 function getProperty(object, path) {
   return String(path).split(".").reduce((value, part) => value?.[part], object);
@@ -282,7 +282,7 @@ test("hovering a deployed PC Token updates its cached label text even when updat
   const replacement = dirtyState(0);
   const originalCall = Hooks.callAll;
   Hooks.callAll = (event, ...args) => {
-    if (event !== "updateActor" && event !== "garb-and-grime.stateChanged") originalCall(event, ...args);
+    if (event !== "updateActor" && event !== "runyth-garb-and-grime.stateChanged") originalCall(event, ...args);
   };
   try { await world.setFlag(MODULE_ID, "state", replacement); }
   finally { Hooks.callAll = originalCall; }

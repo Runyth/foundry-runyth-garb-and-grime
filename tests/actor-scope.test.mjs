@@ -5,7 +5,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const sourceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const moduleRoot = path.join(sourceRoot, "garb-and-grime");
+const moduleRoot = path.join(sourceRoot, ".");
 const read = (relativePath) => fs.readFileSync(path.join(moduleRoot, relativePath), "utf8");
 
 function setupFolders() {
@@ -22,7 +22,7 @@ function setupFolders() {
 
 test("dashboard Actor folder scope includes descendants only when requested", async () => {
   const folders = setupFolders();
-  const scopeModule = await import(`../garb-and-grime/src/actor-scope.mjs?folders=${Date.now()}`);
+  const scopeModule = await import(`../src/actor-scope.mjs?folders=${Date.now()}`);
   const options = scopeModule.buildActorFolderOptions({ folders });
   const actors = {
     parent: { name: "Alice", type: "character", folder: "pc" },
@@ -45,7 +45,7 @@ test("dashboard Actor folder scope includes descendants only when requested", as
 
 test("dashboard Actor regex matches names, types, and full folder paths", async () => {
   const folders = setupFolders();
-  const scopeModule = await import(`../garb-and-grime/src/actor-scope.mjs?regex=${Date.now()}`);
+  const scopeModule = await import(`../src/actor-scope.mjs?regex=${Date.now()}`);
   const options = scopeModule.buildActorFolderOptions({ folders });
 
   const byName = scopeModule.buildDashboardActorScope({ dashboardActorRegex: "^alice" }, options);
@@ -61,7 +61,7 @@ test("dashboard Actor regex matches names, types, and full folder paths", async 
 
 test("empty or stale folder scope remains safely nonrestrictive", async () => {
   const folders = setupFolders();
-  const scopeModule = await import(`../garb-and-grime/src/actor-scope.mjs?stale=${Date.now()}`);
+  const scopeModule = await import(`../src/actor-scope.mjs?stale=${Date.now()}`);
   const options = scopeModule.buildActorFolderOptions({ folders });
   const actor = { name: "Alice", type: "character", folder: "pc" };
 
@@ -73,7 +73,7 @@ test("empty or stale folder scope remains safely nonrestrictive", async () => {
 
 test("invalid global regex is detectable and does not crash Actor scope", async () => {
   const folders = setupFolders();
-  const scopeModule = await import(`../garb-and-grime/src/actor-scope.mjs?invalid=${Date.now()}`);
+  const scopeModule = await import(`../src/actor-scope.mjs?invalid=${Date.now()}`);
   const options = scopeModule.buildActorFolderOptions({ folders });
   const compiled = scopeModule.compileActorScopeRegex("[");
   assert.ok(compiled.error);
@@ -104,7 +104,7 @@ test("global scope is applied before expensive Actor directory indexing", () => 
 
 test("player-linked character Actors bypass a restrictive manual dashboard scope", async () => {
   const folders = setupFolders();
-  const scopeModule = await import(`../garb-and-grime/src/actor-scope.mjs?player-links=${Date.now()}`);
+  const scopeModule = await import(`../src/actor-scope.mjs?player-links=${Date.now()}`);
   const options = scopeModule.buildActorFolderOptions({ folders });
 
   const actors = Array.from({ length: 6 }, (_, index) => ({

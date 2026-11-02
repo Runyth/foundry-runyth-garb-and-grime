@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { evaluateRoll, effectiveDirtLevel } from "../garb-and-grime/src/domain/rules.mjs";
-import { getDefaultState, setStateDirt } from "../garb-and-grime/src/domain/state.mjs";
+import { evaluateRoll, effectiveDirtLevel } from "../src/domain/rules.mjs";
+import { getDefaultState, setStateDirt } from "../src/domain/state.mjs";
 
 const clean = { id: "clean", social: { level2: "disadvantage-social", level3: "entry-refusal-or-disadvantage" }, tracking: {} };
 const lawless = { id: "poor-lawless", social: { level0: "possible-disadvantage-blend", level2: "possible-advantage-blend" }, tracking: {} };

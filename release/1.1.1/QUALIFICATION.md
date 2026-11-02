@@ -1,4 +1,4 @@
-# Garb & Grime 1.1.1 — Qualification
+# Runyth Garb & Grime 1.1.1 — Qualification
 
 - Automated tests from working source: 74/74 passed.
 - Automated tests from freshly extracted source ZIP: 74/74 passed.
@@ -9,5 +9,5 @@
 - Documentation ZIP integrity: passed.
 - Direct `Actor.img` copying into application display context: none.
 - Predictable requests to unavailable module assets: suppressed before HTML rendering.
-- Runtime image failures: cached for the browser session and diagnosed once with `[garb-and-grime]` attribution.
+- Runtime image failures: cached for the browser session and diagnosed once with `[runyth-garb-and-grime]` attribution.
 - Existing Actor/Token image fields: unchanged; no migration.

@@ -1,4 +1,4 @@
-# Garb & Grime v1.2.1 — Transaction and permission audit
+# Runyth Garb & Grime v1.2.1 — Transaction and permission audit
 
 ## Reported defects
 
@@ -20,7 +20,7 @@ Automation called state mutation methods without `chat: false` in all paths, so 
 ## Corrections
 
 - Enabled the Foundry package socket in `module.json`.
-- Non-GM cleaning transactions are emitted to `module.garb-and-grime`.
+- Non-GM cleaning transactions are emitted to `module.runyth-garb-and-grime`.
 - Only the primary active GM accepts remote transaction requests.
 - The GM resolves the Actor UUID with `foundry.utils.fromUuid`, resolves the user, validates module/Actor permission, resolves the cleaning method, sanitizes all persisted fields, and deduplicates IDs before appending the world log.
 - Players never write the world transaction setting directly.

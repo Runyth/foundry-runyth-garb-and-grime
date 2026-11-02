@@ -1,4 +1,4 @@
-# Garb & Grime v1.2.0 — Feature and compatibility audit
+# Runyth Garb & Grime v1.2.0 — Feature and compatibility audit
 
 ## Scope
 
@@ -25,7 +25,7 @@ Legacy `tokenLabels.audience` remains readable for compatibility but is no longe
 - `owners` → Manual + owned-Actor player scope + player permission enabled at the legacy role level.
 - `everyone` → Manual + all eligible Token Actors + player permission enabled at the legacy role level.
 
-The migration writes world settings only. It does not modify Actor, Token, or Scene Documents. Existing `flags.garb-and-grime.tokenLabelMode` and `tokenLabelPosition` remain valid.
+The migration writes world settings only. It does not modify Actor, Token, or Scene Documents. Existing `flags.runyth-garb-and-grime.tokenLabelMode` and `tokenLabelPosition` remain valid.
 
 ## Display policies
 
@@ -46,11 +46,11 @@ During the feature audit the following existing or potential issues were address
 - Saving the Sheets/Token-label category no longer reconciles every Actor Active Effect unless the effect configuration actually changed.
 - Manual label Scene Controls are shown only when the configured display policy is Manual.
 - The manual keybinding can be used by an authorized player but performs an explicit module permission check; automatic policies reject the manual toggle with a localized warning.
-- Actor-panel and Item-integration caught errors now consistently identify `[garb-and-grime]` in the console.
+- Actor-panel and Item-integration caught errors now consistently identify `[runyth-garb-and-grime]` in the console.
 
 ## Interference/deprecation audit
 
-The production tree was scanned for broad/deprecated patterns previously responsible for Foundry/module interference. The scan found no Garb & Grime production usage of:
+The production tree was scanned for broad/deprecated patterns previously responsible for Foundry/module interference. The scan found no Runyth Garb & Grime production usage of:
 
 - deprecated `renderChatMessage`;
 - broad `renderApplicationV2`/generic Application augmentation;

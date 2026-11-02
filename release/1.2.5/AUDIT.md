@@ -1,4 +1,4 @@
-# Garb & Grime v1.2.5 — Root-cause and compatibility audit
+# Runyth Garb & Grime v1.2.5 — Root-cause and compatibility audit
 
 ## Reported symptom
 
@@ -6,7 +6,7 @@ After substantially changing Canvas Token Labels under Sheets & HUD, Display Beh
 
 ## Root cause
 
-Garb & Grime caches its merged world configuration for performance. The Global Settings save handler bypassed the module's cache-safe `setConfiguration()` helper and called `game.settings.set()` directly. It then scheduled a label repaint immediately. Foundry's registered setting `onChange` callback is responsible for invalidating the cache, so the immediate repaint could occur while the previous merged configuration was still cached.
+Runyth Garb & Grime caches its merged world configuration for performance. The Global Settings save handler bypassed the module's cache-safe `setConfiguration()` helper and called `game.settings.set()` directly. It then scheduled a label repaint immediately. Foundry's registered setting `onChange` callback is responsible for invalidating the cache, so the immediate repaint could occur while the previous merged configuration was still cached.
 
 This explains the asymmetric symptom: presentation was repainted once with stale values, while visibility/display behaviour could appear correct later because control/hover/token events re-evaluated it after the setting callback had caught up.
 

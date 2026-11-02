@@ -1,4 +1,4 @@
-# Garb & Grime v1.2.9 — qualification report
+# Runyth Garb & Grime v1.2.9 — qualification report
 
 - Baseline: original full v1.2.8 source distribution.
 - Manifest, package, runtime version and test assertions updated to 1.2.9.

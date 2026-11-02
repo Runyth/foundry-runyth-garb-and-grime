@@ -1,4 +1,4 @@
-# Garb & Grime 1.1.2 — Actors Tab Performance Audit
+# Runyth Garb & Grime 1.1.2 — Actors Tab Performance Audit
 
 ## Reported symptom
 

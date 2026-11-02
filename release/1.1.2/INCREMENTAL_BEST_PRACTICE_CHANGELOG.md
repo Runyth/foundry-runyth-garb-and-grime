@@ -1,4 +1,4 @@
-# Garb & Grime 1.1.2 — Incremental Best-Practice Changelog
+# Runyth Garb & Grime 1.1.2 — Incremental Best-Practice Changelog
 
 - Bound large directory UIs by page size instead of rendering every matching Document.
 - Separate cheap indexing from expensive presentation hydration.

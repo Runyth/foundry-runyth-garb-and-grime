@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { DEFAULT_CONFIGURATION, DEFAULT_PERMISSIONS } from "../garb-and-grime/src/defaults.mjs";
-import { TokenLabelService, formatLabel } from "../garb-and-grime/src/integrations/token-labels.mjs";
+import { DEFAULT_CONFIGURATION, DEFAULT_PERMISSIONS } from "../src/defaults.mjs";
+import { TokenLabelService, formatLabel } from "../src/integrations/token-labels.mjs";
 
 function getProperty(object, path) {
   return String(path).split(".").reduce((value, key) => value?.[key], object);
@@ -74,11 +74,11 @@ class MockText extends MockContainer {
 
 function setupFoundry() {
   const values = new Map([
-    ["garb-and-grime.configuration", structuredClone(DEFAULT_CONFIGURATION)],
-    ["garb-and-grime.permissions", structuredClone(DEFAULT_PERMISSIONS)],
-    ["garb-and-grime.tokenLabelsVisible", true],
-    ["garb-and-grime.tokenLabelViewerMode", "inherit"],
-    ["garb-and-grime.tokenLabelViewerPosition", "inherit"]
+    ["runyth-garb-and-grime.configuration", structuredClone(DEFAULT_CONFIGURATION)],
+    ["runyth-garb-and-grime.permissions", structuredClone(DEFAULT_PERMISSIONS)],
+    ["runyth-garb-and-grime.tokenLabelsVisible", true],
+    ["runyth-garb-and-grime.tokenLabelViewerMode", "inherit"],
+    ["runyth-garb-and-grime.tokenLabelViewerPosition", "inherit"]
   ]);
   globalThis.game = {
     settings: {
@@ -182,7 +182,7 @@ test("labels render once in a high interface layer with clear configurable styli
   configuration.tokenLabels.fontColor = "#00ff00";
   configuration.tokenLabels.backgroundColor = "#0000ff";
   configuration.tokenLabels.backgroundOpacity = 0.75;
-  values.set("garb-and-grime.configuration", configuration);
+  values.set("runyth-garb-and-grime.configuration", configuration);
   service.refreshToken(token);
   assert.equal(label.gagText.style.fill, "#00ff00");
   assert.deepEqual(label.gagBackground.commands.find(([name]) => name === "fill")?.[1], { color: 0x0000ff, alpha: 0.75 });
@@ -198,7 +198,7 @@ test("global display and per-token overrides control one idempotent canvas label
   const label = canvas.interface.children[0].children[0];
   assert.equal(label.visible, true);
 
-  values.set("garb-and-grime.tokenLabelsVisible", false);
+  values.set("runyth-garb-and-grime.tokenLabelsVisible", false);
   service.refreshToken(token);
   assert.equal(label.visible, false);
 
@@ -221,7 +221,7 @@ test("global and per-token positions support all four sides", () => {
 
   const configuration = structuredClone(DEFAULT_CONFIGURATION);
   configuration.tokenLabels.position = "below";
-  values.set("garb-and-grime.configuration", configuration);
+  values.set("runyth-garb-and-grime.configuration", configuration);
   service.refreshToken(token);
   assert.ok(label.y > token.document.y + token.h);
 
@@ -261,9 +261,9 @@ test("persistent labels deny players by default and allow explicit per-user perm
   const configuration = structuredClone(DEFAULT_CONFIGURATION);
   configuration.tokenLabels.visibilityMode = "always";
   configuration.tokenLabels.playerScope = "characters";
-  values.set("garb-and-grime.configuration", configuration);
+  values.set("runyth-garb-and-grime.configuration", configuration);
   const permissions = structuredClone(DEFAULT_PERMISSIONS);
-  values.set("garb-and-grime.permissions", permissions);
+  values.set("runyth-garb-and-grime.permissions", permissions);
   const { token } = makeToken();
   canvas.tokens.placeables = [token];
   const service = new TokenLabelService({ getState: () => structuredClone(state) });
@@ -272,7 +272,7 @@ test("persistent labels deny players by default and allow explicit per-user perm
   assert.equal(canvas.interface.children.length, 0, "default player permission exposes no persistent label");
 
   permissions.userOverrides["player-1"] = { viewTokenLabels: true };
-  values.set("garb-and-grime.permissions", permissions);
+  values.set("runyth-garb-and-grime.permissions", permissions);
   service.refreshToken(token);
   assert.equal(canvas.interface.children.length, 1);
   assert.equal(canvas.interface.children[0].children[0].visible, true, "explicitly permitted player sees the constant PC label");
@@ -280,10 +280,10 @@ test("persistent labels deny players by default and allow explicit per-user perm
 
 test("automatic visibility modes follow control and hover state without the manual client toggle", () => {
   const values = setupFoundry();
-  values.set("garb-and-grime.tokenLabelsVisible", false);
+  values.set("runyth-garb-and-grime.tokenLabelsVisible", false);
   const configuration = structuredClone(DEFAULT_CONFIGURATION);
   configuration.tokenLabels.visibilityMode = "controlled";
-  values.set("garb-and-grime.configuration", configuration);
+  values.set("runyth-garb-and-grime.configuration", configuration);
   const { token } = makeToken();
   token.controlled = false;
   token.hover = false;
@@ -318,7 +318,7 @@ test("character-only actor scope excludes NPC labels while preserving character 
   const configuration = structuredClone(DEFAULT_CONFIGURATION);
   configuration.tokenLabels.visibilityMode = "always";
   configuration.tokenLabels.actorScope = "characters";
-  values.set("garb-and-grime.configuration", configuration);
+  values.set("runyth-garb-and-grime.configuration", configuration);
   const { token } = makeToken();
   token.actor.type = "npc";
   token.document.actor.type = "npc";
@@ -336,7 +336,7 @@ test("per-token Always show never bypasses player permission or owned-actor scop
   const configuration = structuredClone(DEFAULT_CONFIGURATION);
   configuration.tokenLabels.visibilityMode = "always";
   configuration.tokenLabels.playerScope = "owned";
-  values.set("garb-and-grime.configuration", configuration);
+  values.set("runyth-garb-and-grime.configuration", configuration);
   const permissions = structuredClone(DEFAULT_PERMISSIONS);
   const { token, flags } = makeToken();
   flags.set("tokenLabelMode", "show");
@@ -350,7 +350,7 @@ test("per-token Always show never bypasses player permission or owned-actor scop
   assert.equal(canvas.interface.children.length, 0, "Token override cannot bypass denied persistent-status permission");
 
   permissions.userOverrides["player-2"] = { viewTokenLabels: true };
-  values.set("garb-and-grime.permissions", permissions);
+  values.set("runyth-garb-and-grime.permissions", permissions);
   service.refreshToken(token);
   assert.equal(canvas.interface.children.length, 0, "permission alone does not bypass owned-actor scope");
 
@@ -366,11 +366,11 @@ test("authorized players control their own persistent-label display mode without
   game.user = { id: "player-pref", isGM: false, role: 1 };
   const permissions = structuredClone(DEFAULT_PERMISSIONS);
   permissions.userOverrides["player-pref"] = { viewTokenLabels: true };
-  values.set("garb-and-grime.permissions", permissions);
+  values.set("runyth-garb-and-grime.permissions", permissions);
   const configuration = structuredClone(DEFAULT_CONFIGURATION);
   configuration.tokenLabels.visibilityMode = "controlled";
   configuration.tokenLabels.playerScope = "characters";
-  values.set("garb-and-grime.configuration", configuration);
+  values.set("runyth-garb-and-grime.configuration", configuration);
   const { token } = makeToken();
   token.controlled = false;
   canvas.tokens.placeables = [token];
@@ -382,7 +382,7 @@ test("authorized players control their own persistent-label display mode without
   await service.setViewerMode("always");
   service.refreshToken(token);
   assert.equal(canvas.interface.children[0].children[0].visible, true, "authorized player can choose Always for their own client");
-  assert.equal(values.get("garb-and-grime.configuration").tokenLabels.visibilityMode, "controlled", "world presentation is unchanged");
+  assert.equal(values.get("runyth-garb-and-grime.configuration").tokenLabels.visibilityMode, "controlled", "world presentation is unchanged");
 
   await service.setViewerMode("hidden");
   service.refreshToken(token);
@@ -392,11 +392,11 @@ test("authorized players control their own persistent-label display mode without
 test("player label preferences never bypass the authoritative Permissions tab", async () => {
   const values = setupFoundry();
   game.user = { id: "player-denied", isGM: false, role: 1 };
-  values.set("garb-and-grime.tokenLabelViewerMode", "always");
+  values.set("runyth-garb-and-grime.tokenLabelViewerMode", "always");
   const configuration = structuredClone(DEFAULT_CONFIGURATION);
   configuration.tokenLabels.visibilityMode = "always";
   configuration.tokenLabels.playerScope = "characters";
-  values.set("garb-and-grime.configuration", configuration);
+  values.set("runyth-garb-and-grime.configuration", configuration);
   const { token } = makeToken();
   canvas.tokens.placeables = [token];
   const service = new TokenLabelService({ getState: () => structuredClone(state) });
@@ -408,7 +408,7 @@ test("player label preferences never bypass the authoritative Permissions tab", 
 
   const permissions = structuredClone(DEFAULT_PERMISSIONS);
   permissions.userOverrides["player-denied"] = { viewTokenLabels: true };
-  values.set("garb-and-grime.permissions", permissions);
+  values.set("runyth-garb-and-grime.permissions", permissions);
   assert.equal(service.canUseViewerControls(), true);
   service.refreshToken(token);
   assert.equal(canvas.interface.children[0].children[0].visible, true);
@@ -417,11 +417,11 @@ test("player label preferences never bypass the authoritative Permissions tab", 
 // v1.2.7: scoped local shortcut must not persist flags/world visibility.
 function setupShortcutWorld({ scope = "scene-pcs", visibilityMode = "manual", visible = false } = {}) {
   const values = setupFoundry();
-  values.set("garb-and-grime.tokenLabelsVisible", visible);
+  values.set("runyth-garb-and-grime.tokenLabelsVisible", visible);
   const configuration = structuredClone(DEFAULT_CONFIGURATION);
   configuration.tokenLabels.visibilityMode = visibilityMode;
   configuration.tokenLabels.shortcutScope = scope;
-  values.set("garb-and-grime.configuration", configuration);
+  values.set("runyth-garb-and-grime.configuration", configuration);
   canvas.ready = true;
   canvas.scene = { id: "scene-1" };
   const player = { id: "player-1", isGM: false, role: 1, character: "a1" };
@@ -461,7 +461,7 @@ test("shortcut defaults to all scene PC Tokens without selection and toggles onl
   assert.equal(service.shouldDisplay(extraPc.token), true);
   assert.equal(service.shouldDisplay(npc.token), false);
   assert.equal(service.shouldDisplay(unassignedPc.token), false);
-  assert.equal(values.get("garb-and-grime.tokenLabelsVisible"), false, "global setting was not modified");
+  assert.equal(values.get("runyth-garb-and-grime.tokenLabelsVisible"), false, "global setting was not modified");
   assert.equal(pc.flags.size, 0, "Token document flags were not modified");
   assert.equal(service.toggleSceneTokenLabels(), 2);
   assert.equal(service.shouldDisplay(pc.token), false);
@@ -476,7 +476,7 @@ test("selected PC mode requires selection and only changes the selected PC", () 
   assert.equal(service.shouldDisplay(pc.token), true);
   assert.equal(service.shouldDisplay(extraPc.token), false);
   assert.equal(service.shouldDisplay(npc.token), false);
-  assert.equal(values.get("garb-and-grime.configuration").tokenLabels.shortcutScope, configuration.tokenLabels.shortcutScope);
+  assert.equal(values.get("runyth-garb-and-grime.configuration").tokenLabels.shortcutScope, configuration.tokenLabels.shortcutScope);
 });
 
 test("eligible scope can include NPCs, but respects GM Always hide and scope permissions", () => {
@@ -485,9 +485,9 @@ test("eligible scope can include NPCs, but respects GM Always hide and scope per
   assert.equal(service.toggleSceneTokenLabels(), 3, "eligible world characters count including unassigned PC, but not GM-hidden NPC");
   assert.equal(service.shouldDisplay(npc.token), false);
   npc.flags.delete("tokenLabelMode");
-  const configuration = structuredClone(values.get("garb-and-grime.configuration"));
+  const configuration = structuredClone(values.get("runyth-garb-and-grime.configuration"));
   configuration.tokenLabels.shortcutScope = "selected-eligible";
-  values.set("garb-and-grime.configuration", configuration);
+  values.set("runyth-garb-and-grime.configuration", configuration);
   canvas.tokens.controlled = [npc.token];
   assert.equal(service.toggleSceneTokenLabels(), 1);
   assert.equal(service.shouldDisplay(npc.token), true);
@@ -525,16 +525,16 @@ test("token redraw preserves shortcut state, scene changes clear it, and hidden 
 test("player permission denies scoped shortcut even with personal Always, allowed player gets only local labels", () => {
   const { values, pc, service } = setupShortcutWorld();
   game.user = { id: "player-denied", isGM: false, role: 1 };
-  values.set("garb-and-grime.tokenLabelViewerMode", "always");
+  values.set("runyth-garb-and-grime.tokenLabelViewerMode", "always");
   assert.equal(service.toggleSceneTokenLabels(), 0);
   assert.equal(service.shouldDisplay(pc.token), false);
   const permissions = structuredClone(DEFAULT_PERMISSIONS);
   permissions.userOverrides["player-denied"] = { viewTokenLabels: true };
-  values.set("garb-and-grime.permissions", permissions);
-  values.set("garb-and-grime.tokenLabelViewerMode", "manual");
+  values.set("runyth-garb-and-grime.permissions", permissions);
+  values.set("runyth-garb-and-grime.tokenLabelViewerMode", "manual");
   assert.equal(service.toggleSceneTokenLabels(), 2);
   assert.equal(service.shouldDisplay(pc.token), true);
-  values.set("garb-and-grime.tokenLabelViewerMode", "hidden");
+  values.set("runyth-garb-and-grime.tokenLabelViewerMode", "hidden");
   assert.equal(service.toggleSceneTokenLabels(), 0);
   assert.equal(service.shouldDisplay(pc.token), false);
 });
@@ -542,7 +542,7 @@ test("player permission denies scoped shortcut even with personal Always, allowe
 test("disabled shortcut and absent canvas are safe no-ops", () => {
   const { values, configuration, service } = setupShortcutWorld();
   configuration.tokenLabels.shortcutEnabled = false;
-  values.set("garb-and-grime.configuration", configuration);
+  values.set("runyth-garb-and-grime.configuration", configuration);
   assert.equal(service.toggleSceneTokenLabels(), 0);
   configuration.tokenLabels.shortcutEnabled = true;
   canvas.ready = false;
@@ -557,7 +557,7 @@ test("Foundry native keybinding remains editable and invokes the scoped shortcut
   globalThis.Hooks = { on() {} };
   game.keybindings = { register(namespace, key, data) { binding = { namespace, key, ...data }; } };
   service.registerHooks();
-  assert.equal(binding.namespace, "garb-and-grime");
+  assert.equal(binding.namespace, "runyth-garb-and-grime");
   assert.equal(binding.key, "toggleTokenCleanlinessLabels");
   assert.deepEqual(binding.editable, [{ key: "KeyG", modifiers: ["SHIFT", "ALT"] }]);
   assert.equal(binding.restricted, false);
@@ -572,7 +572,7 @@ test("shortcuts never bypass GM per-Token hidden flags, even for permitted playe
   game.user = { id: "player-1", isGM: false, role: 1 };
   const permissions = structuredClone(DEFAULT_PERMISSIONS);
   permissions.userOverrides["player-1"] = { viewTokenLabels: true };
-  values.set("garb-and-grime.permissions", permissions);
+  values.set("runyth-garb-and-grime.permissions", permissions);
   pc.flags.set("tokenLabelMode", "hide");
   assert.equal(service.toggleSceneTokenLabels(), 1);
   assert.equal(service.shouldDisplay(pc.token), false);
@@ -585,7 +585,7 @@ test("viewer-mode change clears session shortcut state to honor explicit prefere
   game.user = { id: "player-1", isGM: false, role: 1 };
   const permissions = structuredClone(DEFAULT_PERMISSIONS);
   permissions.userOverrides["player-1"] = { viewTokenLabels: true };
-  values.set("garb-and-grime.permissions", permissions);
+  values.set("runyth-garb-and-grime.permissions", permissions);
   service.toggleSceneTokenLabels();
   assert.equal(service.shouldDisplay(pc.token), true);
   await service.setViewerMode("hidden");
@@ -598,7 +598,7 @@ test("disabling shortcut resets local overrides instead of leaving a hidden pers
   service.toggleSceneTokenLabels();
   assert.equal(service.shouldDisplay(pc.token), true);
   configuration.tokenLabels.shortcutEnabled = false;
-  values.set("garb-and-grime.configuration", configuration);
+  values.set("runyth-garb-and-grime.configuration", configuration);
   assert.equal(service.shouldDisplay(pc.token), false);
   assert.equal(service.shortcutOverrides.size, 0);
   configuration.tokenLabels.shortcutEnabled = true;

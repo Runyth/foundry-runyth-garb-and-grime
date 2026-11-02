@@ -1,9 +1,9 @@
-# Garb & Grime v1.2.1 — Incremental best-practice changelog
+# Runyth Garb & Grime v1.2.1 — Incremental best-practice changelog
 
 ## Fixed
 - Player-initiated cleaning now reaches the GM-owned transaction log through the module socket instead of being silently skipped for non-GM users.
 - Remote transaction requests are processed only by the primary active GM, validated against Actor/user permissions and a registered cleaning method, sanitized, and deduplicated by transaction ID.
-- Added the required `"socket": true` manifest declaration for the package-specific `module.garb-and-grime` namespace.
+- Added the required `"socket": true` manifest declaration for the package-specific `module.runyth-garb-and-grime` namespace.
 - Removed the old Chat configuration as an independent visibility authority.
 - Automatic long-rest, world-day, combat-end, context exposure, automatic contamination, and daily-upkeep changes are explicitly chat-silent.
 - Manager transaction data is not prepared for ordinary players.

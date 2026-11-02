@@ -6,7 +6,7 @@ let windowStateWriteQueue = Promise.resolve();
 
 export class PersistentApplication extends HandlebarsApplicationMixin(ApplicationV2) {
   static DEFAULT_OPTIONS = {
-    classes: ["garb-and-grime", "gag-window"],
+    classes: ["runyth-garb-and-grime", "gag-window"],
     position: { width: 900, height: 680 },
     window: { resizable: true }
   };

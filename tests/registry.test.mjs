@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { DefinitionRegistry } from "../garb-and-grime/src/registry.mjs";
+import { DefinitionRegistry } from "../src/registry.mjs";
 
 test("registry contains required built-in definitions", () => {
   const registry = new DefinitionRegistry();

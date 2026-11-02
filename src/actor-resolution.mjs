@@ -1,6 +1,6 @@
 /**
  * Character Tokens can be unlinked synthetic Actors in Foundry V13. Their
- * ActorDelta can retain an older copy of Garb & Grime flags even after the
+ * ActorDelta can retain an older copy of Runyth Garb & Grime flags even after the
  * world Actor changes. Unlike NPC instances, a character's cleanliness is
  * campaign-wide: use the world Actor as the one authoritative state source.
  *

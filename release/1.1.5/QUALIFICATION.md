@@ -1,4 +1,4 @@
-# Garb & Grime 1.1.5 — Qualification
+# Runyth Garb & Grime 1.1.5 — Qualification
 
 - Automated tests from working source: 89/89 passed.
 - Production JavaScript syntax validation: passed through `tools/check.mjs`.

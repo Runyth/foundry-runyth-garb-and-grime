@@ -38,8 +38,8 @@ test("manager and settings tabs switch through module actions without calling Ap
   };
 
   const nonce = Date.now();
-  const { CleanlinessManager } = await import(`../garb-and-grime/src/apps/manager.mjs?tabs=${nonce}`);
-  const { GarbAndGrimeSettings } = await import(`../garb-and-grime/src/apps/settings-hub.mjs?tabs=${nonce}`);
+  const { CleanlinessManager } = await import(`../src/apps/manager.mjs?tabs=${nonce}`);
+  const { GarbAndGrimeSettings } = await import(`../src/apps/settings-hub.mjs?tabs=${nonce}`);
 
   assert.equal(CleanlinessManager.DEFAULT_OPTIONS.actions.tab, undefined);
   assert.equal(GarbAndGrimeSettings.DEFAULT_OPTIONS.actions.tab, undefined);

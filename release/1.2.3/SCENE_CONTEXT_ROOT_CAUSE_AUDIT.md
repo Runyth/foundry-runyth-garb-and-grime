@@ -1,8 +1,8 @@
-# Garb & Grime v1.2.3 — Scene Context root-cause audit
+# Runyth Garb & Grime v1.2.3 — Scene Context root-cause audit
 
 ## Reported defect
 
-Using the Garb & Grime Scene Context control could fail with `Unknown environment profile: undefined`, originating from `ContextService.setSceneContext`.
+Using the Runyth Garb & Grime Scene Context control could fail with `Unknown environment profile: undefined`, originating from `ContextService.setSceneContext`.
 
 ## Root cause
 

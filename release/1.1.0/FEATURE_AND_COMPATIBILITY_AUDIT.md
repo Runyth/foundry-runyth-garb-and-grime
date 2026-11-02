@@ -1,4 +1,4 @@
-# Garb & Grime 1.1.0 feature and compatibility audit
+# Runyth Garb & Grime 1.1.0 feature and compatibility audit
 
 ## Scope
 
@@ -9,7 +9,7 @@ The complete 1.0.10 production source, tests, templates, styles, localization, p
 ### Added
 
 - A prominent dashboard card in **Global Module Settings → General**.
-- A dedicated **Garb & Grime** group in Foundry's left Scene Controls.
+- A dedicated **Runyth Garb & Grime** group in Foundry's left Scene Controls.
 - Retained Configure Settings menus, Settings-sidebar card, Actors-sidebar card, Actor-sheet indicator, Token HUD controls, and Token-control tools.
 
 ### Isolation

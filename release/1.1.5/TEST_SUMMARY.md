@@ -1,4 +1,4 @@
-# Garb & Grime 1.1.5 — Test Summary
+# Runyth Garb & Grime 1.1.5 — Test Summary
 
 New regression coverage verifies:
 
@@ -12,7 +12,7 @@ New regression coverage verifies:
 - rapid repeated bulk clicks executing in order;
 - Select Visible, Select Folder, and Clear Selection persistence;
 - a freshly reopened Manager instance;
-- contained settings/action failures with a Garb & Grime-owned diagnostic;
+- contained settings/action failures with a Runyth Garb & Grime-owned diagnostic;
 - absence of the private-static receiver pattern from Manager action handlers.
 
 All previous regression coverage remains active.

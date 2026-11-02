@@ -5,7 +5,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const managerSource = fs.readFileSync(path.resolve(here, "../garb-and-grime/src/apps/manager.mjs"), "utf8");
+const managerSource = fs.readFileSync(path.resolve(here, "../src/apps/manager.mjs"), "utf8");
 
 function mergeObject(original, other, { inplace = true } = {}) {
   return Object.assign(inplace ? original : structuredClone(original), structuredClone(other));
@@ -76,7 +76,7 @@ async function setupManagerTest() {
   };
 
   const nonce = `${Date.now()}-${Math.random()}`;
-  const module = await import(`../garb-and-grime/src/apps/manager.mjs?manager-actions=${nonce}`);
+  const module = await import(`../src/apps/manager.mjs?manager-actions=${nonce}`);
   module.configureManagerServices({
     actionService: {
       async cleanActor(actor, methodId, options) { calls.push(["clean", actor.uuid, methodId, options]); }
@@ -187,7 +187,7 @@ test("Actor-browser action rejection boundary contains service failures", async 
     game.settings.set = originalSet;
   }
   assert.equal(notices.error.at(-1), "GAG.Errors.ActorManagerActionFailed");
-  assert.match(String(errors.at(-1)?.[0] ?? ""), /\[garb-and-grime\] Actor dashboard action failed/);
+  assert.match(String(errors.at(-1)?.[0] ?? ""), /\[runyth-garb-and-grime\] Actor dashboard action failed/);
 });
 
 

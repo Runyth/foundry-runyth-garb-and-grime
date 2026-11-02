@@ -1,4 +1,4 @@
-# Garb & Grime v1.2.1 — Qualification checklist
+# Runyth Garb & Grime v1.2.1 — Qualification checklist
 
 - [x] Version advanced from 1.2.0 to 1.2.1.
 - [x] Public API remains 1.3.0.

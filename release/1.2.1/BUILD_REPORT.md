@@ -1,12 +1,12 @@
-# Garb & Grime v1.2.1 — Build report
+# Runyth Garb & Grime v1.2.1 — Build report
 
 - Release type: patch.
 - Target: Foundry VTT v13 / D&D 5e 5.2+.
-- Module ID: `garb-and-grime`.
+- Module ID: `runyth-garb-and-grime`.
 - Module version: `1.2.1`.
 - Public API: `1.3.0`.
 - Actor-state schema: `1`.
-- Package socket: enabled (`module.garb-and-grime`).
+- Package socket: enabled (`module.runyth-garb-and-grime`).
 - Source validation: passed 100/100 tests before packaging.
 - Runtime ZIP excludes README, changelog, docs, tests, and build tooling.
 - Source ZIP contains complete source, tests, documentation, and deterministic packaging tooling.

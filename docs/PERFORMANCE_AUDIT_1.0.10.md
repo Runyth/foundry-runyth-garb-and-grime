@@ -1,4 +1,4 @@
-# Performance audit — Garb & Grime 1.0.10
+# Performance audit — Runyth Garb & Grime 1.0.10
 
 ## Scope
 
@@ -66,7 +66,7 @@ The label service now:
 - distinguishes full refreshes from position-only refreshes;
 - reads configuration and global visibility once per frame;
 - coalesces multiple requests for the same Token;
-- refreshes an Actor only when Garb & Grime Actor flags change;
+- refreshes an Actor only when Runyth Garb & Grime Actor flags change;
 - avoids a redundant controlled-Token hook;
 - invalidates pending frame work safely during canvas teardown;
 - reuses one display object per Token.

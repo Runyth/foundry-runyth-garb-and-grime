@@ -5,7 +5,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const sourceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const moduleRoot = path.join(sourceRoot, "garb-and-grime");
+const moduleRoot = path.join(sourceRoot, ".");
 const read = (relativePath) => fs.readFileSync(path.join(moduleRoot, relativePath), "utf8");
 
 function mergeObject(original, other, { inplace = true } = {}) {
@@ -22,7 +22,7 @@ function mergeObject(original, other, { inplace = true } = {}) {
 }
 
 test("bounded asynchronous mapping preserves order without flooding work", async () => {
-  const { mapWithConcurrency } = await import(`../garb-and-grime/src/util.mjs?performance-map=${Date.now()}`);
+  const { mapWithConcurrency } = await import(`../src/util.mjs?performance-map=${Date.now()}`);
   let active = 0;
   let maximum = 0;
   const results = await mapWithConcurrency(Array.from({ length: 12 }, (_, index) => index), async (value) => {
@@ -41,7 +41,7 @@ test("bounded asynchronous mapping preserves order without flooding work", async
 test("reactive application renders are coalesced into one browser frame", async () => {
   const callbacks = [];
   globalThis.requestAnimationFrame = (callback) => callbacks.push(callback);
-  const { scheduleApplicationRender } = await import(`../garb-and-grime/src/util.mjs?performance-render=${Date.now()}`);
+  const { scheduleApplicationRender } = await import(`../src/util.mjs?performance-render=${Date.now()}`);
   let renders = 0;
   const app = {
     rendered: true,
@@ -81,7 +81,7 @@ test("configuration caches reuse merged settings and detect non-Foundry in-place
     }
   };
 
-  const settings = await import(`../garb-and-grime/src/settings.mjs?performance-cache=${Date.now()}`);
+  const settings = await import(`../src/settings.mjs?performance-cache=${Date.now()}`);
   const first = settings.getConfiguration();
   const second = settings.getConfiguration();
   assert.equal(first, second);
@@ -113,7 +113,7 @@ test("cache-safe configuration writes are visible to an immediate post-save repa
   };
   globalThis.game = {
     settings: {
-      settings: new Map([["garb-and-grime.configuration", {}]]),
+      settings: new Map([["runyth-garb-and-grime.configuration", {}]]),
       get(moduleId, key) { return key === "configuration" ? stored : {}; },
       async set(moduleId, key, value) {
         if (key === "configuration") stored = structuredClone(value);
@@ -121,7 +121,7 @@ test("cache-safe configuration writes are visible to an immediate post-save repa
       }
     }
   };
-  const settings = await import(`../garb-and-grime/src/settings.mjs?performance-config-save=${Date.now()}-${Math.random()}`);
+  const settings = await import(`../src/settings.mjs?performance-config-save=${Date.now()}-${Math.random()}`);
   assert.equal(settings.getConfiguration().tokenLabels.fontSize, 22);
   const next = structuredClone(settings.getConfiguration());
   next.tokenLabels.fontSize = 13;
@@ -216,7 +216,7 @@ test("state-only changes skip unnecessary Active Effect reconciliation", async (
     async setFlag(moduleId, key, value) { stored = structuredClone(value); },
     get effects() { effectsRead += 1; return []; }
   };
-  const { StateService } = await import(`../garb-and-grime/src/state-service.mjs?performance-effects=${Date.now()}`);
+  const { StateService } = await import(`../src/state-service.mjs?performance-effects=${Date.now()}`);
   const service = new StateService({});
   await service.setAutomaticMaintenance(actor, true, { silent: true });
   assert.equal(stored.autoMaintenance, true);
@@ -277,7 +277,7 @@ test("concurrent transaction entries are flushed through one settings write", as
     }
   };
   const registry = { getCurrencyAdapter: () => null };
-  const { ActionService } = await import(`../garb-and-grime/src/action-service.mjs?performance-transactions=${Date.now()}`);
+  const { ActionService } = await import(`../src/action-service.mjs?performance-transactions=${Date.now()}`);
   const service = new ActionService(registry, stateService, null);
 
   await Promise.all(actors.map((actor) => service.settleMaintenanceDebt(actor)));
@@ -319,7 +319,7 @@ test("directory summaries avoid full state normalization for large Actor indexes
     i18n: { localize: (key) => key, format: (key) => key }
   };
   globalThis.CONST = { USER_ROLES: { GAMEMASTER: 4 } };
-  const { StateService } = await import(`../garb-and-grime/src/state-service.mjs?directory-summary=${Date.now()}`);
+  const { StateService } = await import(`../src/state-service.mjs?directory-summary=${Date.now()}`);
   const service = new StateService({});
   const actor = {
     getFlag: () => ({

@@ -18,9 +18,9 @@ function mergeObject(original, other, { inplace = true } = {}) {
 
 function setup(configuration) {
   const settings = new Map([
-    ["garb-and-grime.configuration", configuration],
-    ["garb-and-grime.transaction-log", []],
-    ["garb-and-grime.permissions", { roleMinimums: {}, userOverrides: {} }]
+    ["runyth-garb-and-grime.configuration", configuration],
+    ["runyth-garb-and-grime.transaction-log", []],
+    ["runyth-garb-and-grime.permissions", { roleMinimums: {}, userOverrides: {} }]
   ]);
   const notifications = [];
   globalThis.Hooks = {
@@ -139,7 +139,7 @@ test("failed payment does not consume a validated cleaning item or change state"
       async deduct() { throw new Error("must not deduct"); }
     })
   };
-  const { ActionService } = await import(`../garb-and-grime/src/action-service.mjs?failed=${Date.now()}`);
+  const { ActionService } = await import(`../src/action-service.mjs?failed=${Date.now()}`);
   const service = new ActionService(registry, store, { getProfile: () => ({ serviceAvailability: ["soap"] }) });
 
   const result = await service.cleanActor(actor, "soap", {
@@ -182,7 +182,7 @@ test("successful cleaning deducts custom Mark currency, consumes once, and clean
       }
     })
   };
-  const { ActionService } = await import(`../garb-and-grime/src/action-service.mjs?success=${Date.now()}`);
+  const { ActionService } = await import(`../src/action-service.mjs?success=${Date.now()}`);
   const service = new ActionService(registry, store, { getProfile: () => ({ serviceAvailability: ["soap"] }) });
 
   const result = await service.cleanActor(actor, "soap", {
@@ -230,7 +230,7 @@ test("record-only daily upkeep accrues debt and cannot run twice in one day", as
     getCleaningMethod: () => structuredClone(upkeepMethod),
     getCurrencyAdapter: () => null
   };
-  const { ActionService } = await import(`../garb-and-grime/src/action-service.mjs?upkeep=${Date.now()}`);
+  const { ActionService } = await import(`../src/action-service.mjs?upkeep=${Date.now()}`);
   const service = new ActionService(registry, store, { getProfile: () => ({ serviceAvailability: ["daily-upkeep"] }) });
 
   const first = await service.processDailyMaintenance(actor, { day: 42 });
@@ -264,7 +264,7 @@ test("settlement tags make a bound cleaning method available without an explicit
     getCleaningMethod: () => structuredClone(method),
     getCurrencyAdapter: () => null
   };
-  const { ActionService } = await import(`../garb-and-grime/src/action-service.mjs?settlement-match=${Date.now()}`);
+  const { ActionService } = await import(`../src/action-service.mjs?settlement-match=${Date.now()}`);
   const service = new ActionService(registry, store, {
     getProfile: () => ({ id: "custom-capital", name: "Capital", settlementTypes: ["city"], serviceAvailability: [] })
   });
@@ -300,7 +300,7 @@ test("a settlement-bound cleaning method is rejected when neither tags nor metho
     getCleaningMethod: () => structuredClone(method),
     getCurrencyAdapter: () => null
   };
-  const { ActionService } = await import(`../garb-and-grime/src/action-service.mjs?settlement-mismatch=${Date.now()}`);
+  const { ActionService } = await import(`../src/action-service.mjs?settlement-mismatch=${Date.now()}`);
   const service = new ActionService(registry, store, {
     getProfile: () => ({ id: "wilderness", name: "Wilderness", settlementTypes: [], serviceAvailability: [] })
   });
@@ -339,17 +339,17 @@ function soapFixture({ stock = [], soapQuantity = 1, consumeSoap = true, require
 
 test("enforced soap: missing or empty stock denies the wash without changing cleanliness or charging", async () => {
   for (const stock of [[], [0]]) {
-    const { ActionService } = await import("../garb-and-grime/src/action-service.mjs");
+    const { ActionService } = await import("../src/action-service.mjs");
     const { actor, store, registry } = soapFixture({ stock });
     const actions = new ActionService(registry, store, null);
     await assert.rejects(() => actions.cleanActor(actor, "soap", { chat: false }), /GAG\.Errors\.RequiredItemMissing/);
     assert.equal(store.current().dirtLevel, 2);
-    assert.equal(game.settings.get("garb-and-grime", "transactionLog")?.length ?? 0, 0);
+    assert.equal(game.settings.get("runyth-garb-and-grime", "transactionLog")?.length ?? 0, 0);
   }
 });
 
 test("enforced soap: matching Soap/Seife stacks combine; exactly the configured quantity is consumed", async () => {
-  const { ActionService } = await import("../garb-and-grime/src/action-service.mjs");
+  const { ActionService } = await import("../src/action-service.mjs");
   const { items, actor, store, registry } = soapFixture({ stock: [1, 2], soapQuantity: 3 });
   const actions = new ActionService(registry, store, null);
   const result = await actions.cleanActor(actor, "soap", { chat: false });
@@ -360,7 +360,7 @@ test("enforced soap: matching Soap/Seife stacks combine; exactly the configured 
 });
 
 test("enforced soap: non-consuming possession mode denies absence but never modifies inventory", async () => {
-  const { ActionService } = await import("../garb-and-grime/src/action-service.mjs");
+  const { ActionService } = await import("../src/action-service.mjs");
   const { items, actor, store, registry } = soapFixture({ stock: [2], soapQuantity: 2, consumeSoap: false });
   const result = await new ActionService(registry, store, null).cleanActor(actor, "soap", { chat: false });
   assert.equal(result.success, true);
@@ -370,7 +370,7 @@ test("enforced soap: non-consuming possession mode denies absence but never modi
 });
 
 test("enforced soap: pre-reserved soap Item-sheet consumption satisfies the requirement without double deduction", async () => {
-  const { ActionService } = await import("../garb-and-grime/src/action-service.mjs");
+  const { ActionService } = await import("../src/action-service.mjs");
   const { items, actor, store, registry } = soapFixture({ stock: [1], soapQuantity: 1 });
   const service = new ActionService(registry, store, null);
   globalThis.foundry.utils.fromUuid = async () => items[0];
@@ -383,7 +383,7 @@ test("enforced soap: pre-reserved soap Item-sheet consumption satisfies the requ
 });
 
 test("enforced soap: repeat action cannot reuse a depleted soap stack", async () => {
-  const { ActionService } = await import("../garb-and-grime/src/action-service.mjs");
+  const { ActionService } = await import("../src/action-service.mjs");
   const { items, actor, store, registry } = soapFixture({ stock: [1] });
   const service = new ActionService(registry, store, null);
   const [first, second] = await Promise.allSettled([
@@ -398,7 +398,7 @@ test("enforced soap: repeat action cannot reuse a depleted soap stack", async ()
 });
 
 test("soap enforcement remains opt-in; old campaigns can wash without inventory", async () => {
-  const { ActionService } = await import("../garb-and-grime/src/action-service.mjs");
+  const { ActionService } = await import("../src/action-service.mjs");
   const { actor, store, registry } = soapFixture({ stock: [], requireSoap: false });
   const result = await new ActionService(registry, store, null).cleanActor(actor, "soap", { chat: false });
   assert.equal(result.success, true);
@@ -406,13 +406,13 @@ test("soap enforcement remains opt-in; old campaigns can wash without inventory"
 });
 
 test("a player cannot bypass enabled soap enforcement with an API skipItemRequirements option", async () => {
-  const { ActionService } = await import("../garb-and-grime/src/action-service.mjs");
+  const { ActionService } = await import("../src/action-service.mjs");
   const { actor, store, registry } = soapFixture({ stock: [], requireSoap: true });
   const permissions = {
     roleMinimums: { modifyOwnActions: 1, useServices: 1, consumeItems: 1 },
     userOverrides: {}
   };
-  await game.settings.set("garb-and-grime", "permissions", permissions);
+  await game.settings.set("runyth-garb-and-grime", "permissions", permissions);
   game.user = { id: "player-1", name: "Player", role: 1, isGM: false };
   await assert.rejects(
     () => new ActionService(registry, store, null).cleanActor(actor, "soap", { skipItemRequirements: true, chat: false }),

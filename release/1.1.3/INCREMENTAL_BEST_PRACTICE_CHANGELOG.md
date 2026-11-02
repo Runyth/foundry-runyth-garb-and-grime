@@ -1,4 +1,4 @@
-# Garb & Grime 1.1.3 — Incremental Best-Practice Changelog
+# Runyth Garb & Grime 1.1.3 — Incremental Best-Practice Changelog
 
 - Move coarse Actor eligibility filtering ahead of expensive state/index preparation.
 - Keep global world scope separate from client-local dashboard filters.

@@ -5,7 +5,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const moduleRoot = path.resolve(here, "../garb-and-grime");
+const moduleRoot = path.resolve(here, "..");
 
 function setupGlobals() {
   globalThis.game = {
@@ -68,7 +68,7 @@ function fakeButton(values) {
 
 test("Scene Context fresh Scene defaults deterministically and never passes undefined", async () => {
   setupGlobals();
-  const { ContextService } = await import(`../garb-and-grime/src/context-service.mjs?fresh=${Date.now()}`);
+  const { ContextService } = await import(`../src/context-service.mjs?fresh=${Date.now()}`);
   const service = new ContextService(registry());
   const scene = sceneWith();
   const status = service.getSceneContextStatus(scene);
@@ -81,7 +81,7 @@ test("Scene Context fresh Scene defaults deterministically and never passes unde
 
 test("stale Scene profile remains visible as stale until the GM explicitly replaces it", async () => {
   setupGlobals();
-  const { ContextService } = await import(`../garb-and-grime/src/context-service.mjs?stale=${Date.now()}`);
+  const { ContextService } = await import(`../src/context-service.mjs?stale=${Date.now()}`);
   const service = new ContextService(registry());
   const scene = sceneWith({
     id: "deleted-profile",
@@ -105,7 +105,7 @@ test("stale Scene profile remains visible as stale until the GM explicitly repla
 
 test("Scene Context validation distinguishes missing selection, unavailable registry, invalid Scene, and persistence failure", async () => {
   setupGlobals();
-  const { ContextService, SceneContextError } = await import(`../garb-and-grime/src/context-service.mjs?errors=${Date.now()}`);
+  const { ContextService, SceneContextError } = await import(`../src/context-service.mjs?errors=${Date.now()}`);
   const service = new ContextService(registry());
   const scene = sceneWith();
 
@@ -123,8 +123,8 @@ test("Scene Context validation distinguishes missing selection, unavailable regi
 
 test("Foundry V13 Scene Context dialog reads the owning DialogV2 form and survives cancel/reopen", async () => {
   setupGlobals();
-  const serviceModule = await import(`../garb-and-grime/src/context-service.mjs?dialog-service=${Date.now()}`);
-  const dialogModule = await import(`../garb-and-grime/src/apps/scene-context-dialog.mjs?dialog=${Date.now()}`);
+  const serviceModule = await import(`../src/context-service.mjs?dialog-service=${Date.now()}`);
+  const dialogModule = await import(`../src/apps/scene-context-dialog.mjs?dialog=${Date.now()}`);
   const source = fs.readFileSync(path.join(moduleRoot, "src/apps/scene-context-dialog.mjs"), "utf8");
   assert.doesNotMatch(source, /<form class="gag-dialog-form gag-context-dialog"/);
   assert.match(source, /button\?\.form\?\.elements/);
@@ -156,8 +156,8 @@ test("Foundry V13 Scene Context dialog reads the owning DialogV2 form and surviv
 
 test("stale profile is shown as unavailable in the dialog and is not rewritten before Save", async () => {
   setupGlobals();
-  const serviceModule = await import(`../garb-and-grime/src/context-service.mjs?dialog-stale-service=${Date.now()}`);
-  const dialogModule = await import(`../garb-and-grime/src/apps/scene-context-dialog.mjs?dialog-stale=${Date.now()}`);
+  const serviceModule = await import(`../src/context-service.mjs?dialog-stale-service=${Date.now()}`);
+  const dialogModule = await import(`../src/apps/scene-context-dialog.mjs?dialog-stale=${Date.now()}`);
   const profiles = registry();
   const contextService = new serviceModule.ContextService(profiles);
   const scene = sceneWith({ id: "removed-profile", futureField: 42 });

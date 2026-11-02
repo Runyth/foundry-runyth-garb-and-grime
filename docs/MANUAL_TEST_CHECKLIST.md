@@ -4,16 +4,16 @@ Use a cloned test world with Foundry v13, D&D 5e, one GM, one normal player, a l
 
 ## Installation and discovery
 
-- [ ] Install the ZIP with `garb-and-grime/` as its single root folder.
+- [ ] Install the ZIP with `runyth-garb-and-grime/` as its single root folder.
 - [ ] Enable the module and reload without relevant console errors or deprecation warnings.
-- [ ] Open **Game Settings → Configure Settings → Module Settings → Garb & Grime**.
+- [ ] Open **Game Settings → Configure Settings → Module Settings → Runyth Garb & Grime**.
 - [ ] Confirm **Open Cleanliness Manager** is visible to a normal player and GM.
 - [ ] Confirm **Open global module settings** is visible to the GM and hidden from the normal player.
 - [ ] Open both applications from their Configure Settings entries.
 - [ ] In the Cleanliness Manager, click Overview, Actors, Rules, Transactions, and GM Settings; confirm each tab changes immediately without console errors.
 - [ ] In Global Module Settings, click every configuration tab; confirm each section changes immediately without console errors.
-- [ ] Confirm the Settings sidebar contains the prominent Garb & Grime card; open both buttons as GM.
-- [ ] Confirm the Actors sidebar contains the Garb & Grime launcher card.
+- [ ] Confirm the Settings sidebar contains the prominent Runyth Garb & Grime card; open both buttons as GM.
+- [ ] Confirm the Actors sidebar contains the Runyth Garb & Grime launcher card.
 - [ ] Open the manager from the Actors sidebar and Scene Controls.
 - [ ] Confirm the first-run guide opens once per user/version and both direct buttons work.
 - [ ] Temporarily force one optional integration to fail during development and confirm Configure Settings plus unrelated launchers still register and a visible partial-initialization error appears.
@@ -113,10 +113,10 @@ Use a cloned test world with Foundry v13, D&D 5e, one GM, one normal player, a l
 ## Version 1.0.4 chat audit
 
 - [ ] Perform a Token HUD dirt adjustment and confirm the Actor changes successfully.
-- [ ] Confirm exactly one Garb & Grime chat card is created for the action.
+- [ ] Confirm exactly one Runyth Garb & Grime chat card is created for the action.
 - [ ] Confirm the card contains the Actor, action or reason, previous level, new level, and result.
 - [ ] Repeat a cleaning-method action and confirm exactly one card is created.
-- [ ] Confirm any `renderChatMessage` deprecation stack names another package and contains no `modules/garb-and-grime/` frame.
+- [ ] Confirm any `renderChatMessage` deprecation stack names another package and contains no `modules/runyth-garb-and-grime/` frame.
 - [ ] Confirm GM, private, public, and disabled chat visibility modes remain unchanged.
 
 ## Version 1.0.5 Token cleanliness labels
@@ -139,7 +139,7 @@ Use a cloned test world with Foundry v13, D&D 5e, one GM, one normal player, a l
 
 - [ ] Enable labels and confirm the default bold white text on the dark background is clearly readable on bright, dark, and detailed maps.
 - [ ] Change font colour, background colour, background opacity, and horizontal/vertical padding in Global Module Settings; save and confirm existing labels refresh immediately.
-- [ ] Place two Tokens on top of each other and confirm each visible Garb & Grime label renders above the Token artwork.
+- [ ] Place two Tokens on top of each other and confirm each visible Runyth Garb & Grime label renders above the Token artwork.
 - [ ] Test the global above, right, below, and left positions.
 - [ ] From one Token HUD, override position to above, right, below, left, and follow global.
 - [ ] Control several Tokens and apply each position from the selected-token label-position Scene Control.
@@ -149,19 +149,19 @@ Use a cloned test world with Foundry v13, D&D 5e, one GM, one normal player, a l
 ## Version 1.0.7 sheet isolation and Tidy 5e compatibility
 
 - [ ] Open a core D&D 5e character sheet and confirm exactly one cleanliness indicator appears left of the ellipsis and close controls.
-- [ ] Start level-up and open every advancement choice, roll, and confirmation pop-up; confirm no Garb & Grime indicator or button appears in any child window.
+- [ ] Start level-up and open every advancement choice, roll, and confirmation pop-up; confirm no Runyth Garb & Grime indicator or button appears in any child window.
 - [ ] Open rest, skill-roll, ability-roll, and Item advancement dialogs carrying an Actor or Item; confirm none is augmented as a sheet.
 - [ ] Confirm unrelated Foundry and module window controls retain their original order and layout.
 - [ ] Enable Tidy 5e Modern for a character and NPC; confirm one clickable indicator appears beside the Actor name and survives full and partial renders.
 - [ ] Enable Tidy 5e Classic for a character and NPC; confirm one clickable indicator appears beside the name container.
 - [ ] Switch Tidy tabs, edit values, resize the sheet, and trigger partial renders; confirm no duplicate indicators or duplicate click handling.
-- [ ] Open Tidy level-up and advancement pop-ups; confirm Garb & Grime remains absent from those windows.
+- [ ] Open Tidy level-up and advancement pop-ups; confirm Runyth Garb & Grime remains absent from those windows.
 - [ ] Test an unsupported custom Actor sheet; confirm it remains unmodified when no safe sheet target exists and all non-sheet launchers continue working.
 
 ## Version 1.0.8 compatibility and interference hardening
 
-- [ ] Enable Active Effect mirroring, change one Actor repeatedly, and confirm unchanged Garb & Grime effects are not deleted and recreated on every update.
-- [ ] Disable Active Effect mirroring and confirm existing Garb & Grime effects are removed while Actor cleanliness flags remain unchanged.
+- [ ] Enable Active Effect mirroring, change one Actor repeatedly, and confirm unchanged Runyth Garb & Grime effects are not deleted and recreated on every update.
+- [ ] Disable Active Effect mirroring and confirm existing Runyth Garb & Grime effects are removed while Actor cleanliness flags remain unchanged.
 - [ ] Apply a contamination configured as hidden by default while chat mode is public; confirm its card is whispered only to GMs and no visible Active Effect reveals it.
 - [ ] Connect two active GM clients, enable combat-end automation, end one combat, and confirm every participating Actor changes exactly once.
 - [ ] With two active GM clients, advance across an in-game day and confirm daily automation and upkeep process once.
@@ -171,7 +171,7 @@ Use a cloned test world with Foundry v13, D&D 5e, one GM, one normal player, a l
 - [ ] Delete a custom cleaning method, profile, or contamination and confirm a warning appears; cancel once, then confirm deletion.
 - [ ] Delete a custom definition from the middle of a list, add another, and confirm its ID does not collide with an existing definition.
 - [ ] Open the Scene context dialog and confirm the select field has useful padding and does not overflow at narrow widths.
-- [ ] Inspect the console while using Scene Controls, Item tools, sidebar bulk actions, and the Token-label shortcut; confirm no unhandled Promise rejection originates from Garb & Grime.
+- [ ] Inspect the console while using Scene Controls, Item tools, sidebar bulk actions, and the Token-label shortcut; confirm no unhandled Promise rejection originates from Runyth Garb & Grime.
 
 ## Version 1.0.10 performance and responsiveness
 
@@ -181,20 +181,20 @@ Use a cloned test world with Foundry v13, D&D 5e, one GM, one normal player, a l
 - [ ] Control 20 or more Tokens and apply +1, −1, water, full cleaning, and label overrides; confirm every unique Actor completes and Foundry remains responsive.
 - [ ] Enable Token labels, drag and animate several Tokens simultaneously, and confirm labels track smoothly without duplicate text objects or stale labels after changing Scenes.
 - [ ] Tear down or change the active Scene while labels have pending movement updates; confirm no stale canvas object or console error remains.
-- [ ] Toggle automatic upkeep or edit GM notes while Active Effect mirroring is enabled; confirm unrelated Garb & Grime effects are not rewritten.
+- [ ] Toggle automatic upkeep or edit GM notes while Active Effect mirroring is enabled; confirm unrelated Runyth Garb & Grime effects are not rewritten.
 - [ ] Change dirt, groomed state, or visible contamination and confirm necessary Active Effects still reconcile correctly.
 - [ ] Trigger several cleaning or debt-settlement actions in quick succession and confirm every transaction appears exactly once in the log.
 - [ ] Use a cleaning method that consumes multiple configured Items and confirm quantities update correctly through one Actor operation.
-- [ ] Move and resize multiple Garb & Grime windows rapidly, reload, and confirm every window restores its own final position.
+- [ ] Move and resize multiple Runyth Garb & Grime windows rapidly, reload, and confirm every window restores its own final position.
 - [ ] Connect multiple players and one or more GMs, run combat-end and world-day automation, and confirm Actors process once without client freezes or duplicate state changes.
-- [ ] Profile a representative session in browser developer tools and confirm no sustained Garb & Grime event-listener, DOM-node, canvas-object, or Promise accumulation.
+- [ ] Profile a representative session in browser developer tools and confirm no sustained Runyth Garb & Grime event-listener, DOM-node, canvas-object, or Promise accumulation.
 
 
 ## Version 1.1.0 dashboard, Actor browser, and Scene guide
 
 - [ ] Open Global Module Settings and confirm the General tab contains a prominent dashboard launcher.
 - [ ] Confirm the existing Configure Settings menu entry, Settings-sidebar card, and Actors-sidebar card still open the same Manager.
-- [ ] Confirm Foundry's left Scene Controls contains a dedicated Garb & Grime group.
+- [ ] Confirm Foundry's left Scene Controls contains a dedicated Runyth Garb & Grime group.
 - [ ] Open the Manager from every launcher and confirm only one reusable Manager window exists.
 - [ ] Test the Actors tab with at least 100 Actors across nested folders.
 - [ ] Filter one folder with and without **Include subfolders** and verify exact hierarchy behavior.
@@ -216,13 +216,13 @@ Use a cloned test world with Foundry v13, D&D 5e, one GM, one normal player, a l
 ## v1.1.1 Actor portrait resilience
 
 - [ ] Open the Manager Actors tab with an Actor using a valid world or system portrait; confirm the portrait renders normally.
-- [ ] Use an Actor whose `img` references an unavailable module such as `modules/retired-package/...`; confirm Garb & Grime does not request that URL and shows the prototype-Token texture or bundled fallback instead.
+- [ ] Use an Actor whose `img` references an unavailable module such as `modules/retired-package/...`; confirm Runyth Garb & Grime does not request that URL and shows the prototype-Token texture or bundled fallback instead.
 - [ ] Switch repeatedly between Manager tabs and trigger Actor-list rerenders; confirm no repeated HTTP 404 requests are emitted for the stale path.
-- [ ] Confirm one grouped console warning begins with `[garb-and-grime]` for the unavailable source module and is not repeated on each render.
-- [ ] Open the same Actor through the Garb & Grime Actor panel and confirm the same safe image behavior.
-- [ ] Test a currently installed module whose referenced image file is genuinely missing; confirm the browser can fail once, Garb & Grime records one attributed warning, substitutes its fallback, and does not retry that URL on later Garb & Grime rerenders.
+- [ ] Confirm one grouped console warning begins with `[runyth-garb-and-grime]` for the unavailable source module and is not repeated on each render.
+- [ ] Open the same Actor through the Runyth Garb & Grime Actor panel and confirm the same safe image behavior.
+- [ ] Test a currently installed module whose referenced image file is genuinely missing; confirm the browser can fail once, Runyth Garb & Grime records one attributed warning, substitutes its fallback, and does not retry that URL on later Runyth Garb & Grime rerenders.
 - [ ] Confirm the Actor's `img` and prototype-Token texture fields are unchanged after all tests.
-- [ ] Confirm unrelated errors from other modules are neither suppressed nor rewritten by Garb & Grime.
+- [ ] Confirm unrelated errors from other modules are neither suppressed nor rewritten by Runyth Garb & Grime.
 
 ## v1.1.2 large-world Actor browser performance
 
@@ -231,11 +231,11 @@ Use a cloned test world with Foundry v13, D&D 5e, one GM, one normal player, a l
 - Confirm the default page contains no more than 40 Actor rows.
 - Change rows per page between 20, 40, 80, and 120 and confirm pagination remains responsive.
 - Change name/regex/folder/type/selection/cleanliness filters and confirm the current page resets to page 1.
-- Navigate forward and backward; confirm only the current page is present in the DOM and portraits for other pages are not requested by Garb & Grime.
+- Navigate forward and backward; confirm only the current page is present in the DOM and portraits for other pages are not requested by Runyth Garb & Grime.
 - Switch away from Actors and back while the Manager remains open; confirm the cached index makes repeated visits materially faster than a complete rebuild.
 - Change a displayed Actor's cleanliness and confirm only that Actor's cached directory data is invalidated and the Manager refreshes correctly.
 - Rename/move an Actor and rename/move an Actor folder; confirm filters and paths update correctly.
-- Close the Manager, continue moving Tokens/rolling/using sheets for several minutes, and verify no continuing Garb & Grime Actor-browser work, timers, image requests, or console spam occurs.
+- Close the Manager, continue moving Tokens/rolling/using sheets for several minutes, and verify no continuing Runyth Garb & Grime Actor-browser work, timers, image requests, or console spam occurs.
 - Reopen the Manager after closing; confirm a clean index is rebuilt and behavior remains correct.
 - Repeat as a player with limited Actor visibility and confirm hidden Actors never enter the displayed index.
 
@@ -250,7 +250,7 @@ Use a cloned test world with Foundry v13, D&D 5e, one GM, one normal player, a l
 - [ ] Configure a valid regex matching Actor names and confirm only matching Actors enter the dashboard pool.
 - [ ] Configure a regex matching a folder-path fragment and confirm Actors in matching paths enter the pool.
 - [ ] Combine folder selection and regex and confirm both conditions are required.
-- [ ] Enter an invalid regex and confirm settings are not saved and a Garb & Grime-prefixed error notification appears.
+- [ ] Enter an invalid regex and confirm settings are not saved and a Runyth Garb & Grime-prefixed error notification appears.
 - [ ] Delete a previously selected Actor folder and confirm the stale ID does not hide all Actors or throw an error.
 - [ ] Confirm the Actors tab shows a global-scope summary while scope is active.
 - [ ] Confirm local Actors-tab filters still work inside the globally scoped pool.
@@ -291,7 +291,7 @@ Use a cloned test world with Foundry v13, D&D 5e, one GM, one normal player, a l
 - [ ] Verify **Always show** on a Token cannot bypass a denied player's permission or the configured player/Actor scope.
 - [ ] Verify **Always hide** suppresses a Token label for GM and authorized players.
 - [ ] Test **Manual**, **Always**, **Controlled**, **Hovered**, and **Controlled or Hovered** policies on multiple Tokens.
-- [ ] In Manual mode, press the registered Token-label keybinding as GM and as an authorized player; confirm unauthorized players receive one clear Garb & Grime warning and no label appears.
+- [ ] In Manual mode, press the registered Token-label keybinding as GM and as an authorized player; confirm unauthorized players receive one clear Runyth Garb & Grime warning and no label appears.
 - [ ] In an automatic mode, press the manual keybinding and confirm it does not silently alter automatic visibility.
 - [ ] Rapidly hover/control several Tokens and confirm labels reuse existing canvas objects rather than accumulating duplicates.
 - [ ] Save only Token-label colors/position/display policy and confirm Actor Active Effects are not mass-reconciled.
@@ -304,8 +304,8 @@ Use a cloned test world with Foundry v13, D&D 5e, one GM, one normal player, a l
 ## v1.2.1 transaction and chat-permission regression
 
 - [ ] Connect one GM and at least two player clients.
-- [ ] On a player-owned PC, perform **Self-wash with soap** from a Garb & Grime player-facing control.
-- [ ] Confirm the Actor is cleaned once and exactly one Garb & Grime cleaning card appears in Chat.
+- [ ] On a player-owned PC, perform **Self-wash with soap** from a Runyth Garb & Grime player-facing control.
+- [ ] Confirm the Actor is cleaned once and exactly one Runyth Garb & Grime cleaning card appears in Chat.
 - [ ] With default permissions, confirm both players and the GM can see that player-initiated cleaning card.
 - [ ] Open **Global Module Settings → Permissions**, deny **View player-initiated cleaning chat** for one player, repeat the wash, and confirm only the GM and still-authorized player can see the new card.
 - [ ] Confirm the former Chat tab is absent.
@@ -324,7 +324,7 @@ Use a cloned test world with Foundry v13, D&D 5e, one GM, one normal player, a l
 
 - Start with five non-GM users and five `character` Actors visible through a restrictive global dashboard folder/regex scope.
 - Create or use a sixth `character` Actor outside that manual scope. Confirm it remains absent while unassigned.
-- Add a sixth non-GM user and select that Actor as the user's Foundry character. Confirm an already-open Garb & Grime Manager refreshes and shows all six PCs.
+- Add a sixth non-GM user and select that Actor as the user's Foundry character. Confirm an already-open Runyth Garb & Grime Manager refreshes and shows all six PCs.
 - Remove the default-character link, grant an existing non-GM user OWNER permission to the sixth Character Actor, and confirm it remains included.
 - Grant a player OWNER permission to an NPC/pet outside the manual scope and confirm it does not bypass the scope.
 - Change the sixth user's selected character again and confirm the Manager updates without reloading the browser.
@@ -335,17 +335,17 @@ Use a cloned test world with Foundry v13, D&D 5e, one GM, one normal player, a l
 
 ## v1.2.3 Scene Context regression
 
-- [ ] On a fresh Scene with no Garb & Grime Scene flags, open the Scene Context control. `ordinary` is selected deterministically and Save succeeds.
+- [ ] On a fresh Scene with no Runyth Garb & Grime Scene flags, open the Scene Context control. `ordinary` is selected deterministically and Save succeeds.
 - [ ] Cancel the Scene Context dialog, reopen it, and save a valid profile. No error or stale dialog state remains.
 - [ ] Save each valid bundled environment profile and confirm the Scene guide/Manager immediately reflects the selected profile.
 - [ ] Give a Scene flag an unavailable/deleted profile ID. Opening Scene Context shows the unavailable ID explicitly and does not rewrite the flag.
 - [ ] Replace the unavailable profile through the dialog. Unrelated stored Scene Context fields survive the replacement.
-- [ ] With a stale profile selected, attempt Save without choosing a replacement. Only one Garb & Grime error is shown and `undefined` is never submitted.
+- [ ] With a stale profile selected, attempt Save without choosing a replacement. Only one Runyth Garb & Grime error is shown and `undefined` is never submitted.
 - [ ] Temporarily simulate an unavailable profile registry during initialization. Scene Context reports a registry-not-ready error instead of `Unknown environment profile: undefined`.
-- [ ] Simulate a failed Scene flag write. One Garb & Grime persistence error is reported with the affected Scene; no duplicate notification appears.
+- [ ] Simulate a failed Scene flag write. One Runyth Garb & Grime persistence error is reported with the affected Scene; no duplicate notification appears.
 - [ ] Switch Scenes and repeat fresh/valid/stale profile checks.
 - [ ] Reload the browser/world and confirm valid contexts persist and stale references remain explicit until replaced.
-- [ ] Disable/re-enable Garb & Grime and repeat the Scene Context control test.
+- [ ] Disable/re-enable Runyth Garb & Grime and repeat the Scene Context control test.
 - [ ] Reconfirm on Foundry VTT 13.351 with D&D5e 5.3.3.
 
 
@@ -355,7 +355,7 @@ Use a cloned test world with Foundry v13, D&D 5e, one GM, one normal player, a l
 - [ ] Test all label formats: level + name, name only, level only, detailed body/clothing.
 - [ ] Test Above, Right, Below, and Left positions and confirm labels remain above overlapping Token artwork.
 - [ ] In **Global Module Settings → Permissions**, deny **View persistent cleanliness status** for a player. Confirm no personal display preference can make labels visible.
-- [ ] Grant that permission to the player. Confirm the Garb & Grime Scene Controls expose **Cleanliness label display preferences**.
+- [ ] Grant that permission to the player. Confirm the Runyth Garb & Grime Scene Controls expose **Cleanliness label display preferences**.
 - [ ] As that player, test Follow GM, Manual, Always, Controlled, Hovered, Controlled-or-Hovered, and Always Hide. Confirm choices affect only that browser client.
 - [ ] With Manual selected, use Shift+Alt+G and the Scene Control toggle. Confirm the player's own visibility changes without changing GM or another player's visibility.
 - [ ] Change the player's personal position and confirm the GM's global/per-Token positions remain unchanged.
@@ -410,15 +410,15 @@ Use a cloned test world with Foundry v13, D&D 5e, one GM, one normal player, a l
 - [ ] Set a player's personal display preference to **Always hide**; shortcut cannot show anything. Change to Manual and retry.
 - [ ] Change font/position/style, re-draw a Token with the same Document UUID, confirm local visibility and style remain correct. Switch Scenes and verify transient overrides reset.
 - [ ] Disable shortcut in Sheets & HUD; verify no Token overrides are changed and the keybinding is not consumed. Re-enable.
-- [ ] Open Foundry **Game Settings → Configure Controls**, customize Garb & Grime shortcut to a free combination and confirm it works. Remove/rebind and confirm no hardcoded global key listener exists.
+- [ ] Open Foundry **Game Settings → Configure Controls**, customize Runyth Garb & Grime shortcut to a free combination and confirm it works. Remove/rebind and confirm no hardcoded global key listener exists.
 - [ ] Verify no world Token flags, cleanliness values, transactions or chat messages changed after local shortcut presses.
 
 ## v1.2.8 — Live deployed Character Token cleanliness synchronization
 
-- [ ] On Foundry 13.351 / D&D5e 5.3.3, place two **unlinked** Tokens from one player Character Actor on the current Scene (optionally a linked Token too). Make all their Garb & Grime cleanliness labels visible to GM.
+- [ ] On Foundry 13.351 / D&D5e 5.3.3, place two **unlinked** Tokens from one player Character Actor on the current Scene (optionally a linked Token too). Make all their Runyth Garb & Grime cleanliness labels visible to GM.
 - [ ] Set the world Character to Dirty / Stinking from Manager or Actor sheet. Without moving, reselecting, or re-adding Tokens, confirm **all** deployed Token labels update on the next canvas frame.
 - [ ] Clean that Character with soap using the player's normal action. Confirm the world Actor, both existing Token labels, and Actor-panel/Token HUD cleanliness agree immediately, on the GM and player's clients with permission.
-- [ ] From a player-owned **unlinked** Character Token's Garb & Grime control, adjust dirt or wash. Confirm the world Actor becomes authoritative and other Tokens of that PC refresh. Confirm a player without base Actor ownership/permission cannot mutate the base Actor by owning only a synthetic Token.
+- [ ] From a player-owned **unlinked** Character Token's Runyth Garb & Grime control, adjust dirt or wash. Confirm the world Actor becomes authoritative and other Tokens of that PC refresh. Confirm a player without base Actor ownership/permission cannot mutate the base Actor by owning only a synthetic Token.
 - [ ] Place a new Token from the same Character after changing cleanliness; verify it starts with current world cleanliness even if the Token's synthetic ActorDelta includes old flags.
 - [ ] Switch Scenes and back; verify labels resolve the current world Actor cleanliness on Scene load without writing Token flags.
 - [ ] Deploy two unlinked NPC Tokens from the same NPC; change one and ensure the other/world NPC do not acquire that Token's private cleanliness state.

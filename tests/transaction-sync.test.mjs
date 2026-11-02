@@ -34,9 +34,9 @@ function createStateService() {
 
 test("a player cleaning transaction is persisted by the primary GM exactly once", async () => {
   const settings = new Map([
-    ["garb-and-grime.configuration", { dailyUpkeep: { automaticDeduction: false }, currency: { defaultLabel: "Mark" } }],
-    ["garb-and-grime.permissions", { roleMinimums: { modifyOwnActions: 1 }, userOverrides: {} }],
-    ["garb-and-grime.transactionLog", []]
+    ["runyth-garb-and-grime.configuration", { dailyUpkeep: { automaticDeduction: false }, currency: { defaultLabel: "Mark" } }],
+    ["runyth-garb-and-grime.permissions", { roleMinimums: { modifyOwnActions: 1 }, userOverrides: {} }],
+    ["runyth-garb-and-grime.transactionLog", []]
   ]);
   const gm = { id: "gm", name: "GM", isGM: true, role: 4, active: true };
   const player = { id: "player", name: "Player", isGM: false, role: 1, active: true };
@@ -94,11 +94,11 @@ test("a player cleaning transaction is persisted by the primary GM exactly once"
     time: { worldTime: 0 }
   };
 
-  const { ActionService } = await import(`../garb-and-grime/src/action-service.mjs?transaction-sync=${Date.now()}`);
+  const { ActionService } = await import(`../src/action-service.mjs?transaction-sync=${Date.now()}`);
   const playerService = new ActionService(registry, createStateService(), { getProfile() { return null; } });
   const result = await playerService.cleanActor(actor, "soap", { chat: false });
   assert.equal(result.success, true);
-  assert.equal(settings.get("garb-and-grime.transactionLog").length, 0, "players never write the world setting directly");
+  assert.equal(settings.get("runyth-garb-and-grime.transactionLog").length, 0, "players never write the world setting directly");
   assert.equal(emitted?.type, "recordTransaction");
   assert.equal(emitted?.entry?.userId, "player");
 
@@ -110,7 +110,7 @@ test("a player cleaning transaction is persisted by the primary GM exactly once"
   await new Promise((resolve) => setTimeout(resolve, 0));
   await new Promise((resolve) => setTimeout(resolve, 0));
 
-  const log = settings.get("garb-and-grime.transactionLog");
+  const log = settings.get("runyth-garb-and-grime.transactionLog");
   assert.equal(log.length, 1, "duplicate socket delivery is deduplicated by transaction id");
   assert.equal(log[0].actorUuid, actor.uuid);
   assert.equal(log[0].actorName, actor.name);

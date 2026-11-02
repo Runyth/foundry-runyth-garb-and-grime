@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-const moduleUrl = new URL("../garb-and-grime/src/integrations/actor-sheets.mjs", import.meta.url);
+const moduleUrl = new URL("../src/integrations/actor-sheets.mjs", import.meta.url);
 
 test("Actor-sheet integration registers only semantic sheet hooks", async () => {
   const registrations = [];

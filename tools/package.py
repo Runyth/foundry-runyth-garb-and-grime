@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create deterministic install and source ZIP archives for Garb & Grime."""
+"""Create deterministic install and source ZIP archives for Runyth Garb & Grime."""
 
 from __future__ import annotations
 
@@ -57,16 +57,16 @@ def main() -> None:
   args = parser.parse_args()
 
   source_root = Path(__file__).resolve().parent.parent
-  module_root = source_root / "garb-and-grime"
+  module_root = source_root / "."
   manifest = json.loads((module_root / "module.json").read_text(encoding="utf-8"))
   version = manifest["version"]
 
-  install_zip = args.output_dir / f"garb-and-grime-v{version}.zip"
+  install_zip = args.output_dir / f"runyth-garb-and-grime-v{version}.zip"
   source_zip = args.output_dir / f"garb-and-grime-source-v{version}.zip"
   docs_zip = args.output_dir / f"garb-and-grime-documentation-v{version}.zip"
 
   install_entries = [
-    (path, f"garb-and-grime/{path.relative_to(module_root).as_posix()}")
+    (path, f"runyth-garb-and-grime/{path.relative_to(module_root).as_posix()}")
     for path in iter_runtime_files(module_root)
   ]
   source_entries = [
@@ -81,7 +81,7 @@ def main() -> None:
     f"{sha256(install_zip)}  {install_zip.name}\n{sha256(source_zip)}  {source_zip.name}\n",
     encoding="utf-8"
   )
-  docs_root_name = f"garb-and-grime-v{version}-documentation"
+  docs_root_name = f"runyth-garb-and-grime-v{version}-documentation"
   docs_entries: list[tuple[Path, str]] = []
   for source in [source_root / "BUILDING.md", module_root / "README.md", module_root / "CHANGELOG.md"]:
     docs_entries.append((source, f"{docs_root_name}/{source.name}"))

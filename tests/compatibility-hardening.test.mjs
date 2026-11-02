@@ -5,7 +5,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const sourceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const moduleRoot = path.join(sourceRoot, "garb-and-grime");
+const moduleRoot = path.join(sourceRoot, ".");
 const read = (relativePath) => fs.readFileSync(path.join(moduleRoot, relativePath), "utf8");
 
 function mergeObject(original, other, { inplace = true } = {}) {
@@ -38,8 +38,8 @@ function setupBase(configuration) {
     actors: [],
     settings: {
       get(moduleId, key) {
-        if (`${moduleId}.${key}` === "garb-and-grime.configuration") return configuration;
-        if (`${moduleId}.${key}` === "garb-and-grime.permissions") return { roleMinimums: {}, userOverrides: {} };
+        if (`${moduleId}.${key}` === "runyth-garb-and-grime.configuration") return configuration;
+        if (`${moduleId}.${key}` === "runyth-garb-and-grime.permissions") return { roleMinimums: {}, userOverrides: {} };
         return undefined;
       },
       async set() {}
@@ -71,11 +71,11 @@ test("Active Effects are reconciled idempotently and removed when mirroring is d
   const effect = {
     id: "effect-1",
     name: "GAG.Levels.2.Name",
-    img: "modules/garb-and-grime/assets/icons/dirty.svg",
+    img: "modules/runyth-garb-and-grime/assets/icons/dirty.svg",
     disabled: false,
     changes: [],
     getFlag(moduleId, key) {
-      if (moduleId !== "garb-and-grime") return undefined;
+      if (moduleId !== "runyth-garb-and-grime") return undefined;
       if (key === "effectKind") return "dirt-2";
       return undefined;
     }
@@ -94,7 +94,7 @@ test("Active Effects are reconciled idempotently and removed when mirroring is d
     groomedUntil: null
   };
   const registry = { getContamination() { return null; } };
-  const { syncEffects } = await import(`../garb-and-grime/src/effects.mjs?reconcile=${Date.now()}`);
+  const { syncEffects } = await import(`../src/effects.mjs?reconcile=${Date.now()}`);
 
   await syncEffects(actor, state, registry);
   assert.deepEqual(calls, { create: [], update: [], delete: [] });
@@ -127,7 +127,7 @@ test("hidden contamination is never mirrored into a player-visible Active Effect
     contaminations: [{ id: "secret", hidden: true }],
     groomedUntil: null
   };
-  const { syncEffects } = await import(`../garb-and-grime/src/effects.mjs?hidden-effect=${Date.now()}`);
+  const { syncEffects } = await import(`../src/effects.mjs?hidden-effect=${Date.now()}`);
 
   await syncEffects(actor, state, registry);
   assert.equal(created.length, 0);
@@ -165,7 +165,7 @@ test("hidden-by-default contamination cards remain GM-only", async () => {
       return id === "secret" ? { id, name: "Secret residue", hiddenByDefault: true, effectivePenalty: 1, createEffect: false } : null;
     }
   };
-  const { StateService } = await import(`../garb-and-grime/src/state-service.mjs?privacy=${Date.now()}`);
+  const { StateService } = await import(`../src/state-service.mjs?privacy=${Date.now()}`);
   const service = new StateService(registry);
 
   await service.applyContamination(actor, "secret");
@@ -203,7 +203,7 @@ test("world-wide automation runs only on the primary GM and contains async hook 
     getState() { return { lastDailyGainDay: null }; },
     async adjustDirt() { adjustments += 1; }
   };
-  const { AutomationService } = await import(`../garb-and-grime/src/automation.mjs?gm=${Date.now()}`);
+  const { AutomationService } = await import(`../src/automation.mjs?gm=${Date.now()}`);
   const service = new AutomationService(stateService, { async processDailyMaintenance() {} }, { getProfile() { return null; } });
   service.registerHooks();
 

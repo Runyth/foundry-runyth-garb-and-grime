@@ -1,4 +1,4 @@
-# Garb & Grime 1.1.5 — Incremental Best-Practice Changelog
+# Runyth Garb & Grime 1.1.5 — Incremental Best-Practice Changelog
 
 - Never access a private static class member through an ApplicationV2 action handler's instance-bound `this` receiver.
 - Keep action handler instance state and class/static state explicit and separate.

@@ -1,6 +1,6 @@
 {
-  "id": "garb-and-grime",
-  "title": "Garb & Grime",
+  "id": "runyth-garb-and-grime",
+  "title": "Runyth Garb & Grime",
   "description": "A configurable clothing cleanliness, body odor, contamination, social-context, and daily-upkeep system for Foundry VTT and D&D 5e.",
   "version": "1.2.9",
   "authors": [
@@ -29,7 +29,7 @@
     "scripts/main.mjs"
   ],
   "styles": [
-    "styles/garb-and-grime.css"
+    "styles/runyth-garb-and-grime.css"
   ],
   "languages": [
     {

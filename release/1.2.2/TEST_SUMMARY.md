@@ -1,4 +1,4 @@
-# Garb & Grime v1.2.2 — Test summary
+# Runyth Garb & Grime v1.2.2 — Test summary
 
 - Full automated suite before packaging: 102/102 passed.
 - Added regression coverage for growing from five to six player characters while the sixth Character Actor is outside a restrictive manual scope.

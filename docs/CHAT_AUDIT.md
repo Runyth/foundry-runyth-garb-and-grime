@@ -4,9 +4,9 @@ Release: 1.0.4
 
 ## Result
 
-Garb & Grime does not register `renderChatMessage`, `renderChatMessageHTML`, or any other chat-message render hook. Its action cards are passive HTML content created once with `ChatMessage.create()` in `src/chat.mjs`.
+Runyth Garb & Grime does not register `renderChatMessage`, `renderChatMessageHTML`, or any other chat-message render hook. Its action cards are passive HTML content created once with `ChatMessage.create()` in `src/chat.mjs`.
 
-Adding a `renderChatMessageHTML` hook would be unnecessary because Garb & Grime does not modify a card after Foundry renders it and does not attach card interactions.
+Adding a `renderChatMessageHTML` hook would be unnecessary because Runyth Garb & Grime does not modify a card after Foundry renders it and does not attach card interactions.
 
 ## Creation paths
 
@@ -40,7 +40,7 @@ Non-chat render integrations use native DOM APIs. Actor-sheet, Item-sheet, Token
 
 ## Warning attribution
 
-Creating any Foundry chat message invokes hooks registered by every enabled package. A deprecation warning appearing immediately after Garb & Grime calls `ChatMessage.create()` does not establish ownership. The warning belongs to the package named in the warning stack or package detector. Garb & Grime intentionally does not suppress or work around deprecated hooks belonging to RP Names or another module.
+Creating any Foundry chat message invokes hooks registered by every enabled package. A deprecation warning appearing immediately after Runyth Garb & Grime calls `ChatMessage.create()` does not establish ownership. The warning belongs to the package named in the warning stack or package detector. Runyth Garb & Grime intentionally does not suppress or work around deprecated hooks belonging to RP Names or another module.
 
 
 ## v1.2.1 permission routing

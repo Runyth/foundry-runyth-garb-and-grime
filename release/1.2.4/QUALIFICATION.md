@@ -1,4 +1,4 @@
-# Garb & Grime v1.2.4 — Qualification
+# Runyth Garb & Grime v1.2.4 — Qualification
 
 Status: **qualified for release**.
 

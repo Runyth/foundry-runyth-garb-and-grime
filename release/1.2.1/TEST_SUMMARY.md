@@ -1,4 +1,4 @@
-# Garb & Grime v1.2.1 — Test summary
+# Runyth Garb & Grime v1.2.1 — Test summary
 
 - Full automated suite: 100/100 passed before packaging.
 - Added regression coverage for player-to-GM transaction persistence and duplicate-delivery deduplication.

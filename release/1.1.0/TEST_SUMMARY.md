@@ -1,4 +1,4 @@
-# Test summary — Garb & Grime 1.1.0
+# Test summary — Runyth Garb & Grime 1.1.0
 
 - Result: **71/71 automated tests passed**.
 - State, cleaning, payment, upkeep, permissions, registry, rolls, chat, effects, lifecycle, localization, packaging, tabs, sheets, Token labels, performance, and bulk workflows remain covered.

@@ -1,4 +1,4 @@
-Garb & Grime v1.2.2 static audit
+Runyth Garb & Grime v1.2.2 static audit
 
 [syntax]
 All production .mjs syntax checks passed.
@@ -7,11 +7,11 @@ All production .mjs syntax checks passed.
 No targeted deprecated/broad patterns found.
 
 [player-link lifecycle hooks]
-garb-and-grime/scripts/main.mjs:221:  const directoryDisplayChanged = ["name", "img", "type", "folder", "ownership", "prototypeToken.texture.src"]
-garb-and-grime/scripts/main.mjs:237:Hooks.on("createUser", () => {
-garb-and-grime/scripts/main.mjs:241:Hooks.on("updateUser", (user, changes) => {
-garb-and-grime/scripts/main.mjs:248:Hooks.on("deleteUser", () => {
-garb-and-grime/src/actor-scope.mjs:16:export function playerLinkedCharacterActorIds({ actors = game.actors ?? [], users = game.users ?? [] } = {}) {
-garb-and-grime/src/actor-scope.mjs:32:  // A PC may be shared or assigned through Actor ownership without becoming a
-garb-and-grime/src/apps/manager.mjs:8:import { buildActorFolderOptions, buildDashboardActorScope, playerLinkedCharacterActorIds } from "../actor-scope.mjs";
-garb-and-grime/src/apps/manager.mjs:69:      ? playerLinkedCharacterActorIds({ actors: baseActors, users: game.users ?? [] })
+runyth-garb-and-grime/scripts/main.mjs:221:  const directoryDisplayChanged = ["name", "img", "type", "folder", "ownership", "prototypeToken.texture.src"]
+runyth-garb-and-grime/scripts/main.mjs:237:Hooks.on("createUser", () => {
+runyth-garb-and-grime/scripts/main.mjs:241:Hooks.on("updateUser", (user, changes) => {
+runyth-garb-and-grime/scripts/main.mjs:248:Hooks.on("deleteUser", () => {
+runyth-garb-and-grime/src/actor-scope.mjs:16:export function playerLinkedCharacterActorIds({ actors = game.actors ?? [], users = game.users ?? [] } = {}) {
+runyth-garb-and-grime/src/actor-scope.mjs:32:  // A PC may be shared or assigned through Actor ownership without becoming a
+runyth-garb-and-grime/src/apps/manager.mjs:8:import { buildActorFolderOptions, buildDashboardActorScope, playerLinkedCharacterActorIds } from "../actor-scope.mjs";
+runyth-garb-and-grime/src/apps/manager.mjs:69:      ? playerLinkedCharacterActorIds({ actors: baseActors, users: game.users ?? [] })

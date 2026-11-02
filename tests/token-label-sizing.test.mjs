@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import test from 'node:test';
-import { DEFAULT_CONFIGURATION } from '../garb-and-grime/src/defaults.mjs';
-import { TokenLabelService } from '../garb-and-grime/src/integrations/token-labels.mjs';
+import { DEFAULT_CONFIGURATION } from '../src/defaults.mjs';
+import { TokenLabelService } from '../src/integrations/token-labels.mjs';
 
 class Container {
   constructor() {
@@ -68,10 +68,10 @@ function setup() {
   const world = structuredClone(DEFAULT_CONFIGURATION);
   world.tokenLabels.visibilityMode = 'always';
   const settings = new Map([
-    ['garb-and-grime.configuration', world],
-    ['garb-and-grime.tokenLabelsVisible', false],
-    ['garb-and-grime.tokenLabelViewerMode', 'inherit'],
-    ['garb-and-grime.tokenLabelViewerPosition', 'inherit']
+    ['runyth-garb-and-grime.configuration', world],
+    ['runyth-garb-and-grime.tokenLabelsVisible', false],
+    ['runyth-garb-and-grime.tokenLabelViewerMode', 'inherit'],
+    ['runyth-garb-and-grime.tokenLabelViewerPosition', 'inherit']
   ]);
   globalThis.game = {
     user: { isGM: true, id: 'gm', role: 4 },
@@ -118,7 +118,7 @@ test('10–13px fonts scale the actual glyphs AND popup geometry without a hidde
   world.tokenLabels.paddingX = 2;
   world.tokenLabels.paddingY = 1;
   world.tokenLabels.offset = 2;
-  settings.set('garb-and-grime.configuration', structuredClone(world));
+  settings.set('runyth-garb-and-grime.configuration', structuredClone(world));
   service.refreshToken(current);
   assert.notEqual(label.gagText.style, previousStyle, 'assign fresh style to invalidate PIXI metrics');
   assert.equal(label.gagText.style.fontSize, 12);
@@ -130,7 +130,7 @@ test('10–13px fonts scale the actual glyphs AND popup geometry without a hidde
   assert.equal(label.y, 200 - 2 - 7);
 
   world.tokenLabels.fontSize = 10;
-  settings.set('garb-and-grime.configuration', structuredClone(world));
+  settings.set('runyth-garb-and-grime.configuration', structuredClone(world));
   service.refreshToken(current);
   assert.equal(label.gagText.style.fontSize, 10);
   assert.equal(rectangle(label).height, 12);
@@ -149,7 +149,7 @@ test('new tokens of the same Actor receive saved font, style, format, opacity an
     backgroundOpacity: 0, paddingX: 2, paddingY: 1,
     offset: 2, format: 'level', position: 'below'
   };
-  settings.set('garb-and-grime.configuration', structuredClone(world));
+  settings.set('runyth-garb-and-grime.configuration', structuredClone(world));
   service.refreshAll();
 
   const second = token('second', first.actor);
@@ -173,7 +173,7 @@ test('replacement Token with the same UUID uses current styling; late destructio
   service.refreshToken(previous);
   const oldLabel = canvas.interface.children[0].children[0];
   world.tokenLabels.fontSize = 10;
-  settings.set('garb-and-grime.configuration', structuredClone(world));
+  settings.set('runyth-garb-and-grime.configuration', structuredClone(world));
   const replacement = token('same', previous.actor);
   service.refreshToken(replacement);
   const replacementLabel = canvas.interface.children[0].children[0];
@@ -189,9 +189,9 @@ test('replacement Token with the same UUID uses current styling; late destructio
 });
 
 test('all three Sheets & HUD toggles have distinct translated native hover tooltips', () => {
-  const template = fs.readFileSync(new URL('../garb-and-grime/templates/settings-hub.hbs', import.meta.url), 'utf8');
-  const en = JSON.parse(fs.readFileSync(new URL('../garb-and-grime/lang/en.json', import.meta.url), 'utf8'));
-  const de = JSON.parse(fs.readFileSync(new URL('../garb-and-grime/lang/de.json', import.meta.url), 'utf8'));
+  const template = fs.readFileSync(new URL('../templates/settings-hub.hbs', import.meta.url), 'utf8');
+  const en = JSON.parse(fs.readFileSync(new URL('../lang/en.json', import.meta.url), 'utf8'));
+  const de = JSON.parse(fs.readFileSync(new URL('../lang/de.json', import.meta.url), 'utf8'));
   for (const [field, key] of [
     ['sceneControls.enabled', 'SceneControlsHint'],
     ['effects.enabled', 'ActiveEffectsHint'],
@@ -225,8 +225,8 @@ test('Foundry drawToken and updateSetting hooks use saved configuration on a new
     world.tokenLabels.fontSize = 10;
     world.tokenLabels.paddingY = 1;
     world.tokenLabels.backgroundOpacity = 0.25;
-    settings.set('garb-and-grime.configuration', structuredClone(world));
-    handlers.get('updateSetting')({ key: 'garb-and-grime.configuration' });
+    settings.set('runyth-garb-and-grime.configuration', structuredClone(world));
+    handlers.get('updateSetting')({ key: 'runyth-garb-and-grime.configuration' });
     frames.shift()();
     assert.equal([...service.labels.values()][0].gagText.style.fontSize, 10);
 

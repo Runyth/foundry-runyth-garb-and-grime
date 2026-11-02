@@ -1,4 +1,4 @@
-# Garb & Grime v1.2.6 — Incremental patch changelog
+# Runyth Garb & Grime v1.2.6 — Incremental patch changelog
 
 ## Root cause and repair
 

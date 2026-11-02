@@ -1,5 +1,5 @@
 
-> garb-and-grime@1.2.9 check
+> runyth-garb-and-grime@1.2.9 check
 > node tools/check.mjs
 
 TAP version 13
@@ -249,7 +249,7 @@ ok 41 - GM Scene guide is optional, movable, persistent, and purely advisory
   duration_ms: 0.481044
   type: 'test'
   ...
-# [garb-and-grime] Initialized v1.2.9.
+# [runyth-garb-and-grime] Initialized v1.2.9.
 # Subtest: mocked Foundry init exposes the API and registers entry points
 ok 42 - mocked Foundry init exposes the API and registers entry points
   ---
@@ -418,8 +418,8 @@ ok 69 - ApplicationV2 tab controls use the module action rather than the reserve
   duration_ms: 1.057123
   type: 'test'
   ...
-# Subtest: sheet and accessibility CSS is scoped to Garb & Grime-owned elements
-ok 70 - sheet and accessibility CSS is scoped to Garb & Grime-owned elements
+# Subtest: sheet and accessibility CSS is scoped to Runyth Garb & Grime-owned elements
+ok 70 - sheet and accessibility CSS is scoped to Runyth Garb & Grime-owned elements
   ---
   duration_ms: 0.585767
   type: 'test'
@@ -901,4 +901,4 @@ ok 148 - a player cleaning transaction is persisted by the primary GM exactly on
 # skipped 0
 # todo 0
 # duration_ms 1150.488894
-Garb & Grime validation completed successfully.
+Runyth Garb & Grime validation completed successfully.

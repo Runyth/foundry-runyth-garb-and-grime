@@ -29,8 +29,8 @@
 ## 1.2.8 — 2026-10-21
 
 ### Fixed
-- Corrected stale cleanliness readouts on already-deployed unlinked PC Tokens after washing or adjusting their world Actor. Foundry V13 unlinked Token Actors are synthetic ActorDelta instances and can retain old `flags.garb-and-grime.state` values independently of the world Actor.
-- Made the world `character` Actor the canonical Garb & Grime state source for both Token-overlay rendering and service reads/updates, using Foundry's `TokenDocument.baseActor` when available. Drawn Tokens do not require recreation to display updated state.
+- Corrected stale cleanliness readouts on already-deployed unlinked PC Tokens after washing or adjusting their world Actor. Foundry V13 unlinked Token Actors are synthetic ActorDelta instances and can retain old `flags.runyth-garb-and-grime.state` values independently of the world Actor.
+- Made the world `character` Actor the canonical Runyth Garb & Grime state source for both Token-overlay rendering and service reads/updates, using Foundry's `TokenDocument.baseActor` when available. Drawn Tokens do not require recreation to display updated state.
 - Preserve the existing `updateActor` / frame-coalesced label refresh path; matching uses authoritative `TokenDocument.actorId` as well as prior UUID/ID matching so every affected Token updates on the current Scene and every connected client.
 - Player-initiated cleaning through an unlinked Character Token writes the base Actor, with an additional base-Actor permission check; unlinked NPC Tokens continue to maintain independent cleanliness state.
 - No copying ActorDelta flags, no Token Document writes, no polling, no Actor/state migrations, no changes to label visibility permissions, appearance, shortcuts, API (`1.3.0`), or schema (`1`).
@@ -78,7 +78,7 @@
 ## 1.2.5 — 2026-10-10
 
 ### Fixed
-- Fixed Canvas Token-label presentation settings being saved but not applied immediately. The settings window previously wrote directly through `game.settings.set()` and then repainted before Garb & Grime's cached merged configuration was reliably invalidated.
+- Fixed Canvas Token-label presentation settings being saved but not applied immediately. The settings window previously wrote directly through `game.settings.set()` and then repainted before Runyth Garb & Grime's cached merged configuration was reliably invalidated.
 - Routed configuration writes through the cache-safe `setConfiguration()` helper, which invalidates before and after persistence.
 - Saving **Sheets & HUD** now performs an immediate full label repaint using the newly persisted configuration.
 - Resetting the global configuration also immediately refreshes Token labels.
@@ -136,7 +136,7 @@
 - The dashboard scope summary now explicitly reports player-linked Characters included from outside the manual scope.
 
 ### Root cause
-- Garb & Grime previously built the GM dashboard from supported world Actors and then applied the global folder/regex scope without consulting Foundry's `User.character` relationship or non-GM Actor ownership. Assigning an Actor to a new or additional player therefore could not make an Actor visible if the manual scope had already excluded it.
+- Runyth Garb & Grime previously built the GM dashboard from supported world Actors and then applied the global folder/regex scope without consulting Foundry's `User.character` relationship or non-GM Actor ownership. Assigning an Actor to a new or additional player therefore could not make an Actor visible if the manual scope had already excluded it.
 
 ### Compatibility
 - Existing global Actor folder/regex settings remain intact and continue filtering non-player-linked Actors before expensive Actor index work.
@@ -146,8 +146,8 @@
 ## 1.2.1 — 2026-10-10
 
 ### Fixed
-- Fixed player-initiated cleaning transactions not appearing in the GM Manager transaction log. Player actions now submit a deduplicated transaction record over Garb & Grime's package-specific Foundry socket; only the primary active GM validates and persists it.
-- Declared `"socket": true` in `module.json`, as required for the `module.garb-and-grime` package socket namespace.
+- Fixed player-initiated cleaning transactions not appearing in the GM Manager transaction log. Player actions now submit a deduplicated transaction record over Runyth Garb & Grime's package-specific Foundry socket; only the primary active GM validates and persists it.
+- Declared `"socket": true` in `module.json`, as required for the `module.runyth-garb-and-grime` package socket namespace.
 - Fixed chat visibility being controlled by the obsolete Chat configuration independently from the granular Permissions tab.
 - Prevented automatic long-rest, world-day, combat-end, environment-exposure, and automatic-contamination state changes from generating chat cards. Daily upkeep remains chat-silent.
 - Restricted Manager transaction data to GMs or users explicitly allowed to view hidden GM details.
@@ -184,7 +184,7 @@
 - Saving unrelated Global Module Settings no longer refreshes all canvas labels.
 - Saving Token-label-only settings no longer reconciles Active Effects for every Actor unless effect configuration actually changed.
 - Re-audited ApplicationV2 actions, hooks, Scene Controls, chat integration, DOM usage, CSS isolation, canvas label lifecycle, and deprecated Foundry globals; no new broad or deprecated integration path was introduced.
-- Standardized Actor-panel and Item-integration failure diagnostics to the `[garb-and-grime]` prefix so runtime errors remain immediately attributable.
+- Standardized Actor-panel and Item-integration failure diagnostics to the `[runyth-garb-and-grime]` prefix so runtime errors remain immediately attributable.
 
 ### Compatibility
 - Public API remains `1.3.0`; state schema remains `1`.
@@ -197,7 +197,7 @@
 - Fixed all Manager bulk Actor action failures caused by accessing a private static helper through Foundry ApplicationV2's instance-bound action receiver (`TypeError: Receiver must be class CleanlinessManager`).
 - Removed the private-static receiver dependency from bulk Actor resolution and shared one receiver-independent resolver across adjustment, cleaning, and maintenance bulk actions.
 - Serialized Actor-browser selection and mutation actions per open Manager instance so rapid repeated clicks execute in order instead of racing Actor/settings writes.
-- Added a Garb & Grime-owned rejection boundary for Actor-browser bulk operations, preventing unhandled promise rejections and emitting one clearly prefixed console error plus a localized Foundry notification if an operation itself fails.
+- Added a Runyth Garb & Grime-owned rejection boundary for Actor-browser bulk operations, preventing unhandled promise rejections and emitting one clearly prefixed console error plus a localized Foundry notification if an operation itself fails.
 
 ### Validated
 - Bulk increase/decrease, water cleaning, full cleaning, maintenance enable/disable, multi-selection, empty selection, filtered/persisted selections, repeated clicks, folder selection, clearing selection, and reopening the Manager.
@@ -268,14 +268,14 @@
 ### Fixed
 
 - Prevented the Manager and Actor cleanliness panel from inserting Actor portrait URLs owned by unavailable modules into rendered HTML, eliminating repeated HTTP 404 spam from stale portrait paths during tab changes and rerenders.
-- Added a safe portrait resolution chain: valid Actor image, valid prototype-Token texture, then a bundled Garb & Grime fallback avatar.
-- Cached genuine image-load failures for the browser session so subsequent Garb & Grime rerenders do not repeatedly retry the same broken URL.
-- Added grouped, deduplicated console diagnostics prefixed with `[garb-and-grime]`, including an explicit hint when a known successor module is installed.
+- Added a safe portrait resolution chain: valid Actor image, valid prototype-Token texture, then a bundled Runyth Garb & Grime fallback avatar.
+- Cached genuine image-load failures for the browser session so subsequent Runyth Garb & Grime rerenders do not repeatedly retry the same broken URL.
+- Added grouped, deduplicated console diagnostics prefixed with `[runyth-garb-and-grime]`, including an explicit hint when a known successor module is installed.
 
 ### Compatibility
 
-- Garb & Grime never rewrites `Actor.img`, prototype-Token texture data, or assets owned by another module.
-- Legacy `retired-package` references are detected only for display safety; the module does not guess renamed Order of Severance paths.
+- Runyth Garb & Grime never rewrites `Actor.img`, prototype-Token texture data, or assets owned by another module.
+- Legacy predecessor-module references in asset sources are detected only for display safety; the module does not guess renamed paths.
 - Existing Actor, Token, Scene, settings, transactions, public API, and state schema remain unchanged.
 - Errors attributed by Foundry to other packages remain untouched.
 
@@ -284,7 +284,7 @@
 ### Added
 
 - Added a prominent dashboard launcher inside Global Module Settings.
-- Added a dedicated Garb & Grime group to Foundry's left Scene Controls with Manager, Scene guide, Scene context, and bulk-action tools.
+- Added a dedicated Runyth Garb & Grime group to Foundry's left Scene Controls with Manager, Scene guide, Scene context, and bulk-action tools.
 - Added a scalable Actor browser with hierarchical folder paths, recursive/non-recursive folder filtering, text and regular-expression search, Actor-type and cleanliness filters, persistent selection, folder selection, sorting, and bulk actions.
 - Added optional per-Scene classification of all four dirt levels as Expected, Accepted, Tolerated, Disliked, or Hated.
 - Added a movable, resizable, persistent, GM-only Scene Cleanliness Guide.
@@ -331,7 +331,7 @@
 - Documented Foundry Language Preference usage and the process for adding further translation files.
 - Added localization regression checks for manifest languages, key parity, runtime error paths, and the absence of a competing module language setting.
 
-All notable changes to Garb & Grime are documented here.
+All notable changes to Runyth Garb & Grime are documented here.
 
 ## 1.0.8 — 2026-08-02
 
@@ -350,7 +350,7 @@ All notable changes to Garb & Grime are documented here.
 ### Improved
 
 - Added confirmation before deleting custom cleaning methods, environment profiles, or contaminations.
-- Added scoped padding and layout rules for Garb & Grime-owned DialogV2 forms without affecting other dialogs.
+- Added scoped padding and layout rules for Runyth Garb & Grime-owned DialogV2 forms without affecting other dialogs.
 - Added regression coverage for Active Effect reconciliation, hidden contamination privacy, primary-GM automation, namespaced V13 utilities, partial-render idempotence, and Manager/settings UX.
 
 ## 1.0.7 — 2026-07-29
@@ -359,8 +359,8 @@ All notable changes to Garb & Grime are documented here.
 
 - Prevented the cleanliness indicator from appearing in level-up, advancement, rest, roll, and other Actor-related pop-up applications.
 - Removed global ApplicationV1/ApplicationV2 and global sheet-header control fallbacks from Actor-sheet integration.
-- Scoped title-bar ordering CSS to headers explicitly marked by Garb & Grime; unrelated Foundry and module windows are no longer affected.
-- Scoped the accessibility-only `.sr-only` rule to Garb & Grime applications.
+- Scoped title-bar ordering CSS to headers explicitly marked by Runyth Garb & Grime; unrelated Foundry and module windows are no longer affected.
+- Scoped the accessibility-only `.sr-only` rule to Runyth Garb & Grime applications.
 - Restricted Item tools, sidebar launchers, and Token HUD augmentation to their semantic Foundry render hooks.
 
 ### Improved
@@ -397,7 +397,7 @@ All notable changes to Garb & Grime are documented here.
 
 ### Fixed
 
-- Audited the complete module and confirmed Garb & Grime registers no `renderChatMessage` or other chat-render hook; passive action cards continue to use the supported `ChatMessage.create()` workflow.
+- Audited the complete module and confirmed Runyth Garb & Grime registers no `renderChatMessage` or other chat-render hook; passive action cards continue to use the supported `ChatMessage.create()` workflow.
 - Added regression coverage that rejects deprecated chat hooks and jQuery chat-render assumptions and verifies exactly one correctly populated card for state and cleaning actions.
 - Documented that deprecation warnings triggered after card creation originate from another enabled module listening to all chat messages.
 
@@ -435,9 +435,9 @@ All notable changes to Garb & Grime are documented here.
 
 ### Added
 
-- Prominent Garb & Grime card in the Settings sidebar with **Open Cleanliness Manager** and GM-only **Open global module settings** buttons.
+- Prominent Runyth Garb & Grime card in the Settings sidebar with **Open Cleanliness Manager** and GM-only **Open global module settings** buttons.
 - Prominent launcher card in the Actors sidebar.
-- Two explicit Configure Settings submenus under Garb & Grime: the player-accessible Cleanliness Manager and GM-restricted Global Module Settings.
+- Two explicit Configure Settings submenus under Runyth Garb & Grime: the player-accessible Cleanliness Manager and GM-restricted Global Module Settings.
 - Updated first-run guide with direct Manager and Global Settings actions and exact navigation instructions.
 - Automated validation for init-safe API exposure and every independent launcher family.
 

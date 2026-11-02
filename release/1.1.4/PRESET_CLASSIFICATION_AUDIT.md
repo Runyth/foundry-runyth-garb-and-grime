@@ -1,4 +1,4 @@
-# Garb & Grime 1.1.4 — Scene Preset Classification Audit
+# Runyth Garb & Grime 1.1.4 — Scene Preset Classification Audit
 
 ## Root cause
 

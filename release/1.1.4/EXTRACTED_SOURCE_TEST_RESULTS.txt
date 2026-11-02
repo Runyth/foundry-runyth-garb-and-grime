@@ -167,7 +167,7 @@ ok 28 - GM Scene guide is optional, movable, persistent, and purely advisory
   duration_ms: 1.070174
   type: 'test'
   ...
-# [garb-and-grime] Initialized v1.1.4.
+# [runyth-garb-and-grime] Initialized v1.1.4.
 # Subtest: mocked Foundry init exposes the API and registers entry points
 ok 29 - mocked Foundry init exposes the API and registers entry points
   ---
@@ -264,8 +264,8 @@ ok 44 - ApplicationV2 tab controls use the module action rather than the reserve
   duration_ms: 1.780073
   type: 'test'
   ...
-# Subtest: sheet and accessibility CSS is scoped to Garb & Grime-owned elements
-ok 45 - sheet and accessibility CSS is scoped to Garb & Grime-owned elements
+# Subtest: sheet and accessibility CSS is scoped to Runyth Garb & Grime-owned elements
+ok 45 - sheet and accessibility CSS is scoped to Runyth Garb & Grime-owned elements
   ---
   duration_ms: 0.739319
   type: 'test'
@@ -519,4 +519,4 @@ ok 85 - per-token display and position overrides persist only Token flags and su
 # skipped 0
 # todo 0
 # duration_ms 1846.623241
-Garb & Grime validation completed successfully.
+Runyth Garb & Grime validation completed successfully.

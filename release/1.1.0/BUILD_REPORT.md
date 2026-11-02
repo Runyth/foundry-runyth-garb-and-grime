@@ -1,9 +1,9 @@
-# Garb & Grime 1.1.0 build report
+# Runyth Garb & Grime 1.1.0 build report
 
 ## Release identity
 
-- Display name: Garb & Grime
-- Module ID: `garb-and-grime`
+- Display name: Runyth Garb & Grime
+- Module ID: `runyth-garb-and-grime`
 - Module version: `1.1.0`
 - Public API version: `1.3.0`
 - Actor state schema: `1`

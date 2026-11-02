@@ -1,4 +1,4 @@
-# Garb & Grime v1.2.4 — Test summary
+# Runyth Garb & Grime v1.2.4 — Test summary
 
 - Working-tree automated suite: **110/110 passed**.
 - Freshly extracted source ZIP: **110/110 passed**.

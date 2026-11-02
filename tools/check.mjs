@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const sourceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const moduleRoot = path.join(sourceRoot, "garb-and-grime");
+const moduleRoot = path.join(sourceRoot, ".");
 
 function collect(directory, suffix) {
   const result = [];
@@ -28,4 +28,4 @@ JSON.parse(fs.readFileSync(path.join(moduleRoot, "lang/en.json"), "utf8"));
 for (const file of collect(moduleRoot, ".mjs")) run(process.execPath, ["--check", file]);
 run(process.execPath, ["--test", ...collect(path.join(sourceRoot, "tests"), ".test.mjs")]);
 
-console.log("Garb & Grime validation completed successfully.");
+console.log("Runyth Garb & Grime validation completed successfully.");

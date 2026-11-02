@@ -7,7 +7,7 @@ import {
   getDefaultState,
   normalizeState,
   setStateDirt
-} from "../garb-and-grime/src/domain/state.mjs";
+} from "../src/domain/state.mjs";
 
 test("water reduces body and clothing by exactly one level", () => {
   const dirty = setStateDirt(getDefaultState(), 3);

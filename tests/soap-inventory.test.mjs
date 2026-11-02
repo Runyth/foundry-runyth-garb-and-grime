@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { planSoapRequirement, soapInventoryItems } from "../garb-and-grime/src/soap-inventory.mjs";
+import { planSoapRequirement, soapInventoryItems } from "../src/soap-inventory.mjs";
 
 const registry = {
   getItemIntegration: () => ({ id: "soap", aliases: ["Soap", "Seife", "Savon"] })

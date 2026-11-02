@@ -1,7 +1,7 @@
-# Garb & Grime v1.2.4 — Build report
+# Runyth Garb & Grime v1.2.4 — Build report
 
 ## Baseline
-- Source baseline: accepted Garb & Grime v1.2.3 source archive.
+- Source baseline: accepted Runyth Garb & Grime v1.2.3 source archive.
 - Release type: patch.
 - Module version: 1.2.4.
 - Public API: 1.3.0 unchanged.

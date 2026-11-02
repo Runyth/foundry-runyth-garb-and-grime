@@ -41,10 +41,10 @@ function createEnvironment(mode, dialogChoice = "normal") {
   };
   globalThis.game = {
     user: { id: "gm", isGM: true, role: 4 },
-    modules: new Map([["garb-and-grime", { title: "Garb & Grime" }]]),
+    modules: new Map([["runyth-garb-and-grime", { title: "Runyth Garb & Grime" }]]),
     settings: {
       get(moduleId, key) {
-        if (moduleId === "garb-and-grime" && key === "configuration") {
+        if (moduleId === "runyth-garb-and-grime" && key === "configuration") {
           return {
             rolls: {
               enabled: true,
@@ -90,7 +90,7 @@ function createService(RollService) {
 
 test("D&D 5e v5.2+ roll integration uses the process-configuration V2 hook", async () => {
   const { handlers, notifications } = createEnvironment("automatic");
-  const { RollService } = await import(`../garb-and-grime/src/roll-service.mjs?automatic=${Date.now()}`);
+  const { RollService } = await import(`../src/roll-service.mjs?automatic=${Date.now()}`);
   const service = createService(RollService);
   service.registerHooks();
 
@@ -107,7 +107,7 @@ test("D&D 5e v5.2+ roll integration uses the process-configuration V2 hook", asy
 
 test("the visible roll chooser repeats a roll with an explicit resolved marker", async () => {
   createEnvironment("prompt", "normal");
-  const { RollService } = await import(`../garb-and-grime/src/roll-service.mjs?prompt=${Date.now()}`);
+  const { RollService } = await import(`../src/roll-service.mjs?prompt=${Date.now()}`);
   const service = createService(RollService);
   let received;
   const actor = {

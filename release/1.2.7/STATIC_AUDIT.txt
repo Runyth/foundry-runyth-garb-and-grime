@@ -1,6 +1,6 @@
 # v1.2.7 Static Compatibility Audit
 
-Manifest: garb-and-grime 1.2.7
+Manifest: runyth-garb-and-grime 1.2.7
 Minimum: 13 / Verified: 13.351
 Public API: 1.3.0 / Actor state schema: 1
 Localized key parity: 703 English / 703 German

@@ -1,4 +1,4 @@
-Garb & Grime 1.2.9 static audit:
+Runyth Garb & Grime 1.2.9 static audit:
 - Rendering: hoverToken schedules full label hydration; revealing cached hidden labels also re-hydrates.
 - Actor flag change: expanded and dotted setFlag hook shapes covered.
 - Synthetic PC data: authoritative world Actor resolution preserved.

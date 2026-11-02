@@ -163,7 +163,7 @@
       "Text3": "Bauern, Soldaten, Seeleute und Arbeiter erwarten keine makellose Kleidung. Händler, Beamte, Tempeldiener und Adlige dagegen betrachten starken Schmutz als Zeichen von Armut, Krankheit, Respektlosigkeit oder Gefahr. In Armenvierteln und Räuberlagern kann zu saubere Kleidung wiederum auffallen. Tiere und manche Monster kümmern sich nicht um Flecken – wohl aber um Schweiß, Blut und Verwesungsgeruch."
     },
     "Manager": {
-      "Title": "Garb & Grime – Sauberkeitsverwaltung",
+      "Title": "Runyth Garb & Grime – Sauberkeitsverwaltung",
       "Subtitle": "Kleidung, Körpergeruch, Verunreinigungen und soziale Folgen ohne unnötige Buchhaltung.",
       "Open": "Sauberkeitsverwaltung öffnen",
       "OpenHint": "Öffnet Übersicht, Schnellaktionen, Regeln und Kontexte.",
@@ -295,7 +295,7 @@
       "day": "Tag"
     },
     "TokenHud": {
-      "Tooltip": "Garb & Grime: Sauberkeit und Schnellaktionen"
+      "Tooltip": "Runyth Garb & Grime: Sauberkeit und Schnellaktionen"
     },
     "SheetIndicator": {
       "Tooltip": "Sauberkeit: {level}. Körper: {body}. Kleidung: {clothing}. Verunreinigung: {contamination}.",
@@ -308,7 +308,7 @@
       "TokenLabels": "Sauberkeitsanzeigen ein- oder ausblenden",
       "SelectedTokenLabels": "Sauberkeitsanzeigen ausgewählter Token festlegen",
       "SelectedTokenLabelPosition": "Anzeigeposition für ausgewählte Token festlegen",
-      "Group": "Garb & Grime",
+      "Group": "Runyth Garb & Grime",
       "SceneGuide": "Szenen-Sauberkeitshilfe",
       "TokenLabelPreferences": "Anzeige der Sauberkeitslabels"
     },
@@ -408,18 +408,18 @@
       "Unexpected": "Die Aktion konnte nicht abgeschlossen werden.",
       "InvalidSocialJson": "Die JSON-Regeln für soziale Folgen sind ungültig.",
       "InvalidTrackingJson": "Die JSON-Regeln für Verfolgung sind ungültig.",
-      "PartialInitialization": "Garb & Grime wurde nur teilweise initialisiert ({count} Fehler). Prüfe die Browserkonsole und lade die Welt neu.",
-      "InitializationFailed": "Garb & Grime konnte den Bereich „{area}“ nicht initialisieren.",
+      "PartialInitialization": "Runyth Garb & Grime wurde nur teilweise initialisiert ({count} Fehler). Prüfe die Browserkonsole und lade die Welt neu.",
+      "InitializationFailed": "Runyth Garb & Grime konnte den Bereich „{area}“ nicht initialisieren.",
       "TokenMissing": "Das Token konnte nicht gefunden werden.",
       "ModuleRecordMissing": "Der Garb-&-Grime-Moduleintrag ist während der Initialisierung nicht verfügbar.",
       "InvalidSceneRatings": "Die Sauberkeitsbewertungen der Szene sind ungültig.",
-      "InvalidActorScopeRegex": "Garb & Grime: Der reguläre Ausdruck „{pattern}“ für den Dashboard-Akteursumfang ist ungültig. Die Einstellungen wurden nicht gespeichert.",
-      "ActorManagerActionFailed": "Garb & Grime konnte die Aktion im Akteurs-Dashboard nicht abschließen. Prüfe die Browserkonsole für Details.",
+      "InvalidActorScopeRegex": "Runyth Garb & Grime: Der reguläre Ausdruck „{pattern}“ für den Dashboard-Akteursumfang ist ungültig. Die Einstellungen wurden nicht gespeichert.",
+      "ActorManagerActionFailed": "Runyth Garb & Grime konnte die Aktion im Akteurs-Dashboard nicht abschließen. Prüfe die Browserkonsole für Details.",
       "SceneProfileRequired": "Wähle ein Umgebungsprofil, bevor du den Szenenkontext speicherst.",
       "SceneProfileRegistryUnavailable": "Die Umgebungsprofile von Garb & Grime sind noch nicht verfügbar. Schließe den Szenenkontext und öffne ihn nach Abschluss der Initialisierung erneut.",
       "SceneContextInvalidScene": "Der Szenenkontext benötigt ein gültiges Foundry-Szenendokument.",
-      "SceneContextPersistenceFailed": "Garb & Grime konnte den Szenenkontext für „{scene}“ nicht speichern.",
-      "SceneContextFormUnavailable": "Garb & Grime konnte das Szenenkontext-Formular nicht lesen. Schließe den Dialog und versuche es erneut."
+      "SceneContextPersistenceFailed": "Runyth Garb & Grime konnte den Szenenkontext für „{scene}“ nicht speichern.",
+      "SceneContextFormUnavailable": "Runyth Garb & Grime konnte das Szenenkontext-Formular nicht lesen. Schließe den Dialog und versuche es erneut."
     },
     "Confirm": {
       "ResetTitle": "Sauberkeit zurücksetzen?",
@@ -430,7 +430,7 @@
       "RemoveDefinitionText": "„{name}“ entfernen? Bestehende Akteursdaten bleiben erhalten, aber diese Definition ist anschließend nicht mehr verfügbar."
     },
     "FirstRun": {
-      "Title": "Garb & Grime ist bereit",
+      "Title": "Runyth Garb & Grime ist bereit",
       "Text": "Das Modul ist ohne Makros verwendbar. Öffne die globale Konfiguration über „Einstellungen konfigurieren → Moduleinstellungen → Garb & Grime“.",
       "Entry1": "Im Einstellungen-Reiter erscheint zusätzlich eine deutlich sichtbare Garb-&-Grime-Karte.",
       "Entry2": "Akteursblätter besitzen einen Kopfzeilen-Eintrag und einen sichtbaren Sauberkeitsindikator.",
@@ -492,7 +492,7 @@
         "Name": "Zuletzt gesehene Version"
       },
       "Debug": {
-        "Name": "Garb & Grime: Debug-Protokollierung",
+        "Name": "Runyth Garb & Grime: Debug-Protokollierung",
         "Hint": "Nur für Fehlersuche aktivieren. Normale Nutzung benötigt dies nicht."
       },
       "OpenManager": {
@@ -501,7 +501,7 @@
         "Hint": "Öffnet die zentrale Übersicht für Spieler und Spielleitung."
       },
       "ConfigurationHub": {
-        "Name": "Garb & Grime – Globale Moduleinstellungen",
+        "Name": "Runyth Garb & Grime – Globale Moduleinstellungen",
         "Label": "Globale Moduleinstellungen öffnen",
         "Hint": "Öffnet die vollständige Weltkonfiguration für Automatisierung, Reinigung, Kontexte, Berechtigungen, Währung und Oberfläche."
       },
@@ -512,16 +512,16 @@
         "Name": "Szenen-Sauberkeitshilfe sichtbar"
       },
       "TokenLabelViewerMode": {
-        "Name": "Garb & Grime: Anzeige der Token-Sauberkeitslabels",
+        "Name": "Runyth Garb & Grime: Anzeige der Token-Sauberkeitslabels",
         "Hint": "Deine persönliche Anzeigeart für Sauberkeitslabels. Der SL muss zuerst „Dauerhaften Sauberkeitsstatus sehen“ in den Garb-&-Grime-Berechtigungen erlauben."
       },
       "TokenLabelViewerPosition": {
-        "Name": "Garb & Grime: Position der Token-Sauberkeitslabels",
+        "Name": "Runyth Garb & Grime: Position der Token-Sauberkeitslabels",
         "Hint": "Deine persönliche Position der Sauberkeitslabels. Dies gewährt niemals die Berechtigung, Labels zu sehen."
       }
     },
     "SettingsHub": {
-      "Title": "Garb & Grime – Konfiguration",
+      "Title": "Runyth Garb & Grime – Konfiguration",
       "Subtitle": "Alle Weltregeln sind nach Thema gruppiert. Sichere Standards funktionieren ohne Ersteinrichtung.",
       "Navigation": "Konfigurationsbereiche",
       "Tabs": {
@@ -547,7 +547,7 @@
         "LocalizationTitle": "Sprache und Lokalisierung",
         "CurrentLanguage": "Aktuelle Foundry-Sprache:",
         "AvailableLanguages": "Enthaltene Garb-&-Grime-Übersetzungen:",
-        "LocalizationHint": "Garb & Grime folgt Foundrys Spracheinstellung und führt keine separate Sprachumschaltung. Ändere die Sprache unter Spieleinstellungen → Einstellungen konfigurieren → Kerneinstellungen. Gegebenenfalls ist ein Neuladen erforderlich.",
+        "LocalizationHint": "Runyth Garb & Grime folgt Foundrys Spracheinstellung und führt keine separate Sprachumschaltung. Ändere die Sprache unter Spieleinstellungen → Einstellungen konfigurieren → Kerneinstellungen. Gegebenenfalls ist ein Neuladen erforderlich.",
         "DashboardHint": "Öffnet die skalierbare Akteurs- und Gruppenverwaltung direkt aus den globalen Moduleinstellungen.",
         "DashboardTitle": "Sauberkeits-Dashboard",
         "OpenDashboard": "Dashboard öffnen",
@@ -746,7 +746,7 @@
       "AdvantageOpponent": "Der verfolgende Gegner kann Vorteil haben"
     },
     "Launchers": {
-      "Title": "Garb & Grime",
+      "Title": "Runyth Garb & Grime",
       "ActorDirectoryHint": "Öffnet die Verwaltung oder passt gemeinsam die in der Akteursleiste ausgewählten Akteure an.",
       "SettingsHint": "Direkter Zugriff auf Sauberkeitsverwaltung und globale Weltkonfiguration.",
       "SelectedActorsActions": "Ausgewählte Akteure anpassen"

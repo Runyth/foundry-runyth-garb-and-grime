@@ -1,4 +1,4 @@
-# Garb & Grime 1.1.3 — Qualification
+# Runyth Garb & Grime 1.1.3 — Qualification
 
 - Automated tests from working source: 81/81 passed.
 - Automated tests from a freshly extracted source ZIP: 81/81 passed.

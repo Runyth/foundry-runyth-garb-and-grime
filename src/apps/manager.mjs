@@ -16,7 +16,7 @@ export function configureManagerServices(value) {
 export class CleanlinessManager extends PersistentApplication {
   static DEFAULT_OPTIONS = {
     id: "garb-and-grime-manager",
-    classes: ["garb-and-grime", "gag-window", "gag-manager"],
+    classes: ["runyth-garb-and-grime", "gag-window", "gag-manager"],
     position: { width: 1040, height: 740 },
     window: { icon: "fa-solid fa-shirt", title: "GAG.Manager.Title", resizable: true },
     actions: {

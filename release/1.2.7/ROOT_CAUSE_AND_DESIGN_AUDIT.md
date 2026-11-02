@@ -1,4 +1,4 @@
-# Garb & Grime 1.2.7 — Scoped Shortcut Design & Compatibility Audit
+# Runyth Garb & Grime 1.2.7 — Scoped Shortcut Design & Compatibility Audit
 
 ## Existing behavior before patch
 

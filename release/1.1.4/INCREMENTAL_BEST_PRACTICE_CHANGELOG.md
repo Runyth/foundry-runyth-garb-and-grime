@@ -1,4 +1,4 @@
-# Garb & Grime 1.1.4 — Incremental Best-Practice Changelog
+# Runyth Garb & Grime 1.1.4 — Incremental Best-Practice Changelog
 
 - Never use a semantically meaningful value such as `Expected` as a UI fallback for missing structured configuration when that fallback can later be persisted.
 - Resolve legacy built-in definitions against canonical defaults before presenting editable controls.

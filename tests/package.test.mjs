@@ -5,7 +5,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const root = path.resolve(here, "../garb-and-grime");
+const root = path.resolve(here, "..");
 const read = (name) => fs.readFileSync(path.join(root, name), "utf8");
 const manifest = JSON.parse(read("module.json"));
 
@@ -19,7 +19,7 @@ function flatten(value, prefix = "", target = {}) {
 }
 
 test("manifest declares the stable identity and compatibility", () => {
-  assert.equal(manifest.id, "garb-and-grime");
+  assert.equal(manifest.id, "runyth-garb-and-grime");
   assert.equal(manifest.version, "1.2.9");
   assert.equal(manifest.compatibility.minimum, "13");
   assert.equal(manifest.relationships.systems[0].id, "dnd5e");
@@ -47,7 +47,7 @@ test("all literal module localization references exist", () => {
       else if (/\.(mjs|hbs)$/.test(entry.name)) files.push(absolute);
     }
   };
-  walk(root);
+  for (const part of ["src", "scripts", "styles", "templates", "lang"]) walk(path.join(root, part));
   const text = files.map((file) => fs.readFileSync(file, "utf8")).join("\n");
   const references = [...text.matchAll(/["'](GAG\.[A-Za-z0-9_.-]+)["']/g)].map((match) => match[1]);
   const de = flatten(JSON.parse(read("lang/de.json")));
@@ -120,9 +120,9 @@ test("all module-relative assets and templates referenced in source exist", () =
       else if (/\.(mjs|hbs|css|json)$/.test(entry.name)) files.push(absolute);
     }
   };
-  walk(root);
+  for (const part of ["src", "scripts", "styles", "templates", "lang"]) walk(path.join(root, part));
   const text = files.map((file) => fs.readFileSync(file, "utf8")).join("\n");
-  for (const match of text.matchAll(/(?:modules\/garb-and-grime\/)?(assets\/[A-Za-z0-9_./-]+|templates\/[A-Za-z0-9_./-]+)/g)) {
+  for (const match of text.matchAll(/(?:modules\/runyth-garb-and-grime\/)?(assets\/[A-Za-z0-9_./-]+|templates\/[A-Za-z0-9_./-]+)/g)) {
     assert.equal(fs.existsSync(path.join(root, match[1])), true, match[1]);
   }
 });
@@ -159,8 +159,8 @@ test("ApplicationV2 tab controls use the module action rather than the reserved 
 
 
 
-test("sheet and accessibility CSS is scoped to Garb & Grime-owned elements", () => {
-  const css = read("styles/garb-and-grime.css");
+test("sheet and accessibility CSS is scoped to Runyth Garb & Grime-owned elements", () => {
+  const css = read("styles/runyth-garb-and-grime.css");
   assert.match(css, /\.gag-sheet-header > \.window-controls/);
   assert.match(css, /\.garb-and-grime \.sr-only/);
   assert.doesNotMatch(css, /(^|\n)\.window-header > \.window-controls/);

@@ -1,4 +1,4 @@
-# Garb & Grime v1.2.5 — Incremental Changelog
+# Runyth Garb & Grime v1.2.5 — Incremental Changelog
 
 - Fixed Sheets & HUD Canvas Token-label presentation settings being persisted but not immediately applied because the immediate repaint could still read the previous merged configuration cache.
 - Configuration saves now use the cache-safe writer and invalidate the merged cache both before and after the Foundry settings write.

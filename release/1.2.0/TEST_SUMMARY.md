@@ -1,4 +1,4 @@
-# Garb & Grime v1.2.0 — Test summary
+# Runyth Garb & Grime v1.2.0 — Test summary
 
 The release validation suite currently contains 95 tests. All 95 pass.
 

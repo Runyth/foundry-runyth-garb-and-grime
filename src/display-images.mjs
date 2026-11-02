@@ -7,10 +7,7 @@ const warnedIssues = new Set();
 const MAX_FAILED_SOURCES = 512;
 const MAX_WARNED_ISSUES = 128;
 
-const LEGACY_MODULE_SUCCESSORS = Object.freeze({
-  "retired-package": "order-of-severance",
-  "retired-package-dnd5e-2024": "order-of-severance-dnd5e-2024"
-});
+const LEGACY_MODULE_SUCCESSORS = Object.freeze({});
 
 function normalizedSource(value) {
   return String(value ?? "").trim().replace(/\\/g, "/");
@@ -121,13 +118,13 @@ export function reportActorImageIssues(entries) {
         ? localized(
             "GAG.Images.SuccessorAvailable",
             { successor: issue.successorId },
-            ` The successor module "${issue.successorId}" is installed, but Garb & Grime does not guess renamed file paths.`
+            ` The successor module "${issue.successorId}" is installed, but Runyth Garb & Grime does not guess renamed file paths.`
           )
         : "";
       const message = localized(
         "GAG.Images.UnavailableModuleWarning",
         { count, module: issue.moduleId, successor },
-        `Actor portrait fallback: ${count} Actor(s) reference the unavailable module "${issue.moduleId}". Garb & Grime suppressed those image requests to prevent repeated HTTP 404s and used safe fallback artwork.${successor}`
+        `Actor portrait fallback: ${count} Actor(s) reference the unavailable module "${issue.moduleId}". Runyth Garb & Grime suppressed those image requests to prevent repeated HTTP 404s and used safe fallback artwork.${successor}`
       );
       console.warn(`[${MODULE_ID}] ${message}`, { actors: group.actors, sources: group.sources });
       continue;
@@ -135,7 +132,7 @@ export function reportActorImageIssues(entries) {
     const message = localized(
       "GAG.Images.LoadFailedWarning",
       { count, source: issue.source ?? "" },
-      "Actor portrait fallback: an image failed to load. Garb & Grime cached the failure for this session and will use safe fallback artwork on subsequent renders."
+      "Actor portrait fallback: an image failed to load. Runyth Garb & Grime cached the failure for this session and will use safe fallback artwork on subsequent renders."
     );
     console.warn(`[${MODULE_ID}] ${message}`, { actors: group.actors, sources: group.sources });
   }

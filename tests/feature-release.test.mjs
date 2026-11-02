@@ -5,7 +5,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const moduleRoot = path.resolve(here, "../garb-and-grime");
+const moduleRoot = path.resolve(here, "..");
 const read = (name) => fs.readFileSync(path.join(moduleRoot, name), "utf8");
 
 test("feature release exposes redundant dashboard launchers including a dedicated left Scene Control", () => {
@@ -60,7 +60,7 @@ test("Scene classification stores four validated ratings and derives profile def
   };
   globalThis.canvas = { scene: null };
 
-  const { ContextService, deriveLevelRatings, normalizeLevelRatings } = await import(`../garb-and-grime/src/context-service.mjs?feature=${Date.now()}`);
+  const { ContextService, deriveLevelRatings, normalizeLevelRatings } = await import(`../src/context-service.mjs?feature=${Date.now()}`);
   assert.deepEqual(deriveLevelRatings({ min: 0, max: 0 }), ["expected", "accepted", "disliked", "hated"]);
   assert.deepEqual(deriveLevelRatings({ min: 2, max: 2 }), ["disliked", "accepted", "expected", "accepted"]);
   assert.deepEqual(normalizeLevelRatings(["expected", "accepted", "tolerated", "hated"]), ["expected", "accepted", "tolerated", "hated"]);

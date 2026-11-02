@@ -1,4 +1,4 @@
-# Garb & Grime 1.1.3 — Dashboard Actor Scope Audit
+# Runyth Garb & Grime 1.1.3 — Dashboard Actor Scope Audit
 
 ## Goal
 
@@ -25,7 +25,7 @@ The Manager now:
 1. Gets supported Actors visible to the current user.
 2. Builds the cheap Actor-folder catalog.
 3. Applies global folder/regex scope.
-4. Only then reads Garb & Grime directory summaries and creates Actor index rows.
+4. Only then reads Runyth Garb & Grime directory summaries and creates Actor index rows.
 5. Applies per-dashboard filters, sorting, and pagination.
 6. Hydrates portraits and detailed presentation only for the current page.
 
@@ -37,4 +37,4 @@ Folder path lookup uses maps rather than repeated folder-tree traversal inside t
 - It does not alter Actor Documents or cleanliness flags.
 - It does not disable Actor-sheet indicators, Token HUD actions, Token labels, automation, Scene guide behavior, chat, or public API operations.
 - Deleted/stale folder IDs are ignored safely. If no configured folder IDs still exist, folder scope becomes nonrestrictive rather than hiding the entire dashboard.
-- Invalid regex values are rejected when saving settings with a Garb & Grime-prefixed error. If invalid configuration is introduced externally, the dashboard ignores the regex component and displays a warning rather than failing.
+- Invalid regex values are rejected when saving settings with a Runyth Garb & Grime-prefixed error. If invalid configuration is introduced externally, the dashboard ignores the regex component and displays a warning rather than failing.

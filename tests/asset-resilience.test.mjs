@@ -8,9 +8,9 @@ function installGame(moduleIds = []) {
     i18n: {
       format(key, data = {}) {
         const templates = {
-          "GAG.Images.SuccessorAvailable": ` The successor module "${data.successor}" is installed, but Garb & Grime will not guess renamed file paths.`,
-          "GAG.Images.UnavailableModuleWarning": `Actor portrait fallback: ${data.count} Actor(s) reference the unavailable module "${data.module}". Garb & Grime suppressed those image requests to prevent repeated HTTP 404s and used safe fallback artwork.${data.successor}`,
-          "GAG.Images.LoadFailedWarning": "Actor portrait fallback: an image failed to load. Garb & Grime cached the failure for this browser session and will use safe fallback artwork on subsequent renders."
+          "GAG.Images.SuccessorAvailable": ` The successor module "${data.successor}" is installed, but Runyth Garb & Grime will not guess renamed file paths.`,
+          "GAG.Images.UnavailableModuleWarning": `Actor portrait fallback: ${data.count} Actor(s) reference the unavailable module "${data.module}". Runyth Garb & Grime suppressed those image requests to prevent repeated HTTP 404s and used safe fallback artwork.${data.successor}`,
+          "GAG.Images.LoadFailedWarning": "Actor portrait fallback: an image failed to load. Runyth Garb & Grime cached the failure for this browser session and will use safe fallback artwork on subsequent renders."
         };
         return templates[key] ?? key;
       }
@@ -19,39 +19,39 @@ function installGame(moduleIds = []) {
 }
 
 test("dashboard suppresses actor portrait URLs owned by unavailable modules before HTML rendering", async () => {
-  installGame(["garb-and-grime", "order-of-severance"]);
-  const images = await import(`../garb-and-grime/src/display-images.mjs?suppress=${Date.now()}`);
+  installGame(["runyth-garb-and-grime", "active-package"]);
+  const images = await import(`../src/display-images.mjs?suppress=${Date.now()}`);
 
   const staleOnly = images.resolveActorDisplayImage({
-    img: "modules/retired-package/assets/portraits/aveline-rhoss.webp",
-    prototypeToken: { texture: { src: "modules/retired-package/assets/tokens/aveline-rhoss.webp" } }
+    img: "modules/retired-package/assets/portraits/aveline.webp",
+    prototypeToken: { texture: { src: "modules/retired-package/assets/tokens/aveline.webp" } }
   });
-  assert.equal(staleOnly.src, "modules/garb-and-grime/assets/icons/actor-fallback.svg");
+  assert.equal(staleOnly.src, "modules/runyth-garb-and-grime/assets/icons/actor-fallback.svg");
   assert.equal(staleOnly.fallback, true);
   assert.equal(staleOnly.issue.kind, "module-unavailable");
   assert.equal(staleOnly.issue.moduleId, "retired-package");
-  assert.equal(staleOnly.issue.successorAvailable, true);
+  assert.equal(staleOnly.issue.successorAvailable, false);
 
   const tokenFallback = images.resolveActorDisplayImage({
-    img: "modules/retired-package/assets/portraits/beren-auv.webp",
+    img: "modules/retired-package/assets/portraits/beren.webp",
     prototypeToken: { texture: { src: "icons/svg/mystery-man.svg" } }
   });
   assert.equal(tokenFallback.src, "icons/svg/mystery-man.svg");
   assert.equal(tokenFallback.fallback, false);
   assert.equal(tokenFallback.issue.kind, "module-unavailable");
 
-  const activeModule = images.resolveActorDisplayImage({ img: "modules/order-of-severance/assets/portraits/example.webp" });
-  assert.equal(activeModule.src, "modules/order-of-severance/assets/portraits/example.webp");
+  const activeModule = images.resolveActorDisplayImage({ img: "modules/active-package/assets/portraits/example.webp" });
+  assert.equal(activeModule.src, "modules/active-package/assets/portraits/example.webp");
   assert.equal(activeModule.fallback, false);
 });
 
 test("runtime image failures are cached and module diagnostics warn once instead of on every rerender", async () => {
-  installGame(["garb-and-grime", "active-package"]);
-  const images = await import(`../garb-and-grime/src/display-images.mjs?cache=${Date.now()}`);
+  installGame(["runyth-garb-and-grime", "active-package"]);
+  const images = await import(`../src/display-images.mjs?cache=${Date.now()}`);
   const source = "modules/active-package/assets/missing.webp";
   assert.equal(images.resolveActorDisplayImage({ img: source }).src, source);
   images.markActorImageFailed(source);
-  assert.equal(images.resolveActorDisplayImage({ img: source }).src, "modules/garb-and-grime/assets/icons/actor-fallback.svg");
+  assert.equal(images.resolveActorDisplayImage({ img: source }).src, "modules/runyth-garb-and-grime/assets/icons/actor-fallback.svg");
 
   const originalWarn = console.warn;
   const warnings = [];
@@ -65,7 +65,7 @@ test("runtime image failures are cached and module diagnostics warn once instead
     console.warn = originalWarn;
   }
   assert.equal(warnings.length, 1);
-  assert.match(String(warnings[0][0]), /^\[garb-and-grime\]/);
+  assert.match(String(warnings[0][0]), /^\[runyth-garb-and-grime\]/);
   assert.match(String(warnings[0][0]), /2 Actor\(s\)/);
 });
 
@@ -74,7 +74,7 @@ test("manager and actor panel never insert raw Actor document portrait paths dir
   const path = await import("node:path");
   const { fileURLToPath } = await import("node:url");
   const here = path.dirname(fileURLToPath(import.meta.url));
-  const root = path.resolve(here, "../garb-and-grime");
+  const root = path.resolve(here, "..");
   const manager = fs.readFileSync(path.join(root, "src/apps/manager.mjs"), "utf8");
   const panel = fs.readFileSync(path.join(root, "src/apps/actor-panel.mjs"), "utf8");
   const managerTemplate = fs.readFileSync(path.join(root, "templates/manager.hbs"), "utf8");

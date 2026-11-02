@@ -5,7 +5,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const moduleRoot = path.resolve(here, "../garb-and-grime");
+const moduleRoot = path.resolve(here, "..");
 const read = (name) => fs.readFileSync(path.join(moduleRoot, name), "utf8");
 
 test("bulk token and actor adjustment entry points are present", () => {
@@ -26,7 +26,7 @@ test("bulk token and actor adjustment entry points are present", () => {
 
 test("sheet status is inserted before Foundry core window controls", () => {
   const sheets = read("src/integrations/actor-sheets.mjs");
-  const css = read("styles/garb-and-grime.css");
+  const css = read("styles/runyth-garb-and-grime.css");
   assert.match(sheets, /insertBeforeWindowControls\(header, button\)/);
   assert.match(sheets, /\[data-action='toggleControls'\]/);
   assert.match(sheets, /\[data-action='close'\]/);

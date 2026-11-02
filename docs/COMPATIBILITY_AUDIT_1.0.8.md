@@ -1,4 +1,4 @@
-# Garb & Grime 1.0.8 Compatibility and Interference Audit
+# Runyth Garb & Grime 1.0.8 Compatibility and Interference Audit
 
 ## Scope
 
@@ -16,7 +16,7 @@ The module still called the legacy global `fromUuid` and `fromUuidSync` helpers.
 
 **Files:** `src/effects.mjs`, `src/state-service.mjs`, `src/apps/settings-hub.mjs`
 
-Every cleanliness update previously deleted every Garb & Grime Active Effect and recreated the desired set. This could trigger unnecessary hooks in DAE, Midi-QOL, effect panels, and other modules. Disabling effect mirroring also left existing module effects behind.
+Every cleanliness update previously deleted every Runyth Garb & Grime Active Effect and recreated the desired set. This could trigger unnecessary hooks in DAE, Midi-QOL, effect panels, and other modules. Disabling effect mirroring also left existing module effects behind.
 
 The implementation now reconciles effects by their module-owned kind flag:
 
@@ -24,7 +24,7 @@ The implementation now reconciles effects by their module-owned kind flag:
 - changed effects update in place;
 - obsolete or duplicate effects are deleted;
 - missing effects are created;
-- disabling mirroring removes stale Garb & Grime effects;
+- disabling mirroring removes stale Runyth Garb & Grime effects;
 - the Actor flag remains authoritative.
 
 ### Hidden-contamination disclosure
@@ -73,7 +73,7 @@ New IDs are selected by scanning for the first unused suffix. Custom definition 
 
 ### Dialog form readability
 
-**File:** `styles/garb-and-grime.css`
+**File:** `styles/runyth-garb-and-grime.css`
 
 DialogV2 content does not inherit the module application's root class. A narrowly scoped `.gag-dialog-form` rule now provides spacing and field padding to module-owned dialog forms without changing Foundry or other modules' dialogs.
 
@@ -85,7 +85,7 @@ DialogV2 content does not inherit the module application's root class. A narrowl
 - The module registers no deprecated chat-render hook and continues to create one passive card through `ChatMessage.create()`.
 - Scene Controls continue to use the Foundry V13 record/tool structure rather than an array `push` contract.
 - Token labels remain in a module-owned interface-layer container and do not modify Foundry nameplates.
-- CSS remains scoped to Garb & Grime roots or uniquely named integration classes.
+- CSS remains scoped to Runyth Garb & Grime roots or uniquely named integration classes.
 - No socket dependency, libWrapper dependency, or cross-module monkey patch was added.
 - Actor, Token, Scene, setting, and transaction data formats remain compatible.
 - Public API version remains `1.2.0`; state schema remains `1`.

@@ -3,10 +3,10 @@ import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
-import { DEFAULT_ENVIRONMENT_PROFILES } from "../garb-and-grime/src/defaults.mjs";
+import { DEFAULT_ENVIRONMENT_PROFILES } from "../src/defaults.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const moduleRoot = path.resolve(here, "../garb-and-grime");
+const moduleRoot = path.resolve(here, "..");
 const read = (name) => fs.readFileSync(path.join(moduleRoot, name), "utf8");
 
 const expectedRatings = {
@@ -48,8 +48,8 @@ test("profile-rating migration repairs legacy all-Expected and duplicated preset
     { id: "custom-market", name: "Market", expected: { min: 0, max: 3 }, levelRatings: ["expected", "expected", "expected", "expected"] }
   ];
   const values = new Map([
-    ["garb-and-grime.profileRatingsVersion", 0],
-    ["garb-and-grime.environmentProfiles", structuredClone(storedProfiles)]
+    ["runyth-garb-and-grime.profileRatingsVersion", 0],
+    ["runyth-garb-and-grime.environmentProfiles", structuredClone(storedProfiles)]
   ]);
   globalThis.game = {
     user: { isGM: true },
@@ -60,10 +60,10 @@ test("profile-rating migration repairs legacy all-Expected and duplicated preset
   };
   globalThis.foundry = { utils: { deepClone: structuredClone } };
 
-  const { migrateProfileRatings } = await import(`../garb-and-grime/src/migration.mjs?preset=${Date.now()}`);
+  const { migrateProfileRatings } = await import(`../src/migration.mjs?preset=${Date.now()}`);
   const result = await migrateProfileRatings();
   assert.deepEqual(result, { migrated: 2, changed: true });
-  const migrated = values.get("garb-and-grime.environmentProfiles");
+  const migrated = values.get("runyth-garb-and-grime.environmentProfiles");
   assert.deepEqual(migrated[0].levelRatings, expectedRatings.ordinary);
   assert.equal(migrated[0].levelRatingsSource, "preset");
   assert.deepEqual(migrated[1].levelRatings, expectedRatings.swamp);
@@ -71,11 +71,11 @@ test("profile-rating migration repairs legacy all-Expected and duplicated preset
   assert.deepEqual(migrated[2].levelRatings, ["expected", "expected", "expected", "expected"]);
   assert.equal(migrated[2].levelRatingsSource, "custom");
   assert.deepEqual(migrated[3].levelRatings, ["expected", "expected", "expected", "expected"]);
-  assert.equal(values.get("garb-and-grime.profileRatingsVersion"), 1);
+  assert.equal(values.get("runyth-garb-and-grime.profileRatingsVersion"), 1);
 });
 
 test("registry supplies canonical bundled ratings when an older built-in profile lacks levelRatings", async () => {
-  const { DefinitionRegistry } = await import(`../garb-and-grime/src/registry.mjs?preset-registry=${Date.now()}`);
+  const { DefinitionRegistry } = await import(`../src/registry.mjs?preset-registry=${Date.now()}`);
   const registry = new DefinitionRegistry();
   registry.replaceWorldDefinitions({
     profiles: [{ id: "ordinary", name: "Ordinary", expected: { min: 0, max: 2 } }]

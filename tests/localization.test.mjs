@@ -5,7 +5,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const root = path.resolve(here, "../garb-and-grime");
+const root = path.resolve(here, "..");
 const read = (name) => fs.readFileSync(path.join(root, name), "utf8");
 
 function flatten(value, prefix = "", target = {}) {
@@ -55,7 +55,7 @@ test("runtime validation and registry errors are localized", async () => {
       localize(key) { return `DE:${key}`; }
     }
   };
-  const { validateMethod } = await import(`../garb-and-grime/src/domain/validation.mjs?localization=${Date.now()}`);
+  const { validateMethod } = await import(`../src/domain/validation.mjs?localization=${Date.now()}`);
   assert.throws(() => validateMethod(null), /DE:GAG\.Validation\.MethodObject/);
 
   const validation = read("src/domain/validation.mjs");

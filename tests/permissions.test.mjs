@@ -38,8 +38,8 @@ test("disabled permissions and per-user overrides are enforced", async () => {
     })
   };
 
-  const { hasPermission } = await import(`../garb-and-grime/src/permissions.mjs?permissions=${Date.now()}`);
-  const { StateService } = await import(`../garb-and-grime/src/state-service.mjs?permissions=${Date.now()}`);
+  const { hasPermission } = await import(`../src/permissions.mjs?permissions=${Date.now()}`);
+  const { StateService } = await import(`../src/state-service.mjs?permissions=${Date.now()}`);
 
   assert.equal(hasPermission("viewOwn", { actor }), false);
   permissionSetting = {

@@ -1,4 +1,4 @@
-# Garb & Grime 1.2.6 — Canvas label root-cause and compatibility audit
+# Runyth Garb & Grime 1.2.6 — Canvas label root-cause and compatibility audit
 
 ## Source path
 
@@ -24,7 +24,7 @@
 
 ## Compatibility and validation scope
 
-- Baseline: Garb & Grime v1.2.5; patch v1.2.6.
+- Baseline: Runyth Garb & Grime v1.2.5; patch v1.2.6.
 - Manifest Foundry V13 min/verified 13.351, DnD5e verified 5.3.3 unchanged.
 - API 1.3.0 and state schema 1 unchanged; no data migrations.
 - Automated Foundry-style mocks cover 10–13px geometry, new Token of same Actor, hook dispatch, same-UUID redraw, zero-opacity, and toolbar regression.

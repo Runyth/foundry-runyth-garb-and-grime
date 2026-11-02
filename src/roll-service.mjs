@@ -106,7 +106,7 @@ export class RollService {
         originalMessage: message,
         enhancedSmell: Boolean(config.garbAndGrime?.enhancedSmell)
       }).catch((error) => {
-        console.error(`${game.modules.get("garb-and-grime")?.title ?? "Garb & Grime"} | Roll prompt failed`, error);
+        console.error(`${game.modules.get("runyth-garb-and-grime")?.title ?? "Runyth Garb & Grime"} | Roll prompt failed`, error);
         ui.notifications.error(game.i18n.localize("GAG.Errors.Unexpected"));
       });
       return false;

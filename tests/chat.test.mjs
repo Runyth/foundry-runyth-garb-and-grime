@@ -5,7 +5,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const sourceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const moduleRoot = path.join(sourceRoot, "garb-and-grime");
+const moduleRoot = path.join(sourceRoot, ".");
 
 function collect(directory, suffix = ".mjs") {
   const files = [];
@@ -35,12 +35,12 @@ function mergeObject(original, other, { inplace = true } = {}) {
 function setupFoundry({ chatMode = "public" } = {}) {
   const messages = [];
   const settings = new Map([
-    ["garb-and-grime.configuration", {
+    ["runyth-garb-and-grime.configuration", {
       chat: { enabled: true, mode: chatMode },
       effects: { enabled: false, includeContaminations: true }
     }],
-    ["garb-and-grime.permissions", { roleMinimums: {}, userOverrides: {} }],
-    ["garb-and-grime.transaction-log", []]
+    ["runyth-garb-and-grime.permissions", { roleMinimums: {}, userOverrides: {} }],
+    ["runyth-garb-and-grime.transaction-log", []]
   ]);
 
   globalThis.HTMLElement = class HTMLElement {};
@@ -144,7 +144,7 @@ test("a state adjustment creates exactly one correctly populated passive chat ca
     testUserPermission() { return true; }
   };
   const registry = { getContamination() { return null; } };
-  const { StateService } = await import(`../garb-and-grime/src/state-service.mjs?chat-state=${Date.now()}`);
+  const { StateService } = await import(`../src/state-service.mjs?chat-state=${Date.now()}`);
   const service = new StateService(registry);
 
   const result = await service.adjustDirt(actor, 1, { reason: "Travel" });
@@ -153,7 +153,7 @@ test("a state adjustment creates exactly one correctly populated passive chat ca
   assert.equal(messages.length, 1);
   const [message] = messages;
   assert.equal(message.speaker.actor, actor.id);
-  assert.equal(message.flags["garb-and-grime"].actionCard, true);
+  assert.equal(message.flags["runyth-garb-and-grime"].actionCard, true);
   assert.match(message.content, /Test Actor/);
   assert.match(message.content, /GAG\.Chat\.StateChanged/);
   assert.match(message.content, /GAG\.Levels\.1\.Name/);
@@ -207,7 +207,7 @@ test("a cleaning action creates one card while its internal state update stays s
     getCurrencyAdapter() { return null; }
   };
   const contextService = { getProfile() { return null; } };
-  const { ActionService } = await import(`../garb-and-grime/src/action-service.mjs?chat-clean=${Date.now()}`);
+  const { ActionService } = await import(`../src/action-service.mjs?chat-clean=${Date.now()}`);
   const service = new ActionService(registry, stateService, contextService);
 
   const result = await service.cleanActor(actor, "soap");
@@ -274,7 +274,7 @@ test("player-initiated cleaning chat is permission-routed to all players by defa
     getCleaningMethod() { return structuredClone(method); },
     getCurrencyAdapter() { return null; }
   };
-  const { ActionService } = await import(`../garb-and-grime/src/action-service.mjs?chat-player-clean=${Date.now()}`);
+  const { ActionService } = await import(`../src/action-service.mjs?chat-player-clean=${Date.now()}`);
   const service = new ActionService(registry, stateService, { getProfile() { return null; } });
 
   const result = await service.cleanActor(actor, "soap");
@@ -310,7 +310,7 @@ test("manual state-change chat is GM-only by default and automation source is ex
     async createEmbeddedDocuments() {},
     testUserPermission() { return true; }
   };
-  const { StateService } = await import(`../garb-and-grime/src/state-service.mjs?chat-gm-state=${Date.now()}`);
+  const { StateService } = await import(`../src/state-service.mjs?chat-gm-state=${Date.now()}`);
   const service = new StateService({ getContamination() { return null; } });
   await service.adjustDirt(actor, 1, { reason: "Manual" });
   assert.equal(messages.length, 1);
@@ -335,7 +335,7 @@ test("per-user chat denial in Permissions overrides the default player cleaning 
   game.settings.get = (moduleId, key) => key === "permissions" ? permissionSource : key === "configuration" ? {} : [];
   game.user = player1;
 
-  const { postActionCard } = await import(`../garb-and-grime/src/chat.mjs?permission-denial=${Date.now()}`);
+  const { postActionCard } = await import(`../src/chat.mjs?permission-denial=${Date.now()}`);
   await postActionCard({
     actor: { id: "actor", name: "Actor" },
     previous: { dirtLevel: 2 },
@@ -349,20 +349,20 @@ test("per-user chat denial in Permissions overrides the default player cleaning 
 
 test("chat permission migration removes the legacy Chat configuration and seeds authoritative defaults", async () => {
   const values = new Map([
-    ["garb-and-grime.chatPermissionsVersion", 0],
-    ["garb-and-grime.configuration", { chat: { enabled: true, mode: "gm" }, tokenLabels: {} }],
-    ["garb-and-grime.permissions", { roleMinimums: {}, userOverrides: {} }]
+    ["runyth-garb-and-grime.chatPermissionsVersion", 0],
+    ["runyth-garb-and-grime.configuration", { chat: { enabled: true, mode: "gm" }, tokenLabels: {} }],
+    ["runyth-garb-and-grime.permissions", { roleMinimums: {}, userOverrides: {} }]
   ]);
   game.user = { id: "gm", isGM: true, role: 4 };
   game.settings = {
     get(moduleId, key) { return values.get(`${moduleId}.${key}`); },
     async set(moduleId, key, value) { values.set(`${moduleId}.${key}`, structuredClone(value)); return value; }
   };
-  const { migrateChatPermissions } = await import(`../garb-and-grime/src/migration.mjs?chat-permission-migration=${Date.now()}`);
+  const { migrateChatPermissions } = await import(`../src/migration.mjs?chat-permission-migration=${Date.now()}`);
   const result = await migrateChatPermissions();
   assert.equal(result.changed, true);
-  assert.equal(Object.hasOwn(values.get("garb-and-grime.configuration"), "chat"), false);
-  assert.equal(values.get("garb-and-grime.permissions").roleMinimums.viewCleaningChat, 1);
-  assert.equal(values.get("garb-and-grime.permissions").roleMinimums.viewStateChat, 4);
-  assert.equal(values.get("garb-and-grime.chatPermissionsVersion"), 1);
+  assert.equal(Object.hasOwn(values.get("runyth-garb-and-grime.configuration"), "chat"), false);
+  assert.equal(values.get("runyth-garb-and-grime.permissions").roleMinimums.viewCleaningChat, 1);
+  assert.equal(values.get("runyth-garb-and-grime.permissions").roleMinimums.viewStateChat, 4);
+  assert.equal(values.get("runyth-garb-and-grime.chatPermissionsVersion"), 1);
 });

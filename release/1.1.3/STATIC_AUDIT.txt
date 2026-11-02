@@ -1,4 +1,4 @@
-Garb & Grime 1.1.3 {'minimum': '13', 'verified': '13.351', 'maximum': '14'}
+Runyth Garb & Grime 1.1.3 {'minimum': '13', 'verified': '13.351', 'maximum': '14'}
 localization keys en=630 de=630 parity=True
 renderChatMessage legacy: False
 jQuery html.find: False

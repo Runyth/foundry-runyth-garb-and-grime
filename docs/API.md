@@ -1,10 +1,10 @@
-# Garb & Grime Public API 1.3.0
+# Runyth Garb & Grime Public API 1.3.0
 
 ```javascript
-const api = game.modules.get("garb-and-grime")?.api;
+const api = game.modules.get("runyth-runyth-garb-and-grime")?.api;
 ```
 
-The API is assigned during Foundry's `init` lifecycle and the `garb-and-grime.apiReady` hook is emitted after registration.
+The API is assigned during Foundry's `init` lifecycle and the `runyth-garb-and-grime.apiReady` hook is emitted after registration.
 
 ## State methods
 
@@ -79,7 +79,7 @@ api.registerCurrencyAdapter({
 });
 ```
 
-After registration, select `festival-mark` in **Garb & Grime Configuration → Currency**. Registration does not itself enable automatic deductions.
+After registration, select `festival-mark` in **Runyth Garb & Grime Configuration → Currency**. Registration does not itself enable automatic deductions.
 
 ## Context and roll methods
 
@@ -144,7 +144,7 @@ Valid values are `expected`, `accepted`, `tolerated`, `disliked`, and `hated`. T
 | `setTokenLabelsVisible(visible, options?)` | Sets the current client's global Token-label visibility explicitly. |
 | `refreshTokenLabels()` | Refreshes labels on all canvas Tokens from current Actor state and settings. |
 
-The global display state is a client setting used by the `manual` display policy. World configuration may instead use `always`, `controlled`, `hovered`, or `controlled-or-hovered`. Per-Token overrides are stored in `flags.garb-and-grime.tokenLabelMode` and `flags.garb-and-grime.tokenLabelPosition`; neither changes Actor cleanliness. A per-Token `show` override never bypasses the non-GM `viewTokenLabels` permission, player scope, or Actor scope. Tokens in `inherit` position mode follow the world-configured default position.
+The global display state is a client setting used by the `manual` display policy. World configuration may instead use `always`, `controlled`, `hovered`, or `controlled-or-hovered`. Per-Token overrides are stored in `flags.runyth-garb-and-grime.tokenLabelMode` and `flags.runyth-garb-and-grime.tokenLabelPosition`; neither changes Actor cleanliness. A per-Token `show` override never bypasses the non-GM `viewTokenLabels` permission, player scope, or Actor scope. Tokens in `inherit` position mode follow the world-configured default position.
 
 ## UI and lookup methods
 
@@ -168,16 +168,16 @@ The API exposes exact names through `api.hooks`.
 
 | Hook | Vetoable | Payload |
 |---|---:|---|
-| `garb-and-grime.apiReady` | No | API object |
-| `garb-and-grime.preStateChange` | Yes | `{actor, previous, next, options, user}` |
-| `garb-and-grime.stateChanged` | No | `{actor, previous, next, options, user}` |
-| `garb-and-grime.preCleanActor` | Yes | `{actor, method, options, user}` |
-| `garb-and-grime.actorCleaned` | No | `{actor, method, previous, next, payment, consumed, options}` |
-| `garb-and-grime.preApplyContamination` | Yes | `{actor, contamination, options, user}` |
-| `garb-and-grime.contaminationApplied` | No | `{actor, contamination, options, user, state}` |
-| `garb-and-grime.contextChanged` | No | `{scene, previous, next, profile, options}` |
-| `garb-and-grime.maintenanceProcessed` | No | `{actor, result, config}` |
-| `garb-and-grime.rollEvaluated` | No | `{actor, rollType, options, result}` |
+| `runyth-garb-and-grime.apiReady` | No | API object |
+| `runyth-garb-and-grime.preStateChange` | Yes | `{actor, previous, next, options, user}` |
+| `runyth-garb-and-grime.stateChanged` | No | `{actor, previous, next, options, user}` |
+| `runyth-garb-and-grime.preCleanActor` | Yes | `{actor, method, options, user}` |
+| `runyth-garb-and-grime.actorCleaned` | No | `{actor, method, previous, next, payment, consumed, options}` |
+| `runyth-garb-and-grime.preApplyContamination` | Yes | `{actor, contamination, options, user}` |
+| `runyth-garb-and-grime.contaminationApplied` | No | `{actor, contamination, options, user, state}` |
+| `runyth-garb-and-grime.contextChanged` | No | `{scene, previous, next, profile, options}` |
+| `runyth-garb-and-grime.maintenanceProcessed` | No | `{actor, result, config}` |
+| `runyth-garb-and-grime.rollEvaluated` | No | `{actor, rollType, options, result}` |
 
 A veto hook must return `false` from at least one listener. Vetoes abort before Actor data changes.
 

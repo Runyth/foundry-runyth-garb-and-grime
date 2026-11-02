@@ -1,13 +1,13 @@
 # Localization
 
-Garb & Grime uses Foundry VTT's native package localization system.
+Runyth Garb & Grime uses Foundry VTT's native package localization system.
 
 ## Included languages
 
 - German (`de`)
 - English (`en`)
 
-The active language is controlled by Foundry's **Language Preference** under **Game Settings → Configure Settings → Core Settings**. Garb & Grime intentionally does not maintain a separate language override, because a module-specific language would conflict with Foundry's consolidated translation dictionary and each user's normal language preference.
+The active language is controlled by Foundry's **Language Preference** under **Game Settings → Configure Settings → Core Settings**. Runyth Garb & Grime intentionally does not maintain a separate language override, because a module-specific language would conflict with Foundry's consolidated translation dictionary and each user's normal language preference.
 
 The Global Module Settings window shows the current Foundry language and the translations bundled with the installed release. No language switch is placed in the Cleanliness Manager.
 

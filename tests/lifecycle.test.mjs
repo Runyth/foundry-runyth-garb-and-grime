@@ -71,9 +71,9 @@ test("mocked Foundry init exposes the API and registers entry points", async () 
   const definitions = new Map();
   const values = new Map();
   const menus = new Map();
-  const moduleRecord = { id: "garb-and-grime", version: "1.1.5", api: null };
+  const moduleRecord = { id: "runyth-garb-and-grime", version: "1.1.5", api: null };
   globalThis.game = {
-    modules: new Map([["garb-and-grime", moduleRecord]]),
+    modules: new Map([["runyth-garb-and-grime", moduleRecord]]),
     keybindings: { register() {} },
     settings: {
       register(moduleId, key, definition) { definitions.set(`${moduleId}.${key}`, definition); values.set(`${moduleId}.${key}`, structuredClone(definition.default)); },
@@ -89,16 +89,16 @@ test("mocked Foundry init exposes the API and registers entry points", async () 
     system: { id: "dnd5e", version: "5.3.3" }
   };
 
-  await import(`../garb-and-grime/scripts/main.mjs?test=${Date.now()}`);
+  await import(`../scripts/main.mjs?test=${Date.now()}`);
   assert.equal(moduleRecord.api, null, "API exposure waits for Foundry init");
 
   for (const entry of hookHandlers.get("init") ?? []) await entry.callback();
   assert.equal(typeof moduleRecord.api.openManager, "function");
   assert.equal(moduleRecord.api.getVersion(), "1.2.9");
   assert.equal(moduleRecord.api.getApiVersion(), "1.3.0");
-  assert.ok(definitions.has("garb-and-grime.configuration"));
-  assert.ok(menus.has("garb-and-grime.openManager"));
-  assert.ok(menus.has("garb-and-grime.configurationHub"));
+  assert.ok(definitions.has("runyth-garb-and-grime.configuration"));
+  assert.ok(menus.has("runyth-garb-and-grime.openManager"));
+  assert.ok(menus.has("runyth-garb-and-grime.configurationHub"));
 
   for (const entry of hookHandlers.get("ready") ?? []) await entry.callback();
   assert.deepEqual(moduleRecord.api.getState(null), {

@@ -10,7 +10,7 @@ export function configureActorPanelServices(value) { services = value; }
 export class ActorCleanlinessPanel extends PersistentApplication {
   static DEFAULT_OPTIONS = {
     id: "garb-and-grime-actor-panel",
-    classes: ["garb-and-grime", "gag-window", "gag-actor-panel"],
+    classes: ["runyth-garb-and-grime", "gag-window", "gag-actor-panel"],
     position: { width: 720, height: 700 },
     window: { icon: "fa-solid fa-shirt", title: "GAG.ActorPanel.Title", resizable: true },
     actions: {

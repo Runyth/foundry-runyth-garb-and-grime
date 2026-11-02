@@ -1,4 +1,4 @@
-# Garb & Grime 1.1.5 — ApplicationV2 Action Audit
+# Runyth Garb & Grime 1.1.5 — ApplicationV2 Action Audit
 
 ## Reported failure
 
@@ -11,7 +11,7 @@
 - Kept `this` only for legitimate Application instance state such as rendering, element access, and the per-instance operation queue.
 - Wrapped Actor-browser mutation/selection actions with `runActorManagerOperation()`.
 - Serialized rapid repeated Actor-browser operations per open Manager instance to avoid racing settings/document writes while preserving every click in order.
-- Added a contained error boundary that logs one `[garb-and-grime] Actor dashboard action failed.` error and shows a localized Foundry notification instead of leaking an unhandled promise rejection.
+- Added a contained error boundary that logs one `[runyth-garb-and-grime] Actor dashboard action failed.` error and shows a localized Foundry notification instead of leaking an unhandled promise rejection.
 - Clears the per-instance operation queue reference when the Manager closes.
 
 ## Handler audit

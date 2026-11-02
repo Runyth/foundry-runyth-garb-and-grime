@@ -163,7 +163,7 @@
       "Text3": "Farmers, soldiers, sailors, and laborers do not expect spotless clothing. Merchants, officials, temple servants, and nobles may view heavy dirt as a sign of poverty, disease, disrespect, or danger. In slums and bandit camps, clothing that is too clean may stand out instead. Animals and some monsters do not care about stains—but they do care about sweat, blood, and decay."
     },
     "Manager": {
-      "Title": "Garb & Grime — Cleanliness Manager",
+      "Title": "Runyth Garb & Grime — Cleanliness Manager",
       "Subtitle": "Clothing, body odor, contamination, and social consequences without tedious bookkeeping.",
       "Open": "Open Cleanliness Manager",
       "OpenHint": "Open overview, quick actions, rules, and contexts.",
@@ -295,7 +295,7 @@
       "day": "day"
     },
     "TokenHud": {
-      "Tooltip": "Garb & Grime: cleanliness and quick actions"
+      "Tooltip": "Runyth Garb & Grime: cleanliness and quick actions"
     },
     "SheetIndicator": {
       "Tooltip": "Cleanliness: {level}. Body: {body}. Clothing: {clothing}. Contamination: {contamination}.",
@@ -308,7 +308,7 @@
       "TokenLabels": "Show or hide cleanliness labels",
       "SelectedTokenLabels": "Set cleanliness labels for selected Tokens",
       "SelectedTokenLabelPosition": "Set label position for selected Tokens",
-      "Group": "Garb & Grime",
+      "Group": "Runyth Garb & Grime",
       "SceneGuide": "Scene cleanliness guide",
       "TokenLabelPreferences": "Cleanliness label display preferences"
     },
@@ -344,7 +344,7 @@
       "LaundryVoucher": "Laundry service voucher",
       "MagicalCleaning": "Magical cleaning item",
       "UseForCleaning": "Use for cleaning",
-      "Integration": "Garb & Grime use",
+      "Integration": "Runyth Garb & Grime use",
       "NoIntegration": "No fixed integration",
       "SaveIntegration": "Save integration"
     },
@@ -380,7 +380,7 @@
       "ContextSet": "Scene context set to “{context}”.",
       "Migrated": "Normalized {count} actor records already in use.",
       "Saved": "Cleanliness state saved.",
-      "SettingsSaved": "Garb & Grime settings saved.",
+      "SettingsSaved": "Runyth Garb & Grime settings saved.",
       "DebtSettled": "{actor}: {amount} {currency} of upkeep costs were settled.",
       "ItemIntegrationSaved": "The item integration was saved.",
       "MaskingApplied": "{actor} uses {item} to mask their scent.",
@@ -408,18 +408,18 @@
       "Unexpected": "The action could not be completed.",
       "InvalidSocialJson": "The social-consequence JSON is invalid.",
       "InvalidTrackingJson": "The tracking-consequence JSON is invalid.",
-      "PartialInitialization": "Garb & Grime initialized only partially ({count} errors). Check the browser console and reload the world.",
-      "InitializationFailed": "Garb & Grime could not initialize the “{area}” integration.",
+      "PartialInitialization": "Runyth Garb & Grime initialized only partially ({count} errors). Check the browser console and reload the world.",
+      "InitializationFailed": "Runyth Garb & Grime could not initialize the “{area}” integration.",
       "TokenMissing": "The token could not be found.",
       "ModuleRecordMissing": "The Garb & Grime module record is unavailable during initialization.",
       "InvalidSceneRatings": "The Scene cleanliness classifications are invalid.",
-      "InvalidActorScopeRegex": "Garb & Grime: The dashboard Actor scope regular expression “{pattern}” is invalid. Settings were not saved.",
-      "ActorManagerActionFailed": "Garb & Grime could not complete the Actor dashboard action. Check the browser console for details.",
+      "InvalidActorScopeRegex": "Runyth Garb & Grime: The dashboard Actor scope regular expression “{pattern}” is invalid. Settings were not saved.",
+      "ActorManagerActionFailed": "Runyth Garb & Grime could not complete the Actor dashboard action. Check the browser console for details.",
       "SceneProfileRequired": "Choose an environment profile before saving the Scene Context.",
-      "SceneProfileRegistryUnavailable": "Garb & Grime environment profiles are not available yet. Close and reopen Scene Context after initialization finishes.",
+      "SceneProfileRegistryUnavailable": "Runyth Garb & Grime environment profiles are not available yet. Close and reopen Scene Context after initialization finishes.",
       "SceneContextInvalidScene": "Scene Context requires a valid Foundry Scene document.",
-      "SceneContextPersistenceFailed": "Garb & Grime could not save Scene Context for “{scene}”.",
-      "SceneContextFormUnavailable": "Garb & Grime could not read the Scene Context form. Close the dialog and try again."
+      "SceneContextPersistenceFailed": "Runyth Garb & Grime could not save Scene Context for “{scene}”.",
+      "SceneContextFormUnavailable": "Runyth Garb & Grime could not read the Scene Context form. Close the dialog and try again."
     },
     "Confirm": {
       "ResetTitle": "Reset cleanliness?",
@@ -430,7 +430,7 @@
       "RemoveDefinitionText": "Remove “{name}”? Existing Actor state remains intact, but this definition will no longer be available."
     },
     "FirstRun": {
-      "Title": "Garb & Grime is ready",
+      "Title": "Runyth Garb & Grime is ready",
       "Text": "The module works without macros. Open global configuration through Configure Settings → Module Settings → Garb & Grime.",
       "Entry1": "The Settings sidebar also contains a prominent Garb & Grime card.",
       "Entry2": "Actor sheets receive a header entry and a visible cleanliness indicator.",
@@ -462,7 +462,7 @@
     },
     "Settings": {
       "Configuration": {
-        "Name": "Garb & Grime configuration"
+        "Name": "Runyth Garb & Grime configuration"
       },
       "CleaningMethods": {
         "Name": "Cleaning methods"
@@ -492,7 +492,7 @@
         "Name": "Last seen version"
       },
       "Debug": {
-        "Name": "Garb & Grime: debug logging",
+        "Name": "Runyth Garb & Grime: debug logging",
         "Hint": "Enable only for troubleshooting. Normal use does not require it."
       },
       "OpenManager": {
@@ -501,7 +501,7 @@
         "Hint": "Open the central overview for players and GMs."
       },
       "ConfigurationHub": {
-        "Name": "Garb & Grime — Global Module Settings",
+        "Name": "Runyth Garb & Grime — Global Module Settings",
         "Label": "Open global module settings",
         "Hint": "Open the complete world configuration for automation, cleaning, contexts, permissions, currency, and presentation."
       },
@@ -512,16 +512,16 @@
         "Name": "Scene cleanliness guide visible"
       },
       "TokenLabelViewerMode": {
-        "Name": "Garb & Grime: Token label display mode",
+        "Name": "Runyth Garb & Grime: Token label display mode",
         "Hint": "Your personal cleanliness-label display preference. The GM must first grant “View persistent cleanliness status” in Garb & Grime Permissions."
       },
       "TokenLabelViewerPosition": {
-        "Name": "Garb & Grime: Token label position",
+        "Name": "Runyth Garb & Grime: Token label position",
         "Hint": "Your personal cleanliness-label position. This never grants permission to see labels."
       }
     },
     "SettingsHub": {
-      "Title": "Garb & Grime — Configuration",
+      "Title": "Runyth Garb & Grime — Configuration",
       "Subtitle": "All world rules are grouped by topic. Safe defaults work without initial setup.",
       "Navigation": "Configuration sections",
       "Tabs": {
@@ -547,7 +547,7 @@
         "LocalizationTitle": "Language and localization",
         "CurrentLanguage": "Current Foundry language:",
         "AvailableLanguages": "Included Garb & Grime translations:",
-        "LocalizationHint": "Garb & Grime follows Foundry’s Language Preference and does not maintain a separate language override. Change the language under Game Settings → Configure Settings → Core Settings. A reload may be required.",
+        "LocalizationHint": "Runyth Garb & Grime follows Foundry’s Language Preference and does not maintain a separate language override. Change the language under Game Settings → Configure Settings → Core Settings. A reload may be required.",
         "DashboardHint": "Open the scalable Actor and party management dashboard directly from the module’s global settings.",
         "DashboardTitle": "Cleanliness dashboard",
         "OpenDashboard": "Open dashboard",
@@ -746,7 +746,7 @@
       "AdvantageOpponent": "The opposing tracker may have advantage"
     },
     "Launchers": {
-      "Title": "Garb & Grime",
+      "Title": "Runyth Garb & Grime",
       "ActorDirectoryHint": "Open the manager, or adjust actors selected in the Actors sidebar together.",
       "SettingsHint": "Direct access to the cleanliness manager and global world configuration.",
       "SelectedActorsActions": "Adjust selected actors"
