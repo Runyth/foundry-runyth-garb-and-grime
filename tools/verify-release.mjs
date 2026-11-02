@@ -11,7 +11,7 @@ import { build } from "./build.mjs";
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const MODULE_ID = "runyth-garb-and-grime";
-const VERSION = "1.2.9";
+const VERSION = "1.3.0";
 
 function fail(message) {
   process.stderr.write(`Verification failed: ${message}\n`);
