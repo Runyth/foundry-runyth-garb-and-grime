@@ -141,6 +141,8 @@ const rootManifest = JSON.parse(readFileSync(path.join(ROOT, "..", "module.json"
     "tests/feature-release.test.mjs",
     "tests/manifest.test.mjs",
     "tests/hygiene.test.mjs",
+    "tests/manifest.test.mjs",
+    "tests/hygiene.test.mjs",
     "docs/ARCHITECTURE.md",
     "docs/API.md",
     "docs/LOCALIZATION.md"
