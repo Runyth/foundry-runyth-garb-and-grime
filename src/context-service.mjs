@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 import { FLAGS, HOOKS, MODULE_ID, PERMISSIONS, SCENE_LEVEL_RATINGS } from "./constants.mjs";
 import { assertPermission } from "./permissions.mjs";
 import { deepClone } from "./domain/state.mjs";

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 import { getConfiguration } from "../settings.mjs";
 import { canModifyActor, canViewActor } from "../permissions.mjs";
 import { getRootElement } from "../util.mjs";
