@@ -1,0 +1,187 @@
+<div class="gag-app-shell">
+  <header class="gag-app-header">
+    <div>
+      <h1><i class="fa-solid fa-shirt" aria-hidden="true"></i> {{localize "GAG.Manager.Title"}}</h1>
+      <p>{{localize "GAG.Manager.Subtitle"}}</p>
+    </div>
+    <div class="gag-header-status">
+      <span class="gag-context-badge" title="{{localize 'GAG.Manager.CurrentContextHint'}}"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> {{sceneContextLabel}}</span>
+      <span class="gag-version">v{{version}}</span>
+    </div>
+  </header>
+
+  <nav class="gag-tabs" aria-label="{{localize 'GAG.Manager.Navigation'}}">
+    {{#each tabs}}
+      {{#if visible}}
+        <button type="button" data-action="switchTab" data-tab="{{id}}" class="{{#if active}}active{{/if}}" aria-current="{{#if active}}page{{else}}false{{/if}}">{{label}}</button>
+      {{/if}}
+    {{/each}}
+  </nav>
+
+  <main class="gag-content">
+    {{#if (eq uiState.activeTab "overview")}}
+      <section class="gag-overview-grid">
+        <article class="gag-panel gag-summary-panel">
+          <h2>{{localize "GAG.Manager.PartySummary"}}</h2>
+          <div class="gag-level-summary">
+            {{#each counts}}
+              <div class="gag-level-card gag-level-{{level}}">
+                <strong>{{count}}</strong>
+                <span>{{localize (concat "GAG.Levels." level ".Name")}}</span>
+              </div>
+            {{/each}}
+          </div>
+          <p class="hint">{{localize "GAG.Manager.PartySummaryHint"}}</p>
+        </article>
+
+        <article class="gag-panel gag-scene-context-panel">
+          <div class="gag-section-heading">
+            <div><h2>{{localize "GAG.Manager.SceneContext"}}</h2><p><strong>{{sceneName}}</strong></p></div>
+            {{#if canConfigure}}<button type="button" data-action="editSceneContext"><i class="fa-solid fa-pen-to-square"></i><span>{{localize "GAG.SceneGuide.Edit"}}</span></button>{{/if}}
+          </div>
+          <div class="gag-inline-form">
+            <label class="sr-only" for="gag-scene-context">{{localize "GAG.ContextDialog.Profile"}}</label>
+            <select id="gag-scene-context" name="sceneContext" {{#unless canConfigure}}disabled{{/unless}}>
+              {{#each profiles}}<option value="{{id}}" {{#if selected}}selected{{/if}} {{#if disabled}}disabled{{/if}}>{{label}}</option>{{/each}}
+            </select>
+            {{#if canConfigure}}<button type="button" data-action="applyContext"><i class="fa-solid fa-floppy-disk" aria-hidden="true"></i><span>{{localize "Save"}}</span></button>{{/if}}
+          </div>
+          <div class="gag-scene-rating-list gag-scene-rating-list--compact">
+            {{#each sceneRatings}}
+              <div class="gag-scene-rating gag-level-{{level}} gag-rating-{{rating}}"><span><strong>{{level}}</strong> {{levelLabel}}</span><span class="gag-scene-rating__status">{{ratingLabel}}</span></div>
+            {{/each}}
+          </div>
+          {{#if canConfigure}}<button type="button" data-action="openSceneGuide"><i class="fa-solid fa-signs-post"></i><span>{{localize "GAG.SceneGuide.Open"}}</span></button>{{/if}}
+          <p class="hint">{{localize "GAG.Manager.SceneContextHint"}}</p>
+        </article>
+
+        <article class="gag-panel gag-bulk-panel">
+          <h2>{{localize "GAG.Manager.SelectedTokens"}}</h2>
+          <p>{{localize "GAG.Manager.SelectedCount" count=selectedCount}}</p>
+          {{#if canBulk}}
+            <div class="gag-button-grid">
+              <button type="button" data-action="bulk" data-bulk-action="adjust" data-amount="1"><i class="fa-solid fa-plus"></i><span>{{localize "GAG.Actions.Increase"}}</span></button>
+              <button type="button" data-action="bulk" data-bulk-action="adjust" data-amount="-1"><i class="fa-solid fa-minus"></i><span>{{localize "GAG.Actions.Reduce"}}</span></button>
+              <button type="button" data-action="bulk" data-bulk-action="normal"><i class="fa-solid fa-person-walking-luggage"></i><span>{{localize "GAG.Actions.TravelWork"}}</span></button>
+              <button type="button" data-action="bulk" data-bulk-action="context"><i class="fa-solid fa-location-crosshairs"></i><span>{{localize "GAG.Actions.ApplyContextExposure"}}</span></button>
+              <button type="button" data-action="bulk" data-bulk-action="extreme"><i class="fa-solid fa-biohazard"></i><span>{{localize "GAG.Actions.ExtremeExposure"}}</span></button>
+              <button type="button" data-action="bulk" data-bulk-action="water"><i class="fa-solid fa-water"></i><span>{{localize "GAG.Methods.Water.Name"}}</span></button>
+              <button type="button" data-action="bulk" data-bulk-action="clean"><i class="fa-solid fa-soap"></i><span>{{localize "GAG.Actions.CleanFully"}}</span></button>
+            </div>
+            <div class="gag-inline-form gag-bulk-contamination">
+              <select name="bulkContaminationId" aria-label="{{localize 'GAG.ActorPanel.Contamination'}}">{{#each contaminations}}<option value="{{id}}">{{label}}</option>{{/each}}</select>
+              <button type="button" data-action="bulkContamination"><i class="fa-solid fa-biohazard"></i><span>{{localize "GAG.Actions.ApplyContamination"}}</span></button>
+            </div>
+          {{else}}
+            <p class="hint">{{localize "GAG.Manager.BulkUnavailable"}}</p>
+          {{/if}}
+        </article>
+
+        <article class="gag-panel gag-notice-panel">
+          <h2>{{localize "GAG.Manager.ScentWatch"}}</h2>
+          <ul class="gag-compact-list">
+            {{#each rows}}
+              {{#if scentNotice}}<li><button type="button" class="gag-link-button" data-action="openActor" data-actor-uuid="{{uuid}}">{{name}}</button> — {{levelLabel}}</li>{{/if}}
+            {{else}}
+              <li>{{localize "GAG.Manager.NoScentNotices"}}</li>
+            {{/each}}
+          </ul>
+        </article>
+      </section>
+    {{/if}}
+
+    {{#if (eq uiState.activeTab "actors")}}
+      <section class="gag-toolbar gag-actor-browser-toolbar" aria-label="{{localize 'GAG.Manager.Filters'}}">
+        <label class="gag-search-field"><span>{{localize "GAG.Common.Search"}}</span><input type="search" data-gag-filter="search" value="{{uiState.search}}" placeholder="{{localize 'GAG.Manager.SearchPlaceholder'}}"></label>
+        <label><span>{{localize "GAG.Manager.SearchMode"}}</span><select data-gag-filter="searchMode"><option value="text" {{#if (eq uiState.searchMode "text")}}selected{{/if}}>{{localize "GAG.Manager.SearchModeText"}}</option><option value="regex" {{#if (eq uiState.searchMode "regex")}}selected{{/if}}>{{localize "GAG.Manager.SearchModeRegex"}}</option></select></label>
+        <label><span>{{localize "GAG.Manager.ActorFolder"}}</span><select data-gag-filter="folderId"><option value="all" {{#if (eq uiState.folderId "all")}}selected{{/if}}>{{localize "GAG.Manager.AllFolders"}}</option>{{#each folderOptions}}<option value="{{id}}" {{#if (eq ../uiState.folderId id)}}selected{{/if}}>{{label}}</option>{{/each}}</select></label>
+        <label class="gag-checkbox gag-folder-recursion"><input type="checkbox" data-gag-filter="includeSubfolders" {{checked uiState.includeSubfolders}}><span>{{localize "GAG.Manager.IncludeSubfolders"}}</span></label>
+        <label><span>{{localize "GAG.Manager.ActorType"}}</span><select data-gag-filter="actorType"><option value="all" {{#if (eq uiState.actorType "all")}}selected{{/if}}>{{localize "GAG.Common.All"}}</option><option value="character" {{#if (eq uiState.actorType "character")}}selected{{/if}}>{{localize "GAG.Manager.ActorTypeCharacter"}}</option><option value="npc" {{#if (eq uiState.actorType "npc")}}selected{{/if}}>{{localize "GAG.Manager.ActorTypeNpc"}}</option></select></label>
+        <label><span>{{localize "GAG.Common.Level"}}</span><select data-gag-filter="level"><option value="all" {{#if (eq uiState.level "all")}}selected{{/if}}>{{localize "GAG.Common.All"}}</option>{{#each counts}}<option value="{{level}}" {{#if (eq ../uiState.level (concat "" level))}}selected{{/if}}>{{localize (concat "GAG.Levels." level ".Name")}}</option>{{/each}}</select></label>
+        <label><span>{{localize "GAG.Manager.SelectionFilter"}}</span><select data-gag-filter="selectionMode"><option value="all" {{#if (eq uiState.selectionMode "all")}}selected{{/if}}>{{localize "GAG.Common.All"}}</option><option value="selected" {{#if (eq uiState.selectionMode "selected")}}selected{{/if}}>{{localize "GAG.Manager.SelectedOnly"}}</option></select></label>
+        <label><span>{{localize "GAG.Common.Sort"}}</span><select data-gag-filter="sort"><option value="name" {{#if (eq uiState.sort "name")}}selected{{/if}}>{{localize "GAG.Common.Name"}}</option><option value="folder" {{#if (eq uiState.sort "folder")}}selected{{/if}}>{{localize "GAG.Manager.ActorFolder"}}</option><option value="level" {{#if (eq uiState.sort "level")}}selected{{/if}}>{{localize "GAG.Common.Level"}}</option><option value="updated" {{#if (eq uiState.sort "updated")}}selected{{/if}}>{{localize "GAG.Common.Updated"}}</option></select></label>
+        <label><span>{{localize "GAG.Common.Direction"}}</span><select data-gag-filter="direction"><option value="asc" {{#if (eq uiState.direction "asc")}}selected{{/if}}>{{localize "GAG.Common.Ascending"}}</option><option value="desc" {{#if (eq uiState.direction "desc")}}selected{{/if}}>{{localize "GAG.Common.Descending"}}</option></select></label>
+        <button type="button" data-action="resetFilters"><i class="fa-solid fa-filter-circle-xmark"></i><span>{{localize "GAG.Actions.ResetFilters"}}</span></button>
+      </section>
+      {{#if filterError}}<div class="gag-warning" role="alert"><i class="fa-solid fa-triangle-exclamation"></i><span>{{filterError}}</span></div>{{/if}}
+      {{#if actorScopeActive}}<p class="gag-scope-summary"><i class="fa-solid fa-filter" aria-hidden="true"></i> {{actorScopeSummary}}</p>{{/if}}
+      <p class="gag-result-summary">{{localize "GAG.Manager.ActorResults" visible=filteredCount total=allCount}}</p>
+
+      {{#if pagination}}
+        <nav class="gag-actor-pagination" aria-label="{{localize 'GAG.Manager.Pagination'}}">
+          <span>{{localize "GAG.Manager.PageRange" start=pagination.start end=pagination.end total=filteredCount}}</span>
+          <label><span>{{localize "GAG.Manager.RowsPerPage"}}</span><select data-gag-filter="actorPageSize"><option value="20" {{#if (eq pagination.pageSize 20)}}selected{{/if}}>20</option><option value="40" {{#if (eq pagination.pageSize 40)}}selected{{/if}}>40</option><option value="80" {{#if (eq pagination.pageSize 80)}}selected{{/if}}>80</option><option value="120" {{#if (eq pagination.pageSize 120)}}selected{{/if}}>120</option></select></label>
+          <div class="gag-actor-pagination__controls">
+            <button type="button" class="compact" data-action="changeActorPage" data-delta="-1" {{#unless pagination.hasPrevious}}disabled{{/unless}} title="{{localize 'GAG.Manager.PreviousPage'}}"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i><span>{{localize "GAG.Manager.PreviousPage"}}</span></button>
+            <strong>{{localize "GAG.Manager.PageNumber" page=pagination.page pages=pagination.pageCount}}</strong>
+            <button type="button" class="compact" data-action="changeActorPage" data-delta="1" {{#unless pagination.hasNext}}disabled{{/unless}} title="{{localize 'GAG.Manager.NextPage'}}"><span>{{localize "GAG.Manager.NextPage"}}</span><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+          </div>
+        </nav>
+      {{/if}}
+
+
+      {{#if canBulk}}
+        <section class="gag-selection-toolbar" aria-label="{{localize 'GAG.Manager.ActorSelection'}}">
+          <div>
+            <strong data-gag-selected-actor-count>{{localize "GAG.Manager.SelectedActorCount" count=selectedActorCount}}</strong>
+            <small>{{localize "GAG.Manager.ActorSelectionHint"}}</small>
+          </div>
+          <div class="gag-selection-toolbar__actions">
+            <button type="button" data-action="selectAllActors"><i class="fa-solid fa-check-double"></i><span>{{localize "GAG.Actions.SelectVisible"}}</span></button>
+            <button type="button" data-action="clearActorSelection"><i class="fa-solid fa-xmark"></i><span>{{localize "GAG.Actions.ClearSelection"}}</span></button>
+            <button type="button" data-action="bulkActorAdjust" data-amount="1" {{#unless selectedActorCount}}disabled{{/unless}}><i class="fa-solid fa-plus"></i><span>{{localize "GAG.Actions.IncreaseSelected"}}</span></button>
+            <button type="button" data-action="bulkActorAdjust" data-amount="-1" {{#unless selectedActorCount}}disabled{{/unless}}><i class="fa-solid fa-minus"></i><span>{{localize "GAG.Actions.ReduceSelected"}}</span></button>
+            <button type="button" data-action="bulkActorAction" data-actor-action="water" {{#unless selectedActorCount}}disabled{{/unless}}><i class="fa-solid fa-water"></i><span>{{localize "GAG.Methods.Water.Name"}}</span></button>
+            <button type="button" data-action="bulkActorAction" data-actor-action="clean" {{#unless selectedActorCount}}disabled{{/unless}}><i class="fa-solid fa-soap"></i><span>{{localize "GAG.Actions.CleanFully"}}</span></button>
+            <button type="button" data-action="bulkActorAction" data-actor-action="maintenance-on" {{#unless selectedActorCount}}disabled{{/unless}}><i class="fa-solid fa-coins"></i><span>{{localize "GAG.Actions.EnableMaintenance"}}</span></button>
+            <button type="button" data-action="bulkActorAction" data-actor-action="maintenance-off" {{#unless selectedActorCount}}disabled{{/unless}}><i class="fa-solid fa-ban"></i><span>{{localize "GAG.Actions.DisableMaintenance"}}</span></button>
+          </div>
+        </section>
+      {{/if}}
+
+      <section class="gag-actor-list" aria-live="polite">
+        {{#each actorGroups}}
+          <section class="gag-actor-group" data-gag-actor-group="{{id}}">
+            <header class="gag-actor-group__header">
+              <div><i class="fa-solid fa-folder-open" aria-hidden="true"></i><strong>{{label}}</strong><span>{{rows.length}}</span></div>
+              {{#if @root.canBulk}}<button type="button" class="compact" data-action="selectActorGroup"><i class="fa-solid fa-check-double"></i><span>{{localize "GAG.Actions.SelectFolder"}}</span></button>{{/if}}
+            </header>
+            <div class="gag-actor-group__rows">
+            {{#each rows}}
+              <article class="gag-actor-row gag-level-{{level}} {{#if @root.canBulk}}gag-actor-row--selectable{{/if}} {{#if selected}}selected{{/if}}">
+                {{#if @root.canBulk}}<label class="gag-row-selector" title="{{localize 'GAG.Manager.SelectActor' actor=name}}"><input type="checkbox" data-gag-select-actor="{{uuid}}" {{#if selected}}checked{{/if}} {{#unless canModify}}disabled{{/unless}}><span class="sr-only">{{localize "GAG.Manager.SelectActor" actor=name}}</span></label>{{/if}}
+                <button type="button" class="gag-actor-identity" data-action="openActor" data-actor-uuid="{{uuid}}"><img src="{{img}}" alt="" loading="lazy" decoding="async" data-gag-actor-image data-gag-actor-image-source="{{imageSource}}" data-gag-actor-name="{{name}}" {{#if imageFallback}}data-gag-actor-image-fallback="true" title="{{localize 'GAG.Images.FallbackTitle'}}"{{/if}}><span><strong>{{name}}</strong><small>{{folderPath}} · {{type}} · {{levelLabel}}</small></span></button>
+                <div class="gag-state-columns"><span title="{{localize 'GAG.Common.Body'}}"><i class="fa-solid fa-person" aria-hidden="true"></i> {{bodyLabel}}</span><span title="{{localize 'GAG.Common.Clothing'}}"><i class="fa-solid fa-shirt" aria-hidden="true"></i> {{clothingLabel}}</span><span title="{{localize 'GAG.Common.Contamination'}}"><i class="fa-solid fa-biohazard" aria-hidden="true"></i> {{#if contaminations.length}}{{#each contaminations}}{{label}}{{#unless @last}}, {{/unless}}{{/each}}{{else}}{{localize "GAG.Common.None"}}{{/if}}</span><span title="{{localize 'GAG.Common.LastUpdate'}}"><i class="fa-solid fa-clock" aria-hidden="true"></i> {{lastChange}}</span></div>
+                <div class="gag-row-actions">{{#if canModify}}<button type="button" data-action="clean" data-method-id="water" data-actor-uuid="{{uuid}}" title="{{localize 'GAG.Methods.Water.Description'}}"><i class="fa-solid fa-water"></i><span>{{localize "GAG.Actions.WaterShort"}}</span></button><button type="button" data-action="clean" data-method-id="spare-clothing" data-actor-uuid="{{uuid}}" title="{{localize 'GAG.Methods.SpareClothing.Description'}}"><i class="fa-solid fa-shirt"></i><span>{{localize "GAG.Actions.ClothesShort"}}</span></button>{{#if @root.canBulk}}<button type="button" data-action="adjust" data-amount="1" data-actor-uuid="{{uuid}}" title="{{localize 'GAG.Actions.Increase'}}"><i class="fa-solid fa-plus"></i></button><button type="button" data-action="adjust" data-amount="-1" data-actor-uuid="{{uuid}}" title="{{localize 'GAG.Actions.Reduce'}}"><i class="fa-solid fa-minus"></i></button>{{/if}}<button type="button" data-action="toggleMaintenance" data-actor-uuid="{{uuid}}" class="{{#if autoMaintenance}}active{{/if}}" title="{{localize 'GAG.Actions.ToggleMaintenance'}}"><i class="fa-solid fa-coins"></i></button>{{/if}}<button type="button" data-action="openActor" data-actor-uuid="{{uuid}}"><i class="fa-solid fa-pen-to-square"></i><span>{{localize "GAG.Actions.Open"}}</span></button></div>
+              </article>
+            {{/each}}
+            </div>
+          </section>
+        {{else}}
+          <div class="gag-empty"><i class="fa-solid fa-magnifying-glass"></i><p>{{localize "GAG.Manager.NoActors"}}</p></div>
+        {{/each}}
+      </section>
+    {{/if}}
+
+    {{#if (eq uiState.activeTab "rules")}}
+      <article class="gag-rules-reference">{{{rulesHtml}}}</article>
+    {{/if}}
+
+    {{#if (eq uiState.activeTab "transactions")}}
+      <section class="gag-panel">
+        <h2>{{localize "GAG.Manager.TransactionLog"}}</h2>
+        <p class="hint">{{localize "GAG.Manager.TransactionLogHint"}}</p>
+        <div class="gag-table-wrap"><table><thead><tr><th>{{localize "GAG.Common.Date"}}</th><th>{{localize "GAG.Common.Actor"}}</th><th>{{localize "GAG.Common.Method"}}</th><th>{{localize "GAG.Common.Cost"}}</th><th>{{localize "GAG.Common.Status"}}</th></tr></thead><tbody>
+          {{#each transactionLog}}<tr><td>{{timestampLabel}}</td><td>{{actorName}}</td><td>{{methodName}}</td><td>{{amount}} {{currency}}</td><td>{{#if success}}{{localize "GAG.Common.Success"}}{{else}}{{localize "GAG.Common.Failed"}}{{/if}}{{#unless deducted}} · {{localize "GAG.Common.RecordedOnly"}}{{/unless}}</td></tr>{{else}}<tr><td colspan="5">{{localize "GAG.Manager.NoTransactions"}}</td></tr>{{/each}}
+        </tbody></table></div>
+      </section>
+    {{/if}}
+
+    {{#if (eq uiState.activeTab "settings")}}
+      <section class="gag-overview-grid">
+        <article class="gag-panel"><h2>{{localize "GAG.SettingsHub.Title"}}</h2><p>{{localize "GAG.Manager.SettingsSummary"}}</p><button type="button" data-action="openSettings"><i class="fa-solid fa-sliders"></i><span>{{localize "GAG.Settings.ConfigurationHub.Label"}}</span></button></article>
+        <article class="gag-panel"><h2>{{localize "GAG.Actions.Migrate"}}</h2><p>{{localize "GAG.Manager.MigrationHint"}}</p><button type="button" data-action="migrate"><i class="fa-solid fa-database"></i><span>{{localize "GAG.Actions.RunMigration"}}</span></button></article>
+      </section>
+    {{/if}}
+  </main>
+</div>

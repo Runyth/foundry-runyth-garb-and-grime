@@ -1,0 +1,10 @@
+Garb & Grime 1.1.3 {'minimum': '13', 'verified': '13.351', 'maximum': '14'}
+localization keys en=630 de=630 parity=True
+renderChatMessage legacy: False
+jQuery html.find: False
+actor scope utility: True
+global scope defaults: True
+settings searchable folder picker: True
+scope before index: True
+public api version: 1.3.0
+state schema: 1

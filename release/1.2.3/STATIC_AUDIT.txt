@@ -1,0 +1,10 @@
+# Garb & Grime v1.2.3 — Static audit
+
+## Production scans
+
+- Deprecated renderChatMessage hooks:
+- jQuery html.find assumptions:
+- Invalid nested Scene Context forms:
+- Scene Context native form access:
+79:  const elements = button?.form?.elements;
+- Scene context undefined defaulting patterns:

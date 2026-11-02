@@ -1,0 +1,21 @@
+# Garb & Grime v1.2.1 — Qualification checklist
+
+- [x] Version advanced from 1.2.0 to 1.2.1.
+- [x] Public API remains 1.3.0.
+- [x] Actor-state schema remains 1.
+- [x] Package-specific socket explicitly declared in module manifest.
+- [x] Player cleaning transaction persistence covered by regression test.
+- [x] Duplicate socket transaction delivery deduplicated.
+- [x] Chat tab removed.
+- [x] Duplicate Token-label permission editor removed from Sheets.
+- [x] Permissions tab is the only permission editor.
+- [x] Player cleaning chat defaults to Player visibility.
+- [x] Manual state-change chat defaults to GM visibility.
+- [x] Automatic dirt/contamination paths are chat-silent.
+- [x] Hidden cards remain GM-only.
+- [x] German/English localization parity preserved.
+- [x] Production JavaScript syntax validation passed.
+- [x] Full automated test suite passed.
+- [x] Freshly extracted generated source ZIP passed the full 100-test validator.
+- [x] Install/source/documentation archives passed ZIP integrity checks.
+- [x] Independent deterministic package builds matched byte-for-byte.

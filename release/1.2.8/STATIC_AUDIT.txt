@@ -1,0 +1,9 @@
+Garb & Grime v1.2.8 targeted safety review
+- Source of Actor cleanliness: flags.garb-and-grime.state; no token/document delta writes in the new resolver.
+- Foundry V13 TokenDocument.baseActor is used for unlinked Character Token snapshots.
+- Existing frame-coalesced updateActor/drawToken/canvasReady hooks retained.
+- NPC synthetic Actor state remains independent.
+- Base Actor modification permission checked separately for synthetic PC writes.
+- No new broad Application hooks, deprecated jQuery calls, chat render hooks, DOM global event handlers or polling.
+- Version bump: 1.2.7 -> 1.2.8. Public API/schema unchanged.
+- Live visual verification remains an explicit manual task.

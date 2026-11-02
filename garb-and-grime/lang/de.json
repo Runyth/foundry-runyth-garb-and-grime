@@ -1,0 +1,921 @@
+{
+  "GAG": {
+    "Common": {
+      "Actor": "Akteur",
+      "Previous": "Vorher",
+      "New": "Nachher",
+      "Method": "Methode",
+      "Reason": "Grund oder Quelle",
+      "Cost": "Kosten",
+      "Consumed": "Verbraucht",
+      "UnknownActor": "Unbekannter Akteur",
+      "NoScene": "Keine aktive Szene",
+      "Never": "Nie",
+      "None": "Keine",
+      "Body": "Körper",
+      "Clothing": "Kleidung",
+      "BodyShort": "K",
+      "ClothingShort": "Kl",
+      "Contamination": "Verunreinigung",
+      "LastUpdate": "Letzte Änderung",
+      "Search": "Suche",
+      "Level": "Stufe",
+      "All": "Alle",
+      "Sort": "Sortierung",
+      "Name": "Name",
+      "Updated": "Aktualisiert",
+      "Direction": "Richtung",
+      "Ascending": "Aufsteigend",
+      "Descending": "Absteigend",
+      "Date": "Datum",
+      "Status": "Status",
+      "Success": "Erfolgreich",
+      "Failed": "Fehlgeschlagen",
+      "RecordedOnly": "nur vermerkt",
+      "Hidden": "verborgen",
+      "HiddenFromPlayers": "Vor Spielern verbergen",
+      "GmNotes": "Verborgene SL-Notizen",
+      "UpkeepOn": "Unterhalt aktiv",
+      "UpkeepOff": "Unterhalt aus",
+      "Enabled": "Aktiviert",
+      "DirtGain": "Schmutzzuwachs",
+      "Currency": "Währung",
+      "Time": "Zeit",
+      "Description": "Beschreibung",
+      "Permission": "Berechtigung",
+      "NewMethod": "Neue Reinigungsmethode",
+      "NewProfile": "Neues Umgebungsprofil",
+      "NewContamination": "Neue Verunreinigung",
+      "Disabled": "Deaktiviert",
+      "Player": "Spieler",
+      "Active": "Aktiv"
+    },
+    "Levels": {
+      "0": {
+        "Name": "Sauber",
+        "Description": "Keine Einschränkung; ein gepflegtes Auftreten ist möglich."
+      },
+      "1": {
+        "Name": "Getragen",
+        "Description": "Sichtbare Spuren von Reise oder Arbeit; normalerweise keine mechanische Folge."
+      },
+      "2": {
+        "Name": "Schmutzig",
+        "Description": "Deutliche Flecken und Körpergeruch; soziale Folgen in sauberen Umgebungen."
+      },
+      "3": {
+        "Name": "Stinkend",
+        "Description": "Starker Schlamm-, Schweiß-, Blut- oder Verwesungsgeruch; in den meisten Umgebungen offensichtlich."
+      }
+    },
+    "Methods": {
+      "Water": {
+        "Name": "Wasser ohne Seife",
+        "Description": "30 Minuten, kostenlos: Schmutz um genau eine Stufe reduzieren."
+      },
+      "Soap": {
+        "Name": "Selbstwäsche mit Seife",
+        "Description": "1 Stunde, 1 Mark: Körper und Kleidung auf Stufe 0 setzen."
+      },
+      "WashHouse": {
+        "Name": "Waschhaus oder einfache Herberge",
+        "Description": "Mehrere Stunden, 2 Mark: Körper und Kleidung auf Stufe 0 setzen."
+      },
+      "Bathhouse": {
+        "Name": "Gutes Badehaus mit Wäscher",
+        "Description": "1–2 Stunden, 5 Mark: Stufe 0 und vorübergehend gepflegtes Auftreten."
+      },
+      "SpareClothing": {
+        "Name": "Saubere Wechselkleidung",
+        "Description": "1 Minute: Kleidung wird sauber; Körpergeruch bleibt bestehen."
+      },
+      "DailyUpkeep": {
+        "Name": "Täglicher Unterhalt",
+        "Description": "2 Mark pro Tag in einer geeigneten Siedlung: Waschen, Wäsche, Trocknen und kleine Ausbesserungen."
+      }
+    },
+    "Contamination": {
+      "Blood": "Blutverschmiert",
+      "Feces": "Fäkalien",
+      "Decay": "Verwesungsgeruch",
+      "Chemicals": "Chemikalien",
+      "Alchemical": "Alchemistische Rückstände",
+      "Sewage": "Kanalgestank"
+    },
+    "Profiles": {
+      "Clean": {
+        "Name": "Gepflegt",
+        "Description": "Adelshäuser, Behörden, Tempel, wohlhabende Händler und formelle Anlässe.",
+        "Reaction": "Starker Schmutz gilt als Armut, Krankheit, Respektlosigkeit oder Gefahr."
+      },
+      "Ordinary": {
+        "Name": "Gewöhnlich",
+        "Description": "Dörfer, Häfen, Kasernen, Werkstätten und gewöhnliche Tavernen.",
+        "Reaction": "Leichter bis mittlerer Schmutz ist üblich; Gestank fällt auf."
+      },
+      "PoorLawless": {
+        "Name": "Arm oder gesetzlos",
+        "Description": "Armenviertel, Räuberlager, Schmugglerverstecke und Arbeiterviertel.",
+        "Reaction": "Zu saubere Kleidung kann Wohlstand, Amt, Fremdheit oder Verwundbarkeit verraten."
+      },
+      "Wilderness": {
+        "Name": "Wildnis",
+        "Description": "Reise, Lager und natürliche Umgebungen mit geruchsbasiertem Aufspüren.",
+        "Reaction": "Flecken sind unwichtig, Geruch kann jedoch die Spur verraten."
+      },
+      "Military": {
+        "Name": "Militärisch",
+        "Description": "Kasernen, Feldlager, Garnisonen und militärische Dienste.",
+        "Reaction": "Arbeits- und Reisespuren werden geduldet; starker Gestank stört Disziplin und Nähe."
+      },
+      "Religious": {
+        "Name": "Religiös",
+        "Description": "Tempel, Schreine, Klöster und rituell reine Orte.",
+        "Reaction": "Schmutz kann als Respektlosigkeit oder rituelle Unreinheit gelten."
+      },
+      "Court": {
+        "Name": "Hof oder Adel",
+        "Description": "Hofgesellschaft, Audienzen, Bankette und hochformelle Begegnungen.",
+        "Reaction": "Schon getragene Kleidung kann als unpassend gelten."
+      },
+      "Sewer": {
+        "Name": "Kanalisation",
+        "Description": "Abwasser, Fäkalien, Ratten, Chemikalien und stehende Nässe.",
+        "Reaction": "Extreme Verunreinigung und Kanalgestank sind wahrscheinlich."
+      },
+      "Swamp": {
+        "Name": "Sumpf",
+        "Description": "Schlamm, stehendes Wasser, Pflanzenfäule und Insekten.",
+        "Reaction": "Starker Schmutz und schwer zu verbergender Geruch entstehen schnell."
+      },
+      "Battlefield": {
+        "Name": "Schlachtfeld",
+        "Description": "Blut, Schlamm, Rauch, Schweiß und Verwesung.",
+        "Reaction": "Blut und Verwesung können für soziale und geruchsbasierte Interaktionen eine Stufe schlimmer zählen."
+      }
+    },
+    "Rules": {
+      "Title1": "Saubere Kleidung macht einen Unterschied",
+      "Text1": "Menschen beurteilen euch nicht nur nach euren Worten. Schlamm an den Stiefeln, getrocknetes Blut am Mantel und tagelang getragene Kleidung verändern, wie man euch empfängt, behandelt und einschätzt.",
+      "Title2": "Kleidung waschen",
+      "Text2": "Ihr könnt Kleidung selbst an einem geeigneten Gewässer reinigen, Seife benutzen, Wechselkleidung tragen oder in Siedlungen Waschhäuser, Badehäuser und Wäscher bezahlen. Ein Bett allein macht weder euch noch eure Kleidung sauber.",
+      "Title3": "Wo Schmutz besonders zählt",
+      "Text3": "Bauern, Soldaten, Seeleute und Arbeiter erwarten keine makellose Kleidung. Händler, Beamte, Tempeldiener und Adlige dagegen betrachten starken Schmutz als Zeichen von Armut, Krankheit, Respektlosigkeit oder Gefahr. In Armenvierteln und Räuberlagern kann zu saubere Kleidung wiederum auffallen. Tiere und manche Monster kümmern sich nicht um Flecken – wohl aber um Schweiß, Blut und Verwesungsgeruch."
+    },
+    "Manager": {
+      "Title": "Garb & Grime – Sauberkeitsverwaltung",
+      "Subtitle": "Kleidung, Körpergeruch, Verunreinigungen und soziale Folgen ohne unnötige Buchhaltung.",
+      "Open": "Sauberkeitsverwaltung öffnen",
+      "OpenHint": "Öffnet Übersicht, Schnellaktionen, Regeln und Kontexte.",
+      "Navigation": "Bereiche der Sauberkeitsverwaltung",
+      "CurrentContextHint": "Aktuelles Umgebungsprofil der Szene",
+      "Tabs": {
+        "overview": "Übersicht",
+        "actors": "Akteure",
+        "rules": "Regelreferenz",
+        "transactions": "Transaktionen",
+        "settings": "Konfiguration"
+      },
+      "PartySummary": "Gruppenübersicht",
+      "PartySummaryHint": "Nur Akteure, die du gemäß Besitz und Berechtigungen sehen darfst.",
+      "SceneContext": "Szenenkontext",
+      "SceneContextHint": "Das Profil steuert Empfehlungen, Dienstleistungen, Geruch und erwartete Sauberkeit.",
+      "SelectedTokens": "Ausgewählte Token",
+      "SelectedCount": "{count} eindeutige Akteure ausgewählt.",
+      "BulkUnavailable": "Massenänderungen sind für deine Rolle nicht freigegeben.",
+      "ScentWatch": "Geruchsauffällige Akteure",
+      "NoScentNotices": "Keine auffälligen Akteure in der aktuellen Liste.",
+      "Filters": "Filter und Sortierung",
+      "SearchPlaceholder": "Name oder Verunreinigung",
+      "NoActors": "Keine passenden Akteure gefunden.",
+      "TransactionLog": "Transaktionsprotokoll",
+      "TransactionLogHint": "Die letzten 500 Reinigungs- und Unterhaltsvorgänge. ‚Nur vermerkt‘ bedeutet, dass keine Währung abgezogen wurde.",
+      "NoTransactions": "Noch keine Transaktionen.",
+      "SettingsSummary": "Öffnet alle Einstellungen gruppiert nach Thema, einschließlich Methoden, Kontexte, Rollen und Währung.",
+      "MigrationHint": "Normalisiert nur bereits verwendete Modulflags. Unbenutzte Akteure werden nicht beschrieben.",
+      "SettingsSummaryTitle": "Konfiguration",
+      "ActorSelection": "Akteursauswahl",
+      "SelectedActorCount": "{count} Akteure ausgewählt.",
+      "ActorSelectionHint": "Wähle Akteure über die Kontrollkästchen aus und ändere sie anschließend gemeinsam.",
+      "SelectActor": "{actor} auswählen",
+      "ActorFolder": "Akteursordner",
+      "ActorResults": "{visible} von {total} Akteuren werden angezeigt.",
+      "ActorType": "Akteurstyp",
+      "ActorTypeCharacter": "Charakter",
+      "ActorTypeNpc": "NSC",
+      "AllFolders": "Alle Ordner",
+      "IncludeSubfolders": "Unterordner einschließen",
+      "InvalidRegex": "Der reguläre Ausdruck ist ungültig.",
+      "RootFolder": "Stammverzeichnis",
+      "SearchMode": "Suchmodus",
+      "SearchModeRegex": "Regulärer Ausdruck",
+      "SearchModeText": "Text",
+      "SelectedOnly": "Nur ausgewählte",
+      "SelectionFilter": "Auswahl",
+      "Pagination": "Seitennavigation der Akteursliste",
+      "PageRange": "Zeilen {start}–{end} von {total} passenden Akteuren.",
+      "RowsPerPage": "Zeilen pro Seite",
+      "PreviousPage": "Zurück",
+      "NextPage": "Weiter",
+      "PageNumber": "Seite {page} von {pages}",
+      "InvalidGlobalActorRegex": "Der globale reguläre Ausdruck für Dashboard-Akteure ist ungültig. Der Regex-Teil des globalen Umfangs wird ignoriert, bis er in den globalen Moduleinstellungen korrigiert wurde.",
+      "GlobalActorScopeFolders": "Globaler Akteursumfang: {scoped} von {total} sichtbaren unterstützten Akteuren aus {folders} ausgewählten Ordner(n).",
+      "GlobalActorScopeRegex": "Globaler Akteursumfang: {scoped} von {total} sichtbaren unterstützten Akteuren passend zu /{regex}/.",
+      "GlobalActorScopeBoth": "Globaler Akteursumfang: {scoped} von {total} sichtbaren unterstützten Akteuren aus {folders} ausgewählten Ordner(n) und passend zu /{regex}/.",
+      "GlobalActorScopePlayerLinked": "Mit Spielern verknüpfte Charakter-Akteure werden immer einbezogen: {count} außerhalb des manuellen Umfangs."
+    },
+    "ActorPanel": {
+      "Title": "Sauberkeit",
+      "Context": "Kontext: {context}",
+      "CurrentState": "Körper und Kleidung",
+      "BodyHint": "Körpergeruch und körperliche Verschmutzung.",
+      "ClothingHint": "Flecken und Geruch der getragenen Kleidung.",
+      "GmNotesHint": "Diese Notizen und verborgen markierte Verunreinigungen werden Spielern nicht angezeigt.",
+      "CleaningMethods": "Reinigungsaktionen",
+      "CleaningMethodsHint": "Kosten werden nur automatisch abgezogen, wenn dies ausdrücklich konfiguriert wurde.",
+      "Contamination": "Verunreinigungen",
+      "RollAdvisor": "Würfelhinweise",
+      "RollAdvisorHint": "Zeigt eine Empfehlung für den aktuellen Szenenkontext; der Wurf wird standardmäßig nicht verändert."
+    },
+    "Actions": {
+      "ManualAdjustment": "Manuelle Anpassung",
+      "BulkAdjustment": "Massenanpassung",
+      "TokenHud": "Token-HUD-Aktion",
+      "ToggleMaintenance": "Automatischen Unterhalt umschalten",
+      "Reset": "Sauberkeit zurücksetzen",
+      "Increase": "Schmutz erhöhen",
+      "Reduce": "Schmutz verringern",
+      "View": "Sauberkeit ansehen",
+      "Open": "Öffnen",
+      "Apply": "Anwenden",
+      "ApplyContamination": "Verunreinigung anwenden",
+      "RemoveContamination": "Verunreinigung entfernen",
+      "WaterShort": "Wasser",
+      "ClothesShort": "Kleidung",
+      "TravelWork": "Reise oder Arbeit +1",
+      "ExtremeExposure": "Extreme Verunreinigung +2",
+      "CleanFully": "Vollständig reinigen",
+      "ResetFilters": "Filter zurücksetzen",
+      "Migrate": "Datenmigration",
+      "RunMigration": "Migration prüfen",
+      "ResetDefaults": "Standards wiederherstellen",
+      "AddMethod": "Methode hinzufügen",
+      "AddProfile": "Profil hinzufügen",
+      "AddContamination": "Verunreinigung hinzufügen",
+      "ApplyContextExposure": "Aktuellen Umgebungseinfluss anwenden",
+      "SelectVisible": "Sichtbare auswählen",
+      "ClearSelection": "Auswahl aufheben",
+      "IncreaseSelected": "Ausgewählte Akteure +1",
+      "ReduceSelected": "Ausgewählte Akteure −1",
+      "DisableMaintenance": "Unterhalt deaktivieren",
+      "EnableMaintenance": "Unterhalt aktivieren",
+      "SelectFolder": "Ordner auswählen"
+    },
+    "RollAdvice": {
+      "None": "Keine besondere Sauberkeitsauswirkung empfohlen.",
+      "ScentBlocked": "Starker Verwesungs- oder Körpergeruch: geruchsbasierte Heimlichkeit wahrscheinlich unmöglich.",
+      "ScentTracking": "Deutlicher Geruch: Kreaturen mit verbessertem Geruchssinn können beim Aufspüren Vorteil haben.",
+      "FilthyCleanContext": "Stinkend in gepflegter Umgebung: Nachteil empfohlen; Zutritt kann verweigert werden.",
+      "DirtyCleanContext": "Schmutzig in gepflegter Umgebung: Nachteil für passende soziale Würfe empfohlen.",
+      "WornCourt": "Getragene Kleidung am Hof: Nachteil kann je nach Anlass angemessen sein.",
+      "FilthyOrdinary": "Stinkend in gewöhnlicher Umgebung: Beschwerden, Abstand oder schlechtere Behandlung möglich.",
+      "TooClean": "Zu sauber in armer oder gesetzloser Umgebung: Auffallen oder Nachteil beim Untertauchen möglich.",
+      "BlendIn": "Passend verschmutzt im Arbeiterviertel: Vorteil beim Untertauchen oder bei einer Tarnung möglich.",
+      "IntimidatingFilth": "Starker Schmutz kann einschüchternd wirken; Vorteil ist situationsabhängig möglich."
+    },
+    "Skills": {
+      "Persuasion": "Überreden",
+      "Deception": "Täuschen",
+      "Intimidation": "Einschüchtern",
+      "StealthScent": "Heimlichkeit gegen Geruch"
+    },
+    "Time": {
+      "minute": "Min.",
+      "hour": "Std.",
+      "day": "Tag"
+    },
+    "TokenHud": {
+      "Tooltip": "Garb & Grime: Sauberkeit und Schnellaktionen"
+    },
+    "SheetIndicator": {
+      "Tooltip": "Sauberkeit: {level}. Körper: {body}. Kleidung: {clothing}. Verunreinigung: {contamination}.",
+      "Open": "Sauberkeit öffnen"
+    },
+    "SceneControls": {
+      "Manager": "Sauberkeitsverwaltung öffnen",
+      "Bulk": "Sauberkeit ausgewählter Token ändern",
+      "Context": "Sauberkeitskontext der Szene festlegen",
+      "TokenLabels": "Sauberkeitsanzeigen ein- oder ausblenden",
+      "SelectedTokenLabels": "Sauberkeitsanzeigen ausgewählter Token festlegen",
+      "SelectedTokenLabelPosition": "Anzeigeposition für ausgewählte Token festlegen",
+      "Group": "Garb & Grime",
+      "SceneGuide": "Szenen-Sauberkeitshilfe",
+      "TokenLabelPreferences": "Anzeige der Sauberkeitslabels"
+    },
+    "ContextDialog": {
+      "Title": "Szenenkontext festlegen",
+      "Profile": "Umgebungsprofil",
+      "Hint": "Das Profil wird in den Szenenflags gespeichert und beeinflusst Empfehlungen und Dienstleistungen.",
+      "ClassificationHint": "Ordnet jeder Sauberkeitsstufe für diese Szene eine Bewertung zu. Diese Angaben dienen nur als SL-Hilfe und wenden keine mechanischen Effekte an.",
+      "UseProfileDefaults": "Profilvorgaben verwenden",
+      "StaleProfile": "Nicht verfügbares Profil: {id}",
+      "StaleProfileHint": "Diese Szene verweist auf das nicht verfügbare Profil „{id}“. Wähle einen Ersatz, um die Szene zu reparieren. Bis zum Speichern wird nichts automatisch zugeordnet.",
+      "NoProfilesAvailable": "Derzeit sind keine Umgebungsprofile verfügbar. Garb & Grime wird möglicherweise noch initialisiert."
+    },
+    "BulkDialog": {
+      "Title": "Ausgewählte Token bearbeiten",
+      "Text": "Aktion auf {count} eindeutige Akteure anwenden."
+    },
+    "Chat": {
+      "StateChanged": "Sauberkeit geändert",
+      "Cleaned": "Reinigung durchgeführt"
+    },
+    "Effects": {
+      "CleanClothesDirtyBody": "Kleidung sauber, Körper ungewaschen",
+      "Groomed": "Gepflegt"
+    },
+    "Items": {
+      "Soap": "Seife",
+      "SpareClothing": "Saubere Wechselkleidung",
+      "Perfume": "Parfüm",
+      "ScentMask": "Geruchstarnung",
+      "WashingKit": "Waschset",
+      "Towel": "Handtuch",
+      "LaundryVoucher": "Wäschegutschein",
+      "MagicalCleaning": "Magischer Reinigungsgegenstand",
+      "UseForCleaning": "Für Reinigung verwenden",
+      "Integration": "Verwendung für Garb & Grime",
+      "NoIntegration": "Keine feste Zuordnung",
+      "SaveIntegration": "Zuordnung speichern"
+    },
+    "Currency": {
+      "RecordOnly": "Nur vermerken (kein Abzug)",
+      "Dnd5e": "D&D-5e-Währung",
+      "ActorFlagWallet": "Akteur-Flag-Wallet",
+      "Mark": "Mark"
+    },
+    "DailyUpkeep": {
+      "Reason": "Täglicher Sauberkeitsunterhalt",
+      "DebtSettled": "Aufgelaufene Unterhaltskosten beglichen.",
+      "DebtSettlement": "Unterhaltskosten begleichen",
+      "PaymentPromptTitle": "Täglichen Unterhalt bezahlen",
+      "PaymentPrompt": "{actor}: {amount} {currency} für den täglichen Unterhalt jetzt abbuchen?",
+      "Debt": "Aufgelaufene Unterhaltskosten",
+      "RecordSettled": "Als beglichen eintragen",
+      "PayNow": "Jetzt abbuchen"
+    },
+    "Automation": {
+      "LongRest": "Lange Rast",
+      "CombatEnd": "Kampfende",
+      "WorldDay": "Ende eines Spieltages",
+      "Extreme": "Extreme Verunreinigung",
+      "QuietDay": "Ruhiger Tag in sauberer Unterkunft",
+      "Activity": "Reise, anstrengende Arbeit oder Schlafen im Freien",
+      "ContextExposure": "Einfluss der aktuellen Umgebung"
+    },
+    "Notifications": {
+      "PaymentFailed": "{actor} kann {amount} {currency} nicht sicher bezahlen. Die Reinigung wurde nicht angewendet.",
+      "Cleaned": "{actor}: {method} angewendet.",
+      "SelectTokens": "Wähle zuerst mindestens ein Token aus.",
+      "ContextSet": "Szenenkontext auf „{context}“ gesetzt.",
+      "Migrated": "{count} bereits verwendete Akteursdaten wurden normalisiert.",
+      "Saved": "Sauberkeitszustand gespeichert.",
+      "SettingsSaved": "Garb-&-Grime-Einstellungen gespeichert.",
+      "DebtSettled": "{actor}: {amount} {currency} Unterhaltskosten wurden beglichen.",
+      "ItemIntegrationSaved": "Die Gegenstandszuordnung wurde gespeichert.",
+      "MaskingApplied": "{actor} verwendet {item}, um den Geruch zu überdecken.",
+      "PaymentCancelled": "Die Zahlung wurde abgebrochen; der Reinigungszustand blieb unverändert.",
+      "PartyMaintenanceSet": "Täglicher Unterhalt wurde für {count} Charaktere auf „{state}“ gesetzt.",
+      "BulkContaminationApplied": "Kontamination wurde auf {count} ausgewählte Akteure angewendet.",
+      "TokenActionComplete": "Sauberkeitsaktion für {actor} abgeschlossen.",
+      "SelectActors": "Wähle zuerst mindestens einen Akteur aus.",
+      "BulkActorsAdjusted": "Schmutz wurde für {count} Akteure um {amount} angepasst.",
+      "BulkActorActionComplete": "{action} wurde auf {count} Akteure angewendet."
+    },
+    "Errors": {
+      "PermissionDenied": "Du hast für diese Aktion keine Berechtigung.",
+      "ActorMissing": "Der Akteur konnte nicht gefunden werden.",
+      "ChangeVetoed": "Eine Erweiterung hat die Änderung abgelehnt.",
+      "UnknownContamination": "Unbekannte Verunreinigung: {id}",
+      "UnknownMethod": "Unbekannte oder deaktivierte Reinigungsmethode: {id}",
+      "UnknownProfile": "Unbekanntes Umgebungsprofil: {id}",
+      "MethodNotPlayerUsable": "Diese Methode ist nicht für selbstständige Spieleraktionen freigegeben.",
+      "CurrencyDenominationMissing": "Für den D&D-5e-Währungsadapter wurde keine Denomination konfiguriert. Mark wird nicht automatisch in GP umgerechnet.",
+      "CurrencyAdapterMissing": "Währungsadapter nicht gefunden: {id}",
+      "RequiredItemMissing": "Benötigter Gegenstand fehlt: {item}",
+      "ItemIntegrationMissing": "Für diesen Gegenstand ist keine gültige Garb-&-Grime-Integration registriert.",
+      "ServiceUnavailable": "{method} ist im aktuellen Kontext „{context}“ nicht verfügbar.",
+      "Unexpected": "Die Aktion konnte nicht abgeschlossen werden.",
+      "InvalidSocialJson": "Die JSON-Regeln für soziale Folgen sind ungültig.",
+      "InvalidTrackingJson": "Die JSON-Regeln für Verfolgung sind ungültig.",
+      "PartialInitialization": "Garb & Grime wurde nur teilweise initialisiert ({count} Fehler). Prüfe die Browserkonsole und lade die Welt neu.",
+      "InitializationFailed": "Garb & Grime konnte den Bereich „{area}“ nicht initialisieren.",
+      "TokenMissing": "Das Token konnte nicht gefunden werden.",
+      "ModuleRecordMissing": "Der Garb-&-Grime-Moduleintrag ist während der Initialisierung nicht verfügbar.",
+      "InvalidSceneRatings": "Die Sauberkeitsbewertungen der Szene sind ungültig.",
+      "InvalidActorScopeRegex": "Garb & Grime: Der reguläre Ausdruck „{pattern}“ für den Dashboard-Akteursumfang ist ungültig. Die Einstellungen wurden nicht gespeichert.",
+      "ActorManagerActionFailed": "Garb & Grime konnte die Aktion im Akteurs-Dashboard nicht abschließen. Prüfe die Browserkonsole für Details.",
+      "SceneProfileRequired": "Wähle ein Umgebungsprofil, bevor du den Szenenkontext speicherst.",
+      "SceneProfileRegistryUnavailable": "Die Umgebungsprofile von Garb & Grime sind noch nicht verfügbar. Schließe den Szenenkontext und öffne ihn nach Abschluss der Initialisierung erneut.",
+      "SceneContextInvalidScene": "Der Szenenkontext benötigt ein gültiges Foundry-Szenendokument.",
+      "SceneContextPersistenceFailed": "Garb & Grime konnte den Szenenkontext für „{scene}“ nicht speichern.",
+      "SceneContextFormUnavailable": "Garb & Grime konnte das Szenenkontext-Formular nicht lesen. Schließe den Dialog und versuche es erneut."
+    },
+    "Confirm": {
+      "ResetTitle": "Sauberkeit zurücksetzen?",
+      "ResetText": "Dadurch werden Schmutz, Verunreinigungen, Maskierungen und gepflegte Zustände entfernt.",
+      "ResetCategoryTitle": "Kategorie zurücksetzen?",
+      "ResetCategoryText": "Die Werte dieser Kategorie werden durch die Modulstandards ersetzt.",
+      "RemoveDefinitionTitle": "Definition entfernen?",
+      "RemoveDefinitionText": "„{name}“ entfernen? Bestehende Akteursdaten bleiben erhalten, aber diese Definition ist anschließend nicht mehr verfügbar."
+    },
+    "FirstRun": {
+      "Title": "Garb & Grime ist bereit",
+      "Text": "Das Modul ist ohne Makros verwendbar. Öffne die globale Konfiguration über „Einstellungen konfigurieren → Moduleinstellungen → Garb & Grime“.",
+      "Entry1": "Im Einstellungen-Reiter erscheint zusätzlich eine deutlich sichtbare Garb-&-Grime-Karte.",
+      "Entry2": "Akteursblätter besitzen einen Kopfzeilen-Eintrag und einen sichtbaren Sauberkeitsindikator.",
+      "Entry3": "Das Token-HUD zeigt ein Hemd-Symbol für besessene oder von der Spielleitung kontrollierte Akteure.",
+      "OpenSettings": "Globale Moduleinstellungen öffnen"
+    },
+    "Permissions": {
+      "viewOwn": "Eigene Sauberkeit ansehen",
+      "modifyOwnActions": "Erlaubte eigene Reinigungsaktionen ausführen",
+      "useServices": "Reinigungsdienste nutzen",
+      "consumeItems": "Reinigungsgegenstände verbrauchen",
+      "changeClothes": "Kleidung wechseln",
+      "viewParty": "Gruppensauberkeit ansehen",
+      "modifyOthers": "Andere Akteure ändern",
+      "configureContexts": "Umgebungskontexte verwalten",
+      "manageMethods": "Reinigungsmethoden verwalten",
+      "manageSettings": "Moduleinstellungen verwalten",
+      "viewGmDetails": "Verborgene SL-Details ansehen",
+      "viewTokenLabels": "Dauerhafte Sauberkeitsanzeige sehen",
+      "viewCleaningChat": "Chat für von Spielern ausgelöste Reinigung sehen",
+      "viewStateChat": "Chat für manuelle Sauberkeitsänderungen sehen"
+    },
+    "Roles": {
+      "None": "Niemand",
+      "Player": "Spieler",
+      "Trusted": "Vertrauenswürdiger Spieler",
+      "Assistant": "Assistenz-SL",
+      "Gm": "Spielleitung"
+    },
+    "Settings": {
+      "Configuration": {
+        "Name": "Garb-&-Grime-Konfiguration"
+      },
+      "CleaningMethods": {
+        "Name": "Reinigungsmethoden"
+      },
+      "Contaminations": {
+        "Name": "Verunreinigungen"
+      },
+      "Profiles": {
+        "Name": "Umgebungsprofile"
+      },
+      "Permissions": {
+        "Name": "Berechtigungen"
+      },
+      "TransactionLog": {
+        "Name": "Transaktionsprotokoll"
+      },
+      "LastWorldDay": {
+        "Name": "Letzter Spieltag"
+      },
+      "UiState": {
+        "Name": "Benutzeroberflächenzustand"
+      },
+      "WindowState": {
+        "Name": "Fensterpositionen"
+      },
+      "LastSeenVersion": {
+        "Name": "Zuletzt gesehene Version"
+      },
+      "Debug": {
+        "Name": "Garb & Grime: Debug-Protokollierung",
+        "Hint": "Nur für Fehlersuche aktivieren. Normale Nutzung benötigt dies nicht."
+      },
+      "OpenManager": {
+        "Name": "Sauberkeitsverwaltung",
+        "Label": "Sauberkeitsverwaltung öffnen",
+        "Hint": "Öffnet die zentrale Übersicht für Spieler und Spielleitung."
+      },
+      "ConfigurationHub": {
+        "Name": "Garb & Grime – Globale Moduleinstellungen",
+        "Label": "Globale Moduleinstellungen öffnen",
+        "Hint": "Öffnet die vollständige Weltkonfiguration für Automatisierung, Reinigung, Kontexte, Berechtigungen, Währung und Oberfläche."
+      },
+      "TokenLabelsVisible": {
+        "Name": "Sichtbarkeit der Token-Sauberkeitsanzeige"
+      },
+      "SceneGuideVisible": {
+        "Name": "Szenen-Sauberkeitshilfe sichtbar"
+      },
+      "TokenLabelViewerMode": {
+        "Name": "Garb & Grime: Anzeige der Token-Sauberkeitslabels",
+        "Hint": "Deine persönliche Anzeigeart für Sauberkeitslabels. Der SL muss zuerst „Dauerhaften Sauberkeitsstatus sehen“ in den Garb-&-Grime-Berechtigungen erlauben."
+      },
+      "TokenLabelViewerPosition": {
+        "Name": "Garb & Grime: Position der Token-Sauberkeitslabels",
+        "Hint": "Deine persönliche Position der Sauberkeitslabels. Dies gewährt niemals die Berechtigung, Labels zu sehen."
+      }
+    },
+    "SettingsHub": {
+      "Title": "Garb & Grime – Konfiguration",
+      "Subtitle": "Alle Weltregeln sind nach Thema gruppiert. Sichere Standards funktionieren ohne Ersteinrichtung.",
+      "Navigation": "Konfigurationsbereiche",
+      "Tabs": {
+        "general": "Allgemein",
+        "automation": "Automatisierung",
+        "cleaning": "Reinigung",
+        "upkeep": "Täglicher Unterhalt",
+        "rolls": "Würfe",
+        "contexts": "Kontexte",
+        "sheets": "Blätter & HUD",
+        "permissions": "Berechtigungen",
+        "currency": "Währung",
+        "debug": "API & Debug"
+      },
+      "General": {
+        "Title": "Allgemeine Darstellung",
+        "Hint": "Die zentrale Verwaltung bleibt zusätzlich über die Moduleinstellungen erreichbar.",
+        "ShowSheetIndicator": "Sauberkeitsindikator auf unterstützten Akteursblättern anzeigen",
+        "ShowIndicatorToPlayers": "Indikator für Spieler auf besessenen Akteuren anzeigen",
+        "FirstRunGuide": "Einführung nach Modulaktualisierungen anzeigen",
+        "ActorTypes": "Unterstützte Akteurstypen",
+        "ActorTypesHint": "Kommagetrennte D&D-5e-Typen, standardmäßig character,npc.",
+        "LocalizationTitle": "Sprache und Lokalisierung",
+        "CurrentLanguage": "Aktuelle Foundry-Sprache:",
+        "AvailableLanguages": "Enthaltene Garb-&-Grime-Übersetzungen:",
+        "LocalizationHint": "Garb & Grime folgt Foundrys Spracheinstellung und führt keine separate Sprachumschaltung. Ändere die Sprache unter Spieleinstellungen → Einstellungen konfigurieren → Kerneinstellungen. Gegebenenfalls ist ein Neuladen erforderlich.",
+        "DashboardHint": "Öffnet die skalierbare Akteurs- und Gruppenverwaltung direkt aus den globalen Moduleinstellungen.",
+        "DashboardTitle": "Sauberkeits-Dashboard",
+        "OpenDashboard": "Dashboard öffnen",
+        "ActorScopeTitle": "Akteursumfang des Dashboards",
+        "ActorScopeHint": "Begrenzt den Akteurspool des Dashboards, bevor Garb & Grime Sauberkeitszusammenfassungen liest oder Zeilen vorbereitet. Ordnerauswahl und regulärer Ausdruck werden kombiniert; bleiben beide leer, werden alle unterstützten sichtbaren Akteure einbezogen. Charakter-Akteure, die über Foundrys Charakterzuweisung oder BESITZER-Berechtigung mit Nicht-SL-Benutzern verknüpft sind, werden immer einbezogen, damit neu hinzugefügte SCs nicht durch einen veralteten manuellen Umfang verborgen werden.",
+        "ActorScopeRegex": "Regulärer Ausdruck für den Akteursumfang",
+        "ActorScopeRegexPlaceholder": "z. B. ^(Alice|Borin)$ oder Spielercharaktere",
+        "ActorScopeRegexHint": "Optional. Prüft Akteursname, Akteurstyp und vollständigen Akteursordnerpfad. Unicode-fähig und ohne Beachtung der Groß-/Kleinschreibung.",
+        "ActorScopeIncludeSubfolders": "Unterordner der ausgewählten Akteursordner einschließen",
+        "ActorScopeFolderSearch": "Akteursordner suchen",
+        "ActorScopeFolderSearchPlaceholder": "Ordnerpfad durchsuchen…",
+        "ActorScopeFolders": "Dashboard-Akteursordner",
+        "ActorScopeFoldersSelected": "{count} Ordner ausgewählt",
+        "ActorScopeFolderHint": "Keine ausgewählten Ordner bedeutet alle Akteursordner. Nutze die Suche, um große Ordnerbäume vor der Auswahl sichtbarer Ordner einzugrenzen.",
+        "ActorScopeNoFolders": "In dieser Welt existieren keine Akteursordner."
+      },
+      "Automation": {
+        "Title": "Automatische Schmutzzunahme",
+        "LongRest": "Lange Rast",
+        "LongRestHint": "Standardmäßig aus. Eine Rast allein reinigt nicht.",
+        "CombatEnd": "Kampfende",
+        "CombatEndHint": "Nur aktivieren, wenn in deiner Kampagne jeder beendete Kampf Schmutz verursacht.",
+        "WorldDay": "Spieltagwechsel",
+        "WorldDayHint": "Reagiert auf Foundrys Weltzeit und bearbeitet Charaktere einmal pro neuem Tag.",
+        "OncePerDay": "Normale automatische Zunahme höchstens einmal pro Spieltag",
+        "ExtremeBypass": "Explizite extreme Ereignisse dürfen die Tagesgrenze umgehen"
+      },
+      "Cleaning": {
+        "Title": "Reinigungsmethoden",
+        "Hint": "Namen, Kosten, Währung, Zeit, Zielzustand, Körper/Kleidung, Gegenstände, Effekte und Verfügbarkeit sind bearbeitbar.",
+        "EffectMode": "Wirkung",
+        "SetLevel": "Stufe setzen",
+        "ReduceLevel": "Stufe reduzieren",
+        "ResultLevel": "Zielstufe",
+        "Reduction": "Reduktion",
+        "Settlements": "Siedlungstypen",
+        "TemporaryEffect": "Temporärer Effekt",
+        "DurationSeconds": "Dauer in Sekunden",
+        "PlayerUsable": "Direkt durch Spieler nutzbar",
+        "RequiredItems": "Erforderliche Gegenstands-Integrations-IDs",
+        "OptionalItems": "Optionale Gegenstands-Integrations-IDs",
+        "ItemsHint": "Kommagetrennte stabile IDs; vorhandene erforderliche Gegenstände werden bei Nutzung verbraucht.",
+        "SoapEnforcementTitle": "Seifenbedarf im Inventar",
+        "SoapEnforcementHint": "Optionale SL-Prüfung für Selbstwaschen mit Seife. Erkannt werden Gegenstände mit der Seife-Integration oder dem Namen Soap/Seife. Andere Reinigungsmethoden bleiben unverändert. SL-Sammelreinigung und Systemaktionen können Gegenstandsanforderungen weiterhin umgehen. Ohne genügend Seife wird die Aktion vor Zahlungen und Sauberkeitsänderungen abgewiesen.",
+        "RequireSoap": "Seife im Inventar für Selbstwaschen mit Seife voraussetzen",
+        "ConsumeSoap": "Seife nach erfolgreicher Prüfung aus dem Inventar verbrauchen",
+        "SoapQuantity": "Benötigte Seifeneinheiten pro Waschvorgang",
+        "InvalidSoapQuantity": "Die Seifenmenge muss eine ganze Zahl zwischen 1 und 100 sein."
+      },
+      "Upkeep": {
+        "Title": "Täglicher Sauberkeitsunterhalt",
+        "Hint": "Kampagnenstandard: 2 Mark pro Tag. Einzelne Akteure müssen zusätzlich optieren.",
+        "Enabled": "Täglichen Unterhalt global ermöglichen",
+        "PaymentMode": "Zahlungsmodus",
+        "RecordOnly": "Dienst vermerken, nichts abziehen",
+        "Automatic": "Automatisch bezahlen",
+        "NoPayment": "Kosten ignorieren",
+        "MethodId": "Reinigungsmethode",
+        "AutomaticDeduction": "Währung tatsächlich automatisch abziehen",
+        "PromptBeforePayment": "Vor Zahlungen nachfragen",
+        "SettlementRequired": "Geeignete Siedlungsdienstleistung verlangen",
+        "DeductionWarning": "Automatischer Abzug bleibt wirkungslos, bis sowohl der Zahlungsmodus als auch der Abzug aktiviert und ein funktionierender Adapter gewählt wurde.",
+        "EnableParty": "Für alle Charaktere aktivieren",
+        "DisableParty": "Für alle Charaktere deaktivieren"
+      },
+      "Rolls": {
+        "Title": "Kontextuelle Würfelhinweise",
+        "Hint": "Empfehlungen gelten nur für konfigurierte Fertigkeiten und den aktuellen Szenenkontext.",
+        "AdvisoryDefault": "Sicherer Standard: nur Hinweis. Kein Wurf wird unsichtbar verändert; der Automatikmodus zeigt zuvor immer den Grund.",
+        "Skills": "Fertigkeits-IDs",
+        "SkillsHint": "Kommagetrennt, z. B. per,dec,itm,prf,ste,sur.",
+        "Dedupe": "Duplikatsperre in Sekunden",
+        "NotifyPlayers": "Spieler benachrichtigen",
+        "NotifyGm": "Spielleitung benachrichtigen",
+        "Mode": "Wurfbehandlung",
+        "ModeAdvisory": "Nur beratende Benachrichtigung",
+        "ModePrompt": "SL-Würfe anhalten und Wurfmodus abfragen",
+        "ModeAutomatic": "Eindeutige Empfehlungen sichtbar anwenden",
+        "ModeHint": "Spielerwürfe bleiben beratend. Der Abfragemodus bricht einen anstehenden SL-Wurf ab, zeigt vier ausdrückliche Entscheidungen und wiederholt ihn anschließend sicher."
+      },
+      "Contexts": {
+        "Title": "Umgebungsprofile",
+        "Hint": "Profile werden über Szenenflags aktiviert und können von Erweiterungsmodulen registriert werden.",
+        "ExpectedMin": "Alte erwartete Mindeststufe",
+        "ExpectedMax": "Alte erwartete Höchststufe",
+        "SettlementTypes": "Siedlungs- und Verfügbarkeits-Tags",
+        "SettlementTypesHint": "Kommagetrennt, z. B. village, town, city, military oder court. Eine Methode ist verfügbar, wenn mindestens ein Tag übereinstimmt.",
+        "Services": "Verfügbare Methoden-IDs",
+        "ServicesHint": "Kommagetrennte Methoden-IDs, die in diesem Profil unabhängig von Tags ausdrücklich verfügbar sind.",
+        "Contaminations": "Automatische Verunreinigungs-IDs",
+        "SocialJson": "Soziale Regeln (JSON)",
+        "TrackingJson": "Verfolgungsregeln (JSON)",
+        "RuleJsonHint": "Schlüssel level0 bis level3; Werte wie normal, disadvantage-social, possible-advantage-blend oder scent-stealth-impossible.",
+        "Narrative": "Standardreaktion / Erzählhinweis",
+        "LevelRatings": "Sauberkeitsbewertungen",
+        "LevelRatingsHint": "Jedes Preset besitzt eine ausdrückliche Akzeptanzabstufung für alle vier Schmutzstufen. Diese vier Werte verwendet die Szenenhilfe; die alten Felder für erwartete Mindest-/Höchststufe bleiben nur als Rückfall für ältere/eigene Definitionen ohne Bewertungen erhalten.",
+        "SceneGuideAutoOpen": "Hilfe beim Wechsel der betrachteten Szene öffnen",
+        "SceneGuideEnabled": "Szenen-Sauberkeitshilfe aktivieren",
+        "SceneGuideHint": "Zeigt die erwarteten, akzeptierten, geduldeten, unerwünschten und verhassten Sauberkeitsstufen der aktuellen Szene in einem kleinen SL-Fenster.",
+        "SceneGuideSceneControl": "Starter in den Szenenwerkzeugen anzeigen",
+        "SceneGuideTitle": "Szenen-Sauberkeitshilfe",
+        "PresetPreview": "Vorschau der Preset-Bewertung"
+      },
+      "Contaminations": {
+        "Title": "Verunreinigungen",
+        "Hint": "Verunreinigungen können die effektive Stufe für relevante Interaktionen verschärfen.",
+        "Penalty": "Effektive Verschärfung",
+        "Scent": "Geruchsrelevant",
+        "Hidden": "Standardmäßig verborgen",
+        "Effect": "Optionalen Active Effect erzeugen"
+      },
+      "Sheets": {
+        "Title": "Akteursblätter, Token-HUD und Effekte",
+        "ActorIndicator": "Akteursblatt-Indikator aktivieren",
+        "PlayerVisible": "Indikator für Spieler sichtbar",
+        "TokenHud": "Token-HUD-Steuerung aktivieren",
+        "TokenQuickActions": "Schnellaktionen im Token-HUD anzeigen",
+        "SceneControls": "Szenensteuerungs-Schaltflächen aktivieren",
+        "SceneControlsHint": "Blendet Garb-&-Grime-Schaltflächen in Foundrys Szenenwerkzeugleiste ein, um Manager, Szenenkontext und Sauberkeitshilfe zu öffnen. Beim Ausschalten verschwinden nur diese Schaltflächen; Regeln und gespeicherte Zustände bleiben erhalten.",
+        "ActiveEffects": "Zustände als Active Effects spiegeln",
+        "ActiveEffectsHint": "Synchronisiert die Sauberkeitszustände von Akteuren mit moduleigenen Aktiven Effekten. Beim Aktivieren werden diese Effekte erstellt oder aktualisiert; beim Deaktivieren werden nur Garb-&-Grime-Effekte entfernt. Gespeicherte Sauberkeitszustände bleiben unverändert.",
+        "ContaminationEffects": "Verunreinigungen ebenfalls spiegeln",
+        "ContaminationEffectsHint": "Synchronisiert bei aktivierter Spiegelung auch verunreinigungsbezogene Effekte. Ohne aktivierte Spiegelung hat dieser Schalter keine Wirkung; Verunreinigungsdaten bleiben in jedem Fall erhalten.",
+        "TokenLabelsTitle": "Sauberkeitsanzeigen an Token",
+        "TokenLabelsHint": "Zeigt eine kompakte, kontrastreiche Sauberkeitsanzeige neben Token, ohne Foundrys Namensschilder zu ersetzen. Die Anzeigen liegen in einer eigenen Oberflächenebene über allen Token. Der globale Schalter wird pro Client gespeichert; Anzeige- und Positionsausnahmen einzelner Token werden in Token-Flags gespeichert.",
+        "TokenLabelsEnabled": "Sauberkeitsanzeigen an Token aktivieren",
+        "TokenLabelsAudience": "Sichtbar für",
+        "TokenLabelsPosition": "Position",
+        "TokenLabelsFormat": "Inhalt der Anzeige",
+        "TokenLabelsFontSize": "Schriftgröße",
+        "TokenLabelsOffset": "Abstand zum Token",
+        "TokenLabelsCurrent": "Globale Anzeige:",
+        "TokenLabelsKeybindingHint": "Das Standardkürzel ist Umschalt+Alt+G. Ändere es unter Spieleinstellungen → Steuerung konfigurieren → Garb & Grime.",
+        "TokenLabelsFontColor": "Schriftfarbe",
+        "TokenLabelsBackgroundColor": "Hintergrundfarbe",
+        "TokenLabelsBackgroundOpacity": "Deckkraft des Hintergrunds",
+        "TokenLabelsPaddingX": "Horizontaler Innenabstand",
+        "TokenLabelsPaddingY": "Vertikaler Innenabstand",
+        "TokenLabelsVisibilityMode": "Anzeigeverhalten",
+        "TokenLabelsVisibilityModeHint": "Legt fest, wann geerbte Sauberkeitsanzeigen sichtbar sind. „Immer anzeigen“/„Immer ausblenden“ pro Token hat weiterhin Vorrang.",
+        "TokenLabelsActorScope": "Geeignete Token-Akteure",
+        "TokenLabelsPlayerScope": "Akteursumfang für Spieler",
+        "TokenLabelsPlayerScopeHint": "Die Spielleitung darf die Anzeige immer sehen. Spieler benötigen zusätzlich die Berechtigung „Dauerhafte Sauberkeitsanzeige sehen“.",
+        "TokenLabelsPlayerViewers": "Sichtbarkeit pro Spieler",
+        "TokenLabelsPlayerViewersHint": "Lege für einzelne Spieler eine ausdrückliche Ausnahme fest. Die Standardrollenberechtigung ist „Niemand“, daher sehen Spieler die dauerhafte Sauberkeitsanzeige nur, wenn du sie hier erlaubst oder die Rollenberechtigung änderst.",
+        "TokenLabelsEffective": "Effektive Berechtigung",
+        "TokenLabelsNoPlayers": "In dieser Welt gibt es keine Nicht-SL-Benutzer.",
+        "TokenLabelsAutomaticModeHint": "Dieses Anzeigeverhalten wird durch die SL-Einstellung gesteuert. Der manuelle Umschalter Umschalt+Alt+G gilt nur für den Modus „Manuell umschalten“.",
+        "TokenLabelsPermissionAuthority": "Die Spielerberechtigung wird ausschließlich im Reiter Berechtigungen gesteuert. Dieser Abschnitt legt nur fest, welche erlaubten Tokenarten infrage kommen und wie die SL-Standardanzeige aussieht.",
+        "TokenLabelsShortcutEnabled": "Tastenkürzel für Sauberkeitsanzeigen aktivieren",
+        "TokenLabelsShortcutEnabledHint": "Aktiviert das lokale Tastenkürzel. Die Tastenkombination kannst du unter Spieleinstellungen → Steuerung konfigurieren → Garb & Grime ändern. Dadurch werden Spielern keine zusätzlichen Sichtrechte gewährt.",
+        "TokenLabelsShortcutScope": "Ziele des Tastenkürzels",
+        "TokenLabelsShortcutScopeHint": "Standard: alle mit Spielern verknüpften Charakter-Token der aktuellen Szene, auch ohne Auswahl. Bei Auswahl-Modi müssen Token zuvor ausgewählt werden. Weltweite Token-Merkmale bleiben unverändert.",
+        "TokenLabelsShortcutKeybindingHelp": "Standardkürzel: Umschalt+Alt+G. Jeder Tastendruck blendet die Anzeigen aller betroffenen Token auf deinem Client ein bzw. aus. Das Kürzel lässt sich in Foundry unter „Steuerung konfigurieren“ ändern. Berechtigungen gelten weiterhin, auch bei automatischen Anzeigemodi."
+      },
+      "Permissions": {
+        "Title": "Rollenbasierte Berechtigungen",
+        "Hint": "Besitzrechte gelten zusätzlich. Spieler können nie unbesessene Akteure über diese Oberfläche ändern.",
+        "MinimumRole": "Mindestrolle",
+        "OwnershipHint": "Besitzrechte gelten zusätzlich. „Niemand“ deaktiviert eine Berechtigung für alle Nicht-SL.",
+        "UserOverrides": "Benutzerbezogene Ausnahmen",
+        "UserOverridesHint": "Eine Ausnahme überschreibt die Mindestrolle nur für diesen Benutzer. Besitzrechte bleiben bei akteursbezogenen Aktionen erhalten.",
+        "Override": "Ausnahme",
+        "Inherit": "Von Rolle übernehmen",
+        "Allow": "Erlauben",
+        "Deny": "Verweigern"
+      },
+      "Currency": {
+        "Title": "Währung und Adapter",
+        "Hint": "Mark bleibt eine eigenständige Kampagnenwährung. Eine D&D-5e-Denomination muss bewusst zugeordnet werden.",
+        "Adapter": "Währungsadapter",
+        "DefaultLabel": "Standard-Währungsname",
+        "Dnd5eDenomination": "D&D-5e-Denomination",
+        "Dnd5eHint": "Leer lassen, um jede stille Umrechnung zu verhindern.",
+        "FlagPath": "Pfad für Flag-Wallet",
+        "MarkWarning": "Die Standardmethoden verwenden exakt „Mark“. Das Modul rechnet Mark niemals stillschweigend in GP um."
+      },
+      "Debug": {
+        "Title": "API und Fehlersuche",
+        "Hint": "Die öffentliche API ist sofort über game.modules verfügbar. Normale Nutzung benötigt keine Konsole.",
+        "Verbose": "Ausführliche Debug-Ausgabe aktivieren",
+        "Api": "API-Zugriff für Erweiterungsmodule:"
+      }
+    },
+    "RollChoice": {
+      "Title": "Sauberkeitsentscheidung für den Wurf",
+      "Recommendation": "Aktuelle Empfehlung: {mode}",
+      "Explanation": "Normal entfernt Vor- und Nachteil durch Sauberkeit. Ignorieren bewahrt alle Wurfoptionen, die D&D 5e oder andere Module bereits gesetzt haben.",
+      "Advantage": "Vorteil",
+      "Normal": "Normal",
+      "Disadvantage": "Nachteil",
+      "Ignore": "Sauberkeit ignorieren",
+      "Blocked": "Geruchsbasierte Heimlichkeit kann unmöglich sein",
+      "PossibleAdvantage": "Vorteil kann gelten",
+      "PossibleDisadvantage": "Nachteil kann gelten",
+      "AdvantageOpponent": "Der verfolgende Gegner kann Vorteil haben"
+    },
+    "Launchers": {
+      "Title": "Garb & Grime",
+      "ActorDirectoryHint": "Öffnet die Verwaltung oder passt gemeinsam die in der Akteursleiste ausgewählten Akteure an.",
+      "SettingsHint": "Direkter Zugriff auf Sauberkeitsverwaltung und globale Weltkonfiguration.",
+      "SelectedActorsActions": "Ausgewählte Akteure anpassen"
+    },
+    "TokenLabels": {
+      "Audience": {
+        "gm": "Nur Spielleitung",
+        "owners": "Spielleitung und Token-Besitzer",
+        "everyone": "Alle, die das Token sehen können"
+      },
+      "Position": {
+        "above": "Oberhalb",
+        "below": "Unterhalb",
+        "left": "Links",
+        "right": "Rechts",
+        "inherit": "Globaler Position folgen"
+      },
+      "Format": {
+        "level-name": "Stufe und Name",
+        "name": "Nur Name",
+        "level": "Nur Stufe",
+        "detailed": "Stufe, Name, Körper und Kleidung"
+      },
+      "Modes": {
+        "inherit": "Globaler Anzeige folgen",
+        "show": "Bei diesem Token immer anzeigen",
+        "hide": "Bei diesem Token immer ausblenden"
+      },
+      "ShowAll": "Geerbte Token-Anzeigen einblenden",
+      "HideAll": "Geerbte Token-Anzeigen ausblenden",
+      "AllShown": "Geerbte Sauberkeitsanzeigen sind jetzt sichtbar.",
+      "AllHidden": "Geerbte Sauberkeitsanzeigen sind jetzt ausgeblendet.",
+      "DisabledWarning": "Sauberkeitsanzeigen an Token sind in den Garb-&-Grime-Einstellungen deaktiviert.",
+      "InvalidMode": "Unbekannter Modus für die Token-Anzeige.",
+      "ModeSet": "{token}: Token-Anzeige auf „{mode}“ gesetzt.",
+      "SelectedModeSet": "Anzeige für {count} ausgewählte Token auf „{mode}“ gesetzt.",
+      "SelectedDialog": {
+        "Title": "Sauberkeitsanzeigen an Token",
+        "Text": "Wähle die Anzeigeregel für {count} ausgewählte Token."
+      },
+      "InvalidPosition": "Unbekannte Position für die Token-Anzeige.",
+      "PositionSet": "{token}: Position der Token-Anzeige auf „{position}“ gesetzt.",
+      "SelectedPositionSet": "Position für {count} ausgewählte Token auf „{position}“ gesetzt.",
+      "SelectedPositionDialog": {
+        "Title": "Position der Sauberkeitsanzeige",
+        "Text": "Wähle die Anzeigeposition für {count} ausgewählte Token."
+      },
+      "VisibilityMode": {
+        "manual": "Manuell umschalten",
+        "always": "Immer sichtbar",
+        "controlled": "Wenn kontrolliert",
+        "hovered": "Wenn mit der Maus darüber",
+        "controlled-or-hovered": "Wenn kontrolliert oder mit der Maus darüber"
+      },
+      "PlayerScope": {
+        "disabled": "Nur Spielleitung",
+        "owned": "Nur eigene Akteure",
+        "characters": "Alle Charakter-/SC-Token",
+        "all": "Alle geeigneten sichtbaren Token"
+      },
+      "ActorScope": {
+        "supported": "Konfigurierte unterstützte Akteurstypen",
+        "characters": "Nur Charaktere/SCs"
+      },
+      "PermissionDenied": "Du hast keine Berechtigung, dauerhafte Sauberkeitsanzeigen zu sehen.",
+      "ManualToggleUnavailable": "Der manuelle Token-Anzeigen-Schalter ist inaktiv, weil die Spielleitung ein automatisches Anzeigeverhalten gewählt hat.",
+      "InvalidViewerMode": "Unbekannte persönliche Anzeigeart für Token-Labels.",
+      "ViewerModeSet": "Persönliche Anzeigeart der Token-Labels auf „{mode}“ gesetzt.",
+      "ViewerPositionSet": "Persönliche Position der Token-Labels auf „{position}“ gesetzt.",
+      "ViewerPreferencesTitle": "Anzeige der Sauberkeitslabels",
+      "ViewerPreferencesSaved": "Anzeigeeinstellungen für Sauberkeitslabels gespeichert.",
+      "ViewerModeLabel": "Anzeigeart",
+      "ViewerPositionLabel": "Position",
+      "ManualVisibleLabel": "Labels jetzt anzeigen, wenn „Manuell“ verwendet wird",
+      "PlayerViewerPreferencesHint": "Dies sind deine persönlichen Anzeigeeinstellungen. Sie gewähren keine Berechtigung; der SL steuert den Zugriff unter Garb & Grime → Berechtigungen.",
+      "GmViewerPreferencesHint": "Die SL-Anzeige verwendet weiterhin die globalen Token-Label-Einstellungen. Hier wird nur der manuelle Ein/Aus-Zustand dieses SL-Clients geändert.",
+      "GmViewerModeHint": "Anzeigeart und Position der SL-Token-Labels werden in den globalen Moduleinstellungen festgelegt.",
+      "ViewerMode": {
+        "inherit": "SL-Standard übernehmen",
+        "manual": "Manuell ein/aus",
+        "always": "Immer anzeigen",
+        "controlled": "Nur kontrollierte Token",
+        "hovered": "Nur Token unter Mauszeiger",
+        "controlled-or-hovered": "Kontrolliert oder unter Mauszeiger",
+        "hidden": "Für mich immer ausblenden"
+      },
+      "ShortcutScope": {
+        "scene-pcs": "Alle Spielercharakter-Token dieser Szene (Standard)",
+        "selected-pcs": "Nur ausgewählte Spielercharakter-Token",
+        "scene-eligible": "Alle zulässigen Token dieser Szene",
+        "selected-eligible": "Nur ausgewählte zulässige Token"
+      },
+      "ShortcutHiddenPreference": "Deine persönliche Einstellung „Immer ausblenden“ ist aktiv. Ändere diese Einstellung, um das Tastenkürzel zu verwenden.",
+      "ShortcutNoScene": "Für dieses Tastenkürzel ist keine aktive Szene bereit.",
+      "ShortcutNoEligibleTokens": "Im eingestellten Zielbereich gibt es keine zulässigen und sichtbaren Token.",
+      "ShortcutShown": "Sauberkeitsanzeigen für {count} Token auf diesem Client eingeblendet.",
+      "ShortcutHidden": "Sauberkeitsanzeigen für {count} Token auf diesem Client ausgeblendet."
+    },
+    "Keybindings": {
+      "ToggleTokenLabels": {
+        "Name": "Sauberkeitsanzeigen für Token umschalten",
+        "Hint": "Schaltet standardmäßig die Sauberkeitsanzeigen aller Spielercharakter-Token der aktuellen Szene um. Der SL kann den Zielbereich unter Garb & Grime → Sheets & HUD ändern. Jeder Spieler kann die Tastenkombination unter „Steuerung konfigurieren“ ändern. Berechtigungen gelten weiterhin."
+      }
+    },
+    "Validation": {
+      "Fields": {
+        "Id": "ID",
+        "MethodId": "ID der Reinigungsmethode",
+        "ContaminationId": "ID der Verunreinigung",
+        "ProfileId": "ID des Umgebungsprofils",
+        "ItemId": "ID der Gegenstandsintegration"
+      },
+      "IdPattern": "{field} muss dem Muster {pattern} entsprechen.",
+      "MethodObject": "Die Definition der Reinigungsmethode muss ein Objekt sein.",
+      "MethodName": "Die Reinigungsmethode {id} benötigt name oder nameKey.",
+      "MethodEffect": "Die Reinigungsmethode {id} besitzt einen ungültigen Effektmodus.",
+      "MethodCost": "Die Reinigungsmethode {id} besitzt ungültige Kosten.",
+      "ContaminationObject": "Die Definition der Verunreinigung muss ein Objekt sein.",
+      "ContaminationName": "Die Verunreinigung {id} benötigt name oder nameKey.",
+      "ProfileObject": "Die Definition des Umgebungsprofils muss ein Objekt sein.",
+      "ProfileName": "Das Umgebungsprofil {id} benötigt name oder nameKey.",
+      "ProfileField": "Das Umgebungsprofil {id} besitzt einen ungültigen Wert für {field}.",
+      "ItemObject": "Die Definition der Gegenstandsintegration muss ein Objekt sein.",
+      "ItemAction": "Die Gegenstandsintegration {id} benötigt methodId oder eine masking-Definition.",
+      "DefinitionDuplicate": "Die Definition {id} ist bereits registriert.",
+      "CurrencyAdapterObject": "Der Währungsadapter muss ein Objekt sein.",
+      "CurrencyAdapterId": "Der Währungsadapter benötigt eine ID.",
+      "CurrencyAdapterMethod": "Der Währungsadapter {id} benötigt {method}().",
+      "CurrencyAdapterDuplicate": "Der Währungsadapter {id} ist bereits registriert.",
+      "ProfileRatings": "Umgebungsprofile müssen genau vier gültige Stufenbewertungen enthalten."
+    },
+    "Initialization": {
+      "Areas": {
+        "Settings": "Einstellungen",
+        "ActorSheets": "Akteursbögen",
+        "TokenHud": "Token-HUD",
+        "TokenLabels": "Token-Beschriftungen",
+        "SceneControls": "Szenensteuerung",
+        "Sidebar": "Seitenleisten-Einstiege",
+        "Items": "Gegenstandsintegration",
+        "Rolls": "Würfelintegration",
+        "Automation": "Automatisierung",
+        "Ready": "Ready-Lebenszyklus",
+        "Api": "Bereitstellung der öffentlichen API",
+        "LongRest": "Automatisierung langer Rasten",
+        "CombatEnd": "Automatisierung des Kampfendes",
+        "WorldDay": "Automatisierung des Welttages",
+        "SceneGuide": "Szenen-Sauberkeitshilfe"
+      }
+    },
+    "SceneGuide": {
+      "Disabled": "Die Szenen-Sauberkeitshilfe ist in den globalen Moduleinstellungen deaktiviert.",
+      "Edit": "Bewertung bearbeiten",
+      "LevelClassification": "Sauberkeitsbewertung der Szene",
+      "Open": "Szenenhilfe öffnen",
+      "Ratings": {
+        "accepted": "Akzeptiert",
+        "disliked": "Unerwünscht",
+        "expected": "Erwartet",
+        "hated": "Verhasst",
+        "tolerated": "Geduldet"
+      },
+      "Title": "Szenen-Sauberkeitshilfe"
+    },
+    "Images": {
+      "FallbackTitle": "Das Akteurporträt ist nicht verfügbar; Garb & Grime verwendet eine sichere Ersatzgrafik.",
+      "SuccessorAvailable": " Das Nachfolgemodul „{successor}“ ist installiert, aber Garb & Grime errät keine umbenannten Dateipfade.",
+      "UnavailableModuleWarning": "Akteurporträt-Ersatz: {count} Akteur(e) verweisen auf das nicht verfügbare Modul „{module}“. Garb & Grime hat diese Bildanfragen unterdrückt, um wiederholte HTTP-404-Meldungen zu verhindern, und eine sichere Ersatzgrafik verwendet.{successor}",
+      "LoadFailedWarning": "Akteurporträt-Ersatz: Ein Bild konnte nicht geladen werden. Garb & Grime speichert den Fehlschlag für diese Browser-Sitzung und verwendet bei späteren Darstellungen eine sichere Ersatzgrafik."
+    }
+  }
+}

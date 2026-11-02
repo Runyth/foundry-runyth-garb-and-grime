@@ -1,0 +1,796 @@
+
+> garb-and-grime@1.2.7 check
+> node tools/check.mjs
+
+TAP version 13
+# Subtest: failed payment does not consume a validated cleaning item or change state
+ok 1 - failed payment does not consume a validated cleaning item or change state
+  ---
+  duration_ms: 17.441555
+  type: 'test'
+  ...
+# Subtest: successful cleaning deducts custom Mark currency, consumes once, and cleans both parts
+ok 2 - successful cleaning deducts custom Mark currency, consumes once, and cleans both parts
+  ---
+  duration_ms: 4.823462
+  type: 'test'
+  ...
+# Subtest: record-only daily upkeep accrues debt and cannot run twice in one day
+ok 3 - record-only daily upkeep accrues debt and cannot run twice in one day
+  ---
+  duration_ms: 6.542639
+  type: 'test'
+  ...
+# Subtest: settlement tags make a bound cleaning method available without an explicit method id
+ok 4 - settlement tags make a bound cleaning method available without an explicit method id
+  ---
+  duration_ms: 6.693479
+  type: 'test'
+  ...
+# Subtest: a settlement-bound cleaning method is rejected when neither tags nor method ids match
+ok 5 - a settlement-bound cleaning method is rejected when neither tags nor method ids match
+  ---
+  duration_ms: 3.762964
+  type: 'test'
+  ...
+# Subtest: dashboard Actor folder scope includes descendants only when requested
+ok 6 - dashboard Actor folder scope includes descendants only when requested
+  ---
+  duration_ms: 25.446847
+  type: 'test'
+  ...
+# Subtest: dashboard Actor regex matches names, types, and full folder paths
+ok 7 - dashboard Actor regex matches names, types, and full folder paths
+  ---
+  duration_ms: 4.718325
+  type: 'test'
+  ...
+# Subtest: empty or stale folder scope remains safely nonrestrictive
+ok 8 - empty or stale folder scope remains safely nonrestrictive
+  ---
+  duration_ms: 9.894622
+  type: 'test'
+  ...
+# Subtest: invalid global regex is detectable and does not crash Actor scope
+ok 9 - invalid global regex is detectable and does not crash Actor scope
+  ---
+  duration_ms: 2.004667
+  type: 'test'
+  ...
+# Subtest: global scope is applied before expensive Actor directory indexing
+ok 10 - global scope is applied before expensive Actor directory indexing
+  ---
+  duration_ms: 0.786297
+  type: 'test'
+  ...
+# Subtest: player-linked character Actors bypass a restrictive manual dashboard scope
+ok 11 - player-linked character Actors bypass a restrictive manual dashboard scope
+  ---
+  duration_ms: 2.489327
+  type: 'test'
+  ...
+# Subtest: user-character changes invalidate the open dashboard eligibility cache
+ok 12 - user-character changes invalidate the open dashboard eligibility cache
+  ---
+  duration_ms: 0.355751
+  type: 'test'
+  ...
+# Subtest: dashboard suppresses actor portrait URLs owned by unavailable modules before HTML rendering
+ok 13 - dashboard suppresses actor portrait URLs owned by unavailable modules before HTML rendering
+  ---
+  duration_ms: 9.698796
+  type: 'test'
+  ...
+# Subtest: runtime image failures are cached and module diagnostics warn once instead of on every rerender
+ok 14 - runtime image failures are cached and module diagnostics warn once instead of on every rerender
+  ---
+  duration_ms: 4.326886
+  type: 'test'
+  ...
+# Subtest: manager and actor panel never insert raw Actor document portrait paths directly
+ok 15 - manager and actor panel never insert raw Actor document portrait paths directly
+  ---
+  duration_ms: 4.150514
+  type: 'test'
+  ...
+# Subtest: bulk token and actor adjustment entry points are present
+ok 16 - bulk token and actor adjustment entry points are present
+  ---
+  duration_ms: 2.177032
+  type: 'test'
+  ...
+# Subtest: sheet status is inserted before Foundry core window controls
+ok 17 - sheet status is inserted before Foundry core window controls
+  ---
+  duration_ms: 0.53651
+  type: 'test'
+  ...
+# Subtest: module source contains no deprecated or duplicate chat-render integration
+ok 18 - module source contains no deprecated or duplicate chat-render integration
+  ---
+  duration_ms: 5.790124
+  type: 'test'
+  ...
+# Subtest: a state adjustment creates exactly one correctly populated passive chat card
+ok 19 - a state adjustment creates exactly one correctly populated passive chat card
+  ---
+  duration_ms: 17.511995
+  type: 'test'
+  ...
+# Subtest: a cleaning action creates one card while its internal state update stays silent
+ok 20 - a cleaning action creates one card while its internal state update stays silent
+  ---
+  duration_ms: 9.803316
+  type: 'test'
+  ...
+# Subtest: player-initiated cleaning chat is permission-routed to all players by default and ignores legacy Chat settings
+ok 21 - player-initiated cleaning chat is permission-routed to all players by default and ignores legacy Chat settings
+  ---
+  duration_ms: 7.669513
+  type: 'test'
+  ...
+# Subtest: manual state-change chat is GM-only by default and automation source is explicitly chat-silent
+ok 22 - manual state-change chat is GM-only by default and automation source is explicitly chat-silent
+  ---
+  duration_ms: 4.155986
+  type: 'test'
+  ...
+# Subtest: per-user chat denial in Permissions overrides the default player cleaning audience
+ok 23 - per-user chat denial in Permissions overrides the default player cleaning audience
+  ---
+  duration_ms: 3.0916
+  type: 'test'
+  ...
+# Subtest: chat permission migration removes the legacy Chat configuration and seeds authoritative defaults
+ok 24 - chat permission migration removes the legacy Chat configuration and seeds authoritative defaults
+  ---
+  duration_ms: 3.741723
+  type: 'test'
+  ...
+# Subtest: Foundry V13 integrations use namespaced UUID helpers and full sheet roots
+ok 25 - Foundry V13 integrations use namespaced UUID helpers and full sheet roots
+  ---
+  duration_ms: 2.752084
+  type: 'test'
+  ...
+# Subtest: Active Effects are reconciled idempotently and removed when mirroring is disabled
+ok 26 - Active Effects are reconciled idempotently and removed when mirroring is disabled
+  ---
+  duration_ms: 14.273605
+  type: 'test'
+  ...
+# Subtest: hidden contamination is never mirrored into a player-visible Active Effect
+ok 27 - hidden contamination is never mirrored into a player-visible Active Effect
+  ---
+  duration_ms: 6.835131
+  type: 'test'
+  ...
+# Subtest: hidden-by-default contamination cards remain GM-only
+ok 28 - hidden-by-default contamination cards remain GM-only
+  ---
+  duration_ms: 9.32389
+  type: 'test'
+  ...
+# Subtest: world-wide automation runs only on the primary GM and contains async hook failures
+ok 29 - world-wide automation runs only on the primary GM and contains async hook failures
+  ---
+  duration_ms: 15.961305
+  type: 'test'
+  ...
+# Subtest: manager and settings UX hardening remains present
+ok 30 - manager and settings UX hardening remains present
+  ---
+  duration_ms: 1.292532
+  type: 'test'
+  ...
+# Subtest: feature release exposes redundant dashboard launchers including a dedicated left Scene Control
+ok 31 - feature release exposes redundant dashboard launchers including a dedicated left Scene Control
+  ---
+  duration_ms: 2.542103
+  type: 'test'
+  ...
+# Subtest: Actor dashboard includes scalable hierarchical, regex, type, selection, and bulk workflows
+ok 32 - Actor dashboard includes scalable hierarchical, regex, type, selection, and bulk workflows
+  ---
+  duration_ms: 0.691083
+  type: 'test'
+  ...
+# Subtest: Scene classification stores four validated ratings and derives profile defaults
+ok 33 - Scene classification stores four validated ratings and derives profile defaults
+  ---
+  duration_ms: 13.930019
+  type: 'test'
+  ...
+# Subtest: GM Scene guide is optional, movable, persistent, and purely advisory
+ok 34 - GM Scene guide is optional, movable, persistent, and purely advisory
+  ---
+  duration_ms: 0.483394
+  type: 'test'
+  ...
+# [garb-and-grime] Initialized v1.2.7.
+# Subtest: mocked Foundry init exposes the API and registers entry points
+ok 35 - mocked Foundry init exposes the API and registers entry points
+  ---
+  duration_ms: 60.039787
+  type: 'test'
+  ...
+# Subtest: module localization uses Foundry package languages without a competing override
+ok 36 - module localization uses Foundry package languages without a competing override
+  ---
+  duration_ms: 14.210231
+  type: 'test'
+  ...
+# Subtest: global module settings explain the active Foundry language
+ok 37 - global module settings explain the active Foundry language
+  ---
+  duration_ms: 0.628887
+  type: 'test'
+  ...
+# Subtest: built-in display definitions use localization keys
+ok 38 - built-in display definitions use localization keys
+  ---
+  duration_ms: 0.342267
+  type: 'test'
+  ...
+# Subtest: runtime validation and registry errors are localized
+ok 39 - runtime validation and registry errors are localized
+  ---
+  duration_ms: 10.116343
+  type: 'test'
+  ...
+# Subtest: all bundled localization values are non-empty and key-compatible
+ok 40 - all bundled localization values are non-empty and key-compatible
+  ---
+  duration_ms: 5.388885
+  type: 'test'
+  ...
+# Subtest: ApplicationV2 instance-bound bulk Actor actions never require a class receiver
+ok 41 - ApplicationV2 instance-bound bulk Actor actions never require a class receiver
+  ---
+  duration_ms: 37.114763
+  type: 'test'
+  ...
+# Subtest: Actor-browser selection actions serialize settings writes and survive reopen
+ok 42 - Actor-browser selection actions serialize settings writes and survive reopen
+  ---
+  duration_ms: 11.426197
+  type: 'test'
+  ...
+# Subtest: Actor-browser action rejection boundary contains service failures
+ok 43 - Actor-browser action rejection boundary contains service failures
+  ---
+  duration_ms: 5.349888
+  type: 'test'
+  ...
+# Subtest: Manager ApplicationV2 action handlers contain no private-static receiver trap
+ok 44 - Manager ApplicationV2 action handlers contain no private-static receiver trap
+  ---
+  duration_ms: 0.541209
+  type: 'test'
+  ...
+# Subtest: manifest declares the stable identity and compatibility
+ok 45 - manifest declares the stable identity and compatibility
+  ---
+  duration_ms: 2.730084
+  type: 'test'
+  ...
+# Subtest: every manifest path exists
+ok 46 - every manifest path exists
+  ---
+  duration_ms: 0.590234
+  type: 'test'
+  ...
+# Subtest: German and English localization keys match
+ok 47 - German and English localization keys match
+  ---
+  duration_ms: 6.099971
+  type: 'test'
+  ...
+# Subtest: all literal module localization references exist
+ok 48 - all literal module localization references exist
+  ---
+  duration_ms: 10.137193
+  type: 'test'
+  ...
+# Subtest: the exact German read-aloud rules are bundled
+ok 49 - the exact German read-aloud rules are bundled
+  ---
+  duration_ms: 0.810998
+  type: 'test'
+  ...
+# Subtest: requested public API surface and permanent launchers are present
+ok 50 - requested public API surface and permanent launchers are present
+  ---
+  duration_ms: 1.140435
+  type: 'test'
+  ...
+# Subtest: bootstrap waits for Foundry init before accessing the module record
+ok 51 - bootstrap waits for Foundry init before accessing the module record
+  ---
+  duration_ms: 0.307786
+  type: 'test'
+  ...
+# Subtest: all module-relative assets and templates referenced in source exist
+ok 52 - all module-relative assets and templates referenced in source exist
+  ---
+  duration_ms: 3.897189
+  type: 'test'
+  ...
+# Subtest: source avoids legacy Application/socket dependencies and uses only the Foundry module socket
+ok 53 - source avoids legacy Application/socket dependencies and uses only the Foundry module socket
+  ---
+  duration_ms: 3.386151
+  type: 'test'
+  ...
+# Subtest: ApplicationV2 tab controls use the module action rather than the reserved core action
+ok 54 - ApplicationV2 tab controls use the module action rather than the reserved core action
+  ---
+  duration_ms: 0.91598
+  type: 'test'
+  ...
+# Subtest: sheet and accessibility CSS is scoped to Garb & Grime-owned elements
+ok 55 - sheet and accessibility CSS is scoped to Garb & Grime-owned elements
+  ---
+  duration_ms: 0.58982
+  type: 'test'
+  ...
+# Subtest: generic ApplicationV2 render fallbacks cannot augment document dialogs
+ok 56 - generic ApplicationV2 render fallbacks cannot augment document dialogs
+  ---
+  duration_ms: 0.365099
+  type: 'test'
+  ...
+# Subtest: token cleanliness labels use public canvas text, configurable controls, and no nameplate mutation
+ok 57 - token cleanliness labels use public canvas text, configurable controls, and no nameplate mutation
+  ---
+  duration_ms: 1.06787
+  type: 'test'
+  ...
+# Subtest: scoped label shortcut is exposed in Sheets & HUD and uses native editable Foundry binding
+ok 58 - scoped label shortcut is exposed in Sheets & HUD and uses native editable Foundry binding
+  ---
+  duration_ms: 0.59754
+  type: 'test'
+  ...
+# Subtest: bounded asynchronous mapping preserves order without flooding work
+ok 59 - bounded asynchronous mapping preserves order without flooding work
+  ---
+  duration_ms: 25.101211
+  type: 'test'
+  ...
+# Subtest: reactive application renders are coalesced into one browser frame
+ok 60 - reactive application renders are coalesced into one browser frame
+  ---
+  duration_ms: 3.071834
+  type: 'test'
+  ...
+# Subtest: configuration caches reuse merged settings and detect non-Foundry in-place mutations
+ok 61 - configuration caches reuse merged settings and detect non-Foundry in-place mutations
+  ---
+  duration_ms: 9.22647
+  type: 'test'
+  ...
+# Subtest: cache-safe configuration writes are visible to an immediate post-save repaint
+ok 62 - cache-safe configuration writes are visible to an immediate post-save repaint
+  ---
+  duration_ms: 3.981582
+  type: 'test'
+  ...
+# Subtest: Sheets & HUD saves use the cache-safe configuration writer and repaint labels immediately
+ok 63 - Sheets & HUD saves use the cache-safe configuration writer and repaint labels immediately
+  ---
+  duration_ms: 1.925834
+  type: 'test'
+  ...
+# Subtest: performance-sensitive integrations retain lifecycle and batching guards
+ok 64 - performance-sensitive integrations retain lifecycle and batching guards
+  ---
+  duration_ms: 1.396644
+  type: 'test'
+  ...
+# Subtest: state-only changes skip unnecessary Active Effect reconciliation
+ok 65 - state-only changes skip unnecessary Active Effect reconciliation
+  ---
+  duration_ms: 8.981468
+  type: 'test'
+  ...
+# Subtest: concurrent transaction entries are flushed through one settings write
+ok 66 - concurrent transaction entries are flushed through one settings write
+  ---
+  duration_ms: 4.213097
+  type: 'test'
+  ...
+# Subtest: Actor browser hydrates only a bounded page and releases its cache on close
+ok 67 - Actor browser hydrates only a bounded page and releases its cache on close
+  ---
+  duration_ms: 0.887249
+  type: 'test'
+  ...
+# Subtest: directory summaries avoid full state normalization for large Actor indexes
+ok 68 - directory summaries avoid full state normalization for large Actor indexes
+  ---
+  duration_ms: 6.937877
+  type: 'test'
+  ...
+# Subtest: disabled permissions and per-user overrides are enforced
+ok 69 - disabled permissions and per-user overrides are enforced
+  ---
+  duration_ms: 29.829735
+  type: 'test'
+  ...
+# Subtest: token-label migration preserves legacy audience while new GM-only worlds deny players by default
+ok 70 - token-label migration preserves legacy audience while new GM-only worlds deny players by default
+  ---
+  duration_ms: 35.475971
+  type: 'test'
+  ...
+# Subtest: persistent status settings use the authoritative Permissions tab and Foundry-like display behaviours
+ok 71 - persistent status settings use the authoritative Permissions tab and Foundry-like display behaviours
+  ---
+  duration_ms: 1.505171
+  type: 'test'
+  ...
+# Subtest: token-label migration removes legacy disabled player scope so Permissions remains authoritative
+ok 72 - token-label migration removes legacy disabled player scope so Permissions remains authoritative
+  ---
+  duration_ms: 6.423234
+  type: 'test'
+  ...
+# Subtest: token-label v3 migration compacts only the untouched legacy visual defaults
+ok 73 - token-label v3 migration compacts only the untouched legacy visual defaults
+  ---
+  duration_ms: 7.313416
+  type: 'test'
+  ...
+# Subtest: registry contains required built-in definitions
+ok 74 - registry contains required built-in definitions
+  ---
+  duration_ms: 5.169102
+  type: 'test'
+  ...
+# Subtest: returned definitions cannot mutate registry state
+ok 75 - returned definitions cannot mutate registry state
+  ---
+  duration_ms: 1.824439
+  type: 'test'
+  ...
+# Subtest: extension definitions require stable ids and reject duplicates
+ok 76 - extension definitions require stable ids and reject duplicates
+  ---
+  duration_ms: 1.852612
+  type: 'test'
+  ...
+# Subtest: currency adapters require the complete contract
+ok 77 - currency adapters require the complete contract
+  ---
+  duration_ms: 0.973009
+  type: 'test'
+  ...
+# Subtest: extension definitions survive world-definition reloads
+ok 78 - extension definitions survive world-definition reloads
+  ---
+  duration_ms: 1.453556
+  type: 'test'
+  ...
+# Subtest: D&D 5e v5.2+ roll integration uses the process-configuration V2 hook
+ok 79 - D&D 5e v5.2+ roll integration uses the process-configuration V2 hook
+  ---
+  duration_ms: 14.679188
+  type: 'test'
+  ...
+# Subtest: the visible roll chooser repeats a roll with an explicit resolved marker
+ok 80 - the visible roll chooser repeats a roll with an explicit resolved marker
+  ---
+  duration_ms: 5.585354
+  type: 'test'
+  ...
+# Subtest: clean context advises disadvantage for dirty social rolls
+ok 81 - clean context advises disadvantage for dirty social rolls
+  ---
+  duration_ms: 1.318413
+  type: 'test'
+  ...
+# Subtest: lawless context can reward appropriate grime
+ok 82 - lawless context can reward appropriate grime
+  ---
+  duration_ms: 0.349547
+  type: 'test'
+  ...
+# Subtest: intimidation is not blanket-penalized
+ok 83 - intimidation is not blanket-penalized
+  ---
+  duration_ms: 0.270663
+  type: 'test'
+  ...
+# Subtest: level three can block scent stealth
+ok 84 - level three can block scent stealth
+  ---
+  duration_ms: 0.219586
+  type: 'test'
+  ...
+# Subtest: contamination counts as one effective level and masking suppresses it
+ok 85 - contamination counts as one effective level and masking suppresses it
+  ---
+  duration_ms: 0.305386
+  type: 'test'
+  ...
+# Subtest: custom profile rules are evaluated by level
+ok 86 - custom profile rules are evaluated by level
+  ---
+  duration_ms: 0.217017
+  type: 'test'
+  ...
+# Subtest: Scene Context fresh Scene defaults deterministically and never passes undefined
+ok 87 - Scene Context fresh Scene defaults deterministically and never passes undefined
+  ---
+  duration_ms: 16.638575
+  type: 'test'
+  ...
+# Subtest: stale Scene profile remains visible as stale until the GM explicitly replaces it
+ok 88 - stale Scene profile remains visible as stale until the GM explicitly replaces it
+  ---
+  duration_ms: 3.562797
+  type: 'test'
+  ...
+# Subtest: Scene Context validation distinguishes missing selection, unavailable registry, invalid Scene, and persistence failure
+ok 89 - Scene Context validation distinguishes missing selection, unavailable registry, invalid Scene, and persistence failure
+  ---
+  duration_ms: 2.859692
+  type: 'test'
+  ...
+# Subtest: Foundry V13 Scene Context dialog reads the owning DialogV2 form and survives cancel/reopen
+ok 90 - Foundry V13 Scene Context dialog reads the owning DialogV2 form and survives cancel/reopen
+  ---
+  duration_ms: 6.62541
+  type: 'test'
+  ...
+# Subtest: stale profile is shown as unavailable in the dialog and is not rewritten before Save
+ok 91 - stale profile is shown as unavailable in the dialog and is not rewritten before Save
+  ---
+  duration_ms: 6.509937
+  type: 'test'
+  ...
+# Subtest: every bundled Scene preset has an explicit, distinct four-level acceptance gradient
+ok 92 - every bundled Scene preset has an explicit, distinct four-level acceptance gradient
+  ---
+  duration_ms: 2.010051
+  type: 'test'
+  ...
+# Subtest: settings UI never defaults a missing preset rating to Expected for all four levels
+ok 93 - settings UI never defaults a missing preset rating to Expected for all four levels
+  ---
+  duration_ms: 0.538561
+  type: 'test'
+  ...
+# Subtest: profile-rating migration repairs legacy all-Expected and duplicated preset defaults without overwriting explicit custom ratings
+ok 94 - profile-rating migration repairs legacy all-Expected and duplicated preset defaults without overwriting explicit custom ratings
+  ---
+  duration_ms: 18.773023
+  type: 'test'
+  ...
+# Subtest: registry supplies canonical bundled ratings when an older built-in profile lacks levelRatings
+ok 95 - registry supplies canonical bundled ratings when an older built-in profile lacks levelRatings
+  ---
+  duration_ms: 6.934021
+  type: 'test'
+  ...
+# Subtest: Actor-sheet integration registers only semantic sheet hooks
+ok 96 - Actor-sheet integration registers only semantic sheet hooks
+  ---
+  duration_ms: 20.718522
+  type: 'test'
+  ...
+# Subtest: water reduces body and clothing by exactly one level
+ok 97 - water reduces body and clothing by exactly one level
+  ---
+  duration_ms: 1.555073
+  type: 'test'
+  ...
+# Subtest: soap fully cleans body and clothing
+ok 98 - soap fully cleans body and clothing
+  ---
+  duration_ms: 0.414884
+  type: 'test'
+  ...
+# Subtest: spare clothing does not remove body odor
+ok 99 - spare clothing does not remove body odor
+  ---
+  duration_ms: 0.335591
+  type: 'test'
+  ...
+# Subtest: dirt is clamped and part-specific changes derive the overall level
+ok 100 - dirt is clamped and part-specific changes derive the overall level
+  ---
+  duration_ms: 0.149332
+  type: 'test'
+  ...
+# Subtest: malformed legacy state recovers without throwing
+ok 101 - malformed legacy state recovers without throwing
+  ---
+  duration_ms: 0.849028
+  type: 'test'
+  ...
+# Subtest: manager and settings tabs switch through module actions without calling ApplicationV2.changeTab
+ok 102 - manager and settings tabs switch through module actions without calling ApplicationV2.changeTab
+  ---
+  duration_ms: 37.057648
+  type: 'test'
+  ...
+# Subtest: 10–13px fonts scale the actual glyphs AND popup geometry without a hidden 18px floor
+ok 103 - 10–13px fonts scale the actual glyphs AND popup geometry without a hidden 18px floor
+  ---
+  duration_ms: 6.629895
+  type: 'test'
+  ...
+# Subtest: new tokens of the same Actor receive saved font, style, format, opacity and placement, including zero opacity
+ok 104 - new tokens of the same Actor receive saved font, style, format, opacity and placement, including zero opacity
+  ---
+  duration_ms: 2.773786
+  type: 'test'
+  ...
+# Subtest: replacement Token with the same UUID uses current styling; late destruction of old object cannot remove it
+ok 105 - replacement Token with the same UUID uses current styling; late destruction of old object cannot remove it
+  ---
+  duration_ms: 1.588065
+  type: 'test'
+  ...
+# Subtest: all three Sheets & HUD toggles have distinct translated native hover tooltips
+ok 106 - all three Sheets & HUD toggles have distinct translated native hover tooltips
+  ---
+  duration_ms: 3.90774
+  type: 'test'
+  ...
+# Subtest: Foundry drawToken and updateSetting hooks use saved configuration on a newly drawn Token
+ok 107 - Foundry drawToken and updateSetting hooks use saved configuration on a newly drawn Token
+  ---
+  duration_ms: 2.89775
+  type: 'test'
+  ...
+# Subtest: token label formats are localized and include optional body/clothing detail
+ok 108 - token label formats are localized and include optional body/clothing detail
+  ---
+  duration_ms: 1.855441
+  type: 'test'
+  ...
+# Subtest: labels render once in a high interface layer with clear configurable styling
+ok 109 - labels render once in a high interface layer with clear configurable styling
+  ---
+  duration_ms: 4.105524
+  type: 'test'
+  ...
+# Subtest: global display and per-token overrides control one idempotent canvas label
+ok 110 - global display and per-token overrides control one idempotent canvas label
+  ---
+  duration_ms: 1.285673
+  type: 'test'
+  ...
+# Subtest: global and per-token positions support all four sides
+ok 111 - global and per-token positions support all four sides
+  ---
+  duration_ms: 1.578213
+  type: 'test'
+  ...
+# Subtest: per-token display and position overrides persist only Token flags and support inherit cleanup
+ok 112 - per-token display and position overrides persist only Token flags and support inherit cleanup
+  ---
+  duration_ms: 1.743123
+  type: 'test'
+  ...
+# Subtest: persistent labels deny players by default and allow explicit per-user permission
+ok 113 - persistent labels deny players by default and allow explicit per-user permission
+  ---
+  duration_ms: 0.712381
+  type: 'test'
+  ...
+# Subtest: automatic visibility modes follow control and hover state without the manual client toggle
+ok 114 - automatic visibility modes follow control and hover state without the manual client toggle
+  ---
+  duration_ms: 0.714889
+  type: 'test'
+  ...
+# Subtest: character-only actor scope excludes NPC labels while preserving character labels
+ok 115 - character-only actor scope excludes NPC labels while preserving character labels
+  ---
+  duration_ms: 0.441055
+  type: 'test'
+  ...
+# Subtest: per-token Always show never bypasses player permission or owned-actor scope
+ok 116 - per-token Always show never bypasses player permission or owned-actor scope
+  ---
+  duration_ms: 1.006772
+  type: 'test'
+  ...
+# Subtest: authorized players control their own persistent-label display mode without changing world configuration
+ok 117 - authorized players control their own persistent-label display mode without changing world configuration
+  ---
+  duration_ms: 1.754295
+  type: 'test'
+  ...
+# Subtest: player label preferences never bypass the authoritative Permissions tab
+ok 118 - player label preferences never bypass the authoritative Permissions tab
+  ---
+  duration_ms: 1.446318
+  type: 'test'
+  ...
+# Subtest: shortcut defaults to all scene PC Tokens without selection and toggles only locally
+ok 119 - shortcut defaults to all scene PC Tokens without selection and toggles only locally
+  ---
+  duration_ms: 1.916078
+  type: 'test'
+  ...
+# Subtest: selected PC mode requires selection and only changes the selected PC
+ok 120 - selected PC mode requires selection and only changes the selected PC
+  ---
+  duration_ms: 0.605741
+  type: 'test'
+  ...
+# Subtest: eligible scope can include NPCs, but respects GM Always hide and scope permissions
+ok 121 - eligible scope can include NPCs, but respects GM Always hide and scope permissions
+  ---
+  duration_ms: 0.850997
+  type: 'test'
+  ...
+# Subtest: shortcut works for automatic label modes and mixed states converge to visible
+ok 122 - shortcut works for automatic label modes and mixed states converge to visible
+  ---
+  duration_ms: 1.22452
+  type: 'test'
+  ...
+# Subtest: token redraw preserves shortcut state, scene changes clear it, and hidden Tokens stay hidden
+ok 123 - token redraw preserves shortcut state, scene changes clear it, and hidden Tokens stay hidden
+  ---
+  duration_ms: 0.436347
+  type: 'test'
+  ...
+# Subtest: player permission denies scoped shortcut even with personal Always, allowed player gets only local labels
+ok 124 - player permission denies scoped shortcut even with personal Always, allowed player gets only local labels
+  ---
+  duration_ms: 1.269547
+  type: 'test'
+  ...
+# Subtest: disabled shortcut and absent canvas are safe no-ops
+ok 125 - disabled shortcut and absent canvas are safe no-ops
+  ---
+  duration_ms: 0.566646
+  type: 'test'
+  ...
+# Subtest: Foundry native keybinding remains editable and invokes the scoped shortcut
+ok 126 - Foundry native keybinding remains editable and invokes the scoped shortcut
+  ---
+  duration_ms: 8.9746
+  type: 'test'
+  ...
+# Subtest: shortcuts never bypass GM per-Token hidden flags, even for permitted players
+ok 127 - shortcuts never bypass GM per-Token hidden flags, even for permitted players
+  ---
+  duration_ms: 0.752515
+  type: 'test'
+  ...
+# Subtest: viewer-mode change clears session shortcut state to honor explicit preference
+ok 128 - viewer-mode change clears session shortcut state to honor explicit preference
+  ---
+  duration_ms: 0.824964
+  type: 'test'
+  ...
+# Subtest: disabling shortcut resets local overrides instead of leaving a hidden persistent effect
+ok 129 - disabling shortcut resets local overrides instead of leaving a hidden persistent effect
+  ---
+  duration_ms: 0.712526
+  type: 'test'
+  ...
+# Subtest: a player cleaning transaction is persisted by the primary GM exactly once
+ok 130 - a player cleaning transaction is persisted by the primary GM exactly once
+  ---
+  duration_ms: 28.613568
+  type: 'test'
+  ...
+1..130
+# tests 130
+# suites 0
+# pass 130
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 905.633043
+Garb & Grime validation completed successfully.

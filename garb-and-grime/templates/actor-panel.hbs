@@ -1,0 +1,69 @@
+<div class="gag-app-shell">
+  <header class="gag-actor-header gag-level-{{state.dirtLevel}}">
+    <img src="{{actor.img}}" alt="" decoding="async" data-gag-actor-image data-gag-actor-image-source="{{actor.imageSource}}" data-gag-actor-name="{{actor.name}}" {{#if actor.imageFallback}}data-gag-actor-image-fallback="true" title="{{localize 'GAG.Images.FallbackTitle'}}"{{/if}}>
+    <div><h1>{{actor.name}}</h1><p><strong>{{levelLabel}}</strong> · {{localize "GAG.ActorPanel.Context" context=profileLabel}}</p></div>
+    <div class="gag-level-orb" title="{{localize (concat 'GAG.Levels.' state.dirtLevel '.Description')}}">{{state.dirtLevel}}</div>
+  </header>
+
+  <main class="gag-content gag-actor-content">
+    <section class="gag-panel">
+      <h2>{{localize "GAG.ActorPanel.CurrentState"}}</h2>
+      <form data-gag-state-form>
+        <div class="gag-form-grid">
+          <label><span>{{localize "GAG.Common.Body"}}</span><select name="bodyLevel" {{#unless canManuallyEdit}}disabled{{/unless}}>{{#each dirtLevels}}<option value="{{level}}" {{#if selectedBody}}selected{{/if}}>{{label}}</option>{{/each}}</select><small>{{localize "GAG.ActorPanel.BodyHint"}}</small></label>
+          <label><span>{{localize "GAG.Common.Clothing"}}</span><select name="clothingLevel" {{#unless canManuallyEdit}}disabled{{/unless}}>{{#each dirtLevels}}<option value="{{level}}" {{#if selectedClothing}}selected{{/if}}>{{label}}</option>{{/each}}</select><small>{{localize "GAG.ActorPanel.ClothingHint"}}</small></label>
+        </div>
+        <label><span>{{localize "GAG.Common.Reason"}}</span><input type="text" name="reason" value="{{state.lastChangeReason}}" maxlength="400" {{#unless canManuallyEdit}}disabled{{/unless}}></label>
+        {{#if canViewGm}}<label><span>{{localize "GAG.Common.GmNotes"}}</span><textarea name="gmNotes" rows="3" maxlength="4000" {{#unless canManuallyEdit}}disabled{{/unless}}>{{state.gmNotes}}</textarea><small>{{localize "GAG.ActorPanel.GmNotesHint"}}</small></label>{{/if}}
+        {{#if canManuallyEdit}}<div class="gag-form-actions"><button type="button" data-action="saveState"><i class="fa-solid fa-floppy-disk"></i><span>{{localize "Save"}}</span></button><button type="button" class="danger" data-action="reset"><i class="fa-solid fa-rotate-left"></i><span>{{localize "GAG.Actions.Reset"}}</span></button></div>{{/if}}
+      </form>
+    </section>
+
+    <section class="gag-panel">
+      <div class="gag-section-heading"><div><h2>{{localize "GAG.ActorPanel.CleaningMethods"}}</h2><p class="hint">{{localize "GAG.ActorPanel.CleaningMethodsHint"}}</p></div><button type="button" data-action="toggleMaintenance" class="{{#if state.autoMaintenance}}active{{/if}}" {{#unless canModify}}disabled{{/unless}}><i class="fa-solid fa-coins"></i><span>{{#if state.autoMaintenance}}{{localize "GAG.Common.UpkeepOn"}}{{else}}{{localize "GAG.Common.UpkeepOff"}}{{/if}}</span></button></div>
+      {{#if hasMaintenanceDebt}}
+        <div class="gag-debt-box">
+          <div><strong>{{localize "GAG.DailyUpkeep.Debt"}}</strong><span>{{maintenanceDebtLabel}}</span></div>
+          {{#if canModify}}
+            <div class="gag-row-actions">
+              <button type="button" data-action="settleDebt" data-deduct="false"><i class="fa-solid fa-check"></i><span>{{localize "GAG.DailyUpkeep.RecordSettled"}}</span></button>
+              {{#if canDeductDebt}}<button type="button" data-action="settleDebt" data-deduct="true"><i class="fa-solid fa-coins"></i><span>{{localize "GAG.DailyUpkeep.PayNow"}}</span></button>{{/if}}
+            </div>
+          {{/if}}
+        </div>
+      {{/if}}
+      <div class="gag-method-grid">
+        {{#each methods}}
+          <button type="button" data-action="clean" data-method-id="{{id}}" {{#unless ../canModify}}disabled{{/unless}} title="{{description}}">
+            <i class="fa-solid {{#if (eq id 'water')}}fa-water{{else if (eq id 'spare-clothing')}}fa-shirt{{else}}fa-soap{{/if}}" aria-hidden="true"></i>
+            <span><strong>{{label}}</strong><small>{{timeLabel}} · {{costLabel}}</small></span>
+          </button>
+        {{/each}}
+      </div>
+    </section>
+
+    <section class="gag-panel">
+      <h2>{{localize "GAG.ActorPanel.Contamination"}}</h2>
+      <div class="gag-tag-list">
+        {{#each activeContaminations}}
+          <span class="gag-tag"><i class="fa-solid fa-biohazard"></i>{{label}} {{hiddenLabel}}{{#if ../canApplyContamination}}<button type="button" data-action="removeContamination" data-contamination-id="{{id}}" aria-label="{{localize 'GAG.Actions.RemoveContamination'}}"><i class="fa-solid fa-xmark"></i></button>{{/if}}</span>
+        {{else}}<span class="gag-muted">{{localize "GAG.Common.None"}}</span>{{/each}}
+      </div>
+      {{#if canApplyContamination}}
+        <div class="gag-inline-form gag-contamination-form"><select name="contaminationId">{{#each contaminations}}<option value="{{id}}">{{label}}</option>{{/each}}</select><label class="gag-checkbox"><input type="checkbox" name="contaminationHidden"><span>{{localize "GAG.Common.HiddenFromPlayers"}}</span></label><button type="button" data-action="applyContamination"><i class="fa-solid fa-plus"></i><span>{{localize "GAG.Actions.Apply"}}</span></button></div>
+      {{/if}}
+    </section>
+
+    <section class="gag-panel">
+      <h2>{{localize "GAG.ActorPanel.RollAdvisor"}}</h2>
+      <p class="hint">{{localize "GAG.ActorPanel.RollAdvisorHint"}}</p>
+      <div class="gag-button-grid">
+        <button type="button" data-action="evaluate" data-skill-id="per"><span>{{localize "GAG.Skills.Persuasion"}}</span></button>
+        <button type="button" data-action="evaluate" data-skill-id="dec"><span>{{localize "GAG.Skills.Deception"}}</span></button>
+        <button type="button" data-action="evaluate" data-skill-id="itm"><span>{{localize "GAG.Skills.Intimidation"}}</span></button>
+        <button type="button" data-action="evaluate" data-skill-id="ste" data-enhanced-smell="true"><span>{{localize "GAG.Skills.StealthScent"}}</span></button>
+      </div>
+      <p class="gag-advice"><i class="fa-solid fa-scale-balanced"></i> {{localize evaluation.reasonKey actor=actor.name}}</p>
+    </section>
+  </main>
+</div>

@@ -1,0 +1,19 @@
+# Garb & Grime v1.2.4 — Static audit
+
+## PreciseText construction
+520:  const textObject = new TextClass(String(text ?? ""), style);
+
+## Deprecated chat hook scan
+
+
+## jQuery html.find scan
+
+
+## Viewer authorization / preferences
+31:  TOKEN_LABEL_VIEW_MODE: "tokenLabelViewerMode",
+32:  TOKEN_LABEL_VIEW_POSITION: "tokenLabelViewerPosition",
+46:  VIEW_TOKEN_LABELS: "viewTokenLabels",
+
+## Legacy disabled scope handling
+src/migration.mjs:105:  if (rawConfiguration.tokenLabels.playerScope === "disabled") {
+src/integrations/token-labels.mjs:464:  if (options.playerScope === "disabled") return "characters";

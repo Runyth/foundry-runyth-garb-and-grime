@@ -1,0 +1,17 @@
+Garb & Grime v1.2.2 static audit
+
+[syntax]
+All production .mjs syntax checks passed.
+
+[deprecated/broad integration scan]
+No targeted deprecated/broad patterns found.
+
+[player-link lifecycle hooks]
+garb-and-grime/scripts/main.mjs:221:  const directoryDisplayChanged = ["name", "img", "type", "folder", "ownership", "prototypeToken.texture.src"]
+garb-and-grime/scripts/main.mjs:237:Hooks.on("createUser", () => {
+garb-and-grime/scripts/main.mjs:241:Hooks.on("updateUser", (user, changes) => {
+garb-and-grime/scripts/main.mjs:248:Hooks.on("deleteUser", () => {
+garb-and-grime/src/actor-scope.mjs:16:export function playerLinkedCharacterActorIds({ actors = game.actors ?? [], users = game.users ?? [] } = {}) {
+garb-and-grime/src/actor-scope.mjs:32:  // A PC may be shared or assigned through Actor ownership without becoming a
+garb-and-grime/src/apps/manager.mjs:8:import { buildActorFolderOptions, buildDashboardActorScope, playerLinkedCharacterActorIds } from "../actor-scope.mjs";
+garb-and-grime/src/apps/manager.mjs:69:      ? playerLinkedCharacterActorIds({ actors: baseActors, users: game.users ?? [] })

@@ -1,0 +1,12 @@
+Garb & Grime 1.2.9 static audit:
+- Rendering: hoverToken schedules full label hydration; revealing cached hidden labels also re-hydrates.
+- Actor flag change: expanded and dotted setFlag hook shapes covered.
+- Synthetic PC data: authoritative world Actor resolution preserved.
+- Inventory: exact localized alias and itemIntegration flag; per-stack quantity validation; batched consumption; same-client per-Actor action queue.
+- Enforcement: missing soap fails before charging currency or changing cleanliness.
+- GM bulk vs player API: skipItemRequirements is not a player bypass for configured soap requirement.
+- No new broad Application or deprecated renderChatMessage hooks introduced.
+- No data migration/API/state schema changes.
+- Runtime-only installation ZIP excludes docs/source tests.
+- English/German localization keys validated by npm run check.
+- Live V13.351 multiplayer verification remains separate.

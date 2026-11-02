@@ -1,0 +1,921 @@
+{
+  "GAG": {
+    "Common": {
+      "Actor": "Actor",
+      "Previous": "Previous",
+      "New": "New",
+      "Method": "Method",
+      "Reason": "Reason or source",
+      "Cost": "Cost",
+      "Consumed": "Consumed",
+      "UnknownActor": "Unknown actor",
+      "NoScene": "No active scene",
+      "Never": "Never",
+      "None": "None",
+      "Body": "Body",
+      "Clothing": "Clothing",
+      "BodyShort": "B",
+      "ClothingShort": "C",
+      "Contamination": "Contamination",
+      "LastUpdate": "Last update",
+      "Search": "Search",
+      "Level": "Level",
+      "All": "All",
+      "Sort": "Sort",
+      "Name": "Name",
+      "Updated": "Updated",
+      "Direction": "Direction",
+      "Ascending": "Ascending",
+      "Descending": "Descending",
+      "Date": "Date",
+      "Status": "Status",
+      "Success": "Successful",
+      "Failed": "Failed",
+      "RecordedOnly": "recorded only",
+      "Hidden": "hidden",
+      "HiddenFromPlayers": "Hide from players",
+      "GmNotes": "Hidden GM notes",
+      "UpkeepOn": "Upkeep enabled",
+      "UpkeepOff": "Upkeep disabled",
+      "Enabled": "Enabled",
+      "DirtGain": "Dirt gain",
+      "Currency": "Currency",
+      "Time": "Time",
+      "Description": "Description",
+      "Permission": "Permission",
+      "NewMethod": "New cleaning method",
+      "NewProfile": "New environment profile",
+      "NewContamination": "New contamination",
+      "Disabled": "Disabled",
+      "Player": "Player",
+      "Active": "Active"
+    },
+    "Levels": {
+      "0": {
+        "Name": "Clean",
+        "Description": "No restriction; a properly groomed appearance is possible."
+      },
+      "1": {
+        "Name": "Worn",
+        "Description": "Visible traces of travel or work; normally no mechanical consequence."
+      },
+      "2": {
+        "Name": "Dirty",
+        "Description": "Noticeable stains and body odor; social consequences in clean environments."
+      },
+      "3": {
+        "Name": "Stinking",
+        "Description": "Strong mud, sweat, blood, or decay odor; obvious in most environments."
+      }
+    },
+    "Methods": {
+      "Water": {
+        "Name": "Water without soap",
+        "Description": "30 minutes, free: reduce dirt by exactly one level."
+      },
+      "Soap": {
+        "Name": "Self-wash with soap",
+        "Description": "1 hour, 1 Mark: set body and clothing to level 0."
+      },
+      "WashHouse": {
+        "Name": "Wash house or simple inn",
+        "Description": "Several hours, 2 Mark: set body and clothing to level 0."
+      },
+      "Bathhouse": {
+        "Name": "Good bathhouse with launderer",
+        "Description": "1–2 hours, 5 Mark: level 0 and a temporary groomed appearance."
+      },
+      "SpareClothing": {
+        "Name": "Clean spare clothing",
+        "Description": "1 minute: clothing becomes clean; body odor remains."
+      },
+      "DailyUpkeep": {
+        "Name": "Daily upkeep",
+        "Description": "2 Mark per day in a suitable settlement: washing, laundering, drying, and minor repairs."
+      }
+    },
+    "Contamination": {
+      "Blood": "Blood-smeared",
+      "Feces": "Feces",
+      "Decay": "Decay odor",
+      "Chemicals": "Chemicals",
+      "Alchemical": "Alchemical residue",
+      "Sewage": "Sewage stench"
+    },
+    "Profiles": {
+      "Clean": {
+        "Name": "Clean",
+        "Description": "Noble houses, authorities, temples, wealthy merchants, and formal events.",
+        "Reaction": "Heavy dirt suggests poverty, disease, disrespect, or danger."
+      },
+      "Ordinary": {
+        "Name": "Ordinary",
+        "Description": "Villages, harbors, barracks, workshops, and ordinary taverns.",
+        "Reaction": "Light to moderate dirt is normal; stench draws notice."
+      },
+      "PoorLawless": {
+        "Name": "Poor or lawless",
+        "Description": "Slums, bandit camps, smuggler dens, and labor districts.",
+        "Reaction": "Overly clean clothing can reveal wealth, office, foreignness, or vulnerability."
+      },
+      "Wilderness": {
+        "Name": "Wilderness",
+        "Description": "Travel, camps, and natural environments with scent-based tracking.",
+        "Reaction": "Stains matter little, but odor can reveal a trail."
+      },
+      "Military": {
+        "Name": "Military",
+        "Description": "Barracks, field camps, garrisons, and military service.",
+        "Reaction": "Work and travel marks are tolerated; strong odor disrupts discipline and proximity."
+      },
+      "Religious": {
+        "Name": "Religious",
+        "Description": "Temples, shrines, monasteries, and ritually clean places.",
+        "Reaction": "Dirt may be seen as disrespect or ritual impurity."
+      },
+      "Court": {
+        "Name": "Court or nobility",
+        "Description": "Court society, audiences, banquets, and highly formal encounters.",
+        "Reaction": "Even worn clothing may be considered unsuitable."
+      },
+      "Sewer": {
+        "Name": "Sewer",
+        "Description": "Wastewater, feces, rats, chemicals, and stagnant moisture.",
+        "Reaction": "Extreme contamination and sewage stench are likely."
+      },
+      "Swamp": {
+        "Name": "Swamp",
+        "Description": "Mud, stagnant water, plant rot, and insects.",
+        "Reaction": "Heavy dirt and difficult-to-hide odor accumulate quickly."
+      },
+      "Battlefield": {
+        "Name": "Battlefield",
+        "Description": "Blood, mud, smoke, sweat, and decay.",
+        "Reaction": "Blood and decay may count one level worse for social and scent interactions."
+      }
+    },
+    "Rules": {
+      "Title1": "Clean clothing makes a difference",
+      "Text1": "People judge you by more than your words. Mud on your boots, dried blood on your coat, and clothing worn for days change how you are received, treated, and assessed.",
+      "Title2": "Washing clothes",
+      "Text2": "You can clean clothing yourself at suitable water, use soap, change into spare clothing, or pay wash houses, bathhouses, and launderers in settlements. A bed alone cleans neither you nor your clothing.",
+      "Title3": "Where dirt matters most",
+      "Text3": "Farmers, soldiers, sailors, and laborers do not expect spotless clothing. Merchants, officials, temple servants, and nobles may view heavy dirt as a sign of poverty, disease, disrespect, or danger. In slums and bandit camps, clothing that is too clean may stand out instead. Animals and some monsters do not care about stains—but they do care about sweat, blood, and decay."
+    },
+    "Manager": {
+      "Title": "Garb & Grime — Cleanliness Manager",
+      "Subtitle": "Clothing, body odor, contamination, and social consequences without tedious bookkeeping.",
+      "Open": "Open Cleanliness Manager",
+      "OpenHint": "Open overview, quick actions, rules, and contexts.",
+      "Navigation": "Cleanliness Manager sections",
+      "CurrentContextHint": "Current scene environment profile",
+      "Tabs": {
+        "overview": "Overview",
+        "actors": "Actors",
+        "rules": "Rules reference",
+        "transactions": "Transactions",
+        "settings": "Configuration"
+      },
+      "PartySummary": "Party overview",
+      "PartySummaryHint": "Only actors visible through ownership and permissions are included.",
+      "SceneContext": "Scene context",
+      "SceneContextHint": "The profile drives recommendations, services, scent, and expected cleanliness.",
+      "SelectedTokens": "Selected tokens",
+      "SelectedCount": "{count} unique actors selected.",
+      "BulkUnavailable": "Bulk changes are not permitted for your role.",
+      "ScentWatch": "Scent notice",
+      "NoScentNotices": "No notable actors in the current list.",
+      "Filters": "Filters and sorting",
+      "SearchPlaceholder": "Name or contamination",
+      "NoActors": "No matching actors found.",
+      "TransactionLog": "Transaction log",
+      "TransactionLogHint": "The last 500 cleaning and upkeep transactions. ‘Recorded only’ means no currency was deducted.",
+      "NoTransactions": "No transactions yet.",
+      "SettingsSummary": "Open all settings grouped by topic, including methods, contexts, roles, and currency.",
+      "MigrationHint": "Normalize only module flags already in use. Unused actors are not written to.",
+      "SettingsSummaryTitle": "Configuration",
+      "ActorSelection": "Actor selection",
+      "SelectedActorCount": "{count} actors selected.",
+      "ActorSelectionHint": "Select actors with the checkboxes, then adjust all of them at once.",
+      "SelectActor": "Select {actor}",
+      "ActorFolder": "Actor folder",
+      "ActorResults": "Showing {visible} of {total} Actors.",
+      "ActorType": "Actor type",
+      "ActorTypeCharacter": "Character",
+      "ActorTypeNpc": "NPC",
+      "AllFolders": "All folders",
+      "IncludeSubfolders": "Include subfolders",
+      "InvalidRegex": "The regular expression is invalid.",
+      "RootFolder": "Root",
+      "SearchMode": "Search mode",
+      "SearchModeRegex": "Regular expression",
+      "SearchModeText": "Text",
+      "SelectedOnly": "Selected only",
+      "SelectionFilter": "Selection",
+      "Pagination": "Actor list pagination",
+      "PageRange": "Showing rows {start}–{end} of {total} matching Actors.",
+      "RowsPerPage": "Rows per page",
+      "PreviousPage": "Previous",
+      "NextPage": "Next",
+      "PageNumber": "Page {page} of {pages}",
+      "InvalidGlobalActorRegex": "The global dashboard Actor regular expression is invalid. The regex part of the global scope is being ignored until it is corrected in Global Module Settings.",
+      "GlobalActorScopeFolders": "Global Actor scope: {scoped} of {total} visible supported Actors from {folders} selected folder(s).",
+      "GlobalActorScopeRegex": "Global Actor scope: {scoped} of {total} visible supported Actors matching /{regex}/.",
+      "GlobalActorScopeBoth": "Global Actor scope: {scoped} of {total} visible supported Actors from {folders} selected folder(s) and matching /{regex}/.",
+      "GlobalActorScopePlayerLinked": "Player-linked character Actors are always included: {count} outside the manual scope."
+    },
+    "ActorPanel": {
+      "Title": "Cleanliness",
+      "Context": "Context: {context}",
+      "CurrentState": "Body and clothing",
+      "BodyHint": "Body odor and bodily grime.",
+      "ClothingHint": "Stains and odor on worn clothing.",
+      "GmNotesHint": "These notes and hidden contaminations are not shown to players.",
+      "CleaningMethods": "Cleaning actions",
+      "CleaningMethodsHint": "Costs are deducted automatically only when explicitly configured.",
+      "Contamination": "Contaminations",
+      "RollAdvisor": "Roll advisor",
+      "RollAdvisorHint": "Shows a recommendation for the current scene context; rolls are not changed by default."
+    },
+    "Actions": {
+      "ManualAdjustment": "Manual adjustment",
+      "BulkAdjustment": "Bulk adjustment",
+      "TokenHud": "Token HUD action",
+      "ToggleMaintenance": "Toggle automatic upkeep",
+      "Reset": "Reset cleanliness",
+      "Increase": "Increase dirt",
+      "Reduce": "Reduce dirt",
+      "View": "View cleanliness",
+      "Open": "Open",
+      "Apply": "Apply",
+      "ApplyContamination": "Apply contamination",
+      "RemoveContamination": "Remove contamination",
+      "WaterShort": "Water",
+      "ClothesShort": "Clothes",
+      "TravelWork": "Travel or work +1",
+      "ExtremeExposure": "Extreme exposure +2",
+      "CleanFully": "Clean fully",
+      "ResetFilters": "Reset filters",
+      "Migrate": "Data migration",
+      "RunMigration": "Check migration",
+      "ResetDefaults": "Restore defaults",
+      "AddMethod": "Add method",
+      "AddProfile": "Add profile",
+      "AddContamination": "Add contamination",
+      "ApplyContextExposure": "Apply current environment",
+      "SelectVisible": "Select visible",
+      "ClearSelection": "Clear selection",
+      "IncreaseSelected": "Selected actors +1",
+      "ReduceSelected": "Selected actors −1",
+      "DisableMaintenance": "Disable upkeep",
+      "EnableMaintenance": "Enable upkeep",
+      "SelectFolder": "Select folder"
+    },
+    "RollAdvice": {
+      "None": "No special cleanliness effect is recommended.",
+      "ScentBlocked": "Strong decay or body odor: scent-based stealth is probably impossible.",
+      "ScentTracking": "Noticeable odor: creatures with enhanced smell may have advantage when tracking.",
+      "FilthyCleanContext": "Stinking in a clean environment: disadvantage recommended; entry may be refused.",
+      "DirtyCleanContext": "Dirty in a clean environment: disadvantage recommended for relevant social rolls.",
+      "WornCourt": "Worn clothing at court: disadvantage may be appropriate depending on the occasion.",
+      "FilthyOrdinary": "Stinking in an ordinary environment: complaints, distancing, or worse treatment are possible.",
+      "TooClean": "Too clean in a poor or lawless environment: standing out or disadvantage when blending in is possible.",
+      "BlendIn": "Appropriately dirty in a labor district: advantage for blending in or disguise is possible.",
+      "IntimidatingFilth": "Heavy grime may be intimidating; advantage is situationally possible."
+    },
+    "Skills": {
+      "Persuasion": "Persuasion",
+      "Deception": "Deception",
+      "Intimidation": "Intimidation",
+      "StealthScent": "Stealth against scent"
+    },
+    "Time": {
+      "minute": "min",
+      "hour": "hr",
+      "day": "day"
+    },
+    "TokenHud": {
+      "Tooltip": "Garb & Grime: cleanliness and quick actions"
+    },
+    "SheetIndicator": {
+      "Tooltip": "Cleanliness: {level}. Body: {body}. Clothing: {clothing}. Contamination: {contamination}.",
+      "Open": "Open cleanliness"
+    },
+    "SceneControls": {
+      "Manager": "Open Cleanliness Manager",
+      "Bulk": "Change cleanliness of selected tokens",
+      "Context": "Set scene cleanliness context",
+      "TokenLabels": "Show or hide cleanliness labels",
+      "SelectedTokenLabels": "Set cleanliness labels for selected Tokens",
+      "SelectedTokenLabelPosition": "Set label position for selected Tokens",
+      "Group": "Garb & Grime",
+      "SceneGuide": "Scene cleanliness guide",
+      "TokenLabelPreferences": "Cleanliness label display preferences"
+    },
+    "ContextDialog": {
+      "Title": "Set scene context",
+      "Profile": "Environment profile",
+      "Hint": "The profile is stored in scene flags and affects recommendations and services.",
+      "ClassificationHint": "Classify every cleanliness level for this Scene. These labels are GM guidance only and do not apply mechanical effects.",
+      "UseProfileDefaults": "Use profile defaults",
+      "StaleProfile": "Unavailable profile: {id}",
+      "StaleProfileHint": "This Scene references the unavailable profile “{id}”. Choose a replacement to repair the Scene. Nothing is remapped until you save.",
+      "NoProfilesAvailable": "No environment profiles are available yet. Garb & Grime may still be initializing."
+    },
+    "BulkDialog": {
+      "Title": "Edit selected tokens",
+      "Text": "Apply an action to {count} unique actors."
+    },
+    "Chat": {
+      "StateChanged": "Cleanliness changed",
+      "Cleaned": "Cleaning completed"
+    },
+    "Effects": {
+      "CleanClothesDirtyBody": "Clean clothing, unwashed body",
+      "Groomed": "Groomed"
+    },
+    "Items": {
+      "Soap": "Soap",
+      "SpareClothing": "Clean spare clothing",
+      "Perfume": "Perfume",
+      "ScentMask": "Scent masking substance",
+      "WashingKit": "Washing kit",
+      "Towel": "Towel",
+      "LaundryVoucher": "Laundry service voucher",
+      "MagicalCleaning": "Magical cleaning item",
+      "UseForCleaning": "Use for cleaning",
+      "Integration": "Garb & Grime use",
+      "NoIntegration": "No fixed integration",
+      "SaveIntegration": "Save integration"
+    },
+    "Currency": {
+      "RecordOnly": "Record only (no deduction)",
+      "Dnd5e": "D&D 5e currency",
+      "ActorFlagWallet": "Actor flag wallet",
+      "Mark": "Mark"
+    },
+    "DailyUpkeep": {
+      "Reason": "Daily cleanliness upkeep",
+      "DebtSettled": "Accrued upkeep costs settled.",
+      "DebtSettlement": "Settle upkeep costs",
+      "PaymentPromptTitle": "Pay daily upkeep",
+      "PaymentPrompt": "Deduct {amount} {currency} from {actor} for daily upkeep now?",
+      "Debt": "Accrued upkeep costs",
+      "RecordSettled": "Record as settled",
+      "PayNow": "Deduct now"
+    },
+    "Automation": {
+      "LongRest": "Long rest",
+      "CombatEnd": "Combat end",
+      "WorldDay": "End of an in-game day",
+      "Extreme": "Extreme exposure",
+      "QuietDay": "Quiet day in clean accommodation",
+      "Activity": "Travel, strenuous work, or sleeping outdoors",
+      "ContextExposure": "Current environment exposure"
+    },
+    "Notifications": {
+      "PaymentFailed": "{actor} cannot safely pay {amount} {currency}. Cleaning was not applied.",
+      "Cleaned": "{actor}: applied {method}.",
+      "SelectTokens": "Select at least one token first.",
+      "ContextSet": "Scene context set to “{context}”.",
+      "Migrated": "Normalized {count} actor records already in use.",
+      "Saved": "Cleanliness state saved.",
+      "SettingsSaved": "Garb & Grime settings saved.",
+      "DebtSettled": "{actor}: {amount} {currency} of upkeep costs were settled.",
+      "ItemIntegrationSaved": "The item integration was saved.",
+      "MaskingApplied": "{actor} uses {item} to mask their scent.",
+      "PaymentCancelled": "Payment was cancelled; cleanliness was not changed.",
+      "PartyMaintenanceSet": "Daily upkeep was set to “{state}” for {count} characters.",
+      "BulkContaminationApplied": "Contamination was applied to {count} selected actors.",
+      "TokenActionComplete": "Cleanliness action completed for {actor}.",
+      "SelectActors": "Select at least one actor first.",
+      "BulkActorsAdjusted": "Adjusted dirt by {amount} for {count} actors.",
+      "BulkActorActionComplete": "Applied {action} to {count} Actors."
+    },
+    "Errors": {
+      "PermissionDenied": "You do not have permission for this action.",
+      "ActorMissing": "The actor could not be found.",
+      "ChangeVetoed": "An extension vetoed the change.",
+      "UnknownContamination": "Unknown contamination: {id}",
+      "UnknownMethod": "Unknown or disabled cleaning method: {id}",
+      "UnknownProfile": "Unknown environment profile: {id}",
+      "MethodNotPlayerUsable": "This method is not enabled for direct player use.",
+      "CurrencyDenominationMissing": "No denomination is configured for the D&D 5e currency adapter. Mark is not converted to GP automatically.",
+      "CurrencyAdapterMissing": "Currency adapter not found: {id}",
+      "RequiredItemMissing": "Required item is missing: {item}",
+      "ItemIntegrationMissing": "No valid Garb & Grime integration is registered for this item.",
+      "ServiceUnavailable": "{method} is unavailable in the current “{context}” context.",
+      "Unexpected": "The action could not be completed.",
+      "InvalidSocialJson": "The social-consequence JSON is invalid.",
+      "InvalidTrackingJson": "The tracking-consequence JSON is invalid.",
+      "PartialInitialization": "Garb & Grime initialized only partially ({count} errors). Check the browser console and reload the world.",
+      "InitializationFailed": "Garb & Grime could not initialize the “{area}” integration.",
+      "TokenMissing": "The token could not be found.",
+      "ModuleRecordMissing": "The Garb & Grime module record is unavailable during initialization.",
+      "InvalidSceneRatings": "The Scene cleanliness classifications are invalid.",
+      "InvalidActorScopeRegex": "Garb & Grime: The dashboard Actor scope regular expression “{pattern}” is invalid. Settings were not saved.",
+      "ActorManagerActionFailed": "Garb & Grime could not complete the Actor dashboard action. Check the browser console for details.",
+      "SceneProfileRequired": "Choose an environment profile before saving the Scene Context.",
+      "SceneProfileRegistryUnavailable": "Garb & Grime environment profiles are not available yet. Close and reopen Scene Context after initialization finishes.",
+      "SceneContextInvalidScene": "Scene Context requires a valid Foundry Scene document.",
+      "SceneContextPersistenceFailed": "Garb & Grime could not save Scene Context for “{scene}”.",
+      "SceneContextFormUnavailable": "Garb & Grime could not read the Scene Context form. Close the dialog and try again."
+    },
+    "Confirm": {
+      "ResetTitle": "Reset cleanliness?",
+      "ResetText": "This removes dirt, contaminations, masking effects, and groomed states.",
+      "ResetCategoryTitle": "Reset category?",
+      "ResetCategoryText": "The values in this category will be replaced by module defaults.",
+      "RemoveDefinitionTitle": "Remove definition?",
+      "RemoveDefinitionText": "Remove “{name}”? Existing Actor state remains intact, but this definition will no longer be available."
+    },
+    "FirstRun": {
+      "Title": "Garb & Grime is ready",
+      "Text": "The module works without macros. Open global configuration through Configure Settings → Module Settings → Garb & Grime.",
+      "Entry1": "The Settings sidebar also contains a prominent Garb & Grime card.",
+      "Entry2": "Actor sheets receive a header entry and a visible cleanliness indicator.",
+      "Entry3": "The Token HUD shows a shirt icon for owned actors or actors controlled by the GM.",
+      "OpenSettings": "Open global module settings"
+    },
+    "Permissions": {
+      "viewOwn": "View own cleanliness",
+      "modifyOwnActions": "Perform permitted own cleaning actions",
+      "useServices": "Use cleaning services",
+      "consumeItems": "Consume cleaning items",
+      "changeClothes": "Change clothing",
+      "viewParty": "View party cleanliness",
+      "modifyOthers": "Modify other actors",
+      "configureContexts": "Configure environment contexts",
+      "manageMethods": "Manage cleaning methods",
+      "manageSettings": "Manage module settings",
+      "viewGmDetails": "View hidden GM details",
+      "viewTokenLabels": "View persistent cleanliness status",
+      "viewCleaningChat": "View player-initiated cleaning chat",
+      "viewStateChat": "View manual cleanliness-change chat"
+    },
+    "Roles": {
+      "None": "Nobody",
+      "Player": "Player",
+      "Trusted": "Trusted player",
+      "Assistant": "Assistant GM",
+      "Gm": "Game Master"
+    },
+    "Settings": {
+      "Configuration": {
+        "Name": "Garb & Grime configuration"
+      },
+      "CleaningMethods": {
+        "Name": "Cleaning methods"
+      },
+      "Contaminations": {
+        "Name": "Contaminations"
+      },
+      "Profiles": {
+        "Name": "Environment profiles"
+      },
+      "Permissions": {
+        "Name": "Permissions"
+      },
+      "TransactionLog": {
+        "Name": "Transaction log"
+      },
+      "LastWorldDay": {
+        "Name": "Last world day"
+      },
+      "UiState": {
+        "Name": "UI state"
+      },
+      "WindowState": {
+        "Name": "Window positions"
+      },
+      "LastSeenVersion": {
+        "Name": "Last seen version"
+      },
+      "Debug": {
+        "Name": "Garb & Grime: debug logging",
+        "Hint": "Enable only for troubleshooting. Normal use does not require it."
+      },
+      "OpenManager": {
+        "Name": "Cleanliness Manager",
+        "Label": "Open Cleanliness Manager",
+        "Hint": "Open the central overview for players and GMs."
+      },
+      "ConfigurationHub": {
+        "Name": "Garb & Grime — Global Module Settings",
+        "Label": "Open global module settings",
+        "Hint": "Open the complete world configuration for automation, cleaning, contexts, permissions, currency, and presentation."
+      },
+      "TokenLabelsVisible": {
+        "Name": "Token label visibility"
+      },
+      "SceneGuideVisible": {
+        "Name": "Scene cleanliness guide visible"
+      },
+      "TokenLabelViewerMode": {
+        "Name": "Garb & Grime: Token label display mode",
+        "Hint": "Your personal cleanliness-label display preference. The GM must first grant “View persistent cleanliness status” in Garb & Grime Permissions."
+      },
+      "TokenLabelViewerPosition": {
+        "Name": "Garb & Grime: Token label position",
+        "Hint": "Your personal cleanliness-label position. This never grants permission to see labels."
+      }
+    },
+    "SettingsHub": {
+      "Title": "Garb & Grime — Configuration",
+      "Subtitle": "All world rules are grouped by topic. Safe defaults work without initial setup.",
+      "Navigation": "Configuration sections",
+      "Tabs": {
+        "general": "General",
+        "automation": "Automation",
+        "cleaning": "Cleaning",
+        "upkeep": "Daily upkeep",
+        "rolls": "Rolls",
+        "contexts": "Contexts",
+        "sheets": "Sheets & HUD",
+        "permissions": "Permissions",
+        "currency": "Currency",
+        "debug": "API & debug"
+      },
+      "General": {
+        "Title": "General presentation",
+        "Hint": "The central manager remains available through Module Settings.",
+        "ShowSheetIndicator": "Show cleanliness indicator on supported actor sheets",
+        "ShowIndicatorToPlayers": "Show indicator to players on owned actors",
+        "FirstRunGuide": "Show introduction after module updates",
+        "ActorTypes": "Supported actor types",
+        "ActorTypesHint": "Comma-separated D&D 5e types, default character,npc.",
+        "LocalizationTitle": "Language and localization",
+        "CurrentLanguage": "Current Foundry language:",
+        "AvailableLanguages": "Included Garb & Grime translations:",
+        "LocalizationHint": "Garb & Grime follows Foundry’s Language Preference and does not maintain a separate language override. Change the language under Game Settings → Configure Settings → Core Settings. A reload may be required.",
+        "DashboardHint": "Open the scalable Actor and party management dashboard directly from the module’s global settings.",
+        "DashboardTitle": "Cleanliness dashboard",
+        "OpenDashboard": "Open dashboard",
+        "ActorScopeTitle": "Dashboard Actor scope",
+        "ActorScopeHint": "Limit the dashboard Actor pool before Garb & Grime reads cleanliness summaries or prepares rows. Folder selection and the regular expression are combined; leave both empty to include every supported visible Actor. Character Actors linked to non-GM users through Foundry character assignment or OWNER permission are always included so newly added PCs cannot be hidden by a stale manual scope.",
+        "ActorScopeRegex": "Actor scope regular expression",
+        "ActorScopeRegexPlaceholder": "e.g. ^(Alice|Borin)$ or Player Characters",
+        "ActorScopeRegexHint": "Optional. Matches Actor name, Actor type, and full Actor-folder path. Uses Unicode, case-insensitive regular-expression matching.",
+        "ActorScopeIncludeSubfolders": "Include descendants of selected Actor folders",
+        "ActorScopeFolderSearch": "Find Actor folder",
+        "ActorScopeFolderSearchPlaceholder": "Search folder path…",
+        "ActorScopeFolders": "Dashboard Actor folders",
+        "ActorScopeFoldersSelected": "{count} folders selected",
+        "ActorScopeFolderHint": "No selected folders means all Actor folders. Use the search field to narrow large folder trees before selecting visible folders.",
+        "ActorScopeNoFolders": "No Actor folders exist in this world."
+      },
+      "Automation": {
+        "Title": "Automatic dirt gain",
+        "LongRest": "Long rest",
+        "LongRestHint": "Disabled by default. Rest alone does not clean.",
+        "CombatEnd": "Combat end",
+        "CombatEndHint": "Enable only if every completed combat causes dirt in your campaign.",
+        "WorldDay": "World day change",
+        "WorldDayHint": "Uses Foundry world time and processes characters once per new day.",
+        "OncePerDay": "Limit ordinary automatic gain to once per in-game day",
+        "ExtremeBypass": "Explicit extreme events may bypass the daily limit"
+      },
+      "Cleaning": {
+        "Title": "Cleaning methods",
+        "Hint": "Edit names, costs, currency, time, result, body/clothing, items, effects, and availability.",
+        "EffectMode": "Effect",
+        "SetLevel": "Set level",
+        "ReduceLevel": "Reduce level",
+        "ResultLevel": "Result level",
+        "Reduction": "Reduction",
+        "Settlements": "Settlement types",
+        "TemporaryEffect": "Temporary effect",
+        "DurationSeconds": "Duration in seconds",
+        "PlayerUsable": "Directly usable by players",
+        "RequiredItems": "Required item integration IDs",
+        "OptionalItems": "Optional item integration IDs",
+        "ItemsHint": "Comma-separated stable IDs; present required items are consumed when the method succeeds.",
+        "SoapEnforcementTitle": "Soap inventory requirements",
+        "SoapEnforcementHint": "Optional GM enforcement for Self-wash with soap. Checks the character inventory for an item tagged as the Soap integration or named Soap/Seife. Other cleaning methods are unaffected. GM bulk clean and system actions can still bypass item requirements. A missing item blocks the wash before currency or cleanliness changes.",
+        "RequireSoap": "Require soap in the Actor inventory to self-wash with soap",
+        "ConsumeSoap": "Consume soap from inventory after a successful requirement check",
+        "SoapQuantity": "Soap units required per wash",
+        "InvalidSoapQuantity": "Soap quantity must be a whole number between 1 and 100."
+      },
+      "Upkeep": {
+        "Title": "Daily cleanliness upkeep",
+        "Hint": "Campaign default: 2 Mark per day. Individual actors must also opt in.",
+        "Enabled": "Enable daily upkeep globally",
+        "PaymentMode": "Payment mode",
+        "RecordOnly": "Record service, deduct nothing",
+        "Automatic": "Pay automatically",
+        "NoPayment": "Ignore cost",
+        "MethodId": "Cleaning method",
+        "AutomaticDeduction": "Actually deduct currency automatically",
+        "PromptBeforePayment": "Prompt before payment",
+        "SettlementRequired": "Require a suitable settlement service",
+        "DeductionWarning": "Automatic deduction remains inactive until payment mode, deduction, and a working adapter are all enabled.",
+        "EnableParty": "Enable for all characters",
+        "DisableParty": "Disable for all characters"
+      },
+      "Rolls": {
+        "Title": "Contextual roll advice",
+        "Hint": "Recommendations apply only to configured skills and the current scene context.",
+        "AdvisoryDefault": "Safe default: advisory only. No roll is changed invisibly; automatic mode always displays the reason first.",
+        "Skills": "Skill IDs",
+        "SkillsHint": "Comma-separated, for example per,dec,itm,prf,ste,sur.",
+        "Dedupe": "Duplicate suppression in seconds",
+        "NotifyPlayers": "Notify players",
+        "NotifyGm": "Notify GM",
+        "Mode": "Roll handling",
+        "ModeAdvisory": "Advisory notification only",
+        "ModePrompt": "Pause GM rolls and ask for a mode",
+        "ModeAutomatic": "Visibly apply firm recommendations",
+        "ModeHint": "Players always receive advisory handling. GM prompt mode cancels the pending GM roll, shows four explicit choices, then safely repeats it."
+      },
+      "Contexts": {
+        "Title": "Environment profiles",
+        "Hint": "Profiles are activated through scene flags and may be registered by extension modules.",
+        "ExpectedMin": "Legacy expected minimum",
+        "ExpectedMax": "Legacy expected maximum",
+        "SettlementTypes": "Settlement and availability tags",
+        "SettlementTypesHint": "Comma-separated, such as village, town, city, military, or court. A method is available when at least one tag matches.",
+        "Services": "Available method IDs",
+        "ServicesHint": "Comma-separated method IDs that are explicitly available in this profile regardless of tags.",
+        "Contaminations": "Automatic contamination IDs",
+        "SocialJson": "Social rules (JSON)",
+        "TrackingJson": "Tracking rules (JSON)",
+        "RuleJsonHint": "Use level0 through level3 keys and values such as normal, disadvantage-social, possible-advantage-blend, or scent-stealth-impossible.",
+        "Narrative": "Default reaction / narrative guidance",
+        "LevelRatings": "Cleanliness classifications",
+        "LevelRatingsHint": "Each preset has an explicit four-level acceptance gradient. These four values are what the Scene guide uses; the legacy expected min/max fields only remain as a fallback for older/custom definitions without classifications.",
+        "SceneGuideAutoOpen": "Open the guide when the viewed Scene changes",
+        "SceneGuideEnabled": "Enable the Scene cleanliness guide",
+        "SceneGuideHint": "Keep the current Scene’s expected, accepted, tolerated, disliked, and hated cleanliness levels visible in a small GM-only window.",
+        "SceneGuideSceneControl": "Show the Scene Controls launcher",
+        "SceneGuideTitle": "Scene cleanliness guide",
+        "PresetPreview": "Preset classification preview"
+      },
+      "Contaminations": {
+        "Title": "Contaminations",
+        "Hint": "Contaminations can worsen the effective level for relevant interactions.",
+        "Penalty": "Effective penalty",
+        "Scent": "Scent relevant",
+        "Hidden": "Hidden by default",
+        "Effect": "Create optional Active Effect"
+      },
+      "Sheets": {
+        "Title": "Actor sheets, Token HUD, and effects",
+        "ActorIndicator": "Enable actor sheet indicator",
+        "PlayerVisible": "Indicator visible to players",
+        "TokenHud": "Enable Token HUD control",
+        "TokenQuickActions": "Show quick actions in Token HUD",
+        "SceneControls": "Enable Scene Control buttons",
+        "SceneControlsHint": "Show Garb & Grime buttons in Foundry’s Scene Controls toolbar for opening the manager, scene context and cleanliness guide. Disabling this removes those toolbar buttons, not any cleanliness rules or stored states.",
+        "ActiveEffects": "Mirror states as Active Effects",
+        "ActiveEffectsHint": "Synchronize Actor cleanliness states to module-owned Active Effects. Enabling this creates or updates the related effects; disabling it removes only effects owned by Garb & Grime. This does not change the saved cleanliness states.",
+        "ContaminationEffects": "Also mirror contaminations",
+        "ContaminationEffectsHint": "When Active Effect mirroring is enabled, also synchronize contamination-related effects. This toggle has no effect while Active Effect mirroring is off; contamination data remains intact either way.",
+        "TokenLabelsTitle": "Canvas token labels",
+        "TokenLabelsHint": "Show a compact, high-contrast cleanliness label next to Tokens without replacing Foundry nameplates. Labels are rendered in a dedicated interface layer above all Tokens. The global toggle is stored per client; individual Token display and position overrides are stored in Token flags.",
+        "TokenLabelsEnabled": "Enable canvas cleanliness labels",
+        "TokenLabelsAudience": "Visible to",
+        "TokenLabelsPosition": "Position",
+        "TokenLabelsFormat": "Label content",
+        "TokenLabelsFontSize": "Font size",
+        "TokenLabelsOffset": "Distance from token",
+        "TokenLabelsCurrent": "Global display:",
+        "TokenLabelsKeybindingHint": "The default shortcut is Shift+Alt+G. Change it under Game Settings → Configure Controls → Garb & Grime.",
+        "TokenLabelsFontColor": "Font colour",
+        "TokenLabelsBackgroundColor": "Background colour",
+        "TokenLabelsBackgroundOpacity": "Background opacity",
+        "TokenLabelsPaddingX": "Horizontal padding",
+        "TokenLabelsPaddingY": "Vertical padding",
+        "TokenLabelsVisibilityMode": "Display behaviour",
+        "TokenLabelsVisibilityModeHint": "Choose when inherited cleanliness labels are visible. Per-Token Always show/Always hide overrides still take precedence.",
+        "TokenLabelsActorScope": "Eligible token actors",
+        "TokenLabelsPlayerScope": "Player actor scope",
+        "TokenLabelsPlayerScopeHint": "GM visibility is always allowed. Players must also have the “View persistent cleanliness status” permission.",
+        "TokenLabelsPlayerViewers": "Per-player visibility permission",
+        "TokenLabelsPlayerViewersHint": "Set an explicit exception for individual players. The default role permission is Nobody, so players do not see persistent cleanliness status unless you allow it here or change the role permission.",
+        "TokenLabelsEffective": "Effective permission",
+        "TokenLabelsNoPlayers": "No non-GM users exist in this world.",
+        "TokenLabelsAutomaticModeHint": "This display behaviour is controlled by the GM setting. The manual Shift+Alt+G toggle applies only to Manual toggle mode.",
+        "TokenLabelsPermissionAuthority": "Player authorization is controlled only in the Permissions tab. This section controls which permitted Token types are eligible and the GM default presentation.",
+        "TokenLabelsShortcutEnabled": "Enable cleanliness-label keyboard shortcut",
+        "TokenLabelsShortcutEnabledHint": "Enable the client-side shortcut action. Change the actual key combination under Game Settings → Configure Controls → Garb & Grime. This does not grant players permission to view labels.",
+        "TokenLabelsShortcutScope": "Keyboard shortcut targets",
+        "TokenLabelsShortcutScopeHint": "Default: every player-linked character Token on the current Scene, even when no Token is selected. Selected modes require selecting Tokens first. No world Token flags are changed.",
+        "TokenLabelsShortcutKeybindingHelp": "Shortcut: Shift+Alt+G by default. Every press makes the chosen Token labels all visible or all hidden on your client. Change the keybinding in Foundry’s Configure Controls; Permissions remains authoritative. This works in automatic and manual display modes."
+      },
+      "Permissions": {
+        "Title": "Role-based permissions",
+        "Hint": "Ownership rules also apply. Players can never modify unowned actors through this UI.",
+        "MinimumRole": "Minimum role",
+        "OwnershipHint": "Ownership rules still apply. “Nobody” disables a permission for every non-GM user.",
+        "UserOverrides": "Per-user exceptions",
+        "UserOverridesHint": "An exception overrides the minimum role for this user only. Actor ownership still applies to actor-specific actions.",
+        "Override": "Exception",
+        "Inherit": "Inherit role",
+        "Allow": "Allow",
+        "Deny": "Deny"
+      },
+      "Currency": {
+        "Title": "Currency and adapters",
+        "Hint": "Mark remains a distinct campaign currency. A D&D 5e denomination must be mapped deliberately.",
+        "Adapter": "Currency adapter",
+        "DefaultLabel": "Default currency label",
+        "Dnd5eDenomination": "D&D 5e denomination",
+        "Dnd5eHint": "Leave blank to prevent any silent conversion.",
+        "FlagPath": "Flag wallet path",
+        "MarkWarning": "Default methods use exactly “Mark”. The module never silently converts Mark to GP."
+      },
+      "Debug": {
+        "Title": "API and troubleshooting",
+        "Hint": "The public API is immediately available through game.modules. Normal use never requires the console.",
+        "Verbose": "Enable verbose debug output",
+        "Api": "API access for extension modules:"
+      }
+    },
+    "RollChoice": {
+      "Title": "Cleanliness roll decision",
+      "Recommendation": "Current recommendation: {mode}",
+      "Explanation": "Normal clears cleanliness advantage and disadvantage. Ignore preserves every roll option supplied by D&D 5e or other modules.",
+      "Advantage": "Advantage",
+      "Normal": "Normal",
+      "Disadvantage": "Disadvantage",
+      "Ignore": "Ignore cleanliness",
+      "Blocked": "Scent-based stealth may be impossible",
+      "PossibleAdvantage": "Advantage may apply",
+      "PossibleDisadvantage": "Disadvantage may apply",
+      "AdvantageOpponent": "The opposing tracker may have advantage"
+    },
+    "Launchers": {
+      "Title": "Garb & Grime",
+      "ActorDirectoryHint": "Open the manager, or adjust actors selected in the Actors sidebar together.",
+      "SettingsHint": "Direct access to the cleanliness manager and global world configuration.",
+      "SelectedActorsActions": "Adjust selected actors"
+    },
+    "TokenLabels": {
+      "Audience": {
+        "gm": "GM only",
+        "owners": "GM and Token owners",
+        "everyone": "Everyone who can see the Token"
+      },
+      "Position": {
+        "above": "Above",
+        "below": "Below",
+        "left": "Left",
+        "right": "Right",
+        "inherit": "Follow global position"
+      },
+      "Format": {
+        "level-name": "Level and name",
+        "name": "Name only",
+        "level": "Level only",
+        "detailed": "Level, name, body, and clothing"
+      },
+      "Modes": {
+        "inherit": "Follow global display",
+        "show": "Always show on this Token",
+        "hide": "Always hide on this Token"
+      },
+      "ShowAll": "Show inherited token labels",
+      "HideAll": "Hide inherited token labels",
+      "AllShown": "Inherited cleanliness labels are now visible.",
+      "AllHidden": "Inherited cleanliness labels are now hidden.",
+      "DisabledWarning": "Canvas cleanliness labels are disabled in Garb & Grime settings.",
+      "InvalidMode": "Unknown token label mode.",
+      "ModeSet": "{token}: token label set to “{mode}”.",
+      "SelectedModeSet": "Set {count} selected token labels to “{mode}”.",
+      "SelectedDialog": {
+        "Title": "Token cleanliness labels",
+        "Text": "Choose the display rule for {count} selected Tokens."
+      },
+      "InvalidPosition": "Unknown token label position.",
+      "PositionSet": "{token}: token label position set to “{position}”.",
+      "SelectedPositionSet": "Set {count} selected token labels to “{position}”.",
+      "SelectedPositionDialog": {
+        "Title": "Token cleanliness label position",
+        "Text": "Choose the label position for {count} selected Tokens."
+      },
+      "VisibilityMode": {
+        "manual": "Manual toggle",
+        "always": "Always visible",
+        "controlled": "When controlled",
+        "hovered": "When hovered",
+        "controlled-or-hovered": "When controlled or hovered"
+      },
+      "PlayerScope": {
+        "disabled": "GM only",
+        "owned": "Owned actors only",
+        "characters": "All character/PC tokens",
+        "all": "All eligible visible tokens"
+      },
+      "ActorScope": {
+        "supported": "Configured supported actor types",
+        "characters": "Characters/PCs only"
+      },
+      "PermissionDenied": "You do not have permission to view persistent cleanliness labels.",
+      "ManualToggleUnavailable": "The manual token-label toggle is inactive because the GM selected an automatic display behaviour.",
+      "InvalidViewerMode": "Unknown personal token-label display mode.",
+      "ViewerModeSet": "Personal token-label display mode set to “{mode}”.",
+      "ViewerPositionSet": "Personal token-label position set to “{position}”.",
+      "ViewerPreferencesTitle": "Cleanliness label display preferences",
+      "ViewerPreferencesSaved": "Cleanliness label display preferences saved.",
+      "ViewerModeLabel": "Display mode",
+      "ViewerPositionLabel": "Position",
+      "ManualVisibleLabel": "Show labels now when using Manual mode",
+      "PlayerViewerPreferencesHint": "These are your personal display preferences. They cannot grant access; the GM controls access in Garb & Grime → Permissions.",
+      "GmViewerPreferencesHint": "GM presentation continues to use the world Token Label settings. This dialog only changes the GM client’s Manual on/off state.",
+      "GmViewerModeHint": "GM Token-label mode and position are configured in Global Module Settings.",
+      "ViewerMode": {
+        "inherit": "Follow GM default",
+        "manual": "Manual on/off",
+        "always": "Always show",
+        "controlled": "Controlled Token only",
+        "hovered": "Hovered Token only",
+        "controlled-or-hovered": "Controlled or Hovered",
+        "hidden": "Always hide for me"
+      },
+      "ShortcutScope": {
+        "scene-pcs": "All player-character Tokens on this Scene (default)",
+        "selected-pcs": "Selected player-character Tokens only",
+        "scene-eligible": "All eligible Tokens on this Scene",
+        "selected-eligible": "Selected eligible Tokens only"
+      },
+      "ShortcutHiddenPreference": "Your personal cleanliness-label preference is Always Hide. Change that preference before using this shortcut.",
+      "ShortcutNoScene": "No active Scene canvas is ready for this shortcut.",
+      "ShortcutNoEligibleTokens": "No eligible and visible Tokens are available for the configured shortcut scope.",
+      "ShortcutShown": "Showing cleanliness labels for {count} Tokens on this client.",
+      "ShortcutHidden": "Hiding cleanliness labels for {count} Tokens on this client."
+    },
+    "Keybindings": {
+      "ToggleTokenLabels": {
+        "Name": "Toggle scoped Token cleanliness labels",
+        "Hint": "Toggle cleanliness labels for all player-character Tokens on this Scene by default. The GM can change the targeting scope in Garb & Grime → Sheets & HUD. Each player can customize this shortcut under Configure Controls; Permissions still apply."
+      }
+    },
+    "Validation": {
+      "Fields": {
+        "Id": "ID",
+        "MethodId": "Cleaning method ID",
+        "ContaminationId": "Contamination ID",
+        "ProfileId": "Environment profile ID",
+        "ItemId": "Item integration ID"
+      },
+      "IdPattern": "{field} must match {pattern}.",
+      "MethodObject": "The cleaning method definition must be an object.",
+      "MethodName": "Cleaning method {id} requires a name or nameKey.",
+      "MethodEffect": "Cleaning method {id} has an invalid effect mode.",
+      "MethodCost": "Cleaning method {id} has an invalid cost.",
+      "ContaminationObject": "The contamination definition must be an object.",
+      "ContaminationName": "Contamination {id} requires a name or nameKey.",
+      "ProfileObject": "The environment profile definition must be an object.",
+      "ProfileName": "Environment profile {id} requires a name or nameKey.",
+      "ProfileField": "Environment profile {id} has an invalid {field} value.",
+      "ItemObject": "The item integration definition must be an object.",
+      "ItemAction": "Item integration {id} requires a methodId or masking definition.",
+      "DefinitionDuplicate": "Definition {id} is already registered.",
+      "CurrencyAdapterObject": "The currency adapter must be an object.",
+      "CurrencyAdapterId": "The currency adapter requires an ID.",
+      "CurrencyAdapterMethod": "Currency adapter {id} requires {method}().",
+      "CurrencyAdapterDuplicate": "Currency adapter {id} is already registered.",
+      "ProfileRatings": "Environment profile level classifications must contain exactly four valid ratings."
+    },
+    "Initialization": {
+      "Areas": {
+        "Settings": "settings",
+        "ActorSheets": "Actor sheets",
+        "TokenHud": "Token HUD",
+        "TokenLabels": "Token labels",
+        "SceneControls": "Scene Controls",
+        "Sidebar": "sidebar launchers",
+        "Items": "item integration",
+        "Rolls": "roll integration",
+        "Automation": "automation",
+        "Ready": "ready lifecycle",
+        "Api": "public API exposure",
+        "LongRest": "long-rest automation",
+        "CombatEnd": "combat-end automation",
+        "WorldDay": "world-day automation",
+        "SceneGuide": "Scene cleanliness guide"
+      }
+    },
+    "SceneGuide": {
+      "Disabled": "The Scene cleanliness guide is disabled in the global module settings.",
+      "Edit": "Edit classification",
+      "LevelClassification": "Scene cleanliness classification",
+      "Open": "Open Scene guide",
+      "Ratings": {
+        "accepted": "Accepted",
+        "disliked": "Disliked",
+        "expected": "Expected",
+        "hated": "Hated",
+        "tolerated": "Tolerated"
+      },
+      "Title": "Scene Cleanliness Guide"
+    },
+    "Images": {
+      "FallbackTitle": "Actor portrait unavailable; Garb & Grime is using safe fallback artwork.",
+      "SuccessorAvailable": " The successor module \"{successor}\" is installed, but Garb & Grime does not guess renamed file paths.",
+      "UnavailableModuleWarning": "Actor portrait fallback: {count} Actor(s) reference the unavailable module \"{module}\". Garb & Grime suppressed those image requests to prevent repeated HTTP 404s and used safe fallback artwork.{successor}",
+      "LoadFailedWarning": "Actor portrait fallback: an image failed to load. Garb & Grime cached the failure for this browser session and will use safe fallback artwork on subsequent renders."
+    }
+  }
+}

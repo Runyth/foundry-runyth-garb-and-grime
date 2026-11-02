@@ -1,0 +1,10 @@
+Garb & Grime 1.1.4
+public API 1.3.0
+state schema 1
+bundled Scene profiles 10
+bundled distinct rating patterns 10
+legacy four-Expected editor fallback present: False
+profile preset preview present: True
+profile rating migration version: 1
+custom profile rating provenance marker: True
+Scene override storage changed: False

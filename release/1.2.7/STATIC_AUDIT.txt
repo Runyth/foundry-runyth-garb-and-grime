@@ -1,0 +1,10 @@
+# v1.2.7 Static Compatibility Audit
+
+Manifest: garb-and-grime 1.2.7
+Minimum: 13 / Verified: 13.351
+Public API: 1.3.0 / Actor state schema: 1
+Localized key parity: 703 English / 703 German
+Source static scans: no broad/deprecated Application/chat hooks; no raw keyboard DOM listener; no jQuery html.find; no array-style Scene Controls mutation.
+Shortcut: native Foundry keybinding reused; default scope scene-pcs; authorization before override; local transient Token UUID Map.
+130 automated Node tests passed.
+No live Foundry server interaction performed; manual acceptance checklist supplied.

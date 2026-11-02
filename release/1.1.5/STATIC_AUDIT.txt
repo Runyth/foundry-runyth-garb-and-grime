@@ -1,0 +1,10 @@
+Garb & Grime 1.1.5
+public API 1.3.0
+state schema 1
+reported private-static receiver trap present: False
+shared receiver-independent selected Actor resolver: True
+per-manager Actor action queue: True
+Actor action rejection boundary: True
+bulk Actor action types validated: +1, -1, water, clean, maintenance-on, maintenance-off
+selection workflows validated: multi, empty, filtered/off-page, select-visible, select-folder, clear, reopen
+world data migration required: False

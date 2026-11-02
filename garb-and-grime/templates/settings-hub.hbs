@@ -1,0 +1,338 @@
+<div class="gag-app-shell">
+  <header class="gag-app-header">
+    <div><h1><i class="fa-solid fa-sliders" aria-hidden="true"></i> {{localize "GAG.SettingsHub.Title"}}</h1><p>{{localize "GAG.SettingsHub.Subtitle"}}</p></div>
+    <button type="button" data-action="openManager"><i class="fa-solid fa-shirt"></i><span>{{localize "GAG.Manager.Open"}}</span></button>
+  </header>
+  <nav class="gag-tabs gag-settings-tabs" aria-label="{{localize 'GAG.SettingsHub.Navigation'}}">
+    {{#each tabs}}<button type="button" data-action="switchTab" data-tab="{{id}}" class="{{#if active}}active{{/if}}">{{label}}</button>{{/each}}
+  </nav>
+  <main class="gag-content">
+    {{#if (eq activeTab "general")}}
+      <form class="gag-panel" data-category="general">
+        <h2>{{localize "GAG.SettingsHub.General.Title"}}</h2>
+        <p class="hint">{{localize "GAG.SettingsHub.General.Hint"}}</p>
+        <section class="gag-dashboard-launch-card" aria-labelledby="gag-dashboard-launch-title">
+          <div>
+            <h3 id="gag-dashboard-launch-title"><i class="fa-solid fa-users-viewfinder" aria-hidden="true"></i> {{localize "GAG.SettingsHub.General.DashboardTitle"}}</h3>
+            <p>{{localize "GAG.SettingsHub.General.DashboardHint"}}</p>
+          </div>
+          <button type="button" data-action="openManager">
+            <i class="fa-solid fa-shirt" aria-hidden="true"></i>
+            <span>{{localize "GAG.SettingsHub.General.OpenDashboard"}}</span>
+          </button>
+        </section>
+        <section class="gag-definition-card gag-localization-status" aria-labelledby="gag-localization-title">
+          <h3 id="gag-localization-title"><i class="fa-solid fa-language" aria-hidden="true"></i> {{localize "GAG.SettingsHub.General.LocalizationTitle"}}</h3>
+          <p>{{localize "GAG.SettingsHub.General.CurrentLanguage"}} <strong>{{localization.currentName}}</strong> <code>{{localization.currentCode}}</code></p>
+          <p>{{localize "GAG.SettingsHub.General.AvailableLanguages"}} <strong>{{localization.availableLanguages}}</strong></p>
+          <p class="hint">{{localize "GAG.SettingsHub.General.LocalizationHint"}}</p>
+        </section>
+        <section class="gag-definition-card gag-actor-scope-settings" aria-labelledby="gag-actor-scope-title">
+          <div class="gag-section-heading">
+            <div>
+              <h3 id="gag-actor-scope-title"><i class="fa-solid fa-users-rectangle" aria-hidden="true"></i> {{localize "GAG.SettingsHub.General.ActorScopeTitle"}}</h3>
+              <p class="hint">{{localize "GAG.SettingsHub.General.ActorScopeHint"}}</p>
+            </div>
+            <span class="gag-count-badge" data-gag-actor-scope-selected-count>{{localize "GAG.SettingsHub.General.ActorScopeFoldersSelected" count=selectedActorFolderCount}}</span>
+          </div>
+          <label>
+            <span>{{localize "GAG.SettingsHub.General.ActorScopeRegex"}}</span>
+            <input type="text" name="general.dashboardActorRegex" value="{{configuration.general.dashboardActorRegex}}" placeholder="{{localize 'GAG.SettingsHub.General.ActorScopeRegexPlaceholder'}}" spellcheck="false">
+            <small>{{localize "GAG.SettingsHub.General.ActorScopeRegexHint"}}</small>
+          </label>
+          <label class="gag-checkbox"><input type="checkbox" name="general.dashboardActorIncludeSubfolders" {{checked configuration.general.dashboardActorIncludeSubfolders}}><span>{{localize "GAG.SettingsHub.General.ActorScopeIncludeSubfolders"}}</span></label>
+          <div class="gag-folder-scope-picker">
+            <div class="gag-folder-scope-picker__toolbar">
+              <label class="gag-search-field"><span>{{localize "GAG.SettingsHub.General.ActorScopeFolderSearch"}}</span><input type="search" data-gag-actor-scope-folder-search placeholder="{{localize 'GAG.SettingsHub.General.ActorScopeFolderSearchPlaceholder'}}"></label>
+              <div class="gag-folder-scope-picker__actions">
+                <button type="button" class="compact" data-action="selectVisibleActorScopeFolders"><i class="fa-solid fa-check-double" aria-hidden="true"></i><span>{{localize "GAG.Actions.SelectVisible"}}</span></button>
+                <button type="button" class="compact" data-action="clearActorScopeFolders"><i class="fa-solid fa-xmark" aria-hidden="true"></i><span>{{localize "GAG.Actions.ClearSelection"}}</span></button>
+              </div>
+            </div>
+            <div class="gag-folder-scope-picker__list" role="group" aria-label="{{localize 'GAG.SettingsHub.General.ActorScopeFolders'}}">
+              {{#each actorFolderRows}}
+                <label class="gag-folder-scope-row" data-gag-actor-scope-folder-row data-gag-actor-scope-search="{{searchText}}" style="--gag-folder-depth: {{depth}}">
+                  <input type="checkbox" value="{{id}}" data-gag-actor-scope-folder {{checked selected}}>
+                  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+                  <span title="{{label}}">{{label}}</span>
+                </label>
+              {{else}}
+                <p class="hint">{{localize "GAG.SettingsHub.General.ActorScopeNoFolders"}}</p>
+              {{/each}}
+            </div>
+            <small>{{localize "GAG.SettingsHub.General.ActorScopeFolderHint"}}</small>
+          </div>
+        </section>
+        <label class="gag-checkbox"><input type="checkbox" name="general.showSheetIndicator" {{checked configuration.general.showSheetIndicator}}><span>{{localize "GAG.SettingsHub.General.ShowSheetIndicator"}}</span></label>
+        <label class="gag-checkbox"><input type="checkbox" name="general.showIndicatorToPlayers" {{checked configuration.general.showIndicatorToPlayers}}><span>{{localize "GAG.SettingsHub.General.ShowIndicatorToPlayers"}}</span></label>
+        <label class="gag-checkbox"><input type="checkbox" name="general.firstRunGuide" {{checked configuration.general.firstRunGuide}}><span>{{localize "GAG.SettingsHub.General.FirstRunGuide"}}</span></label>
+        <label><span>{{localize "GAG.SettingsHub.General.ActorTypes"}}</span><input type="text" name="general.supportedActorTypes" value="{{configuration.general.supportedActorTypes}}"><small>{{localize "GAG.SettingsHub.General.ActorTypesHint"}}</small></label>
+        <div class="gag-form-actions"><button type="button" data-action="saveConfiguration" data-category="general"><i class="fa-solid fa-floppy-disk"></i><span>{{localize "Save"}}</span></button><button type="button" data-action="resetCategory" data-category="configuration"><i class="fa-solid fa-rotate-left"></i><span>{{localize "GAG.Actions.ResetDefaults"}}</span></button></div>
+      </form>
+    {{/if}}
+
+    {{#if (eq activeTab "automation")}}
+      <form class="gag-panel" data-category="automation">
+        <h2>{{localize "GAG.SettingsHub.Automation.Title"}}</h2>
+        <div class="gag-settings-grid">
+          <fieldset><legend>{{localize "GAG.SettingsHub.Automation.LongRest"}}</legend><label class="gag-checkbox"><input type="checkbox" name="automation.longRestEnabled" {{checked configuration.automation.longRestEnabled}}><span>{{localize "GAG.Common.Enabled"}}</span></label><label><span>{{localize "GAG.Common.DirtGain"}}</span><input type="number" min="0" max="3" name="automation.longRestGain" value="{{configuration.automation.longRestGain}}"></label><small>{{localize "GAG.SettingsHub.Automation.LongRestHint"}}</small></fieldset>
+          <fieldset><legend>{{localize "GAG.SettingsHub.Automation.CombatEnd"}}</legend><label class="gag-checkbox"><input type="checkbox" name="automation.combatEndEnabled" {{checked configuration.automation.combatEndEnabled}}><span>{{localize "GAG.Common.Enabled"}}</span></label><label><span>{{localize "GAG.Common.DirtGain"}}</span><input type="number" min="0" max="3" name="automation.combatEndGain" value="{{configuration.automation.combatEndGain}}"></label><small>{{localize "GAG.SettingsHub.Automation.CombatEndHint"}}</small></fieldset>
+          <fieldset><legend>{{localize "GAG.SettingsHub.Automation.WorldDay"}}</legend><label class="gag-checkbox"><input type="checkbox" name="automation.worldDayEnabled" {{checked configuration.automation.worldDayEnabled}}><span>{{localize "GAG.Common.Enabled"}}</span></label><label><span>{{localize "GAG.Common.DirtGain"}}</span><input type="number" min="0" max="3" name="automation.worldDayGain" value="{{configuration.automation.worldDayGain}}"></label><small>{{localize "GAG.SettingsHub.Automation.WorldDayHint"}}</small></fieldset>
+        </div>
+        <label class="gag-checkbox"><input type="checkbox" name="automation.oncePerDay" {{checked configuration.automation.oncePerDay}}><span>{{localize "GAG.SettingsHub.Automation.OncePerDay"}}</span></label>
+        <label class="gag-checkbox"><input type="checkbox" name="automation.extremeBypassesDailyLimit" {{checked configuration.automation.extremeBypassesDailyLimit}}><span>{{localize "GAG.SettingsHub.Automation.ExtremeBypass"}}</span></label>
+        <div class="gag-form-actions"><button type="button" data-action="saveConfiguration" data-category="automation"><i class="fa-solid fa-floppy-disk"></i><span>{{localize "Save"}}</span></button></div>
+      </form>
+    {{/if}}
+
+    {{#if (eq activeTab "cleaning")}}
+      <form class="gag-panel" data-category="cleaning">
+        <h2>{{localize "GAG.SettingsHub.Cleaning.SoapEnforcementTitle"}}</h2>
+        <p class="hint">{{localize "GAG.SettingsHub.Cleaning.SoapEnforcementHint"}}</p>
+        <label class="gag-checkbox"><input type="checkbox" name="cleaning.requireSoap" {{checked configuration.cleaning.requireSoap}}><span>{{localize "GAG.SettingsHub.Cleaning.RequireSoap"}}</span></label>
+        <label class="gag-checkbox"><input type="checkbox" name="cleaning.consumeSoap" {{checked configuration.cleaning.consumeSoap}}><span>{{localize "GAG.SettingsHub.Cleaning.ConsumeSoap"}}</span></label>
+        <label><span>{{localize "GAG.SettingsHub.Cleaning.SoapQuantity"}}</span><input type="number" min="1" max="100" step="1" name="cleaning.soapQuantity" value="{{configuration.cleaning.soapQuantity}}"></label>
+        <div class="gag-form-actions"><button type="button" data-action="saveConfiguration" data-category="cleaning"><i class="fa-solid fa-floppy-disk"></i><span>{{localize "Save"}}</span></button></div>
+      </form>
+      <form class="gag-panel gag-definition-form" data-methods-form>
+        <div class="gag-section-heading"><div><h2>{{localize "GAG.SettingsHub.Cleaning.Title"}}</h2><p class="hint">{{localize "GAG.SettingsHub.Cleaning.Hint"}}</p></div><button type="button" data-action="addMethod"><i class="fa-solid fa-plus"></i><span>{{localize "GAG.Actions.AddMethod"}}</span></button></div>
+        {{#each methods}}
+          <fieldset class="gag-definition-card"><legend>{{label}} <code>{{id}}</code></legend>
+            <div class="gag-form-grid four">
+              <label><span>{{localize "GAG.Common.Name"}}</span><input name="methods.{{index}}.name" value="{{label}}"></label>
+              <label><span>{{localize "GAG.Common.Cost"}}</span><input type="number" min="0" step="0.01" name="methods.{{index}}.costAmount" value="{{cost.amount}}"></label>
+              <label><span>{{localize "GAG.Common.Currency"}}</span><input name="methods.{{index}}.currency" value="{{cost.currency}}"></label>
+              <label><span>{{localize "GAG.Common.Time"}}</span><span class="gag-input-pair"><input type="number" min="0" name="methods.{{index}}.timeValue" value="{{time.value}}"><select name="methods.{{index}}.timeUnit"><option value="minute" {{#if (eq time.unit 'minute')}}selected{{/if}}>{{localize "GAG.Time.minute"}}</option><option value="hour" {{#if (eq time.unit 'hour')}}selected{{/if}}>{{localize "GAG.Time.hour"}}</option><option value="day" {{#if (eq time.unit 'day')}}selected{{/if}}>{{localize "GAG.Time.day"}}</option></select></span></label>
+              <label><span>{{localize "GAG.SettingsHub.Cleaning.EffectMode"}}</span><select name="methods.{{index}}.effectMode"><option value="set" {{#if (eq effect.mode 'set')}}selected{{/if}}>{{localize "GAG.SettingsHub.Cleaning.SetLevel"}}</option><option value="reduce" {{#if (eq effect.mode 'reduce')}}selected{{/if}}>{{localize "GAG.SettingsHub.Cleaning.ReduceLevel"}}</option></select></label>
+              <label><span>{{localize "GAG.SettingsHub.Cleaning.ResultLevel"}}</span><input type="number" min="0" max="3" name="methods.{{index}}.effectLevel" value="{{effect.level}}"></label>
+              <label><span>{{localize "GAG.SettingsHub.Cleaning.Reduction"}}</span><input type="number" min="0" max="3" name="methods.{{index}}.effectAmount" value="{{effect.amount}}"></label>
+              <label><span>{{localize "GAG.SettingsHub.Cleaning.Settlements"}}</span><input name="methods.{{index}}.settlements" value="{{settlementTypesText}}"></label>
+              <label><span>{{localize "GAG.SettingsHub.Cleaning.RequiredItems"}}</span><input name="methods.{{index}}.requiredItems" value="{{requiredItemsText}}"><small>{{localize "GAG.SettingsHub.Cleaning.ItemsHint"}}</small></label>
+              <label><span>{{localize "GAG.SettingsHub.Cleaning.OptionalItems"}}</span><input name="methods.{{index}}.optionalItems" value="{{optionalItemsText}}"><small>{{localize "GAG.SettingsHub.Cleaning.ItemsHint"}}</small></label>
+              <label><span>{{localize "GAG.SettingsHub.Cleaning.TemporaryEffect"}}</span><input name="methods.{{index}}.temporaryId" value="{{temporaryId}}"></label>
+              <label><span>{{localize "GAG.SettingsHub.Cleaning.DurationSeconds"}}</span><input type="number" min="0" name="methods.{{index}}.temporaryDuration" value="{{temporaryDuration}}"></label>
+            </div>
+            <div class="gag-checkbox-row"><label class="gag-checkbox"><input type="checkbox" name="methods.{{index}}.enabled" {{checked enabled}}><span>{{localize "GAG.Common.Enabled"}}</span></label><label class="gag-checkbox"><input type="checkbox" name="methods.{{index}}.playerUsable" {{checked playerUsable}}><span>{{localize "GAG.SettingsHub.Cleaning.PlayerUsable"}}</span></label><label class="gag-checkbox"><input type="checkbox" name="methods.{{index}}.body" {{checked effect.body}}><span>{{localize "GAG.Common.Body"}}</span></label><label class="gag-checkbox"><input type="checkbox" name="methods.{{index}}.clothing" {{checked effect.clothing}}><span>{{localize "GAG.Common.Clothing"}}</span></label></div>
+            {{#if removable}}<button type="button" class="danger compact" data-action="removeDefinition" data-kind="method" data-id="{{id}}"><i class="fa-solid fa-trash"></i><span>{{localize "Delete"}}</span></button>{{/if}}
+          </fieldset>
+        {{/each}}
+        <div class="gag-form-actions"><button type="button" data-action="saveMethods"><i class="fa-solid fa-floppy-disk"></i><span>{{localize "Save"}}</span></button><button type="button" data-action="resetCategory" data-category="methods"><i class="fa-solid fa-rotate-left"></i><span>{{localize "GAG.Actions.ResetDefaults"}}</span></button></div>
+      </form>
+    {{/if}}
+
+    {{#if (eq activeTab "upkeep")}}
+      <form class="gag-panel" data-category="upkeep">
+        <h2>{{localize "GAG.SettingsHub.Upkeep.Title"}}</h2><p class="hint">{{localize "GAG.SettingsHub.Upkeep.Hint"}}</p>
+        <label class="gag-checkbox"><input type="checkbox" name="dailyUpkeep.enabled" {{checked configuration.dailyUpkeep.enabled}}><span>{{localize "GAG.SettingsHub.Upkeep.Enabled"}}</span></label>
+        <div class="gag-button-grid">
+          <button type="button" data-action="setPartyMaintenance" data-enabled="true"><i class="fa-solid fa-users"></i><span>{{localize "GAG.SettingsHub.Upkeep.EnableParty"}}</span></button>
+          <button type="button" data-action="setPartyMaintenance" data-enabled="false"><i class="fa-solid fa-users-slash"></i><span>{{localize "GAG.SettingsHub.Upkeep.DisableParty"}}</span></button>
+        </div>
+        <div class="gag-form-grid">
+          <label><span>{{localize "GAG.Common.Cost"}}</span><input type="number" min="0" step="0.01" name="dailyUpkeep.cost" value="{{configuration.dailyUpkeep.cost}}"></label>
+          <label><span>{{localize "GAG.Common.Currency"}}</span><input name="dailyUpkeep.currency" value="{{configuration.dailyUpkeep.currency}}"></label>
+          <label><span>{{localize "GAG.SettingsHub.Upkeep.PaymentMode"}}</span><select name="dailyUpkeep.paymentMode"><option value="record" {{#if (eq configuration.dailyUpkeep.paymentMode 'record')}}selected{{/if}}>{{localize "GAG.SettingsHub.Upkeep.RecordOnly"}}</option><option value="automatic" {{#if (eq configuration.dailyUpkeep.paymentMode 'automatic')}}selected{{/if}}>{{localize "GAG.SettingsHub.Upkeep.Automatic"}}</option><option value="none" {{#if (eq configuration.dailyUpkeep.paymentMode 'none')}}selected{{/if}}>{{localize "GAG.SettingsHub.Upkeep.NoPayment"}}</option></select></label>
+          <label><span>{{localize "GAG.SettingsHub.Upkeep.MethodId"}}</span><input name="dailyUpkeep.methodId" value="{{configuration.dailyUpkeep.methodId}}"></label>
+        </div>
+        <label class="gag-checkbox"><input type="checkbox" name="dailyUpkeep.automaticDeduction" {{checked configuration.dailyUpkeep.automaticDeduction}}><span>{{localize "GAG.SettingsHub.Upkeep.AutomaticDeduction"}}</span></label>
+        <label class="gag-checkbox"><input type="checkbox" name="dailyUpkeep.promptBeforePayment" {{checked configuration.dailyUpkeep.promptBeforePayment}}><span>{{localize "GAG.SettingsHub.Upkeep.PromptBeforePayment"}}</span></label>
+        <label class="gag-checkbox"><input type="checkbox" name="dailyUpkeep.settlementRequired" {{checked configuration.dailyUpkeep.settlementRequired}}><span>{{localize "GAG.SettingsHub.Upkeep.SettlementRequired"}}</span></label>
+        <div class="gag-warning"><i class="fa-solid fa-triangle-exclamation"></i><span>{{localize "GAG.SettingsHub.Upkeep.DeductionWarning"}}</span></div>
+        <div class="gag-form-actions"><button type="button" data-action="saveConfiguration" data-category="dailyUpkeep"><i class="fa-solid fa-floppy-disk"></i><span>{{localize "Save"}}</span></button></div>
+      </form>
+    {{/if}}
+
+    {{#if (eq activeTab "rolls")}}
+      <form class="gag-panel" data-category="rolls">
+        <h2>{{localize "GAG.SettingsHub.Rolls.Title"}}</h2><p class="hint">{{localize "GAG.SettingsHub.Rolls.Hint"}}</p>
+        <label class="gag-checkbox"><input type="checkbox" name="rolls.enabled" {{checked configuration.rolls.enabled}}><span>{{localize "GAG.Common.Enabled"}}</span></label>
+        <label><span>{{localize "GAG.SettingsHub.Rolls.Mode"}}</span><select name="rolls.mode"><option value="advisory" {{#if (eq configuration.rolls.mode "advisory")}}selected{{/if}}>{{localize "GAG.SettingsHub.Rolls.ModeAdvisory"}}</option><option value="prompt" {{#if (eq configuration.rolls.mode "prompt")}}selected{{/if}}>{{localize "GAG.SettingsHub.Rolls.ModePrompt"}}</option><option value="automatic" {{#if (eq configuration.rolls.mode "automatic")}}selected{{/if}}>{{localize "GAG.SettingsHub.Rolls.ModeAutomatic"}}</option></select><small>{{localize "GAG.SettingsHub.Rolls.ModeHint"}}</small></label>
+        <div class="gag-warning"><i class="fa-solid fa-eye"></i><span>{{localize "GAG.SettingsHub.Rolls.AdvisoryDefault"}}</span></div>
+        <div class="gag-form-grid">
+          <label><span>{{localize "GAG.SettingsHub.Rolls.Skills"}}</span><input name="rolls.skills" value="{{configuration.rolls.skills}}"><small>{{localize "GAG.SettingsHub.Rolls.SkillsHint"}}</small></label>
+          <label><span>{{localize "GAG.SettingsHub.Rolls.Dedupe"}}</span><input type="number" min="0" name="rolls.dedupeSeconds" value="{{configuration.rolls.dedupeSeconds}}"></label>
+        </div>
+        <label class="gag-checkbox"><input type="checkbox" name="rolls.notifyPlayers" {{checked configuration.rolls.notifyPlayers}}><span>{{localize "GAG.SettingsHub.Rolls.NotifyPlayers"}}</span></label>
+        <label class="gag-checkbox"><input type="checkbox" name="rolls.notifyGm" {{checked configuration.rolls.notifyGm}}><span>{{localize "GAG.SettingsHub.Rolls.NotifyGm"}}</span></label>
+        <div class="gag-form-actions"><button type="button" data-action="saveConfiguration" data-category="rolls"><i class="fa-solid fa-floppy-disk"></i><span>{{localize "Save"}}</span></button></div>
+      </form>
+    {{/if}}
+
+    {{#if (eq activeTab "contexts")}}
+      <section class="gag-settings-stack">
+        <form class="gag-panel" data-category="contexts">
+          <div class="gag-section-heading">
+            <div>
+              <h2>{{localize "GAG.SettingsHub.Contexts.SceneGuideTitle"}}</h2>
+              <p class="hint">{{localize "GAG.SettingsHub.Contexts.SceneGuideHint"}}</p>
+            </div>
+            <button type="button" data-action="openSceneGuide"><i class="fa-solid fa-signs-post"></i><span>{{localize "GAG.SceneGuide.Open"}}</span></button>
+          </div>
+          <div class="gag-checkbox-row">
+            <label class="gag-checkbox"><input type="checkbox" name="sceneGuide.enabled" {{checked configuration.sceneGuide.enabled}}><span>{{localize "GAG.SettingsHub.Contexts.SceneGuideEnabled"}}</span></label>
+            <label class="gag-checkbox"><input type="checkbox" name="sceneGuide.showSceneControl" {{checked configuration.sceneGuide.showSceneControl}}><span>{{localize "GAG.SettingsHub.Contexts.SceneGuideSceneControl"}}</span></label>
+            <label class="gag-checkbox"><input type="checkbox" name="sceneGuide.openOnSceneChange" {{checked configuration.sceneGuide.openOnSceneChange}}><span>{{localize "GAG.SettingsHub.Contexts.SceneGuideAutoOpen"}}</span></label>
+          </div>
+          <div class="gag-form-actions"><button type="button" data-action="saveConfiguration" data-category="contexts"><i class="fa-solid fa-floppy-disk"></i><span>{{localize "Save"}}</span></button></div>
+        </form>
+        <form class="gag-panel gag-definition-form" data-profiles-form>
+          <div class="gag-section-heading"><div><h2>{{localize "GAG.SettingsHub.Contexts.Title"}}</h2><p class="hint">{{localize "GAG.SettingsHub.Contexts.Hint"}}</p></div><button type="button" data-action="addProfile"><i class="fa-solid fa-plus"></i><span>{{localize "GAG.Actions.AddProfile"}}</span></button></div>
+          {{#each profiles}}
+            <fieldset class="gag-definition-card">
+              <legend>{{label}} <code>{{id}}</code></legend>
+              <div class="gag-form-grid four">
+                <label><span>{{localize "GAG.Common.Name"}}</span><input name="profiles.{{index}}.name" value="{{label}}"></label>
+                <label><span>{{localize "GAG.Common.Description"}}</span><input name="profiles.{{index}}.description" value="{{descriptionText}}"></label>
+                <label><span>{{localize "GAG.SettingsHub.Contexts.ExpectedMin"}}</span><input type="number" min="0" max="3" name="profiles.{{index}}.expectedMin" value="{{expected.min}}"></label>
+                <label><span>{{localize "GAG.SettingsHub.Contexts.ExpectedMax"}}</span><input type="number" min="0" max="3" name="profiles.{{index}}.expectedMax" value="{{expected.max}}"></label>
+                <label><span>{{localize "GAG.Common.DirtGain"}}</span><input type="number" min="0" max="3" name="profiles.{{index}}.automaticDirtGain" value="{{automaticDirtGain}}"></label>
+                <label><span>{{localize "GAG.SettingsHub.Contexts.SettlementTypes"}}</span><input name="profiles.{{index}}.settlementTypes" value="{{settlementTypesText}}"><small>{{localize "GAG.SettingsHub.Contexts.SettlementTypesHint"}}</small></label>
+                <label><span>{{localize "GAG.SettingsHub.Contexts.Services"}}</span><input name="profiles.{{index}}.services" value="{{serviceText}}"><small>{{localize "GAG.SettingsHub.Contexts.ServicesHint"}}</small></label>
+                <label><span>{{localize "GAG.SettingsHub.Contexts.Contaminations"}}</span><input name="profiles.{{index}}.contaminations" value="{{contaminationText}}"></label>
+              </div>
+              <fieldset class="gag-profile-ratings">
+                <legend>{{localize "GAG.SettingsHub.Contexts.LevelRatings"}}</legend>
+                <p class="hint">{{localize "GAG.SettingsHub.Contexts.LevelRatingsHint"}}</p>
+                <div class="gag-scene-rating-list gag-scene-rating-list--compact gag-profile-rating-preview" aria-label="{{localize 'GAG.SettingsHub.Contexts.PresetPreview'}}">
+                  {{#each levelRatingRows}}
+                    <div class="gag-scene-rating gag-level-{{level}} gag-rating-{{rating}}">
+                      <span><strong>{{level}}</strong> {{localize (concat "GAG.Levels." level ".Name")}}</span>
+                      <span class="gag-scene-rating__status">{{localize (concat "GAG.SceneGuide.Ratings." rating)}}</span>
+                    </div>
+                  {{/each}}
+                </div>
+                <div class="gag-form-grid four">
+                  {{#each levelRatingRows}}
+                    <label>
+                      <span>{{localize (concat "GAG.Levels." level ".Name")}}</span>
+                      <select name="profiles.{{../index}}.rating.{{level}}">
+                        <option value="expected" {{#if expected}}selected{{/if}}>{{localize "GAG.SceneGuide.Ratings.expected"}}</option>
+                        <option value="accepted" {{#if accepted}}selected{{/if}}>{{localize "GAG.SceneGuide.Ratings.accepted"}}</option>
+                        <option value="tolerated" {{#if tolerated}}selected{{/if}}>{{localize "GAG.SceneGuide.Ratings.tolerated"}}</option>
+                        <option value="disliked" {{#if disliked}}selected{{/if}}>{{localize "GAG.SceneGuide.Ratings.disliked"}}</option>
+                        <option value="hated" {{#if hated}}selected{{/if}}>{{localize "GAG.SceneGuide.Ratings.hated"}}</option>
+                      </select>
+                    </label>
+                  {{/each}}
+                </div>
+              </fieldset>
+              <div class="gag-form-grid">
+                <label><span>{{localize "GAG.SettingsHub.Contexts.SocialJson"}}</span><textarea rows="4" name="profiles.{{index}}.socialJson">{{socialJson}}</textarea><small>{{localize "GAG.SettingsHub.Contexts.RuleJsonHint"}}</small></label>
+                <label><span>{{localize "GAG.SettingsHub.Contexts.TrackingJson"}}</span><textarea rows="4" name="profiles.{{index}}.trackingJson">{{trackingJson}}</textarea><small>{{localize "GAG.SettingsHub.Contexts.RuleJsonHint"}}</small></label>
+              </div>
+              <label><span>{{localize "GAG.SettingsHub.Contexts.Narrative"}}</span><textarea rows="2" name="profiles.{{index}}.narrative">{{narrativeText}}</textarea></label>
+              {{#if removable}}<button type="button" class="danger compact" data-action="removeDefinition" data-kind="profile" data-id="{{id}}"><i class="fa-solid fa-trash"></i><span>{{localize "Delete"}}</span></button>{{/if}}
+            </fieldset>
+          {{/each}}
+          <div class="gag-form-actions"><button type="button" data-action="saveProfiles"><i class="fa-solid fa-floppy-disk"></i><span>{{localize "Save"}}</span></button><button type="button" data-action="resetCategory" data-category="profiles"><i class="fa-solid fa-rotate-left"></i><span>{{localize "GAG.Actions.ResetDefaults"}}</span></button></div>
+        </form>
+        <form class="gag-panel gag-definition-form" data-contaminations-form>
+          <div class="gag-section-heading"><div><h2>{{localize "GAG.SettingsHub.Contaminations.Title"}}</h2><p class="hint">{{localize "GAG.SettingsHub.Contaminations.Hint"}}</p></div><button type="button" data-action="addContamination"><i class="fa-solid fa-plus"></i><span>{{localize "GAG.Actions.AddContamination"}}</span></button></div>
+          {{#each contaminations}}<fieldset class="gag-definition-card"><legend>{{label}} <code>{{id}}</code></legend><div class="gag-form-grid four"><label><span>{{localize "GAG.Common.Name"}}</span><input name="contaminations.{{index}}.name" value="{{label}}"></label><label><span>{{localize "GAG.SettingsHub.Contaminations.Penalty"}}</span><input type="number" min="0" max="3" name="contaminations.{{index}}.effectivePenalty" value="{{effectivePenalty}}"></label></div><div class="gag-checkbox-row"><label class="gag-checkbox"><input type="checkbox" name="contaminations.{{index}}.scent" {{checked scent}}><span>{{localize "GAG.SettingsHub.Contaminations.Scent"}}</span></label><label class="gag-checkbox"><input type="checkbox" name="contaminations.{{index}}.hiddenByDefault" {{checked hiddenByDefault}}><span>{{localize "GAG.SettingsHub.Contaminations.Hidden"}}</span></label><label class="gag-checkbox"><input type="checkbox" name="contaminations.{{index}}.createEffect" {{checked createEffect}}><span>{{localize "GAG.SettingsHub.Contaminations.Effect"}}</span></label></div>{{#if removable}}<button type="button" class="danger compact" data-action="removeDefinition" data-kind="contamination" data-id="{{id}}"><i class="fa-solid fa-trash"></i><span>{{localize "Delete"}}</span></button>{{/if}}</fieldset>{{/each}}
+          <div class="gag-form-actions"><button type="button" data-action="saveContaminations"><i class="fa-solid fa-floppy-disk"></i><span>{{localize "Save"}}</span></button><button type="button" data-action="resetCategory" data-category="contaminations"><i class="fa-solid fa-rotate-left"></i><span>{{localize "GAG.Actions.ResetDefaults"}}</span></button></div>
+        </form>
+      </section>
+    {{/if}}
+
+    {{#if (eq activeTab "sheets")}}
+      <form class="gag-panel" data-category="sheets">
+        <h2>{{localize "GAG.SettingsHub.Sheets.Title"}}</h2>
+        <label class="gag-checkbox"><input type="checkbox" name="actorSheets.enabled" {{checked configuration.actorSheets.enabled}}><span>{{localize "GAG.SettingsHub.Sheets.ActorIndicator"}}</span></label>
+        <label class="gag-checkbox"><input type="checkbox" name="actorSheets.playerVisible" {{checked configuration.actorSheets.playerVisible}}><span>{{localize "GAG.SettingsHub.Sheets.PlayerVisible"}}</span></label>
+        <label class="gag-checkbox"><input type="checkbox" name="tokenHud.enabled" {{checked configuration.tokenHud.enabled}}><span>{{localize "GAG.SettingsHub.Sheets.TokenHud"}}</span></label>
+        <label class="gag-checkbox"><input type="checkbox" name="tokenHud.showQuickActions" {{checked configuration.tokenHud.showQuickActions}}><span>{{localize "GAG.SettingsHub.Sheets.TokenQuickActions"}}</span></label>
+        <fieldset class="gag-definition-card gag-token-label-settings">
+          <legend>{{localize "GAG.SettingsHub.Sheets.TokenLabelsTitle"}}</legend>
+          <p class="hint">{{localize "GAG.SettingsHub.Sheets.TokenLabelsHint"}}</p>
+          <p class="hint"><strong>{{localize "GAG.SettingsHub.Sheets.TokenLabelsPermissionAuthority"}}</strong></p>
+          <label class="gag-checkbox"><input type="checkbox" name="tokenLabels.enabled" {{checked configuration.tokenLabels.enabled}}><span>{{localize "GAG.SettingsHub.Sheets.TokenLabelsEnabled"}}</span></label>
+          <div class="gag-form-grid four">
+            <label><span>{{localize "GAG.SettingsHub.Sheets.TokenLabelsVisibilityMode"}}</span><select name="tokenLabels.visibilityMode"><option value="manual" {{#if (eq configuration.tokenLabels.visibilityMode 'manual')}}selected{{/if}}>{{localize "GAG.TokenLabels.VisibilityMode.manual"}}</option><option value="always" {{#if (eq configuration.tokenLabels.visibilityMode 'always')}}selected{{/if}}>{{localize "GAG.TokenLabels.VisibilityMode.always"}}</option><option value="controlled" {{#if (eq configuration.tokenLabels.visibilityMode 'controlled')}}selected{{/if}}>{{localize "GAG.TokenLabels.VisibilityMode.controlled"}}</option><option value="hovered" {{#if (eq configuration.tokenLabels.visibilityMode 'hovered')}}selected{{/if}}>{{localize "GAG.TokenLabels.VisibilityMode.hovered"}}</option><option value="controlled-or-hovered" {{#if (eq configuration.tokenLabels.visibilityMode 'controlled-or-hovered')}}selected{{/if}}>{{localize "GAG.TokenLabels.VisibilityMode.controlled-or-hovered"}}</option></select><small>{{localize "GAG.SettingsHub.Sheets.TokenLabelsVisibilityModeHint"}}</small></label>
+            <label><span>{{localize "GAG.SettingsHub.Sheets.TokenLabelsActorScope"}}</span><select name="tokenLabels.actorScope"><option value="supported" {{#if (eq configuration.tokenLabels.actorScope 'supported')}}selected{{/if}}>{{localize "GAG.TokenLabels.ActorScope.supported"}}</option><option value="characters" {{#if (eq configuration.tokenLabels.actorScope 'characters')}}selected{{/if}}>{{localize "GAG.TokenLabels.ActorScope.characters"}}</option></select></label>
+            <label><span>{{localize "GAG.SettingsHub.Sheets.TokenLabelsPlayerScope"}}</span><select name="tokenLabels.playerScope"><option value="owned" {{#if (eq configuration.tokenLabels.playerScope 'owned')}}selected{{/if}}>{{localize "GAG.TokenLabels.PlayerScope.owned"}}</option><option value="characters" {{#if (eq configuration.tokenLabels.playerScope 'characters')}}selected{{/if}}>{{localize "GAG.TokenLabels.PlayerScope.characters"}}</option><option value="all" {{#if (eq configuration.tokenLabels.playerScope 'all')}}selected{{/if}}>{{localize "GAG.TokenLabels.PlayerScope.all"}}</option></select><small>{{localize "GAG.SettingsHub.Sheets.TokenLabelsPlayerScopeHint"}}</small></label>
+            <label><span>{{localize "GAG.SettingsHub.Sheets.TokenLabelsPosition"}}</span><select name="tokenLabels.position"><option value="above" {{#if (eq configuration.tokenLabels.position 'above')}}selected{{/if}}>{{localize "GAG.TokenLabels.Position.above"}}</option><option value="below" {{#if (eq configuration.tokenLabels.position 'below')}}selected{{/if}}>{{localize "GAG.TokenLabels.Position.below"}}</option><option value="left" {{#if (eq configuration.tokenLabels.position 'left')}}selected{{/if}}>{{localize "GAG.TokenLabels.Position.left"}}</option><option value="right" {{#if (eq configuration.tokenLabels.position 'right')}}selected{{/if}}>{{localize "GAG.TokenLabels.Position.right"}}</option></select></label>
+            <label><span>{{localize "GAG.SettingsHub.Sheets.TokenLabelsFormat"}}</span><select name="tokenLabels.format"><option value="level-name" {{#if (eq configuration.tokenLabels.format 'level-name')}}selected{{/if}}>{{localize "GAG.TokenLabels.Format.level-name"}}</option><option value="name" {{#if (eq configuration.tokenLabels.format 'name')}}selected{{/if}}>{{localize "GAG.TokenLabels.Format.name"}}</option><option value="level" {{#if (eq configuration.tokenLabels.format 'level')}}selected{{/if}}>{{localize "GAG.TokenLabels.Format.level"}}</option><option value="detailed" {{#if (eq configuration.tokenLabels.format 'detailed')}}selected{{/if}}>{{localize "GAG.TokenLabels.Format.detailed"}}</option></select></label>
+            <label><span>{{localize "GAG.SettingsHub.Sheets.TokenLabelsFontSize"}}</span><input type="number" min="10" max="48" step="1" name="tokenLabels.fontSize" value="{{configuration.tokenLabels.fontSize}}"></label>
+            <label><span>{{localize "GAG.SettingsHub.Sheets.TokenLabelsOffset"}}</span><input type="number" min="2" max="40" step="1" name="tokenLabels.offset" value="{{configuration.tokenLabels.offset}}"></label>
+            <label><span>{{localize "GAG.SettingsHub.Sheets.TokenLabelsFontColor"}}</span><input type="color" name="tokenLabels.fontColor" value="{{configuration.tokenLabels.fontColor}}"></label>
+            <label><span>{{localize "GAG.SettingsHub.Sheets.TokenLabelsBackgroundColor"}}</span><input type="color" name="tokenLabels.backgroundColor" value="{{configuration.tokenLabels.backgroundColor}}"></label>
+            <label><span>{{localize "GAG.SettingsHub.Sheets.TokenLabelsBackgroundOpacity"}}</span><input type="number" min="0" max="1" step="0.05" name="tokenLabels.backgroundOpacity" value="{{configuration.tokenLabels.backgroundOpacity}}"></label>
+            <label><span>{{localize "GAG.SettingsHub.Sheets.TokenLabelsPaddingX"}}</span><input type="number" min="2" max="24" step="1" name="tokenLabels.paddingX" value="{{configuration.tokenLabels.paddingX}}"></label>
+            <label><span>{{localize "GAG.SettingsHub.Sheets.TokenLabelsPaddingY"}}</span><input type="number" min="1" max="16" step="1" name="tokenLabels.paddingY" value="{{configuration.tokenLabels.paddingY}}"></label>
+          </div>
+          <div class="gag-form-grid">
+            <label class="gag-checkbox" title="{{localize 'GAG.SettingsHub.Sheets.TokenLabelsShortcutEnabledHint'}}"><input type="checkbox" name="tokenLabels.shortcutEnabled" {{checked configuration.tokenLabels.shortcutEnabled}}><span>{{localize "GAG.SettingsHub.Sheets.TokenLabelsShortcutEnabled"}}</span></label>
+            <label><span>{{localize "GAG.SettingsHub.Sheets.TokenLabelsShortcutScope"}}</span>
+              <select name="tokenLabels.shortcutScope">
+                <option value="scene-pcs" {{#if (eq configuration.tokenLabels.shortcutScope 'scene-pcs')}}selected{{/if}}>{{localize "GAG.TokenLabels.ShortcutScope.scene-pcs"}}</option>
+                <option value="selected-pcs" {{#if (eq configuration.tokenLabels.shortcutScope 'selected-pcs')}}selected{{/if}}>{{localize "GAG.TokenLabels.ShortcutScope.selected-pcs"}}</option>
+                <option value="scene-eligible" {{#if (eq configuration.tokenLabels.shortcutScope 'scene-eligible')}}selected{{/if}}>{{localize "GAG.TokenLabels.ShortcutScope.scene-eligible"}}</option>
+                <option value="selected-eligible" {{#if (eq configuration.tokenLabels.shortcutScope 'selected-eligible')}}selected{{/if}}>{{localize "GAG.TokenLabels.ShortcutScope.selected-eligible"}}</option>
+              </select><small>{{localize "GAG.SettingsHub.Sheets.TokenLabelsShortcutScopeHint"}}</small>
+            </label>
+          </div>
+          <p class="hint">{{localize "GAG.SettingsHub.Sheets.TokenLabelsShortcutKeybindingHelp"}}</p>
+          {{#if tokenLabelsManual}}
+            <div class="gag-token-label-controls">
+              <span><strong>{{localize "GAG.SettingsHub.Sheets.TokenLabelsCurrent"}}</strong> {{#if tokenLabelsVisible}}{{localize "GAG.Common.Enabled"}}{{else}}{{localize "GAG.Common.Disabled"}}{{/if}}</span>
+              <button type="button" data-action="toggleTokenLabels"><i class="fa-solid {{#if tokenLabelsVisible}}fa-eye-slash{{else}}fa-eye{{/if}}"></i><span>{{#if tokenLabelsVisible}}{{localize "GAG.TokenLabels.HideAll"}}{{else}}{{localize "GAG.TokenLabels.ShowAll"}}{{/if}}</span></button>
+            </div>
+
+          {{else}}
+            <p class="hint">{{localize "GAG.SettingsHub.Sheets.TokenLabelsAutomaticModeHint"}}</p>
+          {{/if}}
+        </fieldset>
+        <label class="gag-checkbox" title="{{localize 'GAG.SettingsHub.Sheets.SceneControlsHint'}}"><input type="checkbox" name="sceneControls.enabled" {{checked configuration.sceneControls.enabled}}><span>{{localize "GAG.SettingsHub.Sheets.SceneControls"}}</span></label>
+        <label class="gag-checkbox" title="{{localize 'GAG.SettingsHub.Sheets.ActiveEffectsHint'}}"><input type="checkbox" name="effects.enabled" {{checked configuration.effects.enabled}}><span>{{localize "GAG.SettingsHub.Sheets.ActiveEffects"}}</span></label>
+        <label class="gag-checkbox" title="{{localize 'GAG.SettingsHub.Sheets.ContaminationEffectsHint'}}"><input type="checkbox" name="effects.includeContaminations" {{checked configuration.effects.includeContaminations}}><span>{{localize "GAG.SettingsHub.Sheets.ContaminationEffects"}}</span></label>
+        <div class="gag-form-actions"><button type="button" data-action="saveConfiguration" data-category="sheets"><i class="fa-solid fa-floppy-disk"></i><span>{{localize "Save"}}</span></button></div>
+      </form>
+    {{/if}}
+
+    {{#if (eq activeTab "permissions")}}
+      <form class="gag-panel" data-permissions-form>
+        <h2>{{localize "GAG.SettingsHub.Permissions.Title"}}</h2><p class="hint">{{localize "GAG.SettingsHub.Permissions.Hint"}}</p>
+        <div class="gag-table-wrap"><table><thead><tr><th>{{localize "GAG.Common.Permission"}}</th><th>{{localize "GAG.SettingsHub.Permissions.MinimumRole"}}</th></tr></thead><tbody>{{#each permissionRows}}<tr><td>{{label}}</td><td><select name="permission.{{id}}"><option value="5" {{#if (eq value 5)}}selected{{/if}}>{{localize "GAG.Roles.None"}}</option><option value="1" {{#if (eq value 1)}}selected{{/if}}>{{localize "GAG.Roles.Player"}}</option><option value="2" {{#if (eq value 2)}}selected{{/if}}>{{localize "GAG.Roles.Trusted"}}</option><option value="3" {{#if (eq value 3)}}selected{{/if}}>{{localize "GAG.Roles.Assistant"}}</option><option value="4" {{#if (eq value 4)}}selected{{/if}}>{{localize "GAG.Roles.Gm"}}</option></select></td></tr>{{/each}}</tbody></table></div>
+        <p class="hint">{{localize "GAG.SettingsHub.Permissions.OwnershipHint"}}</p>
+        {{#if userOverrideRows.length}}
+          <h3>{{localize "GAG.SettingsHub.Permissions.UserOverrides"}}</h3>
+          <p class="hint">{{localize "GAG.SettingsHub.Permissions.UserOverridesHint"}}</p>
+          <div class="gag-user-overrides">
+            {{#each userOverrideRows}}
+              <details class="gag-definition-card">
+                <summary>{{name}}</summary>
+                <div class="gag-table-wrap"><table><thead><tr><th>{{localize "GAG.Common.Permission"}}</th><th>{{localize "GAG.SettingsHub.Permissions.Override"}}</th></tr></thead><tbody>
+                  {{#each permissions}}<tr><td>{{label}}</td><td><select name="userOverride.{{../id}}.{{id}}"><option value="inherit" {{#if inherit}}selected{{/if}}>{{localize "GAG.SettingsHub.Permissions.Inherit"}}</option><option value="allow" {{#if allow}}selected{{/if}}>{{localize "GAG.SettingsHub.Permissions.Allow"}}</option><option value="deny" {{#if deny}}selected{{/if}}>{{localize "GAG.SettingsHub.Permissions.Deny"}}</option></select></td></tr>{{/each}}
+                </tbody></table></div>
+              </details>
+            {{/each}}
+          </div>
+        {{/if}}
+        <div class="gag-form-actions"><button type="button" data-action="savePermissions"><i class="fa-solid fa-floppy-disk"></i><span>{{localize "Save"}}</span></button><button type="button" data-action="resetCategory" data-category="permissions"><i class="fa-solid fa-rotate-left"></i><span>{{localize "GAG.Actions.ResetDefaults"}}</span></button></div>
+      </form>
+    {{/if}}
+
+    {{#if (eq activeTab "currency")}}
+      <form class="gag-panel" data-category="currency">
+        <h2>{{localize "GAG.SettingsHub.Currency.Title"}}</h2><p class="hint">{{localize "GAG.SettingsHub.Currency.Hint"}}</p>
+        <div class="gag-form-grid">
+          <label><span>{{localize "GAG.SettingsHub.Currency.Adapter"}}</span><select name="currency.adapterId">{{#each adapters}}<option value="{{id}}" {{#if selected}}selected{{/if}}>{{localize label}}</option>{{/each}}</select></label>
+          <label><span>{{localize "GAG.SettingsHub.Currency.DefaultLabel"}}</span><input name="currency.defaultLabel" value="{{configuration.currency.defaultLabel}}"></label>
+          <label><span>{{localize "GAG.SettingsHub.Currency.Dnd5eDenomination"}}</span><input name="currency.dnd5eDenomination" value="{{configuration.currency.dnd5eDenomination}}" placeholder="gp"><small>{{localize "GAG.SettingsHub.Currency.Dnd5eHint"}}</small></label>
+          <label><span>{{localize "GAG.SettingsHub.Currency.FlagPath"}}</span><input name="currency.flagPath" value="{{configuration.currency.flagPath}}"></label>
+        </div>
+        <div class="gag-warning"><i class="fa-solid fa-coins"></i><span>{{localize "GAG.SettingsHub.Currency.MarkWarning"}}</span></div>
+        <div class="gag-form-actions"><button type="button" data-action="saveConfiguration" data-category="currency"><i class="fa-solid fa-floppy-disk"></i><span>{{localize "Save"}}</span></button></div>
+      </form>
+    {{/if}}
+
+    {{#if (eq activeTab "debug")}}
+      <form class="gag-panel" data-category="debug">
+        <h2>{{localize "GAG.SettingsHub.Debug.Title"}}</h2><p class="hint">{{localize "GAG.SettingsHub.Debug.Hint"}}</p>
+        <label class="gag-checkbox"><input type="checkbox" name="debugging.enabled" {{checked configuration.debugging.enabled}}><span>{{localize "GAG.SettingsHub.Debug.Verbose"}}</span></label>
+        <p>{{localize "GAG.SettingsHub.Debug.Api"}} <code>game.modules.get("garb-and-grime").api</code></p>
+        <div class="gag-form-actions"><button type="button" data-action="saveConfiguration" data-category="debugging"><i class="fa-solid fa-floppy-disk"></i><span>{{localize "Save"}}</span></button></div>
+      </form>
+    {{/if}}
+  </main>
+</div>

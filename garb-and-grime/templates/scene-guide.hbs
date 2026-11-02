@@ -1,0 +1,29 @@
+<div class="gag-scene-guide-shell">
+  <header class="gag-scene-guide__header">
+    <div>
+      <h1>{{sceneName}}</h1>
+      <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i> {{profileLabel}}</p>
+    </div>
+    <button type="button" data-action="openManager" title="{{localize 'GAG.Manager.Open'}}">
+      <i class="fa-solid fa-users-viewfinder" aria-hidden="true"></i>
+      <span>{{localize "GAG.Manager.Open"}}</span>
+    </button>
+  </header>
+  {{#if profileDescription}}<p class="gag-scene-guide__description">{{profileDescription}}</p>{{/if}}
+  <section class="gag-scene-rating-list" aria-label="{{localize 'GAG.SceneGuide.LevelClassification'}}">
+    {{#each rows}}
+      <div class="gag-scene-rating gag-level-{{level}} gag-rating-{{rating}}">
+        <span class="gag-scene-rating__level"><strong>{{level}}</strong> {{levelLabel}}</span>
+        <span class="gag-scene-rating__status">{{ratingLabel}}</span>
+      </div>
+    {{/each}}
+  </section>
+  {{#if canConfigure}}
+    <footer class="gag-scene-guide__footer">
+      <button type="button" data-action="editContext">
+        <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+        <span>{{localize "GAG.SceneGuide.Edit"}}</span>
+      </button>
+    </footer>
+  {{/if}}
+</div>

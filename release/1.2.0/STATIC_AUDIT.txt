@@ -1,0 +1,78 @@
+# Static audit — Garb & Grime v1.2.0
+
+## Version coherence
+garb-and-grime/module.json:5:  "version": "1.2.0",
+package.json:3:  "version": "1.2.0",
+3:export const MODULE_VERSION = "1.2.0";
+
+## Deprecated/broad integration pattern scan
+-- renderChatMessage[^H]
+-- renderApplicationV2
+-- renderApplication"
+-- html\.find
+-- \$\(
+-- controls\.push
+-- globalThis\.FilePicker|\bFilePicker\b
+-- \bJournalSheet\b
+-- \bInteractionLayer\b
+-- \bPrimarySpriteMesh\b
+-- \bTextureLoader\b
+
+## Error attribution scan
+garb-and-grime/src/migration.mjs:148:    console.error(`[${MODULE_ID}] First-run guide failed.`, error);
+garb-and-grime/src/util.mjs:122:    if (rendered?.catch) void rendered.catch((error) => console.error(`[${MODULE_ID}] Application render failed.`, error));
+garb-and-grime/src/display-images.mjs:132:      console.warn(`[${MODULE_ID}] ${message}`, { actors: group.actors, sources: group.sources });
+garb-and-grime/src/display-images.mjs:140:    console.warn(`[${MODULE_ID}] ${message}`, { actors: group.actors, sources: group.sources });
+garb-and-grime/src/integrations/scene-controls.mjs:138:    console.error(`[${MODULE_ID}] Scene Control failed during ${area}.`, error);
+garb-and-grime/src/integrations/items.mjs:41:          console.error(`[${MODULE_ID}] Item integration could not be saved.`, error);
+garb-and-grime/src/integrations/items.mjs:59:          console.error(`[${MODULE_ID}] Item integration action failed.`, error);
+garb-and-grime/src/integrations/sidebar.mjs:82:        console.error(`[${MODULE_ID}] Actor-directory bulk action failed.`, error);
+garb-and-grime/src/integrations/token-hud.mjs:79:        console.error(`[garb-and-grime] Token HUD action failed`, error);
+garb-and-grime/src/integrations/token-labels.mjs:49:          console.error(`[${MODULE_ID}] Token-label keybinding failed.`, error);
+garb-and-grime/src/apps/actor-panel.mjs:86:      console.error(`[${MODULE_ID}] Actor cleanliness action failed.`, error);
+garb-and-grime/src/apps/actor-panel.mjs:157:      console.error(`[${MODULE_ID}] Actor cleanliness action failed.`, error);
+garb-and-grime/src/apps/persistent-app.mjs:64:      console.error(`[${MODULE_ID}] Failed to save window position.`, error);
+garb-and-grime/src/apps/settings-hub.mjs:462:      console.error(`[${MODULE_ID}] Failed to open the Scene cleanliness guide.`, error);
+garb-and-grime/src/apps/manager.mjs:222:    console.error(`[${MODULE_ID}] Manager interaction failed.`, error);
+garb-and-grime/src/apps/manager.mjs:376:          console.error(`[${MODULE_ID}] Failed to update manager filters.`, error);
+garb-and-grime/src/apps/manager.mjs:608:    console.error(`[${MODULE_ID}] Actor dashboard action failed.`, error);
+garb-and-grime/src/automation.mjs:98:    console.error(`[${MODULE_ID}] Automation failed during ${area}.`, error);
+garb-and-grime/src/roll-service.mjs:109:        console.error(`${game.modules.get("garb-and-grime")?.title ?? "Garb & Grime"} | Roll prompt failed`, error);
+garb-and-grime/src/state-service.mjs:224:        console.error(`[${MODULE_ID}] Failed to synchronize Active Effects for ${actor.uuid}.`, error);
+garb-and-grime/scripts/main.mjs:291:  console.error(`[${MODULE_ID}] Failed to initialize ${area}.`, error);
+
+## Syntax validation
+OK garb-and-grime/scripts/main.mjs
+OK garb-and-grime/src/action-service.mjs
+OK garb-and-grime/src/actor-scope.mjs
+OK garb-and-grime/src/apps/actor-panel.mjs
+OK garb-and-grime/src/apps/manager.mjs
+OK garb-and-grime/src/apps/persistent-app.mjs
+OK garb-and-grime/src/apps/scene-context-dialog.mjs
+OK garb-and-grime/src/apps/scene-guide.mjs
+OK garb-and-grime/src/apps/settings-hub.mjs
+OK garb-and-grime/src/automation.mjs
+OK garb-and-grime/src/chat.mjs
+OK garb-and-grime/src/constants.mjs
+OK garb-and-grime/src/context-service.mjs
+OK garb-and-grime/src/currency.mjs
+OK garb-and-grime/src/defaults.mjs
+OK garb-and-grime/src/display-images.mjs
+OK garb-and-grime/src/domain/rules.mjs
+OK garb-and-grime/src/domain/state.mjs
+OK garb-and-grime/src/domain/validation.mjs
+OK garb-and-grime/src/effects.mjs
+OK garb-and-grime/src/integrations/actor-sheets.mjs
+OK garb-and-grime/src/integrations/items.mjs
+OK garb-and-grime/src/integrations/scene-controls.mjs
+OK garb-and-grime/src/integrations/sidebar.mjs
+OK garb-and-grime/src/integrations/token-hud.mjs
+OK garb-and-grime/src/integrations/token-labels.mjs
+OK garb-and-grime/src/localization.mjs
+OK garb-and-grime/src/migration.mjs
+OK garb-and-grime/src/permissions.mjs
+OK garb-and-grime/src/registry.mjs
+OK garb-and-grime/src/roll-service.mjs
+OK garb-and-grime/src/settings.mjs
+OK garb-and-grime/src/state-service.mjs
+OK garb-and-grime/src/util.mjs

@@ -1,0 +1,28 @@
+=== RELEASE IDENTITY ===
+garb-and-grime 1.1.1 {'minimum': '13', 'verified': '13.351', 'maximum': '14'}
+
+=== DIRECT DOCUMENT IMAGE COPYING ===
+none
+
+=== DISPLAY RESOLVER INTEGRATION ===
+src/apps/manager.mjs: resolve=1
+src/apps/actor-panel.mjs: resolve=1
+templates/manager.hbs: marked-images=3
+templates/actor-panel.hbs: marked-images=3
+
+=== LEGACY retired-package RUNTIME REFERENCES ===
+src/display-images.mjs:9:"retired-package": "order-of-severance",
+src/display-images.mjs:10:"retired-package-dnd5e-2024": "order-of-severance-dnd5e-2024"
+(only diagnostic successor-map entries are expected)
+
+=== FALLBACK ASSET ===
+present=True
+
+=== JQUERY / DEPRECATED CHAT HOOK REGRESSION ===
+none
+
+=== JAVASCRIPT SYNTAX ===
+all .mjs files passed node --check
+
+=== LOCALIZATION PARITY ===
+607 keys aligned

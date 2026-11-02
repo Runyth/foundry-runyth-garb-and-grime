@@ -1,0 +1,23 @@
+=== RELEASE IDENTITY ===
+garb-and-grime 1.1.2 {'minimum': '13', 'verified': '13.351', 'maximum': '14'}
+
+=== ACTOR BROWSER BOUNDS ===
+default-page-size=40
+pagination-before-hydration=True
+page-controls=2
+page-size-selector=True
+
+=== LIGHTWEIGHT STATE INDEX ===
+directory-summary=True
+manager-uses-directory-summary=True
+
+=== RESOURCE CLEANUP ===
+cache-cleared-on-close=True
+bounded-failed-image-cache=True
+bounded-warning-cache=True
+
+=== UNUSED EXPENSIVE WORK ===
+roll-evaluation-in-actor-index=False
+
+=== LOCALIZATION PARITY ===
+613 keys aligned
