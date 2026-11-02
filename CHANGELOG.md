@@ -2,6 +2,8 @@
 
 ## 1.2.9 — 2026-10-21
 
+- First publication as a Runyth module: `runyth-garb-and-grime` / **Runyth Garb & Grime** with the publication standard in place — deterministic `-mod`, `-src`, and `-doc` archives with per-version checksums, byte-identical rebuild verification, standard quality and release pipelines, the full GNU AGPL-3.0-or-later licence with the standard source notice, the standard README licence chapter, and the manifest URL surfaces.
+
 ### Fixed — existing Token hover labels
 - Refresh the cleanliness **content** on `hoverToken`, not merely label position; previously, a cached hidden label could become visible with old text despite the Actor sheet having the new state.
 - On transition from hidden to visible, refresh the full label before positioning it.
