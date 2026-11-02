@@ -1,26 +1,20 @@
 # Building and validation
 
-Requirements:
+Requirements: Node.js 22.13 to 26.
 
-- Node.js 22 or newer
-- Python 3.10 or newer for deterministic ZIP packaging
-
-Run all syntax and automated tests:
+Run the complete quality gate (manifest, URL and package validation, the full test suite, deterministic packaging, byte-identical rebuild verification and publication scans):
 
 ```text
+npm ci --ignore-scripts
 npm run check
 ```
 
-Create deterministic install, source, and documentation archives under `dist/`:
+The builder creates separate installation, source, and documentation archives under `dist/` with fixed timestamps plus per-arch checksums:
 
-```text
-npm run package
-```
+1. `runyth-garb-and-grime-v<version>-mod.zip` with only the Foundry runtime files under one `runyth-garb-and-grime/` root.
+2. `runyth-garb-and-grime-v<version>-src.zip` with the complete editable source, tests, tools, documentation, release evidence, and build workflow under one `runyth-garb-and-grime-v<version>-src/` root.
+3. `runyth-garb-and-grime-v<version>-doc.zip` with README, documentation, and the changelog.
 
-The packaging script fixes ZIP timestamps, sorts entries, and creates:
+`runyth-garb-and-grime-v<version>-SHA256SUMS.txt` records all archive checksums together with the raw `module.json`. Independent builds from identical source are byte-reproducible.
 
-1. `runyth-garb-and-grime-v<version>.zip` with only Foundry runtime files under one `runyth-garb-and-grime/` root.
-2. `runyth-garb-and-grime-source-v<version>.zip` with the complete editable source, tests, documentation, release evidence, and build workflow under one `runyth-garb-and-grime-source/` root.
-3. `runyth-garb-and-grime-documentation-v<version>.zip` with README, documentation, audits, build report, incremental changelog, test transcript, manual checklist, and install/source checksums.
-
-`SHA256SUMS.txt` records all three archive checksums. Independent builds from identical source are byte-reproducible.
+The focused development validator remains available: `node tools/validate.mjs`.
