@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 /**
  * Character Tokens can be unlinked synthetic Actors in Foundry V13. Their
  * ActorDelta can retain an older copy of Runyth Garb & Grime flags even after the

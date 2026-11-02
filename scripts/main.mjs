@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 import { API_VERSION, FLAGS, HOOKS, MODULE_ID, MODULE_VERSION, PERMISSIONS, SETTINGS } from "../src/constants.mjs";
 import { DefinitionRegistry } from "../src/registry.mjs";
 import { registerSettings } from "../src/settings.mjs";

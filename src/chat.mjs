@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 import { MODULE_ID, PERMISSIONS } from "./constants.mjs";
 import { escapeHtml, label } from "./util.mjs";
 import { hasPermission } from "./permissions.mjs";

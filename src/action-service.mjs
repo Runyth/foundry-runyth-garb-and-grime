@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 import { HOOKS, MODULE_ID, PERMISSIONS, SETTINGS, SOCKET_NAME } from "./constants.mjs";
 import { applyCleaningEffect, deepClone } from "./domain/state.mjs";
 import { assertPermission, hasPermission } from "./permissions.mjs";

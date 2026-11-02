@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 import { resolveTokenCleanlinessActor } from "../actor-resolution.mjs";
 import { FLAGS, HOOKS, MODULE_ID, PERMISSIONS, SETTINGS } from "../constants.mjs";
 import { canViewActor, hasPermission } from "../permissions.mjs";

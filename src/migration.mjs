@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 import { MODULE_ID, PERMISSIONS, SETTINGS } from "./constants.mjs";
 import { DEFAULT_ENVIRONMENT_PROFILES } from "./defaults.mjs";
 import { normalizeLevelRatings } from "./context-service.mjs";

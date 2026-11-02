@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 import { FLAGS, HOOKS, MODULE_ID, PERMISSIONS } from "./constants.mjs";
 import { adjustStateDirt, clampLevel, deepClone, normalizeState, setStateDirt } from "./domain/state.mjs";
 import { canModifyActor, hasPermission } from "./permissions.mjs";
