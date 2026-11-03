@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.3.1 — 2026-11-03
+
+- Added the README `## Content licence` chapter stating that the grime, cleanliness
+  and grooming state vocabulary, thresholds and icon set this module adds are
+  homebrew content licensed **CC BY-SA 4.0** (the program source stays
+  AGPL-3.0-or-later). Nothing else changed; the module ships no content data
+  records, so the statement-only form applies.
+
+
 ## 1.3.0 - 2026-11-03
 
 ### Fixed and improved
