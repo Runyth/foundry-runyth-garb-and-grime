@@ -372,6 +372,10 @@ Development references:
 
 Settlement-bound cleaning methods are available when the active environment profile explicitly lists the method ID or shares at least one settlement tag with the method. The `any` tag remains universally available.
 
+## Content licence
+
+The grime, cleanliness and grooming state vocabulary, thresholds and icon set this module adds are homebrew content licensed **CC BY-SA 4.0**. The program source is **AGPL-3.0-or-later**; see the standard licence chapter below.
+
 ## Licence
 
 Copyright © 2026  [Daniel Braniewski](https://brani.dev/)
