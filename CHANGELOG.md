@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.4 — 2026-11-05
+
+- Restored the original visual contract: the ApplicationV2 window classes go
+  back to the pre-rebrand `garb-and-grime` scope (the stylesheet's documented
+  class contract), so every dashboard, hub, actor panel, scene guide and
+  persistent window renders with the themed styling again instead of the
+  classic Foundry look.
 
 ## 1.3.3 — 2026-11-05
 

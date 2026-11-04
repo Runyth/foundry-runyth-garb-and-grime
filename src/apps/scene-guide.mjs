@@ -14,7 +14,7 @@ export function configureSceneGuideServices(value) {
 export class SceneCleanlinessGuide extends PersistentApplication {
   static DEFAULT_OPTIONS = {
     id: "garb-and-grime-scene-guide",
-    classes: ["runyth-garb-and-grime", "gag-window", "gag-scene-guide"],
+    classes: ["garb-and-grime", "gag-window", "gag-scene-guide"],
     position: { width: 380, height: 390 },
     window: {
       icon: "fa-solid fa-signs-post",
