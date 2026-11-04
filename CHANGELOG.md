@@ -1,5 +1,9 @@
 # Changelog
 
+
+## 1.3.3 — 2026-11-05
+
+- Dashboard templates (`templates/manager.hbs`, `settings-hub.hbs`, `actor-panel.hbs`, `scene-guide.hbs`) now ship in the installable archive; ApplicationV2 part loads no longer fail with ENOENT on world dashboards.
 ## 1.3.2 — 2026-11-04
 
 - The installable archive now ships every relative import the manifest entry needs, so the module's buttons and settings register on world load instead of silently failing.
