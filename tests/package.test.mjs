@@ -22,7 +22,7 @@ function flatten(value, prefix = "", target = {}) {
 
 test("manifest declares the stable identity and compatibility", () => {
   assert.equal(manifest.id, "runyth-garb-and-grime");
-  assert.equal(manifest.version, "1.3.1");
+  assert.equal(manifest.version, "1.3.2");
   assert.equal(manifest.compatibility.minimum, "13");
   assert.equal(manifest.relationships.systems[0].id, "dnd5e");
   assert.deepEqual(manifest.esmodules, ["scripts/main.mjs"]);
