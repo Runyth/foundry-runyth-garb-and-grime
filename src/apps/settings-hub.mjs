@@ -65,7 +65,7 @@ function prepareMethod(method, index) {
 export class GarbAndGrimeSettings extends PersistentApplication {
   static DEFAULT_OPTIONS = {
     id: "garb-and-grime-settings",
-    classes: ["runyth-garb-and-grime", "gag-window", "gag-settings"],
+    classes: ["garb-and-grime", "gag-window", "gag-settings"],
     position: { width: 1060, height: 760 },
     window: { icon: "fa-solid fa-sliders", title: "GAG.SettingsHub.Title", resizable: true },
     actions: {
