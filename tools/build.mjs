@@ -2,7 +2,7 @@
 // Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 // Dependency-free deterministic packaging for Runyth Garb & Grime.
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
@@ -94,6 +94,11 @@ function runtimeNames() {
     if (existsSync(absolute)) {
       names.push(...esImportedNames(script, readFileSync(absolute, "utf8")));
     }
+  }
+  // ApplicationV2 PARTS templates resolve at render time through runtime
+  // template-literal paths, not relative imports: stage the whole directory.
+  if (existsSync(path.join(ROOT, "templates"))) {
+    for (const file of readdirSync(path.join(ROOT, "templates"))) names.push(`templates/${file}`);
   }
   return names;
 }
