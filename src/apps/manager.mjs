@@ -108,13 +108,29 @@ export class CleanlinessManager extends PersistentApplication {
     const countsByLevel = [0, 0, 0, 0];
 
     if (activeTab === "overview") {
-      rows = actors.map((actor) => ({
-        ...this.#overviewActorRow(actor, sceneProfile, contaminationDefinitions),
-        selected: selectedActorUuids.has(actor.uuid)
-      }));
-      for (const row of rows) countsByLevel[row.level] += 1;
-      filteredResult = { rows, error: "" };
-      filteredCount = rows.length;
+      // The overview mirrors the Actors tab: the level distribution, the joined
+      // count and the scent notice list all follow the filter set that is
+      // currently shown on the Actors tab, page-independent.
+      const indexedOverviewRows = actors.map((actor) => {
+        const row = this.#actorIndexRow(actor, contaminationDefinitions, folderPathById);
+        const canModify = canModifyActor(actor);
+        const selected = selectedActorUuids.has(actor.uuid);
+        if (selected && canModify) selectedActorCount += 1;
+        return { ...row, canModify, selected };
+      });
+      filteredResult = this.#filterAndSort(indexedOverviewRows, uiState, folderOptions);
+      const filteredOverviewRows = filteredResult.rows;
+      filteredCount = filteredOverviewRows.length;
+      for (const row of filteredOverviewRows) countsByLevel[row.level] += 1;
+      rows = filteredOverviewRows
+        .map((row) => ({ ...row, scentNotice: services.rollService.evaluateRollContext(row.actor, "ste", {
+          enhancedSmell: true,
+          state: services.stateService.getState(row.actor, { includeHidden: game.user.isGM || hasPermission(PERMISSIONS.VIEW_GM_DETAILS, { actor }) }),
+          profile: sceneProfile,
+          contaminations: contaminationDefinitions,
+          emitHook: false
+        }).mode !== "normal" }))
+        .map((row) => this.#hydrateActorRow(row));
     } else if (activeTab === "actors") {
       const indexedRows = actors.map((actor) => {
         const row = this.#actorIndexRow(actor, contaminationDefinitions, folderPathById);
@@ -259,25 +275,6 @@ export class CleanlinessManager extends PersistentApplication {
   #reportUiError(error) {
     console.error(`[${MODULE_ID}] Manager interaction failed.`, error);
     ui.notifications.error(error?.message ?? game.i18n.localize("GAG.Errors.Unexpected"));
-  }
-
-  #overviewActorRow(actor, profile, contaminationDefinitions) {
-    const state = services.stateService.getState(actor, { includeHidden: game.user.isGM || hasPermission(PERMISSIONS.VIEW_GM_DETAILS, { actor }) });
-    const evaluation = services.rollService.evaluateRollContext(actor, "ste", {
-      enhancedSmell: true,
-      state,
-      profile,
-      contaminations: contaminationDefinitions,
-      emitHook: false
-    });
-    return {
-      uuid: actor.uuid,
-      name: actorDisplayName(actor),
-      level: state.dirtLevel,
-      levelLabel: game.i18n.localize(`GAG.Levels.${state.dirtLevel}.Name`),
-      scentNotice: evaluation.mode !== "normal",
-      canModify: canModifyActor(actor)
-    };
   }
 
   #actorIndexRow(actor, contaminationDefinitions, folderPathById) {

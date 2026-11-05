@@ -96,7 +96,7 @@ test("mocked Foundry init exposes the API and registers entry points", async () 
 
   for (const entry of hookHandlers.get("init") ?? []) await entry.callback();
   assert.equal(typeof moduleRecord.api.openManager, "function");
-  assert.equal(moduleRecord.api.getVersion(), "1.3.5");
+  assert.equal(moduleRecord.api.getVersion(), "1.3.6");
   assert.equal(moduleRecord.api.getApiVersion(), "1.3.4");
   assert.ok(definitions.has("runyth-garb-and-grime.configuration"));
   assert.ok(menus.has("runyth-garb-and-grime.openManager"));

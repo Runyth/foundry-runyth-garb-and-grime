@@ -22,7 +22,7 @@
     {{#if (eq uiState.activeTab "overview")}}
       <section class="gag-overview-grid">
         <article class="gag-panel gag-summary-panel">
-          <h2>{{localize "GAG.Manager.PartySummary"}}</h2>
+          <h2><i class="fa-solid fa-users" aria-hidden="true"></i> {{localize "GAG.Manager.PartySummary"}}</h2>
           <div class="gag-level-summary">
             {{#each counts}}
               <div class="gag-level-card gag-level-{{level}}">
@@ -31,12 +31,13 @@
               </div>
             {{/each}}
           </div>
+          <p class="hint">{{localize "GAG.Manager.PartySummaryCountsHint"}}</p>
           <p class="hint">{{localize "GAG.Manager.PartySummaryHint"}}</p>
         </article>
 
         <article class="gag-panel gag-scene-context-panel">
           <div class="gag-section-heading">
-            <div><h2>{{localize "GAG.Manager.SceneContext"}}</h2><p><strong>{{sceneName}}</strong></p></div>
+            <div><h2><i class="fa-solid fa-location-dot" aria-hidden="true"></i> {{localize "GAG.Manager.SceneContext"}}</h2><p><strong>{{sceneName}}</strong></p></div>
             {{#if canConfigure}}<button type="button" data-action="editSceneContext"><i class="fa-solid fa-pen-to-square"></i><span>{{localize "GAG.SceneGuide.Edit"}}</span></button>{{/if}}
           </div>
           <div class="gag-inline-form">
@@ -56,7 +57,7 @@
         </article>
 
         <article class="gag-panel gag-bulk-panel">
-          <h2>{{localize "GAG.Manager.SelectedTokens"}}</h2>
+          <h2><i class="fa-solid fa-list-check" aria-hidden="true"></i> {{localize "GAG.Manager.SelectedTokens"}}</h2>
           <p>{{localize "GAG.Manager.SelectedCount" count=selectedCount}}</p>
           {{#if canBulk}}
             <div class="gag-button-grid">
@@ -78,7 +79,7 @@
         </article>
 
         <article class="gag-panel gag-notice-panel">
-          <h2>{{localize "GAG.Manager.ScentWatch"}}</h2>
+          <h2><i class="fa-solid fa-bell" aria-hidden="true"></i> {{localize "GAG.Manager.ScentWatch"}}</h2>
           <ul class="gag-compact-list">
             {{#each rows}}
               {{#if scentNotice}}<li><button type="button" class="gag-link-button" data-action="openActor" data-actor-uuid="{{uuid}}">{{name}}</button> — {{levelLabel}}</li>{{/if}}

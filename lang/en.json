@@ -176,14 +176,14 @@
         "transactions": "Transactions",
         "settings": "Configuration"
       },
-      "PartySummary": "Party overview",
+      "PartySummary": "Party Overview",
       "PartySummaryHint": "Only actors visible through ownership and permissions are included.",
-      "SceneContext": "Scene context",
+      "SceneContext": "Scene Context",
       "SceneContextHint": "The profile drives recommendations, services, scent, and expected cleanliness.",
-      "SelectedTokens": "Selected tokens",
+      "SelectedTokens": "Selected Tokens",
       "SelectedCount": "{count} unique actors selected.",
       "BulkUnavailable": "Bulk changes are not permitted for your role.",
-      "ScentWatch": "Scent notice",
+      "ScentWatch": "Scent Watch",
       "NoScentNotices": "No notable actors in the current list.",
       "Filters": "Filters and sorting",
       "SearchPlaceholder": "Name or contamination",
@@ -222,7 +222,8 @@
       "GlobalActorScopeFolders": "Global Actor scope: {scoped} of {total} visible supported Actors from {folders} selected folder(s).",
       "GlobalActorScopeRegex": "Global Actor scope: {scoped} of {total} visible supported Actors matching /{regex}/.",
       "GlobalActorScopeBoth": "Global Actor scope: {scoped} of {total} visible supported Actors from {folders} selected folder(s) and matching /{regex}/.",
-      "GlobalActorScopePlayerLinked": "Player-linked character Actors are always included: {count} outside the manual scope."
+      "GlobalActorScopePlayerLinked": "Player-linked character Actors are always included: {count} outside the manual scope.",
+      "PartySummaryCountsHint": "Counts follow the filters that are currently set on the Actors tab."
     },
     "ActorPanel": {
       "Title": "Cleanliness",
