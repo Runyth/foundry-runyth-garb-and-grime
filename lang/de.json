@@ -390,7 +390,9 @@
       "TokenActionComplete": "Sauberkeitsaktion für {actor} abgeschlossen.",
       "SelectActors": "Wähle zuerst mindestens einen Akteur aus.",
       "BulkActorsAdjusted": "Schmutz wurde für {count} Akteure um {amount} angepasst.",
-      "BulkActorActionComplete": "{action} wurde auf {count} Akteure angewendet."
+      "BulkActorActionComplete": "{action} wurde auf {count} Akteure angewendet.",
+      "ActorsSelectedCount": "{count} Charaktere ausgewählt.",
+      "ActorsDeselectedCount": "{count} Charaktere abgewählt."
     },
     "Errors": {
       "PermissionDenied": "Du hast für diese Aktion keine Berechtigung.",
@@ -518,6 +520,10 @@
       "TokenLabelViewerPosition": {
         "Name": "Runyth Garb & Grime: Position der Token-Sauberkeitslabels",
         "Hint": "Deine persönliche Position der Sauberkeitslabels. Dies gewährt niemals die Berechtigung, Labels zu sehen."
+      },
+      "OneShotSelectionButtons": {
+        "Name": "Auswahlknöpfe mit Einmal-Aktion",
+        "Hint": "Wenn aktiv, füllen Sichtbare auswählen und Ordner auswählen die Auswahl pro Klick einmal und ein zweiter Klick geschieht nichts; sie wird über Auswahl aufheben geleert. Wenn aus (Standard), wirken diese Knöpfe als Umschalter: Sie bleiben hervorgehoben, solange jede auswählbare Zeile ihres Bereichs markiert ist, und leeren ihn bei erneutem Klick wieder."
       }
     },
     "SettingsHub": {

@@ -101,6 +101,7 @@ export class CleanlinessManager extends PersistentApplication {
     let actorGroups = [];
     let filteredResult = { rows: [], error: "" };
     let filteredCount = 0;
+    let actorsCovered = false;
     let selectedActorCount = 0;
     let visibleSelectableCount = 0;
     let pagination = null;
@@ -131,7 +132,13 @@ export class CleanlinessManager extends PersistentApplication {
       uiState.actorPage = pagination.page;
       uiState.actorPageSize = pagination.pageSize;
       rows = pagination.rows.map((row) => this.#hydrateActorRow(row));
-      actorGroups = groupActorRows(rows);
+      const oneShot = Boolean(game.settings.get(MODULE_ID, SETTINGS.SELECTION_ONE_SHOT));
+      actorGroups = groupActorRows(rows).map((group) => {
+        const members = group.rows.filter((row) => row.canModify);
+        return { ...group, covered: !oneShot && members.length > 0 && members.every((row) => row.selected) };
+      });
+      const selectableRows = rows.filter((row) => row.canModify);
+      actorsCovered = !oneShot && selectableRows.length > 0 && selectableRows.every((row) => row.selected);
       reportActorImageIssues(rows);
     }
 
@@ -197,6 +204,7 @@ export class CleanlinessManager extends PersistentApplication {
       })),
       selectedCount: activeTab === "overview" ? selectedActors().length : 0,
       selectedActorCount,
+      actorsCovered,
       visibleSelectableCount,
       pagination,
       canViewParty: game.user.isGM || hasPermission(PERMISSIONS.VIEW_PARTY),
@@ -221,7 +229,7 @@ export class CleanlinessManager extends PersistentApplication {
       const target = event.target;
       if (!(target instanceof HTMLElement)) return;
       if (target.matches("[data-gag-select-actor]")) {
-        void this.#updateActorSelection(target).catch((error) => this.#reportUiError(error));
+        void this.updateActorSelection(target).catch((error) => this.#reportUiError(error));
         return;
       }
       if (target.matches("[data-gag-filter]")) {
@@ -425,19 +433,40 @@ export class CleanlinessManager extends PersistentApplication {
   }
 
 
-  async #updateActorSelection(element) {
+  async updateActorSelection(element) {
     const state = foundry.utils.deepClone(game.settings.get(MODULE_ID, SETTINGS.UI_STATE) ?? {});
     const selected = new Set(Array.isArray(state.selectedActorUuids) ? state.selectedActorUuids : []);
     if (element.checked) selected.add(element.dataset.gagSelectActor);
     else selected.delete(element.dataset.gagSelectActor);
     state.selectedActorUuids = [...selected];
     await game.settings.set(MODULE_ID, SETTINGS.UI_STATE, state);
-    element.closest(".gag-actor-row")?.classList.toggle("selected", element.checked);
+    this.#syncSelectionDom();
+  }
+
+  #selectionDom() {
+    return selectionDom(this.element);
+  }
+
+  #syncSelectionDom() {
+    const dom = this.#selectionDom();
+    const { selected } = selectionState();
+    const oneShot = Boolean(game.settings.get(MODULE_ID, SETTINGS.SELECTION_ONE_SHOT));
+    for (const input of dom.inputs) {
+      const checked = selected.has(input.dataset.gagSelectActor);
+      if (input.checked !== checked) input.checked = checked;
+      input.closest?.(".gag-actor-row")?.classList.toggle("selected", checked);
+    }
+    for (const entry of dom.groups) {
+      const covered = !oneShot && entry.inputs.length > 0 && entry.inputs.every((input) => selected.has(input.dataset.gagSelectActor));
+      setButtonPressed(entry.button, covered);
+    }
+    const coveredAll = !oneShot && dom.inputs.length > 0 && dom.inputs.every((input) => selected.has(input.dataset.gagSelectActor));
+    setButtonPressed(dom.visibleButton, coveredAll);
     this.#refreshActorSelectionSummary(selected.size);
   }
 
   #refreshActorSelectionSummary(count) {
-    const summary = this.element.querySelector("[data-gag-selected-actor-count]");
+    const summary = this.element?.querySelector?.("[data-gag-selected-actor-count]") ?? null;
     if (summary) summary.textContent = game.i18n.format("GAG.Manager.SelectedActorCount", { count });
     this.element.querySelectorAll("[data-action='bulkActorAdjust'], [data-action='bulkActorAction']").forEach((button) => { button.disabled = count < 1; });
   }
@@ -510,12 +539,8 @@ export class CleanlinessManager extends PersistentApplication {
 
   static async onSelectAllActors() {
     return runActorManagerOperation(this, async () => {
-      const state = foundry.utils.deepClone(game.settings.get(MODULE_ID, SETTINGS.UI_STATE) ?? {});
-      const selected = new Set(Array.isArray(state.selectedActorUuids) ? state.selectedActorUuids : []);
-      this.element.querySelectorAll("[data-gag-select-actor]:not(:disabled)").forEach((checkbox) => selected.add(checkbox.dataset.gagSelectActor));
-      state.selectedActorUuids = [...selected];
-      await game.settings.set(MODULE_ID, SETTINGS.UI_STATE, state);
-      scheduleApplicationRender(this);
+      await applySelectionToggle(this.#selectionDom().inputs);
+      this.#syncSelectionDom();
     });
   }
 
@@ -524,7 +549,7 @@ export class CleanlinessManager extends PersistentApplication {
       const state = foundry.utils.deepClone(game.settings.get(MODULE_ID, SETTINGS.UI_STATE) ?? {});
       state.selectedActorUuids = [];
       await game.settings.set(MODULE_ID, SETTINGS.UI_STATE, state);
-      scheduleApplicationRender(this);
+      this.#syncSelectionDom();
     });
   }
 
@@ -566,12 +591,12 @@ export class CleanlinessManager extends PersistentApplication {
     return runActorManagerOperation(this, async () => {
       const group = target.closest("[data-gag-actor-group]");
       if (!group) return;
-      const state = foundry.utils.deepClone(game.settings.get(MODULE_ID, SETTINGS.UI_STATE) ?? {});
-      const selected = new Set(Array.isArray(state.selectedActorUuids) ? state.selectedActorUuids : []);
-      group.querySelectorAll("[data-gag-select-actor]:not(:disabled)").forEach((checkbox) => selected.add(checkbox.dataset.gagSelectActor));
-      state.selectedActorUuids = [...selected];
-      await game.settings.set(MODULE_ID, SETTINGS.UI_STATE, state);
-      scheduleApplicationRender(this);
+      const dom = this.#selectionDom();
+      const entry = dom.groups.find((candidate) => candidate.button?.closest("[data-gag-actor-group]") === group)
+        ?? dom.groups.find((candidate) => candidate.inputs.some((input) => group.contains(input)));
+      const inputs = entry ? entry.inputs : [...(group.querySelectorAll(SELECTION_CHECKBOX) ?? [])];
+      await applySelectionToggle(inputs);
+      this.#syncSelectionDom();
     });
   }
 
@@ -641,6 +666,53 @@ async function runActorManagerOperation(app, operation) {
   });
   if (app) app._gagActorOperationQueue = guarded;
   return guarded;
+}
+
+const SELECTION_CHECKBOX = "[data-gag-select-actor]:not(:disabled)";
+
+function selectionDom(root) {
+  const queryAll = selector => [...(root?.querySelectorAll?.(selector) ?? [])];
+  const queryOne = (node, selector) => node?.querySelector?.(selector) ?? null;
+  const inputs = queryAll(SELECTION_CHECKBOX);
+  const groups = queryAll("[data-gag-actor-group]").map((group) => ({
+    button: queryOne(group, "button[data-action='selectActorGroup']"),
+    inputs: [...(group.querySelectorAll?.(SELECTION_CHECKBOX) ?? [])]
+  }));
+  return { inputs, groups, visibleButton: queryOne(root, "button[data-action='selectAllActors']") };
+}
+
+function selectionState() {
+  const state = foundry.utils.deepClone(game.settings.get(MODULE_ID, SETTINGS.UI_STATE) ?? {});
+  return { state, selected: new Set(Array.isArray(state.selectedActorUuids) ? state.selectedActorUuids : []) };
+}
+
+function setButtonPressed(button, covered) {
+  if (!button) return;
+  button.classList.toggle("active", covered);
+  button.setAttribute("aria-pressed", covered ? "true" : "false");
+}
+
+/**
+ * One selection action per click: fills the covered rows, or — in the default
+ * toggle behavior — empties them when the coverage is already fully selected.
+ * The persisted selection stays the single source of truth; the rendered
+ * checkboxes/highlights are re-derived from it afterwards.
+ */
+async function applySelectionToggle(inputs) {
+  const uuids = inputs.map((input) => input.dataset.gagSelectActor);
+  if (!uuids.length) return;
+  const { state, selected } = selectionState();
+  const covered = uuids.every((uuid) => selected.has(uuid));
+  const oneShot = Boolean(game.settings.get(MODULE_ID, SETTINGS.SELECTION_ONE_SHOT));
+  const deselect = !oneShot && covered;
+  for (const uuid of uuids) {
+    if (deselect) selected.delete(uuid);
+    else selected.add(uuid);
+  }
+  state.selectedActorUuids = [...selected];
+  await game.settings.set(MODULE_ID, SETTINGS.UI_STATE, state);
+  ui.notifications.info(game.i18n.format(deselect
+    ? "GAG.Notifications.ActorsDeselectedCount" : "GAG.Notifications.ActorsSelectedCount", { count: uuids.length }));
 }
 
 

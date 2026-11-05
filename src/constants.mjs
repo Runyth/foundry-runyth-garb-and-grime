@@ -2,7 +2,7 @@
 // Copyright (C) 2026 Daniel Braniewski. See the LICENSE file for rights and obligations.
 export const MODULE_ID = "runyth-garb-and-grime";
 export const MODULE_TITLE = "Runyth Garb & Grime";
-export const MODULE_VERSION = "1.2.9";
+export const MODULE_VERSION = "1.3.5";
 export const API_VERSION = "1.3.4";
 export const SCHEMA_VERSION = 1;
 export const SOCKET_NAME = `module.${MODULE_ID}`;
@@ -25,6 +25,7 @@ export const SETTINGS = Object.freeze({
   PROFILE_RATINGS_VERSION: "profileRatingsVersion",
   PERMISSIONS: "permissions",
   UI_STATE: "uiState",
+  SELECTION_ONE_SHOT: "selectionButtonsOneShot",
   WINDOW_STATE: "windowState",
   TRANSACTION_LOG: "transactionLog",
   LAST_WORLD_DAY: "lastWorldDay",

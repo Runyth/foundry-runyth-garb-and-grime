@@ -1,5 +1,26 @@
 # Changelog
 
+
+## 1.3.5 — 2026-11-05
+
+- Selection buttons became stateful toggles: Select visible and the per-folder
+  Select folder buttons stay highlighted (active accent state, `aria-pressed`)
+  while every selectable row they cover is selected, and a click on a covered
+  button empties exactly that coverage; manual checkbox edits and folder
+  buttons re-evaluate the highlight immediately.
+- The selection no longer re-renders the manager: Select visible, Select
+  folder and Clear selection sync the rendered checkboxes, row highlights,
+  counter and bulk buttons (`#syncSelectionDom`), so the window keeps its
+  scroll position after every press.
+- New client setting `selectionButtonsOneShot` (per client, default off) for
+  accessibility: when enabled, the selection buttons fill once per click,
+  never toggle and show no pressed state; the selection is then cleared with
+  the Clear selection button.
+- Fresh renders paint the pressed state (`actorsCovered`, per-folder
+  `covered`) from the persisted selection, keeping the first paint coherent
+  with the live-sync behavior; the module console version constant now
+  matches the installed version.
+
 ## 1.3.4 — 2026-11-05
 
 - Restored the original visual contract: the ApplicationV2 window classes go

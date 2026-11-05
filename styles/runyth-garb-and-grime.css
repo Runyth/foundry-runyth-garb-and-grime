@@ -216,6 +216,13 @@
 
 .garb-and-grime button:disabled { opacity: 0.48; cursor: not-allowed; }
 .garb-and-grime button.active { border-color: var(--gag-success); box-shadow: inset 0 0 0 1px var(--gag-success); }
+.gag-selection-toolbar__actions button.active,
+.gag-actor-group__header button.active {
+  background: var(--gag-panel);
+  color: var(--gag-accent-strong);
+}
+.gag-selection-toolbar__actions button.active:focus-visible,
+.gag-actor-group__header button.active:focus-visible { outline: 2px solid var(--gag-accent-strong); outline-offset: 1px; }
 .garb-and-grime button.danger { border-color: var(--gag-danger); }
 .garb-and-grime button.compact { min-height: 1.8rem; padding: 0.25rem 0.45rem; }
 

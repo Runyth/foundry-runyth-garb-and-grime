@@ -390,7 +390,9 @@
       "TokenActionComplete": "Cleanliness action completed for {actor}.",
       "SelectActors": "Select at least one actor first.",
       "BulkActorsAdjusted": "Adjusted dirt by {amount} for {count} actors.",
-      "BulkActorActionComplete": "Applied {action} to {count} Actors."
+      "BulkActorActionComplete": "Applied {action} to {count} Actors.",
+      "ActorsSelectedCount": "Selected {count} characters.",
+      "ActorsDeselectedCount": "Deselected {count} characters."
     },
     "Errors": {
       "PermissionDenied": "You do not have permission for this action.",
@@ -518,6 +520,10 @@
       "TokenLabelViewerPosition": {
         "Name": "Runyth Garb & Grime: Token label position",
         "Hint": "Your personal cleanliness-label position. This never grants permission to see labels."
+      },
+      "OneShotSelectionButtons": {
+        "Name": "One-press selection buttons",
+        "Hint": "When enabled, Select visible and Select folder fill the selection once per click and a second click does nothing; clear it with Clear selection. When off (default), these buttons are toggles: they stay highlighted while every selectable row they cover is selected, and clicking a highlighted button empties it again."
       }
     },
     "SettingsHub": {

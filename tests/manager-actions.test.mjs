@@ -36,6 +36,7 @@ async function setupManagerTest() {
   };
   const notices = { info: [], warn: [], error: [] };
   const calls = [];
+  const moduleSettings = { selectionButtonsOneShot: false };
 
   globalThis.foundry = {
     applications: {
@@ -57,8 +58,15 @@ async function setupManagerTest() {
       filter() { return actors; }
     },
     settings: {
-      get() { return structuredClone(uiState); },
+      get(_moduleId, key) {
+        if (key in moduleSettings) return moduleSettings[key];
+        return structuredClone(uiState);
+      },
       async set(_moduleId, _key, value) {
+        if (_key === "selectionButtonsOneShot") {
+          moduleSettings.selectionButtonsOneShot = Boolean(value);
+          return value;
+        }
         uiState = structuredClone(value);
         return value;
       }
@@ -95,7 +103,9 @@ async function setupManagerTest() {
     calls,
     notices,
     getUiState: () => structuredClone(uiState),
-    setUiState: (value) => { uiState = structuredClone(value); }
+    setUiState: (value) => { uiState = structuredClone(value); },
+    getModuleSetting: key => moduleSettings[key],
+    setModuleSetting: (key, value) => { moduleSettings[key] = value; }
   };
 }
 
@@ -167,6 +177,106 @@ test("Actor-browser selection actions serialize settings writes and survive reop
   const reopened = new CleanlinessManager();
   reopened.element = manager.element;
   await assert.doesNotReject(() => actions.clearActorSelection.call(reopened));
+  assert.deepEqual(getUiState().selectedActorUuids, []);
+});
+
+test("selection buttons toggle with coverage highlights and preserve the scroll", async () => {
+  const { CleanlinessManager, actors, notices, getUiState, setUiState } = await setupManagerTest();
+  const actions = CleanlinessManager.DEFAULT_OPTIONS.actions;
+  const manager = new CleanlinessManager();
+  setUiState({ activeTab: "actors", selectedActorUuids: [] });
+
+  const makeRowStub = actor => {
+    const state = { classes: new Set() };
+    return {
+      dataset: { gagSelectActor: actor.uuid },
+      checked: false,
+      closest: () => ({ classList: { toggle: (name, on) => { if (on) state.classes.add(name); else state.classes.delete(name); } }, state })
+    };
+  };
+  const makeButton = () => ({ classList: { toggle() {} }, setAttribute(attr, value) { this[attr] = value; } });
+  const visibleButton = makeButton();
+  const rows = actors.map(makeRowStub);
+  manager.element = {
+    querySelector(selector) {
+      if (selector === "button[data-action='selectAllActors']") return visibleButton;
+      if (selector === "[data-gag-selected-actor-count]") return { textContent: "" };
+      return null;
+    },
+    querySelectorAll(selector) {
+      if (selector === "[data-gag-select-actor]:not(:disabled)") return rows;
+      return [];
+    }
+  };
+  let renderCalls = 0;
+  manager.render = () => { renderCalls += 1; return Promise.resolve(manager); };
+
+  await actions.selectAllActors.call(manager);
+  assert.deepEqual(new Set(getUiState().selectedActorUuids), new Set(actors.map(actor => actor.uuid)));
+  assert.ok(notices.info.at(-1).startsWith("GAG.Notifications.ActorsSelectedCount"));
+  assert.equal(renderCalls, 0, "selection actions never re-render, the scroll stays put");
+  assert.equal(visibleButton["aria-pressed"], "true", "covered select-visible paints pressed");
+  assert.ok(rows.every(row => row.checked === true), "checkboxes sync without a re-render");
+
+  await actions.selectAllActors.call(manager);
+  assert.deepEqual(getUiState().selectedActorUuids, [], "second press on a covered button empties it");
+  assert.ok(notices.info.at(-1).startsWith("GAG.Notifications.ActorsDeselectedCount"));
+  assert.equal(visibleButton["aria-pressed"], "false");
+  assert.ok(rows.every(row => row.checked === false));
+
+  await actions.selectActorGroup.call(manager, {}, { closest: () => ({ querySelectorAll: () => rows.slice(0, 1) }) });
+  assert.deepEqual(getUiState().selectedActorUuids, [actors[0].uuid]);
+  assert.equal(visibleButton["aria-pressed"], "false", "one selected row does not cover the list");
+
+  await actions.selectActorGroup.call(manager, {}, { closest: () => ({ querySelectorAll: () => rows.slice(0, 1) }) });
+  assert.deepEqual(getUiState().selectedActorUuids, [], "a covered folder button empties exactly its own group");
+
+  setUiState({ activeTab: "actors", selectedActorUuids: [actors[0].uuid, actors[1].uuid] });
+  const manualRow = rows.find(row => row.dataset.gagSelectActor === actors[1].uuid);
+  manualRow.checked = false;
+  await manager.updateActorSelection(manualRow);
+  assert.deepEqual(getUiState().selectedActorUuids, [actors[0].uuid]);
+  assert.equal(visibleButton["aria-pressed"], "false", "manual deselection un-presses the visible button");
+  manualRow.checked = true;
+  await manager.updateActorSelection(manualRow);
+  assert.deepEqual(new Set(getUiState().selectedActorUuids), new Set(actors.map(actor => actor.uuid)));
+  assert.equal(visibleButton["aria-pressed"], "true", "manual re-selection re-presses the visible button");
+
+  await actions.clearActorSelection.call(manager);
+  assert.deepEqual(getUiState().selectedActorUuids, []);
+  assert.equal(visibleButton["aria-pressed"], "false");
+});
+
+test("the accessibility one-shot option keeps selection buttons press-only", async () => {
+  const { CleanlinessManager, actors, getUiState, setUiState, setModuleSetting } = await setupManagerTest();
+  const actions = CleanlinessManager.DEFAULT_OPTIONS.actions;
+  const manager = new CleanlinessManager();
+  setUiState({ activeTab: "actors", selectedActorUuids: [] });
+  setModuleSetting("selectionButtonsOneShot", true);
+  const makeRowStub = actor => ({ dataset: { gagSelectActor: actor.uuid }, checked: false, closest: null });
+  const rows = actors.map(makeRowStub);
+  const visibleButton = { classList: { toggle() {} }, setAttribute() {} };
+  manager.element = {
+    querySelector(selector) {
+      if (selector === "button[data-action='selectAllActors']") return visibleButton;
+      if (selector === "[data-gag-selected-actor-count]") return { textContent: "" };
+      return null;
+    },
+    querySelectorAll(selector) { return selector === "[data-gag-select-actor]:not(:disabled)" ? rows : []; }
+  };
+  const banners = [];
+  const originalInfo = ui.notifications.info;
+  ui.notifications.info = message => banners.push(message);
+  try {
+    await actions.selectAllActors.call(manager);
+    await actions.selectAllActors.call(manager);
+  } finally {
+    ui.notifications.info = originalInfo;
+  }
+  assert.deepEqual(new Set(getUiState().selectedActorUuids), new Set(actors.map(actor => actor.uuid)), "second one-shot press never deselects");
+  assert.equal(banners.filter(b => b.startsWith("GAG.Notifications.ActorsSelectedCount")).length, 2);
+  setModuleSetting("selectionButtonsOneShot", false);
+  await actions.clearActorSelection.call(manager);
   assert.deepEqual(getUiState().selectedActorUuids, []);
 });
 

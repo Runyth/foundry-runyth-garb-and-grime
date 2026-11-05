@@ -127,7 +127,7 @@
             <small>{{localize "GAG.Manager.ActorSelectionHint"}}</small>
           </div>
           <div class="gag-selection-toolbar__actions">
-            <button type="button" data-action="selectAllActors"><i class="fa-solid fa-check-double"></i><span>{{localize "GAG.Actions.SelectVisible"}}</span></button>
+            <button type="button" data-action="selectAllActors" class="{{#if actorsCovered}}active{{/if}}" aria-pressed="{{actorsCovered}}"><i class="fa-solid fa-check-double"></i><span>{{localize "GAG.Actions.SelectVisible"}}</span></button>
             <button type="button" data-action="clearActorSelection"><i class="fa-solid fa-xmark"></i><span>{{localize "GAG.Actions.ClearSelection"}}</span></button>
             <button type="button" data-action="bulkActorAdjust" data-amount="1" {{#unless selectedActorCount}}disabled{{/unless}}><i class="fa-solid fa-plus"></i><span>{{localize "GAG.Actions.IncreaseSelected"}}</span></button>
             <button type="button" data-action="bulkActorAdjust" data-amount="-1" {{#unless selectedActorCount}}disabled{{/unless}}><i class="fa-solid fa-minus"></i><span>{{localize "GAG.Actions.ReduceSelected"}}</span></button>
@@ -144,7 +144,7 @@
           <section class="gag-actor-group" data-gag-actor-group="{{id}}">
             <header class="gag-actor-group__header">
               <div><i class="fa-solid fa-folder-open" aria-hidden="true"></i><strong>{{label}}</strong><span>{{rows.length}}</span></div>
-              {{#if @root.canBulk}}<button type="button" class="compact" data-action="selectActorGroup"><i class="fa-solid fa-check-double"></i><span>{{localize "GAG.Actions.SelectFolder"}}</span></button>{{/if}}
+              {{#if @root.canBulk}}<button type="button" class="compact {{#if covered}}active{{/if}}" data-action="selectActorGroup" aria-pressed="{{covered}}"><i class="fa-solid fa-check-double"></i><span>{{localize "GAG.Actions.SelectFolder"}}</span></button>{{/if}}
             </header>
             <div class="gag-actor-group__rows">
             {{#each rows}}
