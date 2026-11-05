@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.3.6 — 2026-11-05
+
+- The party overview now counts only the actor set that the Actors-tab filters
+  currently show: the level distribution cards follow the folder, search mode,
+  level, type, selection and subfolder filters together, page-independent, and
+  the scent notice list renders the same filtered rows — a Player folder with
+  five visible characters now counts exactly five per level card. The summary
+  panel carries a localized hint explaining that the counts follow the
+  Actors-tab filters.
+- The overview sections adopt the fleet icon language: Party Overview uses the
+  users glyph, Scene Context the location glyph, Selected Tokens and Scent
+  Watch receive their matching glyphs; overview titles normalized to Title
+  Case (Party Overview, Scene Context, Selected Tokens, Scent Watch).
 
 ## 1.3.5 — 2026-11-05
 

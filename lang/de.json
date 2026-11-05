@@ -222,7 +222,8 @@
       "GlobalActorScopeFolders": "Globaler Akteursumfang: {scoped} von {total} sichtbaren unterstützten Akteuren aus {folders} ausgewählten Ordner(n).",
       "GlobalActorScopeRegex": "Globaler Akteursumfang: {scoped} von {total} sichtbaren unterstützten Akteuren passend zu /{regex}/.",
       "GlobalActorScopeBoth": "Globaler Akteursumfang: {scoped} von {total} sichtbaren unterstützten Akteuren aus {folders} ausgewählten Ordner(n) und passend zu /{regex}/.",
-      "GlobalActorScopePlayerLinked": "Mit Spielern verknüpfte Charakter-Akteure werden immer einbezogen: {count} außerhalb des manuellen Umfangs."
+      "GlobalActorScopePlayerLinked": "Mit Spielern verknüpfte Charakter-Akteure werden immer einbezogen: {count} außerhalb des manuellen Umfangs.",
+      "PartySummaryCountsHint": "Die Zahlen folgen den Filtern, die auf dem Akteure-Reiter gesetzt sind."
     },
     "ActorPanel": {
       "Title": "Sauberkeit",

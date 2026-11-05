@@ -140,6 +140,11 @@
   font-size: 1.15rem;
 }
 
+.gag-panel h2 i,
+.gag-section-heading h2 i {
+  color: var(--gag-accent-strong);
+}
+
 .gag-level-summary {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
