@@ -2,7 +2,7 @@
   "id": "runyth-garb-and-grime",
   "title": "Runyth Garb & Grime",
   "description": "A configurable clothing cleanliness, body odor, contamination, social-context, and daily-upkeep system for Foundry VTT and D&D 5e.",
-  "version": "1.3.4",
+  "version": "1.3.5",
   "authors": [
     {
       "name": "Runyth",
@@ -48,7 +48,7 @@
   "socket": true,
   "url": "https://github.com/Runyth/foundry-runyth-garb-and-grime",
   "manifest": "https://github.com/Runyth/foundry-runyth-garb-and-grime/releases/latest/download/module.json",
-  "download": "https://github.com/Runyth/foundry-runyth-garb-and-grime/releases/download/v1.3.4/runyth-garb-and-grime-v1.3.4-mod.zip",
+  "download": "https://github.com/Runyth/foundry-runyth-garb-and-grime/releases/download/v1.3.5/runyth-garb-and-grime-v1.3.5-mod.zip",
   "readme": "README.md",
   "changelog": "CHANGELOG.md"
 }

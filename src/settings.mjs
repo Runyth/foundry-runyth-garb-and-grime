@@ -100,6 +100,14 @@ export function registerSettings({ managerClass, settingsClass }) {
     type: Object,
     default: { activeTab: "overview", search: "", searchMode: "text", folderId: "all", includeSubfolders: true, actorType: "all", selectionMode: "all", level: "all", sort: "name", direction: "asc", actorPage: 1, actorPageSize: 40, selectedActorUuids: [] }
   });
+  register(SETTINGS.SELECTION_ONE_SHOT, {
+    name: "GAG.Settings.OneShotSelectionButtons.Name",
+    hint: "GAG.Settings.OneShotSelectionButtons.Hint",
+    scope: "client",
+    config: true,
+    type: Boolean,
+    default: false
+  });
   register(SETTINGS.WINDOW_STATE, {
     name: "GAG.Settings.WindowState.Name",
     scope: "client",
