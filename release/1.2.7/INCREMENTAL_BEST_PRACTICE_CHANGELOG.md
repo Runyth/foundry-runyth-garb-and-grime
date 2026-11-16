@@ -14,4 +14,3 @@
 - Retains the previous `toggleTokenLabels` and `setTokenLabelsVisible` public API semantics and the existing manual toggle UI.
 - 129 automated tests, including new default and selected scopes, player permission isolation, GM hide, automatic modes, same-UUID redraw, scene reset, native callback, and static settings integration.
 - API version remains `1.3.0`; schema remains `1`; no world-data migration needed.
-

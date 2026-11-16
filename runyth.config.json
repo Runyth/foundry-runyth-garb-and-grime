@@ -1,0 +1,97 @@
+{
+  "build": {
+    "exclude": [
+      "**/*.map",
+      "**/*.ts",
+      "**/*.tsx",
+      "**/.DS_Store",
+      "**/Thumbs.db"
+    ],
+    "include": [
+      "module.json",
+      "README.md",
+      "CHANGELOG.md",
+      "LICENSE",
+      "scripts/**",
+      "styles/**",
+      "templates/**",
+      "lang/**",
+      "packs/**",
+      "assets/**",
+      "data/**",
+      "fonts/**",
+      "icons/**",
+      "media/**",
+      "sounds/**",
+      "ui/**",
+      "vendor/**"
+    ],
+    "preBuild": [],
+    "sourceExclude": [
+      ".git/**",
+      ".runyth-template-source/**",
+      "dist/**",
+      "node_modules/**",
+      "coverage/**",
+      ".nyc_output/**",
+      ".cache/**",
+      "*.log",
+      ".env",
+      ".env.*",
+      "**/.DS_Store",
+      "**/Thumbs.db",
+      "release/**"
+    ]
+  },
+  "module": {
+    "kind": "runtime",
+    "publicApi": true,
+    "repository": "Runyth/foundry-runyth-garb-and-grime",
+    "systemNeutral": false
+  },
+  "runtimeKit": {
+    "managed": false
+  },
+  "schemaVersion": 1,
+  "sync": {
+    "exclude": []
+  },
+  "template": {
+    "repository": "Runyth/template-foundry-module",
+    "source": false,
+    "version": "1.1.5"
+  },
+  "validation": {
+    "allowFindings": [
+      {
+        "path": "src/integrations/actor-sheets.mjs",
+        "reason": "Audited: static markup plus values escaped through the module escape() helper (foundry.utils.escapeHTML) and localize() keys.",
+        "rule": "unsafe-inner-html"
+      },
+      {
+        "path": "src/integrations/items.mjs",
+        "reason": "Audited: interpolations are escape()d item/user values and localized labels only.",
+        "rule": "unsafe-inner-html"
+      },
+      {
+        "path": "src/integrations/sidebar.mjs",
+        "reason": "Audited: static controls, escaped labels, and numeric counters only.",
+        "rule": "unsafe-inner-html"
+      },
+      {
+        "path": "src/integrations/token-hud.mjs",
+        "reason": "Audited: static icon markup and escaped/localized values only.",
+        "rule": "unsafe-inner-html"
+      }
+    ],
+    "forbidPrivateFoundryApis": true,
+    "forbidSourceMaps": true,
+    "requireLocaleParity": true,
+    "requireRepositoryUrls": true,
+    "requireVersionParity": true,
+    "requiredLocales": [
+      "de",
+      "en"
+    ]
+  }
+}
